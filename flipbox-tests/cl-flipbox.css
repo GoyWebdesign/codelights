@@ -1,0 +1,98 @@
+.cl-flipbox {
+  display: inline-block;
+  position: relative;
+}
+.cl-flipbox.animation_cardflip {
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-h {
+  -webkit-transition: 600ms;
+  -moz-transition: 600ms;
+  -o-transition: 600ms;
+  -ms-transition: 600ms;
+  transition: 600ms;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-front,
+.cl-flipbox.animation_cardflip .cl-flipbox-back {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cl-flipbox.animation_cardflip.direction_n .cl-flipbox-back {
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_n:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_n.hover .cl-flipbox-h {
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_ne .cl-flipbox-back {
+  -webkit-transform: rotateX(180deg) rotateY(180deg);
+  -moz-transform: rotateX(180deg) rotateY(180deg);
+  -ms-transform: rotateX(180deg) rotateY(180deg);
+  -o-transform: rotateX(180deg) rotateY(180deg);
+  transform: rotateX(180deg) rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_ne:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_ne.hover .cl-flipbox-h {
+  -webkit-transform: rotateX(180deg) rotateY(180deg);
+  -moz-transform: rotateX(180deg) rotateY(180deg);
+  -ms-transform: rotateX(180deg) rotateY(180deg);
+  -o-transform: rotateX(180deg) rotateY(180deg);
+  transform: rotateX(180deg) rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_e .cl-flipbox-back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_e:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_e.hover .cl-flipbox-h {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_w .cl-flipbox-back {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.cl-flipbox.animation_cardflip.direction_w:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_w.hover .cl-flipbox-h {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
