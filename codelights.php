@@ -36,3 +36,12 @@ function cl_load_template( $template, $vars = NULL ) {
 	}
 	include $cl_dir . '/templates/' . $template . '.php';
 }
+
+/* load admin js and css styles */
+function cl_register_admin_scripts() {
+	wp_register_style( 'cl-admin-style', plugins_url( '/admin/css/editor.css', __FILE__ ) );
+	wp_enqueue_style( 'cl-admin-style' );
+
+    wp_enqueue_script( 'cl-admin-script', plugins_url( '/admin/js/editor.js', __FILE__ ), array('jquery'), false, true );
+}
+add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
