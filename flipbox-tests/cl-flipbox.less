@@ -8,79 +8,221 @@
 	&.animation_cardflip {
 
 		.perspective(1000px);
+		.transform(translateZ(0));
 
 		.cl-flipbox-h {
-			.transition(600ms);
-			.transition-timing-function(ease-in-out);
+			position: relative;
+			width: 100%;
+			height: 100%;
+			.backface-visibility(hidden);
 			.transform-style(preserve-3d);
+			.transition(6000ms);
+			.transition-timing-function(ease-in-out);
 		}
 
 		.cl-flipbox-front,
 		.cl-flipbox-back {
 			display: block;
-			position: absolute;
-			left: 0;
-			top: 0;
 			width: 100%;
 			height: 100%;
 			.backface-visibility(hidden);
-		}
+			.transition(inherit);
+			.transition-timing-function(inherit);
 
+		}
 		.cl-flipbox-front {
-			//z-index: 2;
+			position: relative;
+			z-index: 1;
+		}
+		.cl-flipbox-back {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: -1;
+		}
+		&:hover,
+		&.hover {
+			.cl-flipbox-front {
+				z-index: -1;
+			}
+			.cl-flipbox-back {
+				z-index: 1;
+			}
 		}
 
 		// Animation: Card Flip. Direction: North
 		&.direction_n {
+			.cl-flipbox-front {
+				.transform(rotateX(0deg));
+			}
 			.cl-flipbox-back {
-				.transform(rotateX(180deg));
+				.transform(rotateX(-180deg));
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-front {
 					.transform(rotateX(180deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotateX(0deg));
 				}
 			}
 		}
 
 		// Animation: Card Flip. Direction: North-East
 		&.direction_ne {
+			.cl-flipbox-h {
+				.transform(rotate3d(1, 1, 0, 0deg));
+			}
 			.cl-flipbox-back {
-				.transform(rotateX(180deg) rotateY(180deg));
+				.transform(rotate3d(1, 1, 0, -180deg));
 			}
 			&:hover,
 			&.hover {
 				.cl-flipbox-h {
-					.transform(rotateX(180deg) rotateY(180deg));
+					.transform(rotate3d(1, 1, 0, 180deg));
 				}
 			}
 		}
 
 		// Animation: Card Flip. Direction: East
 		&.direction_e {
+			.cl-flipbox-front {
+				.transform(rotateY(0deg));
+			}
 			.cl-flipbox-back {
-				.transform(rotateY(180deg));
+				.transform(rotateY(-180deg));
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-front {
 					.transform(rotateY(180deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotateY(0deg));
+				}
+			}
+		}
+
+		// Animation: Card Flip. Direction: South-Eest
+		&.direction_se {
+			.cl-flipbox-h,
+			.cl-flipbox-front {
+				.transform(rotate3d(-1, 1, 0, 0deg));
+			}
+			.cl-flipbox-back {
+				.transform(rotate3d(-1, 1, 0, -180deg));
+			}
+			&:hover,
+			&.hover {
+				.cl-flipbox-h,
+				.cl-flipbox-front {
+					.transform(rotate3d(-1, 1, 0, 90deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotate3d(-1, 1, 0, -90deg));
+				}
+			}
+		}
+
+		// Animation: Card Flip. Direction: South
+		&.direction_s {
+			.cl-flipbox-front {
+				.transform(rotateX(0deg));
+			}
+			.cl-flipbox-back {
+				.transform(rotateX(180deg));
+			}
+			&:hover,
+			&.hover {
+				.cl-flipbox-front {
+					.transform(rotateX(-180deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotateX(0deg));
+				}
+			}
+		}
+
+		// Animation: Card Flip. Direction: South-West
+		&.direction_sw {
+			.cl-flipbox-h,
+			.cl-flipbox-front {
+				.transform(rotate3d(1, 1, 0, 0deg));
+			}
+			.cl-flipbox-back {
+				.transform(rotate3d(1, 1, 0, 180deg));
+			}
+			&:hover,
+			&.hover {
+				.cl-flipbox-h,
+				.cl-flipbox-front {
+					.transform(rotate3d(1, 1, 0, -90deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotate3d(1, 1, 0, 90deg));
 				}
 			}
 		}
 
 		// Animation: Card Flip. Direction: West
 		&.direction_w {
+			.cl-flipbox-front {
+				.transform(rotateY(0deg));
+			}
 			.cl-flipbox-back {
-				.transform(rotateY(-180deg));
+				.transform(rotateY(180deg));
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-front {
 					.transform(rotateY(-180deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotateY(0deg));
 				}
 			}
 		}
 
+		// Animation: Card Flip. Direction: North-West
+		&.direction_nw {
+			.cl-flipbox-h,
+			.cl-flipbox-front {
+				.transform(rotate3d(-1, 1, 0, 0deg));
+			}
+			.cl-flipbox-back {
+				.transform(rotate3d(-1, 1, 0, 180deg));
+			}
+			&:hover,
+			&.hover {
+				.cl-flipbox-h,
+				.cl-flipbox-front {
+					.transform(rotate3d(-1, 1, 0, -90deg));
+				}
+				.cl-flipbox-back {
+					.transform(rotate3d(-1, 1, 0, 90deg));
+				}
+			}
+		}
+
+	}
+
+	// FOR FUTURE KEYFRAME ANIMATIONS
+	&.direction_nes {
+		.cl-flipbox-h {
+			.animation-name(cl_cardflip_ne_out);
+			.animation-duration(600ms);
+			.animation-fill-mode(both);
+		}
+		.cl-flipbox-front {
+		}
+		.cl-flipbox-back {
+			.transform(rotate3d(1, 1, 0, -180deg));
+		}
+		&.hover {
+			.cl-flipbox-h {
+				.animation-name(cl_cardflip_ne_in);
+			}
+		}
 	}
 }
