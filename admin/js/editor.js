@@ -2,7 +2,8 @@
 jQuery(document).ready(function ($) {
   'use strict';
 
-  $('.widget-title-action').click(function (e) {
+  // $('.widget-title-action').click(function (e) {
+  $('.widget-top').click(function (e) {
     var $parent = $(this).closest('div[id]');
     var parent_id = $parent.attr('id').match(/_cl_/);
     if (parent_id !== null) {
@@ -26,5 +27,10 @@ jQuery(document).ready(function ($) {
       var $parent_sidebar = $(this).closest('[class^=sidebars-column]');
       $parent_sidebar.css('max-width', '');
     }
+  });
+
+  $('.sidebar-name').click(function (e) {
+    var $parent_sidebar = $(this).closest('[class^=sidebars-column]');
+    $parent_sidebar.css('max-width', '');
   });
 });

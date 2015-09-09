@@ -47,12 +47,15 @@
 			<div class="cl-flipbox-front-icon"></div>
 			<div class="cl-flipbox-front-image"><img src="" alt=""></div>
 			<h4 class="cl-flipbox-front-title">FlipBox Title</h4>
+
 			<p class="cl-flipbox-front-text">Some subtitle text that goes below the title and has multiple lines.</p>
 		</div>
 		<div class="cl-flipbox-back">
 			<div class="cl-flipbox-back-image"><img src="" alt=""></div>
 			<h4 class="cl-flipbox-back-title">Backside Title</h4>
+
 			<p class="cl-flipbox-back-text">Some subtitle text that goes below the title and has multiple lines.</p>
+
 			<div class="cl-flipbox-back-button">The Button</div>
 		</div>
 	</div>

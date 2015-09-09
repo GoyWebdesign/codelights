@@ -1,3 +1,5 @@
 .idea
 *.db
 *.bak
+log.txt
+classes.list.txt

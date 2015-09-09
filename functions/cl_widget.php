@@ -18,10 +18,10 @@ abstract class CL_Widget extends WP_Widget {
 
 		parent::__construct( $id_base, $this->config['name'], array(
 			'description' => $this->config['description'],
+			'classname' => $this->config['classname'],
 			'panels_groups' => array( 'codelights' ),
-            'category' => $this->config['category'],
-            'class' => $this->config['class'],
-            'icon' => $this->config['icon'],
+			'category' => $this->config['category'],
+			'icon' => $this->config['icon'],
 		) );
 	}
 
@@ -39,7 +39,6 @@ abstract class CL_Widget extends WP_Widget {
 				}
 			}
 		}
-
 		$instance['title'] = ( isset( $instance['title'] ) AND ! empty( $instance['title'] ) ) ? $instance['title'] : '';
 	}
 
@@ -56,7 +55,7 @@ abstract class CL_Widget extends WP_Widget {
 			return parent::form( $instance );
 		}
 
-        uasort( $this->config['params'], array('CL_Widget', 'sort_by_weight') );
+		uasort( $this->config['params'], array( 'CL_Widget', 'sort_by_weight' ) );
 
 		foreach ( $this->config['params'] as $param_name => $param ) {
 			if ( ! isset( $param['type'] ) ) {
@@ -80,13 +79,30 @@ abstract class CL_Widget extends WP_Widget {
 	 * @param array $a First evaluating parameter from config
 	 * @param array $b Second evaluating parameter from config
 	 */
-    private static function sort_by_weight ($a, $b) {
-        if ($a['weight'] == $b['weight']) {
-            return 0;
-        }
-        return ($a['weight'] < $b['weight']) ? -1 : 1;
-    }
+	private static function sort_by_weight( $a, $b ) {
+		if ( $a['weight'] == $b['weight'] ) {
+			return 0;
+		}
 
+		return ( $a['weight'] < $b['weight'] ) ? - 1 : 1;
+	}
+
+	public function render_element_class( $classes ) {
+		if ( is_array( $classes ) ) {
+			$element_class = 'class="';
+			foreach ( $classes as $argument ) {
+				$element_class .= $argument . ' ';
+			}
+			$element_class = substr( $element_class, 0, - 1 );
+			$element_class .= '"';
+
+			return $element_class;
+		} else if ( ! empty( $classes ) ) {
+			return 'class="' . $classes . '"';
+		} else {
+			return;
+		}
+	}
 
 	/**
 	 * Output form's textfield element
@@ -98,8 +114,8 @@ abstract class CL_Widget extends WP_Widget {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
 		$output = '<p>';
-		$output .= '<label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
-		$output .= '<input class="widefat" id="' . esc_attr( $field_id ) . '" ';
+		$output .= '<label class="cl-textfield-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<input ' . $this->render_element_class( $param['class'] ) . ' id="' . esc_attr( $field_id ) . '" ';
 		$output .= 'name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '" type="text" value="' . esc_attr( $value ) . '" />';
 		$output .= '</p>';
 
@@ -116,26 +132,34 @@ abstract class CL_Widget extends WP_Widget {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
 
-        if ( is_array( $value ) ) {
-    		$current_value = $value;
-    	} else {
-            $current_value = array ( $value => 0 );
-    	}
-	    $values = isset( $param['value'] ) && is_array( $param['value'] ) ? $param['value'] : array( __( 'Yes', 'codelights' ) => 1 );
+		if ( is_array( $value ) ) {
+			$current_value = $value;
+		} else {
+			$current_value = array( $value => 0 );
+		}
+		if ( isset( $param['value'] ) AND is_array( $param['value'] ) ) {
+			$values = $param['value'];
+		} else {
+			$values = array( __( 'Yes', 'codelights' ) => 1 );
+		}
 
-		$output = '<p>' . $param['heading'] . ':&nbsp;';
+		$output = '<p><span class="cl-param-heading">' . $param['heading'] . ':</span><br />';
 
-    	if ( !empty( $values ) ) {
-    		foreach ( $values as $label => $v ) {
-    			$checked = count( $current_value ) > 0 && in_array( $v, $current_value ) ? ' checked' : '';
-    			$output .= ' <label><input
+		if ( ! empty( $values ) ) {
+			foreach ( $values as $label => $v ) {
+				if ( count( $current_value ) > 0 AND in_array( $v, $current_value ) ) {
+					$checked = ' checked';
+				} else {
+					$checked = '';
+				}
+				$output .= ' <label class="cl-checkbox-label"><input
                             id="' . esc_attr( $field_id ) . '"
                             value="' . $v . '"
-                            class="widefat"
+                            ' . $this->render_element_class( $param['class'] ) . '
     			            type="checkbox"
                             name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '[]"' . $checked . '> ' . $label . '</label>';
-    		}
-    	}
+			}
+		}
 
 		$output .= '</p>';
 
@@ -151,8 +175,8 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_dropdown( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
-		$output = '<p><label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
-		$output .= '<select name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '" id="' . esc_attr( $field_id ) . '" class="widefat">';
+		$output = '<p><label class="cl-dropdown-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<select name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '" id="' . esc_attr( $field_id ) . '" ' . $this->render_element_class( $param['class'] ) . '>';
 		if ( isset( $param['value'] ) AND is_array( $param['value'] ) ) {
 			foreach ( $param['value'] as $value_title => $value_key ) {
 				$output .= '<option value="' . esc_attr( $value_key ) . '"' . selected( $value, $value_key, FALSE ) . '>' . $value_title . '</option>';
@@ -173,9 +197,9 @@ abstract class CL_Widget extends WP_Widget {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
 		$output = '<p>';
-		$output .= '<label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
-		$output .= '<textarea class="widefat" rows="5" cols="20" id="' . esc_attr( $field_id ) . '" ';
-		$output .= 'name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '" style="height: 47px;">' . esc_textarea( $value ) . '</textarea>';
+		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<textarea ' . $this->render_element_class( $param['class'] ) . ' rows="5" cols="20" id="' . esc_attr( $field_id ) . '" ';
+		$output .= 'name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '">' . esc_textarea( $value ) . '</textarea>';
 		$output .= '</p>';
 
 		echo $output;
