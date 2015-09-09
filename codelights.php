@@ -9,10 +9,13 @@
  * Author URI: https://codelights.com/
  */
 
+// Global variables that may be used for
 $cl_file = __FILE__;
-$cl_dir = dirname( __FILE__ );
+$cl_dir = plugin_dir_path( __FILE__ );
+$cl_uri = plugins_url( '', __FILE__ );
 
-require $cl_dir . '/shortcodes/cl-flipbox.php';
+require $cl_dir . '/functions/helpers.php';
+require $cl_dir . '/functions/shortcodes.php';
 
 require $cl_dir . '/editors-support/js_composer/js_composer.php';
 require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
@@ -21,29 +24,11 @@ require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 require $cl_dir . '/functions/class-cl-widget.php';
 require $cl_dir . '/widgets/cl_flipbox.php';
 
-/**
- *
- *
- * @param string $template Template path
- * @param array $vars Variables that should be passed to template
- *
- * TODO Rewrite this function in a proper way
- */
-function cl_load_template( $template, $vars = NULL ) {
-	global $cl_dir;
-	if ( is_array( $vars ) AND ! empty( $vars ) ) {
-		extract( $vars );
-	}
-	include $cl_dir . '/templates/' . $template . '.php';
-}
-
 /* load admin js and css styles */
 function cl_register_admin_scripts() {
-	wp_register_style( 'cl-admin-style', plugins_url( '/admin/css/editor.css', __FILE__ ) );
-	wp_enqueue_style( 'cl-admin-style' );
-
-	wp_enqueue_script( 'cl-admin-script', plugins_url( '/admin/js/editor.js', __FILE__ ), array( 'jquery' ), FALSE, TRUE );
-
+	global $cl_uri;
+	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
+	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
 	wp_enqueue_script( 'tiny_mce' );
 }
 

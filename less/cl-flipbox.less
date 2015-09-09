@@ -16,7 +16,7 @@
 			height: 100%;
 			.backface-visibility(hidden);
 			.transform-style(preserve-3d);
-			.transition(6000ms);
+			.transition(600ms);
 			.transition-timing-function(ease-in-out);
 		}
 
@@ -207,22 +207,4 @@
 
 	}
 
-	// FOR FUTURE KEYFRAME ANIMATIONS
-	&.direction_nes {
-		.cl-flipbox-h {
-			.animation-name(cl_cardflip_ne_out);
-			.animation-duration(600ms);
-			.animation-fill-mode(both);
-		}
-		.cl-flipbox-front {
-		}
-		.cl-flipbox-back {
-			.transform(rotate3d(1, 1, 0, -180deg));
-		}
-		&.hover {
-			.cl-flipbox-h {
-				.animation-name(cl_cardflip_ne_in);
-			}
-		}
-	}
 }
