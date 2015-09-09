@@ -212,9 +212,7 @@ abstract class CL_Widget extends WP_Widget {
 	 * @param string $value Current value
 	 */
 	public function form_textarea_html( $param, $value ) {
-
-		$output = '<div class="cl-widget-textarea-html-wrapper">';
-
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$content = $value;
 		$editor_id = $this->get_field_id( $param['name'] );
 		$editor_name = $this->get_field_name( $param['name'] );
@@ -225,12 +223,34 @@ abstract class CL_Widget extends WP_Widget {
 			'default_editor' => 'tmce',
 		);
 
+		$output = '<div class="cl-widget-textarea-html-wrapper">';
+		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $editor_id ) . '">' . $param['heading'] . ':</label>';
+
 		ob_start();
 		wp_editor( $content, $editor_id, $settings );
 		$output .= ob_get_contents();
 		ob_end_clean();
 
 		$output .= '</div>';
+		echo $output;
+	}
+
+	/**
+	 * Output's exploded textarea
+	 * Data saved and coma-separated values are merged with line breaks and returned in a textarea.
+	 *
+	 * @param array $param Parameter from config
+	 * @param string $value Current value
+	 */
+	public function form_textarea_exploded( $param, $value ) {
+		$value = str_replace( ",", "\n", $value );
+		$field_id = $this->get_field_id( $param['name'] );
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
+		$output = '<p>';
+		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '>' . $value . '</textarea>';
+		$output .= '</p>';
+
 		echo $output;
 	}
 
