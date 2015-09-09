@@ -57,6 +57,13 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 500,
 					'class' => array( 'widefat' ),
 				),
+				'innercontent' => array(
+					'type' => 'textarea_html',
+					'heading' => __( 'Inner content', 'codelights' ),
+					'std' => 'Default content for textarea',
+					'weight' => 600,
+					'class' => array( 'widefat' ),
+				),
 			),
 		);
 		parent::__construct();

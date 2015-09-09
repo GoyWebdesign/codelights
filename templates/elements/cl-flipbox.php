@@ -16,7 +16,6 @@
  * @var $front_border_style string
  * @var $front_border_color string
  * @var $front_border_size string
- * @var $back_image mixed ID of the WP attachment image or the URL
  * @var $back_title string
  * @var $back_text string
  * @var $back_button_label string
