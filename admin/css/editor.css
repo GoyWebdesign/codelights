@@ -1,28 +1,28 @@
 #widgets-right .sidebars-column-1,
 #widgets-right .sidebars-column-2 {
-  -webkit-transition: 0.5s all ease;
-  transition: 0.5s all ease;
+	-webkit-transition: 0.5s all ease;
+	transition: 0.5s all ease;
 }
 
 
 /* classes for form */
 
 div[id*='_cl_'] form {
-  max-width: 600px;
-  overflow: hidden;
+	max-width: 600px;
+	overflow: hidden;
 }
 
 
 /* classes for inputs */
 
 .cl-param-heading {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 .cl-textfield-label,
 .cl-dropdown-label,
 .cl-textarea-label {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 .cl-checkbox-label {}

@@ -18,7 +18,7 @@ require $cl_dir . '/editors-support/js_composer/js_composer.php';
 require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 
 // Widgets
-require $cl_dir . '/functions/cl_widget.php';
+require $cl_dir . '/functions/class-cl-widget.php';
 require $cl_dir . '/widgets/cl_flipbox.php';
 
 /**
@@ -43,6 +43,8 @@ function cl_register_admin_scripts() {
 	wp_enqueue_style( 'cl-admin-style' );
 
 	wp_enqueue_script( 'cl-admin-script', plugins_url( '/admin/js/editor.js', __FILE__ ), array( 'jquery' ), FALSE, TRUE );
+
+	wp_enqueue_script( 'tiny_mce' );
 }
 
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
