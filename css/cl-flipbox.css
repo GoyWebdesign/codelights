@@ -1,0 +1,241 @@
+.cl-flipbox {
+  display: inline-block;
+  position: relative;
+}
+.cl-flipbox-front-icon {
+  display: inline-block;
+  box-sizing: content-box;
+}
+.cl-flipbox-front-icon.style_circle {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+}
+.cl-flipbox-front-icon.size_xs {
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.cl-flipbox-front-icon.size_s {
+  font-size: 15px;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+}
+.cl-flipbox-front-icon.size_m {
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+.cl-flipbox-front-icon.size_l {
+  font-size: 30px;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+}
+.cl-flipbox-front-icon.size_xl {
+  font-size: 40px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+}
+.cl-flipbox.animation_cardflip {
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-h {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-front,
+.cl-flipbox.animation_cardflip .cl-flipbox-back {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition-duration: inherit;
+  transition-duration: inherit;
+  -webkit-transition-timing-function: inherit;
+  transition-timing-function: inherit;
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-front {
+  position: relative;
+  z-index: 1;
+}
+.cl-flipbox.animation_cardflip .cl-flipbox-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.cl-flipbox.animation_cardflip:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.hover .cl-flipbox-front {
+  z-index: -1;
+}
+.cl-flipbox.animation_cardflip:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.hover .cl-flipbox-back {
+  z-index: 1;
+}
+.cl-flipbox.animation_cardflip.direction_n .cl-flipbox-front {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_n .cl-flipbox-back {
+  -webkit-transform: rotateX(-180deg);
+  transform: rotateX(-180deg);
+}
+.cl-flipbox.animation_cardflip.direction_n:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_n.hover .cl-flipbox-front {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_n:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_n.hover .cl-flipbox-back {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_ne .cl-flipbox-h {
+  -webkit-transform: rotate3d(1, 1, 0, 0deg);
+  transform: rotate3d(1, 1, 0, 0deg);
+}
+.cl-flipbox.animation_cardflip.direction_ne .cl-flipbox-back {
+  -webkit-transform: rotate3d(1, 1, 0, -180deg);
+  transform: rotate3d(1, 1, 0, -180deg);
+}
+.cl-flipbox.animation_cardflip.direction_ne:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_ne.hover .cl-flipbox-h {
+  -webkit-transform: rotate3d(1, 1, 0, 180deg);
+  transform: rotate3d(1, 1, 0, 180deg);
+}
+.cl-flipbox.animation_cardflip.direction_e .cl-flipbox-front {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_e .cl-flipbox-back {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.cl-flipbox.animation_cardflip.direction_e:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_e.hover .cl-flipbox-front {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_e:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_e.hover .cl-flipbox-back {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_se .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_se .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, 1, 0, 0deg);
+  transform: rotate3d(-1, 1, 0, 0deg);
+}
+.cl-flipbox.animation_cardflip.direction_se .cl-flipbox-back {
+  -webkit-transform: rotate3d(-1, 1, 0, -180deg);
+  transform: rotate3d(-1, 1, 0, -180deg);
+}
+.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, 1, 0, 90deg);
+  transform: rotate3d(-1, 1, 0, 90deg);
+}
+.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-back {
+  -webkit-transform: rotate3d(-1, 1, 0, -90deg);
+  transform: rotate3d(-1, 1, 0, -90deg);
+}
+.cl-flipbox.animation_cardflip.direction_s .cl-flipbox-front {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_s .cl-flipbox-back {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_s:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_s.hover .cl-flipbox-front {
+  -webkit-transform: rotateX(-180deg);
+  transform: rotateX(-180deg);
+}
+.cl-flipbox.animation_cardflip.direction_s:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_s.hover .cl-flipbox-back {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-front {
+  -webkit-transform: rotate3d(1, 1, 0, 0deg);
+  transform: rotate3d(1, 1, 0, 0deg);
+}
+.cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-back {
+  -webkit-transform: rotate3d(1, 1, 0, 180deg);
+  transform: rotate3d(1, 1, 0, 180deg);
+}
+.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-front {
+  -webkit-transform: rotate3d(1, 1, 0, -90deg);
+  transform: rotate3d(1, 1, 0, -90deg);
+}
+.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-back {
+  -webkit-transform: rotate3d(1, 1, 0, 90deg);
+  transform: rotate3d(1, 1, 0, 90deg);
+}
+.cl-flipbox.animation_cardflip.direction_w .cl-flipbox-front {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_w .cl-flipbox-back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.cl-flipbox.animation_cardflip.direction_w:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_w.hover .cl-flipbox-front {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.cl-flipbox.animation_cardflip.direction_w:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_w.hover .cl-flipbox-back {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, 1, 0, 0deg);
+  transform: rotate3d(-1, 1, 0, 0deg);
+}
+.cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-back {
+  -webkit-transform: rotate3d(-1, 1, 0, 180deg);
+  transform: rotate3d(-1, 1, 0, 180deg);
+}
+.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-front,
+.cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, 1, 0, -90deg);
+  transform: rotate3d(-1, 1, 0, -90deg);
+}
+.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-back,
+.cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-back {
+  -webkit-transform: rotate3d(-1, 1, 0, 90deg);
+  transform: rotate3d(-1, 1, 0, 90deg);
+}
