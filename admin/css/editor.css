@@ -16,6 +16,11 @@ div[id*='_cl_'] form {
 	margin: 1em 0;
 }
 
+.cl-attach-images-group {
+	margin: 1.5em 0;
+	overflow: hidden;
+}
+
 
 /* classes for inputs */
 
@@ -26,10 +31,12 @@ div[id*='_cl_'] form {
 .cl-textfield-label,
 .cl-dropdown-label,
 .cl-textarea-label,
-.cl-colorpicker-label {
+.cl-colorpicker-label,
+.cl-attach-images-label {
 	font-weight: 600;
 }
 
+.cl-attach-images-label,
 .cl-colorpicker-label {
 	display: block;
 	margin: 0.5em 0;
@@ -39,4 +46,88 @@ div[id*='_cl_'] form {
 
 .wp-picker-container {
 	clear: both;
+}
+
+.cl_widget_add_images_button {
+	background: #f5f5f5 url('../img/add.png') center center no-repeat;
+	border: 1px solid #dfdfdf;
+	color: #f5f5f5;
+	display: block;
+	float: left;
+	font-size: 0;
+	height: 80px;
+	margin-top: 0;
+	width: 80px;
+}
+
+.attachments-thumbnail {
+	background: #f5f5f5 none repeat scroll 0 0;
+	border: 1px solid #dfdfdf;
+	float: left;
+	height: 80px;
+	margin: 0 5px 5px 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	width: 80px;
+}
+
+.attachments-thumbnail-error {
+	background: #f5f5f5 none repeat scroll 0 0;
+	border: 1px solid #990000;
+	float: left;
+	height: 80px;
+	margin: 0 5px 5px 0;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 80px;
+	padding: 0 5px;
+}
+
+.attachments-thumbnail img {
+	display: inline-block;
+	max-width: 80px;
+	vertical-align: middle;
+	height: auto;
+}
+
+.cl-images-container {
+	cursor: move;
+}
+
+.attachment-delete-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0);
+	z-index: 60;
+}
+
+.attachment-delete {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	font-size: 3em;
+	display: none;
+	z-index: 70;
+}
+
+.attachment-delete a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.attachments-thumbnail .centered {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	line-height: 0;
 }
