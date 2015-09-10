@@ -15,7 +15,9 @@ return array(
 	 * $handle => array( $src, $deps, $ver, $media )
 	 */
 	'styles' => array(
-		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array(), FALSE, 'all' ),
+		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/css/font-awesome.min.css', array(), FALSE, 'all' ),
+		'cl-core' => array( $cl_uri . '/css/cl-core.css', array(), FALSE, 'all' ),
+		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), FALSE, 'all' ),
 	),
 	/**
 	 * Each script entry contains params for wp_enqueue_script function:

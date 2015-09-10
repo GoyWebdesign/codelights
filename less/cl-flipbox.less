@@ -4,6 +4,52 @@
 	display: inline-block;
 	position: relative;
 
+	&-h {}
+	&-front {
+		&-icon {
+			display: inline-block;
+			box-sizing: content-box;
+			&.style_default {}
+			&.style_circle {
+				border-width: 1px;
+				border-style: solid;
+				border-radius: 50%;
+			}
+
+			&.size_xs {
+				font-size: 12px;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+			}
+			&.size_s {
+				font-size: 15px;
+				width: 38px;
+				height: 38px;
+				line-height: 38px;
+			}
+			&.size_m {
+				font-size: 20px;
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+			}
+			&.size_l {
+				font-size: 30px;
+				width: 75px;
+				height: 75px;
+				line-height: 75px;
+			}
+			&.size_xl {
+				font-size: 40px;
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+			}
+		}
+	}
+	&-back {}
+
 	// Animation: Card Flip
 	&.animation_cardflip {
 
@@ -16,8 +62,6 @@
 			height: 100%;
 			.backface-visibility(hidden);
 			.transform-style(preserve-3d);
-			.transition(600ms);
-			.transition-timing-function(ease-in-out);
 		}
 
 		.cl-flipbox-front,
@@ -25,8 +69,10 @@
 			display: block;
 			width: 100%;
 			height: 100%;
+			padding: 20px;
+			text-align: center;
 			.backface-visibility(hidden);
-			.transition(inherit);
+			.transition-duration(inherit);
 			.transition-timing-function(inherit);
 
 		}

@@ -1,6 +1,9 @@
-<?php
+<?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 // Visual Composer Compatibility
 add_action( 'vc_after_set_mode', function () {
-	require dirname( __FILE__ ) . '/cl-flipbox.php';
+
+	foreach ( cl_config( 'elements' ) as $element ) {
+		vc_map( $element );
+	}
 } );

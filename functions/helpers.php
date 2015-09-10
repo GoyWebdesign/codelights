@@ -192,9 +192,53 @@ function cl_shortcode_atts( $atts, $shortcode ) {
 			if ( ! isset( $param['param_name'] ) ) {
 				continue;
 			}
-			$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = isset( $param['std'] ) ? $param['std'] : '';
+			if ( isset( $param['std'] ) ) {
+				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = $param['std'];
+			} elseif ( $param['type'] == 'dropdown' AND isset( $param['value'] ) AND is_array( $param['value'] ) ) {
+				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = current( $param['value'] );
+			} else {
+				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = '';
+			}
 		}
 	}
 
 	return shortcode_atts( $cl_shortcode_pairs[ $shortcode ], $atts, $shortcode );
+}
+
+/**
+ * Parsing vc_link field type properly
+ *
+ * @param string $value
+ *
+ * @return array
+ */
+function cl_parse_vc_link( $value ) {
+	$result = array( 'url' => '', 'title' => '', 'target' => '' );
+	$params_pairs = explode( '|', $value );
+	if ( ! empty( $params_pairs ) ) {
+		foreach ( $params_pairs as $pair ) {
+			$param = explode( ':', $pair, 2 );
+			if ( ! empty( $param[0] ) && isset( $param[1] ) ) {
+				$result[ $param[0] ] = rawurldecode( $param[1] );
+			}
+		}
+	}
+
+	// Some of the values may have excess spaces, like the target's ' _blank' value.
+	return array_map( 'trim', $result );
+}
+
+/**
+ * Prepare a proper icon classname from user's custom input
+ *
+ * @param string $icon_class
+ *
+ * @return string
+ */
+function cl_prepare_icon_class( $icon_class ) {
+	if ( substr( $icon_class, 0, 3 ) != 'fa-' ) {
+		$icon_class = 'fa-' . $icon_class;
+	}
+
+	return 'fa ' . $icon_class;
 }
