@@ -1,6 +1,9 @@
 jQuery(document).ready(function ($) {
 	'use strict';
 
+	/* Add Color Picker to all inputs that have 'color-field' class */
+	$('.cl-color-picker').wpColorPicker();
+
 	// $('.widget-title-action').click(function (e) {
 	$('.widget-top').click(function (e) {
 		var $parent = $(this).closest('div[id]');
@@ -57,6 +60,7 @@ jQuery(document).ready(function ($) {
 			event.preventDefault();
 			var widget_id = $widget.attr('id');
 
+			// tinymce editor handler
 			var $textarea_wrapper = $widget.find('.cl-widget-textarea-html-wrapper');
 			var $textarea = $textarea_wrapper.find('textarea');
 			var textarea_id = $textarea.attr('id');
@@ -101,7 +105,10 @@ jQuery(document).ready(function ($) {
 				tinyMCEPreInit.mceInit[textarea_id].height = '100%';
 				tinymce.init(tinyMCEPreInit.mceInit[textarea_id]);
 			}, 500);
+			// color picker handler
+			$('.cl-color-picker').wpColorPicker();
 		}
+
 	});
 
 

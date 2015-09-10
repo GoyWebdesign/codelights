@@ -30,6 +30,8 @@ function cl_register_admin_scripts() {
 	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
 	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
 	wp_enqueue_script( 'tiny_mce' );
+	wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_script( 'wp-color-picker' );
 }
 
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );

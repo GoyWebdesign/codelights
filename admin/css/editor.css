@@ -12,6 +12,10 @@ div[id*='_cl_'] form {
 	overflow: hidden;
 }
 
+.cl-colorpicker-group {
+	margin: 1em 0;
+}
+
 
 /* classes for inputs */
 
@@ -21,8 +25,18 @@ div[id*='_cl_'] form {
 
 .cl-textfield-label,
 .cl-dropdown-label,
-.cl-textarea-label {
+.cl-textarea-label,
+.cl-colorpicker-label {
 	font-weight: 600;
 }
 
+.cl-colorpicker-label {
+	display: block;
+	margin: 0.5em 0;
+}
+
 .cl-checkbox-label {}
+
+.wp-picker-container {
+	clear: both;
+}

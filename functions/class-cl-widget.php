@@ -248,7 +248,7 @@ abstract class CL_Widget extends WP_Widget {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$output = '<p>';
 		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
-		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '>' . $value . '</textarea>';
+		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '>' . esc_attr( $value ) . '</textarea>';
 		$output .= '</p>';
 
 		echo $output;
@@ -267,13 +267,30 @@ abstract class CL_Widget extends WP_Widget {
 		$output = '<p>';
 		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
 		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '" rows="16">' . htmlentities( rawurldecode( base64_decode( $value ) ), ENT_COMPAT, 'UTF-8' ) . '</textarea>';
-		$output .= '<input id="' . $this->get_field_id( "raw_area_html_field" ) . '" name="' . $this->get_field_name( "raw_area_html_field" ) . '" type="hidden" value="' . $param['name'] . '">';
+		$output .= '<input id="' . $this->get_field_id( 'raw_area_html_field' ) . '" name="' . $this->get_field_name( 'raw_area_html_field' ) . '" type="hidden" value="' . $param['name'] . '">';
+
+		echo $output;
+	}
+
+	/**
+	 * Output's color picker
+	 *
+	 * @param array $param Parameter from config
+	 * @param string $value Current value
+	 */
+	public function form_colorpicker( $param, $value ) {
+		$field_id = $this->get_field_id( $param['name'] );
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
+		$output = '<div class="cl-colorpicker-group">';
+		$output .= '<label class="cl-colorpicker-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<input id="' . esc_attr( $field_id ) . '" data-default-color="' . esc_attr( $param['std'] ) . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '" value="' . esc_attr( $value ) . '"/>';
+		$output .= '</div>';
 
 		echo $output;
 	}
 
 	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
+		$instance = $new_instance;
 
 		// encode raw html
 		$raw_area_html_field = $new_instance['raw_area_html_field'];

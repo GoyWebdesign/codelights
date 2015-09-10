@@ -78,6 +78,13 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 700,
 					'class' => array( 'widefat' ),
 				),
+				'colorfield' => array(
+					'type' => 'colorpicker',
+					'heading' => __( 'Color of something', 'codelights' ),
+					'std' => '#ffffff',
+					'weight' => 900,
+					'class' => array( 'cl-color-picker' ),
+				),
 			),
 		);
 		parent::__construct();
