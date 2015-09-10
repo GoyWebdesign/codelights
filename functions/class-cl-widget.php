@@ -283,7 +283,36 @@ abstract class CL_Widget extends WP_Widget {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$output = '<div class="cl-colorpicker-group">';
 		$output .= '<label class="cl-colorpicker-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
-		$output .= '<input id="' . esc_attr( $field_id ) . '" data-default-color="' . esc_attr( $param['std'] ) . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '" value="' . esc_attr( $value ) . '"/>';
+		$output .= '<input id="' . esc_attr( $field_id ) . '" data-default-color="' . esc_attr( $param['std'] ) . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . ' value="' . esc_attr( $value ) . '"/>';
+		$output .= '</div>';
+
+		echo $output;
+	}
+
+	public function form_attach_images( $param, $value ) {
+		$rand = rand( 0, 9999 );
+
+		if ( strpos( $value, ',' ) !== FALSE ) {
+			$images = array_map( 'intval', explode( ',', $value ) );
+		} elseif ( $value != '' ) {
+			$images = (integer) $value;
+		}
+
+		$field_id = $this->get_field_id( $param['name'] );
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
+		$output = '<div id="cl-attach-images-group-' . $rand . '" class="cl-attach-images-group">';
+		$output .= '<label class="cl-attach-images-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<ul id="cl-images-container-' . $rand . '" class="cl-images-container ui-sortable sortable-attachment-list">';
+		if ( is_array( $images ) AND ! empty( $images ) ) {
+			foreach ( $images as $image ) {
+				$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $image . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
+			}
+		} elseif ( $images != '' AND ! empty( $images ) ) {
+			$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $images . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
+		}
+		$output .= '</ul>';
+		$output .= '<a class="cl_widget_add_images_button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
+		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . ' value="' . esc_attr( $value ) . '"/>';
 		$output .= '</div>';
 
 		echo $output;

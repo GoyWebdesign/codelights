@@ -85,6 +85,13 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 900,
 					'class' => array( 'cl-color-picker' ),
 				),
+				'attachedimages' => array(
+					'type' => 'attach_images',
+					'heading' => __( 'A little box of images', 'codelights' ),
+					'std' => '',
+					'weight' => 1000,
+					'class' => array( 'cl-attached-images' ),
+				),
 			),
 		);
 		parent::__construct();
