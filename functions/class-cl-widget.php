@@ -254,6 +254,35 @@ abstract class CL_Widget extends WP_Widget {
 		echo $output;
 	}
 
+	/**
+	 * Output's textarea with raw html
+	 * This attribute type allows safely add custom html to your post/page.
+	 *
+	 * @param array $param Parameter from config
+	 * @param string $value Current value
+	 */
+	public function form_textarea_raw_html( $param, $value ) {
+		$field_id = $this->get_field_id( $param['name'] );
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
+		$output = '<p>';
+		$output .= '<label class="cl-textarea-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . '" rows="16">' . htmlentities( rawurldecode( base64_decode( $value ) ), ENT_COMPAT, 'UTF-8' ) . '</textarea>';
+		$output .= '<input id="' . $this->get_field_id( "raw_area_html_field" ) . '" name="' . $this->get_field_name( "raw_area_html_field" ) . '" type="hidden" value="' . $param['name'] . '">';
+
+		echo $output;
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+
+		// encode raw html
+		$raw_area_html_field = $new_instance['raw_area_html_field'];
+		$raw_html_value = base64_encode( $new_instance[ $raw_area_html_field ] );
+		$instance[ $raw_area_html_field ] = $raw_html_value;
+
+		return $instance;
+	}
+
 }
 
 //add_action( 'widgets_init', 'cl_widgets_init' );
