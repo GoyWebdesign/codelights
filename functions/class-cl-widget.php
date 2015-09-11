@@ -303,16 +303,24 @@ abstract class CL_Widget extends WP_Widget {
 		$output = '<div id="cl-attach-images-group-' . $rand . '" class="cl-attach-images-group">';
 		$output .= '<label class="cl-attach-images-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
 		$output .= '<ul id="cl-images-container-' . $rand . '" class="cl-images-container ui-sortable sortable-attachment-list">';
+		$has_images = FALSE;
 		if ( is_array( $images ) AND ! empty( $images ) ) {
 			foreach ( $images as $image ) {
 				$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $image . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
 			}
-		} elseif ( $images != '' AND ! empty( $images ) ) {
+			$has_images = TRUE;
+		} elseif ( ! is_array( $images ) AND $images != '' ) {
 			$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $images . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
+			$has_images = TRUE;
 		}
 		$output .= '</ul>';
-		$output .= '<a class="cl_widget_add_images_button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
-		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" ' . $this->render_element_class( $param['class'] ) . ' value="' . esc_attr( $value ) . '"/>';
+		if ( $param['multiple'] == 'false' AND $has_images === TRUE ) {
+			$style = 'style="display:none;"';
+		}
+		$output .= '<a id="cl-widget-add_images-button-' . $rand . '" ' . $style . ' class="cl_widget_add_images_button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
+
+		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" class="cl-attached-images" name="' . $this->get_field_name( $param['name'] ) . '" value="' . esc_attr( $value ) . '"/>';
+		$output .= '<input type="hidden" class="multiple-attachments" name="' . $this->get_field_name( 'multiple_value' ) . '" value="' . esc_attr( $param['multiple'] ) . '"/>';
 		$output .= '</div>';
 
 		echo $output;

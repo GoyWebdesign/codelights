@@ -87,6 +87,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 				),
 				'attachedimages' => array(
 					'type' => 'attach_images',
+					'multiple' => 'true',
 					'heading' => __( 'A little box of images', 'codelights' ),
 					'std' => '',
 					'weight' => 1000,
