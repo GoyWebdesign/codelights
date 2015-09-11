@@ -326,6 +326,34 @@ abstract class CL_Widget extends WP_Widget {
 		echo $output;
 	}
 
+	public function form_insert_link( $param, $value ) {
+		$field_id = $this->get_field_id( $param['name'] );
+		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
+		if ( ! empty ( $value ) AND strpos( $value, '|' ) !== FALSE ) {
+			$stored_values = explode( '|', $value );
+		}
+		$url_components = array();
+		foreach ( $stored_values as $url_element ) {
+			$key_val = explode( ':', $url_element );
+			$key = $key_val[0];
+			$val = $key_val[1];
+			$url_components[ $key ] = $val;
+		}
+
+		$output = '<div class="cl-insert-link-group">';
+		$output .= '<label class="cl-insertlink-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '<textarea id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" class="cl-insert-link-container">' . esc_attr( $value ) . '</textarea>';
+		$output .= '<button id="insert_wp_link" class="button button-default button-large cl-insert-link-button">' . __( 'Insert link', 'codelights' ) . '</button>';
+		$output .= '<span class="cl-linkdialog-label">' . __( 'Title:', 'codelights' ) . '</span>';
+		$output .= '<span class="cl-linkdialog-title">' . esc_attr( urldecode( $url_components['title'] ) ) . '</span>';
+		$output .= '<span class="cl-linkdialog-label">' . __( 'URL:', 'codelights' ) . '</span>';
+		$output .= '<span class="cl-linkdialog-url">' . esc_attr( urldecode( $url_components['url'] ) ) . '</span>';
+		$output .= '<span class="cl-linkdialog-target">' . esc_attr( urldecode( $url_components['target'] ) ) . '</span>';
+		$output .= '</div>';
+
+		echo $output;
+	}
+
 	public function update( $new_instance, $old_instance ) {
 		$instance = $new_instance;
 

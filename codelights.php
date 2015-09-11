@@ -31,16 +31,51 @@ function cl_register_admin_scripts() {
 	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
 	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
 
-	wp_enqueue_script( 'tiny_mce' );
-	wp_enqueue_style( 'wp-color-picker' );
-	wp_enqueue_script( 'wp-color-picker' );
+	$screen = get_current_screen();
+	$post_type = $screen->id;
+	// load scripts and styles only in widget area
+	if ( strpos( $post_type, 'widgets' ) !== FALSE ) {
 
-	if ( ! did_action( 'wp_enqueue_media' ) ) {
-		wp_enqueue_media();
+		if ( wp_script_is( 'tiny_mce', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_script( 'tiny_mce' );
+		}
+
+		if ( wp_script_is( 'wp-color-picker', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_script( 'wp-color-picker' );
+		}
+
+		if ( wp_style_is( 'wp-color-picker', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_style( 'wp-color-picker' );
+		}
+
+		if ( ! did_action( 'wp_enqueue_media' ) ) {
+			wp_enqueue_media();
+		}
+
+		if ( wp_script_is( 'wp-link', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_script( 'wp-link' );
+		}
+
+		if ( wp_script_is( 'jquery-ui-core', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_script( 'jquery-ui-core' );
+		}
+
+		if ( wp_script_is( 'jquery-ui-sortable', 'enqueued' ) ) {
+			return;
+		} else {
+			wp_enqueue_script( 'jquery-ui-sortable' );
+		}
 	}
-
-	wp_enqueue_script( 'jquery-ui-core' );
-	wp_enqueue_script( 'jquery-ui-sortable' );
 }
 
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
