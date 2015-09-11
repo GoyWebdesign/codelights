@@ -27,18 +27,20 @@
  * @var $back_border_style string Back border style: 'none' / 'dotted' / 'dashed' / 'solid' / 'double'
  * @var $back_border_color string
  * @var $back_border_size string Back border size: '1px' / '2px' / ... / '9px'
- * @var $animation string Animation type: 'cardflip' / 'cubesides' / 'emptybox' / 'coveropen'
+ * @var $animation string Animation type: 'cardflip' / 'cubetilt' / 'cubeflip' / 'coveropen'
  * @var $direction string Animation direction: 'n' / 'ne' / 'e' / 'se' / 's' / 'sw' / 'w' / 'nw'
  * @var $animation_duration int In milliseconds
  * @var $animation_easing string
  * @var $width mixed In pixels or percents: '100' / '100%'
  * @var $height int In pixels
  * @var $el_class string Extra class name
- *
- * TODO Add one more layout http://css-flip-box-3d.firchow.net/
  */
 
 // Main element classes, inner css and additional attributes
+if ( $animation == 'cubetilt' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
+	// When rotating cubetilt in diaginal direction, we're actually doing a cube flip animation instead
+	$animation = 'cubeflip';
+}
 $classes = ' animation_' . $animation . ' direction_' . $direction;
 
 $tag = 'div';
@@ -82,8 +84,8 @@ $front_inner_css = '';
 if ( ! empty( $front_bgcolor ) ) {
 	$front_inner_css .= 'background-color: ' . $front_bgcolor . ';';
 }
-if ( ! empty( $front_border_style ) AND $front_border_style != 'none' ) {
-	$front_inner_css .= 'border: ' . $front_border_size . ' ' . $front_border_style . ' ' . $front_border_color;
+if ( ! empty( $front_border_color ) ) {
+	$front_inner_css .= 'box-shadow: inset 0 0 0 ' . $front_border_size . ' ' . $front_border_color . ';';
 }
 if ( ! empty( $front_inner_css ) ) {
 	$front_inner_css = ' style="' . esc_attr( $front_inner_css ) . '"';
@@ -122,8 +124,8 @@ $back_inner_css = '';
 if ( ! empty( $back_bgcolor ) ) {
 	$back_inner_css .= 'background-color: ' . $back_bgcolor . ';';
 }
-if ( ! empty( $back_border_style ) AND $back_border_style != 'none' ) {
-	$back_inner_css .= 'border: ' . $back_border_size . ' ' . $back_border_style . ' ' . $back_border_color;
+if ( ! empty( $back_border_color ) ) {
+	$back_inner_css .= 'box-shadow: inset 0 0 0 ' . $back_border_size . ' ' . $back_border_color . ';';
 }
 if ( ! empty( $back_inner_css ) ) {
 	$back_inner_css = ' style="' . esc_attr( $back_inner_css ) . '"';
@@ -152,6 +154,18 @@ if ( ! empty( $back_button_label ) ) {
 	$output .= '<div class="cl-flipbox-back-button size_' . $back_button_size . '"' . $back_button_inner_css . '>' . $back_button_label . '</div>';
 }
 $output .= '</div>';
+
+if ( $animation == 'cubeflip' ) {
+	// We need some additional dom-elements for some of the animations (::before / ::after won't suit)
+	if ( in_array( $direction, array( 'ne', 'e', 'se', 'sw', 'w', 'nw' ) ) ) {
+		// Top / bottom side flank
+		$output .= '<div class="cl-flipbox-yflank"' . $front_inner_css . '></div>';
+	}
+	if ( in_array( $direction, array( 'n', 'ne', 'se', 's', 'sw', 'nw' ) ) ) {
+		// Left / right side flank
+		$output .= '<div class="cl-flipbox-xflank"' . $front_inner_css . '></div>';
+	}
+}
 
 $output .= '</div>';
 $output .= '</' . $tag . '>';

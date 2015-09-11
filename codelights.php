@@ -42,3 +42,5 @@ function cl_register_admin_scripts() {
 	wp_enqueue_script( 'jquery-ui-core' );
 	wp_enqueue_script( 'jquery-ui-sortable' );
 }
+
+add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );

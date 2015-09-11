@@ -19,7 +19,7 @@ return array(
 				'heading' => __( 'Icon', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 310,
+				'weight' => 290,
 			),
 			array(
 				'param_name' => 'front_icon_style',
@@ -32,7 +32,7 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 300,
+				'weight' => 280,
 			),
 			array(
 				'param_name' => 'front_icon_size',
@@ -49,7 +49,7 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 290,
+				'weight' => 270,
 			),
 			array(
 				'param_name' => 'front_icon_color',
@@ -58,7 +58,7 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 280,
+				'weight' => 260,
 			),
 			array(
 				'param_name' => 'front_icon_bgcolor',
@@ -67,14 +67,14 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 270,
+				'weight' => 250,
 			),
 			array(
 				'param_name' => 'front_image',
 				'heading' => __( 'Image', 'codelights' ),
 				'type' => 'attach_image',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 260,
+				'weight' => 240,
 			),
 			array(
 				'param_name' => 'front_title',
@@ -82,47 +82,29 @@ return array(
 				'type' => 'textfield',
 				'admin_label' => TRUE,
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 250,
+				'weight' => 230,
 			),
 			array(
 				'param_name' => 'front_text',
 				'heading' => __( 'Text', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 240,
+				'weight' => 220,
 			),
 			array(
 				'param_name' => 'front_bgcolor',
 				'heading' => __( 'Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 230,
-			),
-			array(
-				'param_name' => 'front_border_style',
-				'heading' => __( 'Border Style', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'None', 'codelights' ) => 'none',
-					__( 'Dotted', 'codelights' ) => 'dotted',
-					__( 'Dashed', 'codelights' ) => 'dashed',
-					__( 'Solid', 'codelights' ) => 'solid',
-					__( 'Double', 'codelights' ) => 'double',
-				),
-				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 220,
+				'weight' => 210,
 			),
 			array(
 				'param_name' => 'front_border_color',
 				'heading' => __( 'Border Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'dependency' => array(
-					'element' => 'front_border_style',
-					'value' => array( 'dotted', 'dashed', 'solid', 'double' ),
-				),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 210,
+				'weight' => 200,
 			),
 			array(
 				'param_name' => 'front_border_size',
@@ -141,12 +123,8 @@ return array(
 				),
 				'std' => '1px',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'dependency' => array(
-					'element' => 'front_border_style',
-					'value' => array( 'dotted', 'dashed', 'solid', 'double' ),
-				),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 200,
+				'weight' => 190,
 			),
 			/**
 			 * Back Side
@@ -156,21 +134,21 @@ return array(
 				'heading' => __( 'Image', 'codelights' ),
 				'type' => 'attach_image',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 190,
+				'weight' => 180,
 			),
 			array(
 				'param_name' => 'back_title',
 				'heading' => __( 'Heading', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 180,
+				'weight' => 170,
 			),
 			array(
 				'param_name' => 'back_text',
 				'heading' => __( 'Text', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 170,
+				'weight' => 160,
 			),
 			array(
 				'param_name' => 'back_button_label',
@@ -178,7 +156,7 @@ return array(
 				'type' => 'textfield',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 160,
+				'weight' => 150,
 			),
 			array(
 				'param_name' => 'back_button_size',
@@ -194,7 +172,7 @@ return array(
 				'std' => 'm',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 150,
+				'weight' => 140,
 			),
 			array(
 				'param_name' => 'back_button_label',
@@ -202,7 +180,7 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 140,
+				'weight' => 130,
 			),
 			array(
 				'param_name' => 'back_button_bgcolor',
@@ -210,26 +188,12 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 130,
+				'weight' => 120,
 			),
 			array(
 				'param_name' => 'back_bgcolor',
 				'heading' => __( 'Background Color', 'codelights' ),
 				'type' => 'colorpicker',
-				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 120,
-			),
-			array(
-				'param_name' => 'back_border_style',
-				'heading' => __( 'Border Style', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'None', 'codelights' ) => 'none',
-					__( 'Dotted', 'codelights' ) => 'dotted',
-					__( 'Dashed', 'codelights' ) => 'dashed',
-					__( 'Solid', 'codelights' ) => 'solid',
-					__( 'Double', 'codelights' ) => 'double',
-				),
 				'group' => __( 'Back Side', 'codelights' ),
 				'weight' => 110,
 			),
@@ -238,10 +202,6 @@ return array(
 				'heading' => __( 'Border Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'dependency' => array(
-					'element' => 'back_border_style',
-					'value' => array( 'dotted', 'dashed', 'solid', 'double' ),
-				),
 				'group' => __( 'Back Side', 'codelights' ),
 				'weight' => 100,
 			),
@@ -262,10 +222,6 @@ return array(
 				),
 				'std' => '1px',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'dependency' => array(
-					'element' => 'back_border_style',
-					'value' => array( 'dotted', 'dashed', 'solid', 'double' ),
-				),
 				'group' => __( 'Back Side', 'codelights' ),
 				'weight' => 90,
 			),
@@ -278,8 +234,8 @@ return array(
 				'type' => 'dropdown',
 				'value' => array(
 					__( 'Card Flip', 'codelights' ) => 'cardflip',
-					__( 'Cube Sides', 'codelights' ) => 'cubesides',
-					__( 'Empty Box', 'codelights' ) => 'emptybox',
+					__( 'Cube Tilt', 'codelights' ) => 'cubetilt',
+					__( 'Cube Flip', 'codelights' ) => 'cubeflip',
 					__( 'Cover Open', 'codelights' ) => 'coveropen',
 				),
 				'group' => __( 'Animation', 'codelights' ),
@@ -344,6 +300,7 @@ return array(
 				'group' => __( 'Animation', 'codelights' ),
 				'weight' => 50,
 			),
+
 			/**
 			 * General Settings
 			 */
