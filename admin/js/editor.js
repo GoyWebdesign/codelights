@@ -4,27 +4,15 @@ jQuery(document).ready(function($){
 	/* Add Color Picker to all inputs that have 'color-field' class */
 	$('.cl-color-picker').wpColorPicker();
 
-	$('.sidebar-name').click(function(e){
-		var $parent_sidebar = $(this).closest('[class^=sidebars-column]');
-		$parent_sidebar.css('max-width', '');
-	});
-
 	// Event handler for widget Save button click
-	$('input[name=savewidget]', 'div[id*=_cl_]').on('click', function(){
-		var element_id = $(this).attr('id');
-		var $parent = $(this).closest('div[id]');
-		var parent_id = $parent.attr('id').match(/_cl_/);
-		if (parent_id !== null) {
-			var widget_id = parent_id['input'];
-			var $textarea_wrapper = $('#' + widget_id).find('.cl-widget-textarea-html-wrapper');
-			var $textarea = $textarea_wrapper.find('textarea');
-			var textarea_id = $textarea.attr('id');
-
-			var $iframe = $('#' + textarea_id + '_ifr');
-			var iframe_content = $iframe.contents().find("body").html();
-			$textarea.val(iframe_content);
+	$('#widgets-right').on('click', 'input[name=savewidget]', function(){
+		var $widget = $(this).closest('.widget'),
+			$textarea = $widget.find('.cl-widget-textarea-html-wrapper textarea');
+		if ($textarea.length > 0) {
+			var textareaId = $textarea.attr('id'),
+				newTinyMCEEditor = tinymce.get(textareaId);
+			newTinyMCEEditor.save();
 		}
-
 	});
 
 	// Event handler for widget updated
@@ -74,7 +62,7 @@ jQuery(document).ready(function($){
 					QTags.instances[textarea_id] = newInstance;
 				}
 
-				//textarea init		
+				//textarea init
 				tinyMCEPreInit.mceInit[textarea_id].selector = '#' + textarea_id;
 				tinyMCEPreInit.mceInit[textarea_id].height = '100%';
 				tinymce.init(tinyMCEPreInit.mceInit[textarea_id]);
@@ -89,7 +77,7 @@ jQuery(document).ready(function($){
 			var $add_button = $widget.find('.cl_widget_add_images_button');
 			var $findres = $widget.find('.attachments-thumbnail');
 			var $attached_images = $widget.find('.cl-attached-images');
-			if (multiple_attachments == 'false' && $findres.lenght > 0) {
+			if (multiple_attachments == 'false' && $findres.length > 0) {
 				$add_button.css('display', 'none');
 			}
 			var attachments_list_id = $widget.find('.cl-images-container').attr('id');
@@ -318,11 +306,11 @@ var cl_link_btn = (function($){
 			if (typeof wpActiveEditor != 'undefined') {
 				wpLink.open();
 				var existing_link_title = $('.widget.open').find('.cl-linkdialog-title').text();
-				if (existing_link_title !== 'undefined' || existing_link_title.lenght > 0) {
+				if (existing_link_title !== 'undefined' || existing_link_title.length > 0) {
 					$('#wp-link-text').val(existing_link_title);
 				}
 				var existing_link_url = $('.widget.open').find('.cl-linkdialog-url').text();
-				if (existing_link_url !== 'undefined' || existing_link_url.lenght > 0) {
+				if (existing_link_url !== 'undefined' || existing_link_url.length > 0) {
 					$('#wp-link-url').val(existing_link_url);
 				}
 				var existing_link_target = $('.widget.open').find('.cl-linkdialog-target').text();
@@ -353,11 +341,10 @@ var cl_link_btn = (function($){
 			var link_val_title = $('.cl-linkdialog-title');
 			var link_val_target = $('.cl-linkdialog-target');
 
-			var encoded_url = encodeURIComponent (linkAtts.href);
-			var encoded_title = encodeURIComponent (wp_link_text);
-			var encoded_target = encodeURIComponent (linkAtts.target);
+			var encoded_url = encodeURIComponent(linkAtts.href);
+			var encoded_title = encodeURIComponent(wp_link_text);
+			var encoded_target = encodeURIComponent(linkAtts.target);
 			var link_val_encoded = 'url:' + encoded_url + '|title:' + encoded_title + '|target:' + encoded_target;
-			console.log(link_val_encoded);
 
 			link_val_container.text(link_val_encoded);
 			link_val_title.text(wp_link_text);
@@ -390,7 +377,7 @@ var cl_link_btn = (function($){
 	/* PUBLIC ACCESSOR METHODS
 	 -------------------------------------------------------------- */
 	return {
-		init: _init,
+		init: _init
 	};
 
 })(jQuery);

@@ -101,7 +101,7 @@ abstract class CL_Widget extends WP_Widget {
 			$element_class .= '"';
 
 			return $element_class;
-		} else if ( ! empty( $classes ) ) {
+		} elseif ( ! empty( $classes ) ) {
 			return 'class="' . $classes . '"';
 		} else {
 			return;
@@ -117,11 +117,18 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_textfield( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
-		$output = '<p>';
-		$output .= '<label class="cl-textfield-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output = '<div class="cl-form-row for_' . $param['name'] . '">';
+		$output .= '<div class="cl-form-row-label">';
+		$output .= '<label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '</div>';
+		$output .= '<div class="cl-form-row-field type_textfield">';
 		$output .= '<input ' . $this->render_element_class( $param['class'] ) . ' id="' . esc_attr( $field_id ) . '" ';
 		$output .= 'name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '" type="text" value="' . esc_attr( $value ) . '" />';
-		$output .= '</p>';
+		$output .= '</div>';
+		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
+			$output .= '<div class="w-form-row-description">' . $param['description'] . '</div>';
+		}
+		$output .= '</div>';
 
 		echo $output;
 	}
@@ -343,6 +350,12 @@ abstract class CL_Widget extends WP_Widget {
 			$val = $key_val[1];
 			$url_components[ $key ] = $val;
 		}
+
+		$output = '<div class="cl-form-row for_' . $param['name'] . '">';
+		$output .= '<div class="cl-form-row-label">';
+		$output .= '<label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
+		$output .= '</div>';
+		$output .= '<div class="cl-form-row-field type_textfield">';
 
 		$output = '<div class="cl-insert-link-group">';
 		$output .= '<label class="cl-insertlink-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
