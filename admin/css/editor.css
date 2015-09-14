@@ -1,15 +1,9 @@
-#widgets-right .sidebars-column-1,
-#widgets-right .sidebars-column-2 {
-	-webkit-transition: 0.5s all ease;
-	transition: 0.5s all ease;
-}
-
-
-/* classes for form */
-
-div[id*='_cl_'] form {
+div#widgets-right .sidebars-column-1,
+div#widgets-right .sidebars-column-2 {
+	-webkit-transition: 0.5s max-width ease;
+	transition: 0.5s max-width ease;
+	min-width: 600px;
 	max-width: 600px;
-	overflow: hidden;
 }
 
 .cl-colorpicker-group {

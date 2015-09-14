@@ -18,7 +18,7 @@ abstract class CL_Widget extends WP_Widget {
 
 		parent::__construct( $id_base, $this->config['name'], array(
 			'description' => $this->config['description'],
-			'classname' => $this->config['classname'],
+			'classname' => $this->config['class'],
 			'panels_groups' => array( 'codelights' ),
 			'category' => $this->config['category'],
 			'icon' => $this->config['icon'],
@@ -57,6 +57,8 @@ abstract class CL_Widget extends WP_Widget {
 
 		uasort( $this->config['params'], array( 'CL_Widget', 'sort_by_weight' ) );
 
+		echo '<div class="cl-widgetform"><div class="cl-widgetform-h">';
+
 		foreach ( $this->config['params'] as $param_name => $param ) {
 			if ( ! isset( $param['type'] ) ) {
 				$param['type'] = 'textfield';
@@ -69,6 +71,8 @@ abstract class CL_Widget extends WP_Widget {
 			$value = isset( $instance[ $param_name ] ) ? $instance[ $param_name ] : $param['std'];
 			$this->{'form_' . $param['type']}( $param, $value );
 		}
+
+		echo '</div></div>';
 
 		return 'clform';
 	}
