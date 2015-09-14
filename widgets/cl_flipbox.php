@@ -91,7 +91,14 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'heading' => __( 'A little box of images', 'codelights' ),
 					'std' => '',
 					'weight' => 1000,
-					'class' => array( 'cl-attached-images' ),
+					'class' => array( ), // not supported yet
+				),
+				'amazinglink' => array(
+					'type' => 'insert_link',
+					'heading' => __( 'An amazing link', 'codelights' ),
+					'std' => 'url:http%3A%2F%2Fgoogle.ru|title:Google|target:_blank',
+					'weight' => 1100,
+					'class' => array( ), // not supported yet
 				),
 			),
 		);

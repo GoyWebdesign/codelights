@@ -32,10 +32,12 @@ div[id*='_cl_'] form {
 .cl-dropdown-label,
 .cl-textarea-label,
 .cl-colorpicker-label,
-.cl-attach-images-label {
+.cl-attach-images-label,
+.cl-insertlink-label {
 	font-weight: 600;
 }
 
+.cl-insertlink-label,
 .cl-attach-images-label,
 .cl-colorpicker-label {
 	display: block;
@@ -130,4 +132,40 @@ div[id*='_cl_'] form {
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	line-height: 0;
+}
+
+.cl-insert-link-button {
+	display: inline-block;
+}
+
+.cl-insert-link-group {
+	margin: 1.5em 0;
+	overflow: hidden;
+}
+
+.cl-insert-link-container {
+	display: none;
+}
+
+.cl-linkdialog-label {
+	font-weight: 600;
+	display: inline-block;
+	margin: 0 0.5em 0 1em;
+	line-height: 28px;
+}
+
+.cl-linkdialog-title {
+	display: inline-block;
+	margin: 0 1em 0 0;
+	line-height: 28px;
+}
+
+.cl-linkdialog-url {
+	display: inline-block;
+	margin: 0 1em 0 0;
+	line-height: 28px;
+}
+
+.cl-linkdialog-target {
+	display: none;
 }
