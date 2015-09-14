@@ -3,7 +3,7 @@
 /**
  * Output a single flipbox element.
  *
- * @var $link string URL of the overall flipbox anchor
+ * @var $link string URL of the overall flipbox anchor in a 'vc_link' format
  * @var $front_icon string The name of the front icon if present (ex: 'star' / 'fa-star')
  * @var $front_icon_style string Front icon style type: 'default' / 'circle'
  * @var $front_icon_size string Front icon size: 'xs' / 's' / 'm' / 'l' / 'xl'
@@ -29,18 +29,18 @@
  * @var $back_border_size string Back border size: '1px' / '2px' / ... / '9px'
  * @var $animation string Animation type: 'cardflip' / 'cubetilt' / 'cubeflip' / 'coveropen'
  * @var $direction string Animation direction: 'n' / 'ne' / 'e' / 'se' / 's' / 'sw' / 'w' / 'nw'
- * @var $animation_duration int In milliseconds
- * @var $animation_easing string
+ * @var $animation_duration string In milliseconds: '100ms' / '200ms' / ... / '900ms'
+ * @var $animation_easing string Easing CSS class name
  * @var $width mixed In pixels or percents: '100' / '100%'
  * @var $height int In pixels
  * @var $el_class string Extra class name
  */
 
-// Main element classes, inner css and additional attributes
 if ( $animation == 'cubetilt' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
 	// When rotating cubetilt in diaginal direction, we're actually doing a cube flip animation instead
 	$animation = 'cubeflip';
 }
+// Main element classes, inner css and additional attributes
 $classes = ' animation_' . $animation . ' direction_' . $direction;
 
 $tag = 'div';

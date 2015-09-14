@@ -1,3 +1,57 @@
 .cl-ib {
   display: inline-block;
+  position: relative;
+}
+.cl-ib:before {
+  content: '';
+  display: block;
+}
+.cl-ib.ratio_2x1:before {
+  padding-top: 50%;
+}
+.cl-ib.ratio_3x2:before {
+  padding-top: 66.6666%;
+}
+.cl-ib.ratio_4x3:before {
+  padding-top: 75%;
+}
+.cl-ib.ratio_1x1:before {
+  padding-top: 100%;
+}
+.cl-ib.ratio_3x4:before {
+  padding-top: 125%;
+}
+.cl-ib.ratio_2x3:before {
+  padding-top: 150%;
+}
+.cl-ib.ratio_1x2:before {
+  padding-top: 200%;
+}
+.cl-ib-h {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.cl-ib-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-transition-duration: inherit;
+  transition-duration: inherit;
+  -webkit-transition-timing-function: inherit;
+  transition-timing-function: inherit;
+}
+.cl-ib-image img {
+  display: none;
+}
+.cl-ib.animation_1:hover .cl-ib-image {
+  -webkit-transform: scale(1.11);
+  transform: scale(1.11);
 }

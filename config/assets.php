@@ -17,6 +17,7 @@ return array(
 	'styles' => array(
 		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/css/font-awesome.min.css', array(), FALSE, 'all' ),
 		'cl-core' => array( $cl_uri . '/css/cl-core.css', array(), FALSE, 'all' ),
+		'cl-ib' => array( $cl_uri . '/css/cl-ib.css', array( 'cl-core' ), FALSE, 'all' ),
 		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), FALSE, 'all' ),
 	),
 	/**

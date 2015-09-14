@@ -242,3 +242,57 @@ function cl_prepare_icon_class( $icon_class ) {
 
 	return 'fa ' . $icon_class;
 }
+
+/**
+ * Get image size information as an array
+ *
+ * @param string $size_name
+ *
+ * @return array
+ */
+function cl_get_intermediate_image_size( $size_name ) {
+	global $_wp_additional_image_sizes;
+	if ( isset( $_wp_additional_image_sizes[ $size_name ] ) ) {
+		// Getting custom image size
+		return $_wp_additional_image_sizes[ $size_name ];
+	} else {
+		// Getting standard image size
+		return array(
+			'width' => get_option( "{$size_name}_size_w" ),
+			'height' => get_option( "{$size_name}_size_h" ),
+			'crop' => get_option( "{$size_name}_crop" ),
+		);
+	}
+}
+
+/**
+ * Get image size values for selector
+ *
+ * @param array $size_names List of size names
+ *
+ * @return array
+ */
+function cl_image_sizes_select_values( $size_names = array( 'large', 'medium', 'thumbnail', 'full' ) ) {
+	$image_sizes = array();
+	// For translation purposes
+	$size_titles = array(
+		'large' => __( 'Large', 'codelights' ),
+		'medium' => __( 'Medium', 'codelights' ),
+		'thumbnail' => __( 'Thumbnail', 'codelights' ),
+		'full' => __( 'Full Size', 'codelights' ),
+	);
+	foreach ( $size_names as $size_name ) {
+		$size_title = isset( $size_titles[ $size_name ] ) ? $size_titles[ $size_name ] : ucwords( $size_name );
+		if ( $size_name != 'full' ) {
+			// Detecting size
+			$size = cl_get_intermediate_image_size( $size_name );
+			$size_title .= ' - ' . ( ( $size['width'] == 0 ) ? __( 'Any', 'codelights' ) : $size['width'] );
+			$size_title .= 'x';
+			$size_title .= ( $size['height'] == 0 ) ? __( 'Any', 'codelights' ) : $size['height'];
+			$size_title .= ' (' . ( $size['crop'] ? __( 'cropped', 'codelights' ) : __( 'not cropped', 'codelights' ) ) . ')';
+		}
+		$image_sizes[ $size_title ] = $size_name;
+	}
+
+	return $image_sizes;
+}
