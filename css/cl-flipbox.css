@@ -17,6 +17,7 @@
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+.cl-flipbox-hh,
 .cl-flipbox-front,
 .cl-flipbox-back,
 .cl-flipbox-xflank,
@@ -24,8 +25,6 @@
   display: block;
   width: 100%;
   height: 100%;
-  padding: 20px;
-  text-align: center;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -33,6 +32,11 @@
   transition-duration: inherit;
   -webkit-transition-timing-function: inherit;
   transition-timing-function: inherit;
+}
+.cl-flipbox-front,
+.cl-flipbox-back {
+  padding: 20px;
+  text-align: center;
 }
 .cl-flipbox-front {
   position: relative;

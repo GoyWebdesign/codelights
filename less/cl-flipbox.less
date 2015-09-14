@@ -12,6 +12,7 @@
 		.transform-style(preserve-3d);
 		.backface-visibility(hidden);
 	}
+	&-hh,
 	&-front,
 	&-back,
 	&-xflank,
@@ -19,11 +20,14 @@
 		display: block;
 		width: 100%;
 		height: 100%;
-		padding: 20px;
-		text-align: center;
 		.backface-visibility(hidden);
 		.transition-duration(inherit);
 		.transition-timing-function(inherit);
+	}
+	&-front,
+	&-back {
+		padding: 20px;
+		text-align: center;
 	}
 	&-front {
 		position: relative;
