@@ -100,7 +100,19 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_textfield( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
-		$output = '<div class="cl-form-row for_' . esc_attr( $param['name'] ) . '">';
+
+		$output = '<div class="cl-tabs">';
+		$output .= '<nav>';
+		$output .= '<ul class="cl-tabs-navigation">';
+		$output .= '<li><a data-content="first-tab" class="selected" href="#0">First tab</a></li>';
+		$output .= '<li><a data-content="second-tab" href="#0">Second tab</a></li>';
+		$output .= '</ul>'; // .cl-tabs-navigation
+		$output .= '</nav>';
+
+		$output .= '<ul class="cl-tabs-content">';
+		$output .= '<li data-content="first-tab" class="selected">';
+		// form output start
+		$output .= '<div class="cl-form-row for_' . esc_attr( $param['name'] ) . '">';
 		$output .= '<div class="cl-form-row-label label_' . esc_attr( $param['type'] ) . '">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -111,6 +123,12 @@ abstract class CL_Widget extends WP_Widget {
 			$output .= '<div class="cl-form-row-description description_' . esc_attr( $param['type'] ) . '">' . esc_attr( $param['description'] ) . '</div>';
 		}
 		$output .= '</div>';
+		// form output end
+		$output .= '</li>';
+
+		$output .= '<li data-content="second-tab">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis erat eget augue efficitur ultricies. Morbi iaculis placerat convallis. In a elit venenatis lorem feugiat tempor. Cras posuere felis in ex elementum, ut ornare augue gravida. Sed euismod molestie nunc non suscipit. Fusce iaculis malesuada neque, ut mollis risus molestie vitae. Nulla vitae elit scelerisque, rutrum neque nec, fermentum ipsum. Phasellus cursus sed felis nec suscipit. Vivamus imperdiet dapibus sem dignissim porttitor. Morbi sagittis aliquet magna, at placerat ante. Donec vel nisi ac ante gravida condimentum. Aenean in volutpat mi.</li>';
+		$output .= '</ul>'; // .cl-tabs-content
+		$output .= '</div>'; // .cl-tabs
 
 		echo $output;
 	}
@@ -278,7 +296,6 @@ abstract class CL_Widget extends WP_Widget {
 			$output .= '<div class="cl-form-row-description description_' . esc_attr( $param['type'] ) . '">' . esc_attr( $param['description'] ) . '</div>';
 		}
 		$output .= '</div>';
-
 
 		echo $output;
 	}
