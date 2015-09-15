@@ -79,8 +79,10 @@ jQuery(document).ready(function($){
 			if (multiple_attachments == 'false' && $findres.length > 0) {
 				$add_button.css('display', 'none');
 			}
-			var attachments_list_id = $widget.find('.cl-images-container').attr('id');
 
+			// insert list of attachments in hidden input
+			var attachments_list_id = $widget.find('.cl-images-container').attr('id');
+			gallery_images_array = get_attachments_list(attachments_list_id);
 			if (typeof gallery_images_array !== 'undefined' && gallery_images_array.length > 0) {
 				var gallery_images_val = gallery_images_array.toString();
 				$attached_images.val(gallery_images_val);
@@ -339,7 +341,6 @@ var cl_link_btn = (function($){
 				encoded_target = encodeURIComponent(linkAtts.target),
 				link_val_encoded = 'url:' + encoded_url + '|title:' + encoded_title + '|target:' + encoded_target;
 
-			console.log(link_val_container);
 			link_val_container.text(link_val_encoded);
 			link_val_title.text(wp_link_text);
 			link_val_url.text(linkAtts.href);

@@ -6,39 +6,26 @@ div#widgets-right .sidebars-column-2 {
 	max-width: 600px;
 }
 
-.cl-colorpicker-group {
-	margin: 1em 0;
-}
-
-.cl-attach-images-group {
-	margin: 1.5em 0;
-	overflow: hidden;
-}
-
-
 /* classes for inputs */
 
-.cl-param-heading {
+.cl-form-row-label {
 	font-weight: 600;
 }
 
-.cl-textfield-label,
-.cl-dropdown-label,
-.cl-textarea-label,
-.cl-colorpicker-label,
-.cl-attach-images-label,
 .cl-insertlink-label {
-	font-weight: 600;
-}
-
-.cl-insertlink-label,
-.cl-attach-images-label,
-.cl-colorpicker-label {
 	display: block;
 	margin: 0.5em 0;
 }
 
-.cl-checkbox-label {}
+.cl-checkbox-label {
+}
+
+.cl-form-row-field,
+.cl-form-row-label,
+.cl-form-row-description {
+	margin-bottom: 0.5em;
+	overflow: hidden;
+}
 
 .wp-picker-container {
 	clear: both;
@@ -132,11 +119,6 @@ div#widgets-right .sidebars-column-2 {
 	display: inline-block;
 }
 
-.cl-insert-link-group {
-	margin: 1.5em 0;
-	overflow: hidden;
-}
-
 .cl-insert-link-container {
 	display: none;
 }
@@ -162,4 +144,31 @@ div#widgets-right .sidebars-column-2 {
 
 .cl-linkdialog-target {
 	display: none;
+}
+
+/* grid system */
+.cl-form-row {
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 15px;
+}
+
+.cl-col-sm-3, .cl-col-sm-4, .cl-col-sm-6, .cl-col-sm-9 {
+	float: left;
+}
+
+.cl-col-sm-9 {
+	width: 75%;
+}
+
+.cl-col-sm-6 {
+	width: 50%;
+}
+
+.cl-col-sm-4 {
+	width: 33.33333333%;
+}
+
+.cl-col-sm-3 {
+	width: 25%;
 }

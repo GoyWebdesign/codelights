@@ -17,14 +17,14 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'heading' => __( 'Front', 'codelights' ),
 					'std' => 'front default text',
 					'weight' => 100,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the textfield',
 				),
 				'back' => array(
 					'type' => 'textarea',
 					'heading' => __( 'Back', 'codelights' ),
 					'std' => 'back default text',
 					'weight' => 200,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the textarea',
 				),
 				'leftside' => array(
 					'type' => 'dropdown',
@@ -36,7 +36,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 						'Third value' => 2,
 					),
 					'weight' => 300,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the dropdown',
 				),
 				'rightside' => array(
 					'type' => 'checkbox',
@@ -48,42 +48,40 @@ class CL_Widget_Flipbox extends CL_Widget {
 						'Three' => 3,
 					),
 					'weight' => 400,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the checkbox group',
 				),
 				'darkside' => array(
 					'type' => 'checkbox',
 					'heading' => __( 'Dark side', 'codelights' ),
 					'std' => 0,
 					'weight' => 500,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for one checkbox',
 				),
 				'innercontent' => array(
 					'type' => 'textarea_html',
 					'heading' => __( 'Inner content', 'codelights' ),
 					'std' => 'Default content for textarea',
 					'weight' => 800,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the textarea',
 				),
 				'explodedcontent' => array(
 					'type' => 'textarea_exploded',
 					'heading' => __( 'Exploded content', 'codelights' ),
 					'std' => 'Default exploded content for textarea',
 					'weight' => 600,
-					'class' => array( 'widefat' ),
+					'description' => 'Description for the exploded textarea',
 				),
 				'rawhtml' => array(
 					'type' => 'textarea_raw_html',
 					'heading' => __( 'Raw html content', 'codelights' ),
 					'std' => base64_encode( '<p>Default raw html content for textarea</p>' ),
 					'weight' => 700,
-					'class' => array( 'widefat' ),
 				),
 				'colorfield' => array(
 					'type' => 'colorpicker',
 					'heading' => __( 'Color of something', 'codelights' ),
 					'std' => '#ffffff',
 					'weight' => 900,
-					'class' => array( 'cl-color-picker' ),
 				),
 				'attachedimages' => array(
 					'type' => 'attach_images',
@@ -91,14 +89,12 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'heading' => __( 'A little box of images', 'codelights' ),
 					'std' => '',
 					'weight' => 1000,
-					'class' => array( ), // not supported yet
 				),
 				'amazinglink' => array(
 					'type' => 'insert_link',
 					'heading' => __( 'An amazing link', 'codelights' ),
 					'std' => 'url:http%3A%2F%2Fgoogle.ru|title:Google|target:_blank',
 					'weight' => 1100,
-					'class' => array( ), // not supported yet
 				),
 			),
 		);
