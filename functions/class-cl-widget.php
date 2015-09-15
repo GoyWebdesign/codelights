@@ -356,17 +356,18 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field type_textfield">';
-
 		$output = '<div class="cl-insert-link-group">';
 		$output .= '<label class="cl-insertlink-label" for="' . esc_attr( $field_id ) . '">' . $param['heading'] . ':</label>';
 		$output .= '<textarea id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" class="cl-insert-link-container">' . esc_attr( $value ) . '</textarea>';
-		$output .= '<button id="insert_wp_link" class="button button-default button-large cl-insert-link-button">' . __( 'Insert link', 'codelights' ) . '</button>';
+		$output .= '<a id="insert_wp_link" class="button button-default button-large cl-insert-link-button" href="#">' . __( 'Insert link', 'codelights' ) . '</a>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'Title:', 'codelights' ) . '</span>';
 		$output .= '<span class="cl-linkdialog-title">' . esc_attr( urldecode( $url_components['title'] ) ) . '</span>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'URL:', 'codelights' ) . '</span>';
 		$output .= '<span class="cl-linkdialog-url">' . esc_attr( urldecode( $url_components['url'] ) ) . '</span>';
 		$output .= '<span class="cl-linkdialog-target">' . esc_attr( urldecode( $url_components['target'] ) ) . '</span>';
 		$output .= '</div>';
+		//$output .= '</div>';
+		//$output .= '</div>';
 
 		echo $output;
 	}

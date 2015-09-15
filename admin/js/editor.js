@@ -19,12 +19,12 @@ jQuery(document).ready(function($){
 	$(document).on('widget-updated', function(event, $widget){
 		if ($widget.is('[id*=_cl_]')) {
 			event.preventDefault();
-			var widget_id = $widget.attr('id');
 
 			// tinymce editor handler
-			var $textarea_wrapper = $widget.find('.cl-widget-textarea-html-wrapper');
-			var $textarea = $textarea_wrapper.find('textarea');
-			var textarea_id = $textarea.attr('id');
+			var widget_id = $widget.attr('id'),
+				$textarea_wrapper = $widget.find('.cl-widget-textarea-html-wrapper'),
+				$textarea = $textarea_wrapper.find('textarea'),
+				textarea_id = $textarea.attr('id');
 
 			var configured = is_tinymce_configured(textarea_id);
 
@@ -68,15 +68,14 @@ jQuery(document).ready(function($){
 				tinymce.init(tinyMCEPreInit.mceInit[textarea_id]);
 			}, 500);
 
-			var $attached_images = $widget.find('.cl-attached-images');
-
 			// add image button hide if no multiple images and one image chosen
-			var gallery_images_array = new Array();
-			var $multiple = $widget.find('.multiple-attachments');
-			var multiple_attachments = $multiple.val();
-			var $add_button = $widget.find('.cl_widget_add_images_button');
-			var $findres = $widget.find('.attachments-thumbnail');
-			var $attached_images = $widget.find('.cl-attached-images');
+			var gallery_images_array = new Array(),
+				$multiple = $widget.find('.multiple-attachments'),
+				multiple_attachments = $multiple.val(),
+				$add_button = $widget.find('.cl_widget_add_images_button'),
+				$findres = $widget.find('.attachments-thumbnail'),
+				$attached_images = $widget.find('.cl-attached-images');
+
 			if (multiple_attachments == 'false' && $findres.length > 0) {
 				$add_button.css('display', 'none');
 			}
@@ -95,9 +94,9 @@ jQuery(document).ready(function($){
 			// sortable reinit
 			$('.sortable-attachment-list').sortable({
 				stop: function(event, ui){
-					var container_id = $(this).attr('id');
-					var gallery_images_array = get_attachments_list(attachments_list_id);
-					var gallery_images_res = gallery_images_array.toString();
+					var container_id = $(this).attr('id'),
+						gallery_images_array = get_attachments_list(attachments_list_id),
+						gallery_images_res = gallery_images_array.toString();
 					$attached_images.val(gallery_images_res);
 				}
 			});
@@ -147,21 +146,20 @@ jQuery(document).ready(function($){
 		return arr;
 	}
 
-
 	// init sortable images
 	$('.sortable-attachment-list').sortable();
 
 	// handler of event after sorting
-	$(".sortable-attachment-list").on('sortstop', function(event, ui){
-		var $parent = $('.widget.open').find('.cl-attach-images-group');
-		var $attached_images = $parent.find('.cl-attached-images');
-		var attachments_list_id = $(this).attr('id');
-		var gallery_images_array = get_attachments_list(attachments_list_id);
-		var gallery_images_res = gallery_images_array.toString();
+	$('.sortable-attachment-list').on('sortstop', function(event, ui){
+		var $parent = $('.widget.open').find('.cl-attach-images-group'),
+			$attached_images = $parent.find('.cl-attached-images'),
+			attachments_list_id = $(this).attr('id'),
+			gallery_images_array = get_attachments_list(attachments_list_id),
+			gallery_images_res = gallery_images_array.toString();
 		$attached_images.val(gallery_images_res);
 	});
 
-	$('body').on('mouseenter', '.attachments-thumbnail', function(e){
+	$('#widgets-right').on('mouseenter', '.attachments-thumbnail', function(e){
 		e.preventDefault();
 		$(this).children('.attachment-delete-wrapper').css('background-color', 'rgba(0,0,0,0.5)');
 		$(this).children('.attachment-delete').css('display', 'block');
@@ -171,18 +169,18 @@ jQuery(document).ready(function($){
 		$(this).children('.attachment-delete').css('display', 'none');
 	});
 
-	$("body").on('click', '.attachment-delete-link', function(e){
+	$('#widgets-right').on('click', '.attachment-delete-link', function(e){
 		e.preventDefault();
-		var $parent_del = $(this).closest('.cl-attach-images-group');
-		var $attached_images_del = $parent_del.find('.cl-attached-images');
-		var attachments_list_id = $parent_del.find('.cl-images-container').attr('id');
-		var $multiple_del = $parent_del.find('.multiple-attachments');
-		var multiple_attachments_del = $multiple_del.val();
-		var $add_button_del = $parent_del.find('.cl_widget_add_images_button');
+		var $parent = $(this).closest('.cl-attach-images-group'),
+			$attached_images_del = $parent.find('.cl-attached-images'),
+			attachments_list_id = $parent.find('.cl-images-container').attr('id'),
+			$multiple = $parent.find('.multiple-attachments'),
+			multiple_attachment = $multiple.val(),
+			$add_button = $parent.find('.cl_widget_add_images_button');
 
 		$(this).closest('li').remove();
-		if (multiple_attachments_del == 'false') {
-			$add_button_del.css('display', 'block');
+		if (multiple_attachment == 'false') {
+			$add_button.css('display', 'block');
 			$attached_images_del.removeAttr('value');
 		} else {
 			var gallery_images_array = get_attachments_list(attachments_list_id);
@@ -197,16 +195,14 @@ jQuery(document).ready(function($){
 	});
 
 	// open WP media uploader
-	$(document).on('click', '.cl_widget_add_images_button', function(event){
+	$('#widgets-right').on('click', '.cl_widget_add_images_button', function(event){
 
 		var file_frame;
 
 		event.preventDefault();
 
-		var $parent = $('.widget.open').find('.cl-attach-images-group');
-		console.log('parent id:' + $parent.attr('id'));
-		var $attachments = $parent.find('.cl-images-container');
-		var gallery_images;
+		var $parent = $('.widget.open').find('.cl-attach-images-group'),
+			$attachments = $parent.find('.cl-images-container');
 
 		// If the media frame already exists, reopen it.
 		if (file_frame) {
@@ -226,14 +222,13 @@ jQuery(document).ready(function($){
 		// When an image is selected, run a callback.
 		file_frame.on('select', function(){
 
-			var $attachments_storage = $parent.find('.cl-attached-images'); // input with list of attached images
-			var $attachments_list = $parent.find('.cl-images-container'); // ul with attached images
-			var attachments_list_id = $attachments_list.attr('id');
-			var $multiple = $parent.children('.multiple-attachments'); // input with multiple trigger
-			var multiple_attachments = $multiple.val();
-			var $add_button = $parent.children('.cl_widget_add_images_button'); // button
-
-			var selection = file_frame.state().get('selection');
+			var $attachments_storage = $parent.find('.cl-attached-images'), // input with list of attached images
+				$attachments_list = $parent.find('.cl-images-container'), // ul with attached images
+				attachments_list_id = $attachments_list.attr('id'),
+				$multiple = $parent.children('.multiple-attachments'), // input with multiple trigger
+				multiple_attachments = $multiple.val(),
+				$add_button = $parent.children('.cl_widget_add_images_button'), // button
+				selection = file_frame.state().get('selection');
 
 			selection.map(function(attachment){
 
@@ -272,7 +267,6 @@ jQuery(document).ready(function($){
 					$add_button.css('display', 'none');
 				}
 
-
 			});
 		});
 		// Finally, open the modal
@@ -297,7 +291,8 @@ var cl_link_btn = (function($){
 //add event listeners
 
 	function _init(){
-		$('body').on('click', '.cl-insert-link-button', function(e){
+		$('#widgets-right').on('click', '.cl-insert-link-button', function(e){
+			e.preventDefault();
 			_addLinkListeners();
 			_cl_link_sideload = false;
 
@@ -333,28 +328,28 @@ var cl_link_btn = (function($){
 	 -------------------------------------------------------------- */
 	function _addLinkListeners(){
 		$('body').on('click', '#wp-link-submit', function(e){
-			e.preventDefault();
-			var wp_link_text = $('#wp-link-text').val();
-			var linkAtts = wpLink.getAttrs();
-			var link_val_container = $('.cl-insert-link-container');
-			var link_val_url = $('.cl-linkdialog-url');
-			var link_val_title = $('.cl-linkdialog-title');
-			var link_val_target = $('.cl-linkdialog-target');
+			var wp_link_text = $('#wp-link-text').val(),
+				linkAtts = wpLink.getAttrs(),
+				link_val_container = $('.cl-insert-link-container'),
+				link_val_url = $('.cl-linkdialog-url'),
+				link_val_title = $('.cl-linkdialog-title'),
+				link_val_target = $('.cl-linkdialog-target'),
+				encoded_url = encodeURIComponent(linkAtts.href),
+				encoded_title = encodeURIComponent(wp_link_text),
+				encoded_target = encodeURIComponent(linkAtts.target),
+				link_val_encoded = 'url:' + encoded_url + '|title:' + encoded_title + '|target:' + encoded_target;
 
-			var encoded_url = encodeURIComponent(linkAtts.href);
-			var encoded_title = encodeURIComponent(wp_link_text);
-			var encoded_target = encodeURIComponent(linkAtts.target);
-			var link_val_encoded = 'url:' + encoded_url + '|title:' + encoded_title + '|target:' + encoded_target;
-
+			console.log(link_val_container);
 			link_val_container.text(link_val_encoded);
 			link_val_title.text(wp_link_text);
 			link_val_url.text(linkAtts.href);
 			link_val_target.text(linkAtts.target);
 			_removeLinkListeners();
 			return false;
+			e.preventDefault();
 		});
 
-		$('body').on('click', '#wp-link-cancel', function(event){
+		$('body').on('click', '#wp-link-cancel', function(e){
 			_removeLinkListeners();
 			return false;
 		});
@@ -368,7 +363,7 @@ var cl_link_btn = (function($){
 		}
 
 		wpLink.close();
-		wpLink.textarea = $('html');//focus on document
+		wpLink.textarea = $('.cl-insert-link-button'); //focus on button
 
 		$('body').off('click', '#wp-link-submit');
 		$('body').off('click', '#wp-link-cancel');
