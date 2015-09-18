@@ -1,3 +1,112 @@
+/**
+ * Retrieve/set/erase dom modificator class <mod>_<value> for the CSS Framework
+ * @param {String} mod Modificator namespace
+ * @param {String} [value] Value
+ * @returns {string|jQuery}
+ */
+jQuery.fn.cssMod = function(mod, value){
+	if (this.length == 0) return this;
+	// Remove class modificator
+	if (value === false){
+		return this.each(function(){
+			this.className = this.className.replace(new RegExp('(^| )'+mod+'\_[a-z0-9\_]+( |$)'), '$2');
+		});
+	}
+	var pcre = new RegExp('^.*?'+mod+'\_([a-z0-9\_]+).*?$'),
+		arr;
+	// Retrieve modificator
+	if (value === undefined){
+		return (arr = pcre.exec(this.get(0).className)) ? arr[1] : false;
+	}
+	// Set modificator
+	else {
+		return this.each(function(){
+			this.className = this.className.replace(new RegExp('(^| )'+mod+'\_[a-z0-9\_]+( |$)'), '$1'+mod+'_'+value+'$2');
+		});
+	}
+};
+
+/**
+ * CodeLights Form Fields
+ */
+!function($){
+
+	window.CLField = function(row, options){
+		this.$row = $(row);
+		if (this.$row.data('clfield')) return this.$row.data('clfield');
+		this.type = this.$row.cssMod('type');
+		this.id = this.$row.data('id');
+		this.$input = this.$row.find('[name="'+this.id+'"]');
+		this.inited = false;
+
+		/**
+		 * Boundable field events
+		 */
+		this.$$events = {
+			beforeShow: [],
+			afterShow: [],
+			change: [],
+			beforeHide: [],
+			afterHide: []
+		};
+
+		// Overloading selected functions, moving parent functions to "parent" namespace: init => parentInit
+		if (window.CLField[this.type] !== undefined){
+			for (var fn in window.CLField[this.type]){
+				if ( ! window.CLField[this.type].hasOwnProperty(fn)) continue;
+				if (this[fn] !== undefined){
+					var parentFn = 'parent'+fn.charAt(0).toUpperCase()+fn.slice(1);
+					this[parentFn] = this[fn];
+				}
+				this[fn] = window.CLField[this.type][fn];
+			}
+		}
+
+		this.$row.data('clfield', this);
+
+		// Init on first show
+		var initEvent = function(){
+			this.init(options);
+			this.inited = true;
+			this.removeEvent('beforeShow', initEvent);
+		}.bind(this);
+		this.addEvent('beforeShow', initEvent);
+	};
+
+	window.CLField.prototype = {
+		init: function(){
+			this.$input.on('change', function(){
+				this.fireEvent('change', this.getValue());
+			}.bind(this));
+		},
+		getValue: function(){
+			return this.$input.val();
+		},
+		setValue: function(value){
+			this.$input.val(value);
+			this.fireEvent('change', value);
+		},
+		addEvent: function(trigger, fn){
+			if (this.$$events[trigger] === undefined) this.$$events[trigger] = [];
+			this.$$events[trigger].push(fn);
+		},
+		fireEvent: function(trigger, values){
+			if (this.$$events[trigger] === undefined || this.$$events[trigger].length == 0) return;
+			for (var index = 0; index < this.$$events[trigger].length; index++){
+				this.$$events[trigger][index](this, values);
+			}
+		},
+		removeEvent: function(trigger, fn){
+			if (this.$$events[trigger] === undefined) return;
+			var fnPos = $.inArray(fn, this.$$events[trigger]);
+			if (fnPos != -1){
+				this.$$events[trigger].splice(fnPos, 1);
+			}
+		}
+	};
+}(jQuery);
+
+
 jQuery(document).ready(function($){
 	'use strict';
 
