@@ -36,26 +36,134 @@
 		bottom: 0;
 		overflow: hidden;
 	}
-	&-image {
+	// Animations and transitions
+	&-image,
+	&-overlay,
+	&-content,
+	&-title,
+	&-text,
+	&-icon,
+	&-button {
+		.transition-duration(inherit);
+		.transition-timing-function(inherit);
+	}
+	&-image,
+	&-overlay,
+	&-content {
 		position: absolute;
 		left: 0;
 		top: 0;
 		right: 0;
 		bottom: 0;
+	}
+	&-image {
 		-webkit-background-size: cover;
 		background-size: cover;
-		.transition-duration(inherit);
-		.transition-timing-function(inherit);
+		background-position: 50% 50%;
+		z-index: -1;
 		img {
 			display: none;
 		}
 	}
+	&-overlay {
+		z-index: 2;
+	}
+	&-content {
+		z-index: 3;
+		text-align: center;
+		padding: 10px;
+	}
+	&-title,
+	&-text {
+		line-height: 1.33;
+	}
 
-	// Animation Type: 1
-	&.animation_1 {
-		&:hover {
+	// Animation Type: Melete
+	&.animation_melete {
+		.cl-ib-overlay {
+			opacity: 0;
+			background-color: rgba(255, 255, 255, .5);
+		}
+		.cl-ib-title,
+		.cl-ib-text {
+			color: #000000;
+		}
+		.cl-ib-content {
+			opacity: 0;
+			.scale(.80);
+		}
+		&:hover,
+		&.hover {
 			.cl-ib-image {
 				.scale(1.11);
+			}
+			.cl-ib-overlay,
+			.cl-ib-content {
+				opacity: 1;
+				.scale(1.0);
+			}
+		}
+	}
+
+	// Animation Type: Soter
+	&.animation_soter {
+		.cl-ib-h {
+			.perspective(600px);
+		}
+		.cl-ib-image {
+			left: -20%;
+			right: 0;
+		}
+		.cl-ib-content {
+			top: 5%;
+			left: 5%;
+			bottom: 5%;
+			right: 50%;
+			border: 1px white solid;
+			.transform-origin(0% 50%);
+			.transform(rotateY(-90deg));
+			.backface-visibility(hidden);
+		}
+		&:hover,
+		&.hover {
+			.cl-ib-image {
+				left: 0;
+				right: -20%;
+			}
+			.cl-ib-content {
+				.transform(rotateY(0deg));
+			}
+		}
+	}
+
+	// Animation Type: Phorcys
+	&.animation_phorcys {
+		.cl-ib-image {
+			bottom: -10%;
+		}
+		.cl-ib-content {
+			top: 70%;
+			bottom: -70%;
+			background: rgba(0, 0, 0, 0) linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 10%) repeat scroll 0 0;
+		}
+		.cl-ib-text {
+			position: relative;
+			opacity: 0;
+			top: 5%;
+		}
+		&:hover,
+		&.hover {
+			.cl-ib-image {
+				top: -10%;
+				bottom: 0;
+			}
+			.cl-ib-content {
+				top: 50%;
+				bottom: -50%;
+			}
+			.cl-ib-text {
+				opacity: 1;
+				top: 0;
 			}
 		}
 	}

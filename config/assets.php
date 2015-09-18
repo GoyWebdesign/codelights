@@ -15,7 +15,7 @@ return array(
 	 * $handle => array( $src, $deps, $ver, $media )
 	 */
 	'styles' => array(
-		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/css/font-awesome.min.css', array(), FALSE, 'all' ),
+		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/font-awesome.min.css', array(), '4.4.0', 'all' ),
 		'cl-core' => array( $cl_uri . '/css/cl-core.css', array(), FALSE, 'all' ),
 		'cl-ib' => array( $cl_uri . '/css/cl-ib.css', array( 'cl-core' ), FALSE, 'all' ),
 		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), FALSE, 'all' ),
@@ -25,6 +25,7 @@ return array(
 	 * $handle => array( $src, $deps, $ver, $in_footer )
 	 */
 	'scripts' => array(
+		'cl-ib' => array( $cl_uri . '/js/cl-ib.js', array( 'jquery' ), FALSE, TRUE ),
 		'cl-flipbox' => array( $cl_uri . '/js/cl-flipbox.js', array( 'jquery' ), FALSE, TRUE ),
 	),
 
