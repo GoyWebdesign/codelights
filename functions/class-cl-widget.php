@@ -55,9 +55,11 @@ abstract class CL_Widget extends WP_Widget {
 			return parent::form( $instance );
 		}
 
+		$form_id = 'cl-widgetform-' . rand( 0, 999 );
+
 		uasort( $this->config['params'], array( 'CL_Widget', 'sort_by_weight' ) );
 
-		echo '<div class="cl-widgetform"><div class="cl-widgetform-h">';
+		echo '<div class="cl-widgetform" id="' . $form_id . '"><div class="cl-widgetform-h">';
 
 		foreach ( $this->config['params'] as $param_name => $param ) {
 			if ( ! isset( $param['type'] ) ) {

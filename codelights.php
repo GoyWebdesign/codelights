@@ -33,8 +33,9 @@ function cl_register_admin_scripts() {
 
 	$screen = get_current_screen();
 	$post_type = $screen->id;
+	//echo 'post type:' . $post_type;
 	// load scripts and styles only in widget area
-	if ( strpos( $post_type, 'widgets' ) !== FALSE ) {
+	if ( strpos( $post_type, 'widgets' ) !== FALSE OR strpos( $post_type, 'page' ) !== FALSE ) {
 		wp_enqueue_script( 'tiny_mce' );
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_style( 'wp-color-picker' );
@@ -52,4 +53,26 @@ function cl_customize_controls_print_scripts() {
 	global $cl_uri;
 	wp_enqueue_style( 'cl-customizer', $cl_uri . '/admin/css/customizer.css' );
 	wp_enqueue_script( 'cl-customizer', $cl_uri . '/admin/js/customizer.js', array( 'jquery' ), FALSE, TRUE );
+}
+
+/**
+ * Enqueue all my widget's admin scripts
+ */
+add_action( 'admin_print_scripts-widgets.php', 'mywidget_enqueue_scripts' );
+// Add this to enqueue your scripts on Page Builder too
+add_action( 'siteorigin_panel_enqueue_admin_scripts', 'mywidget_enqueue_scripts' );
+function mywidget_enqueue_scripts() {
+	global $cl_uri;
+	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
+	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
+
+	wp_enqueue_script( 'tiny_mce' );
+	wp_enqueue_script( 'wp-color-picker' );
+	wp_enqueue_style( 'wp-color-picker' );
+	if ( ! did_action( 'wp_enqueue_media' ) ) {
+		wp_enqueue_media();
+	}
+	wp_enqueue_script( 'wp-link' );
+	wp_enqueue_script( 'jquery-ui-core' );
+	wp_enqueue_script( 'jquery-ui-sortable' );
 }
