@@ -35,8 +35,8 @@ jQuery.fn.cssMod = function(mod, value){
 		this.$row = $(row);
 		if (this.$row.data('clfield')) return this.$row.data('clfield');
 		this.type = this.$row.cssMod('type');
-		this.id = this.$row.data('id');
-		this.$input = this.$row.find('[name="' + this.id + '"]');
+		this.name = this.$row.data('name');
+		this.$input = this.$row.find('[name="' + this.name + '"]');
 		this.inited = false;
 
 		/**
@@ -74,14 +74,20 @@ jQuery.fn.cssMod = function(mod, value){
 	};
 
 	window.CLField.prototype = {
+		// init input field
 		init: function(){
 			this.$input.on('change', function(){
 				this.fireEvent('change', this.getValue());
-			}.bind(this));
+			}.bind(this)); // CLField instance
 		},
+		deinit: function(){
+			// something
+		},
+		// return this input value
 		getValue: function(){
 			return this.$input.val();
 		},
+		// set this input value
 		setValue: function(value){
 			this.$input.val(value);
 			this.fireEvent('change', value);
@@ -106,6 +112,30 @@ jQuery.fn.cssMod = function(mod, value){
 	};
 }(jQuery);
 
+// Some codelights field example
+!function($){
+	window.CLField['textfield'] = {
+		init: function(options){
+			this.parentInit();
+			// Do something
+			console.log('init');
+		},
+		deinit: function(){
+			this.parentDeinit();
+			// Do something
+		},
+		getValue: function(){
+			var value = this.parentGetValue();
+			// Do something
+			console.log('inner value:' + value);
+		},
+		setValue: function(){
+			this.parentSetValue();
+			// Do something
+		}
+	};
+}(jQuery);
+
 
 jQuery(document).ready(function($){
 	'use strict';
@@ -114,6 +144,12 @@ jQuery(document).ready(function($){
 
 	// init Color Picker to all inputs that have 'color-field' class on Widget Area load
 	$('.cl-color-picker').wpColorPicker();
+
+	// field initialization
+	var field = new CLField('#widget-cl_flipbox-2-front');
+	field.fireEvent('beforeShow');
+	var value = field.getValue();
+	console.log('value:' + value);
 
 	// init sortable images on Widget Area load
 	$('.sortable-attachment-list').sortable({
@@ -372,14 +408,14 @@ var clMediaUploader = (function($){
 
 					var isImageExsist = false;
 					for (var i = 0; i < galleryImagesArray.length; i++) {
-						if (galleryImagesArray[i] == attachment.id) {
+						if (galleryImagesArray[i] == attachment.name) {
 							isImageExsist = true;
 						}
 					}
 
 					if (isImageExsist === false) {
-						$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" id="' + attachment.id + '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' + attachment.id + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
-						galleryImagesArray.push(attachment.id); // array
+						$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" id="' + attachment.name + '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' + attachment.name + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
+						galleryImagesArray.push(attachment.name); // array
 						var galleryImagesRes = galleryImagesArray.toString(); // string
 						$attachmentsStorage.val(galleryImagesRes);
 					} else {
@@ -388,8 +424,8 @@ var clMediaUploader = (function($){
 					}
 
 				} else {
-					$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" id="' + attachment.id + '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' + attachment.id + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
-					$attachmentsStorage.val(attachment.id);
+					$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" id="' + attachment.name + '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' + attachment.name + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
+					$attachmentsStorage.val(attachment.name);
 					$addButton.css('display', 'none');
 				}
 
