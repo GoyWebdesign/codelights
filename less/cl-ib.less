@@ -7,34 +7,14 @@
 		content: '';
 		display: block;
 	}
-	&.ratio_2x1:before {
-		padding-top: 50%;
-	}
-	&.ratio_3x2:before {
-		padding-top: 66.6666%;
-	}
-	&.ratio_4x3:before {
-		padding-top: 75%;
-	}
-	&.ratio_1x1:before {
-		padding-top: 100%;
-	}
-	&.ratio_3x4:before {
-		padding-top: 125%;
-	}
-	&.ratio_2x3:before {
-		padding-top: 150%;
-	}
-	&.ratio_1x2:before {
-		padding-top: 200%;
-	}
 	&-h {
 		position: absolute;
 		left: 0;
 		top: 0;
-		right: 0;
-		bottom: 0;
+		width: 300px;
 		overflow: hidden;
+		.transition-property(none);
+		.transform-origin(0 0);
 	}
 	// Animations and transitions
 	&-image,
@@ -43,7 +23,7 @@
 	&-title,
 	&-text,
 	&-icon,
-	&-button {
+	&-btn {
 		.transition-duration(inherit);
 		.transition-timing-function(inherit);
 	}
@@ -76,6 +56,76 @@
 	&-title,
 	&-text {
 		line-height: 1.33;
+	}
+
+	// Ratio: 2x1
+	&.ratio_2x1 {
+		&:before {
+			padding-top: 50%;
+		}
+		.cl-ib-h {
+			height: 150px;
+		}
+	}
+
+	// Ratio: 3x2
+	&.ratio_3x2 {
+		&:before {
+			padding-top: 66.6666%;
+		}
+		.cl-ib-h {
+			height: 200px;
+		}
+	}
+
+	// Ratio: 4x3
+	&.ratio_4x3 {
+		&:before {
+			padding-top: 75%;
+		}
+		.cl-ib-h {
+			height: 225px;
+		}
+	}
+
+	// Ratio: 1x1
+	&.ratio_1x1 {
+		&:before {
+			padding-top: 100%;
+		}
+		.cl-ib-h {
+			height: 300px;
+		}
+	}
+
+	// Ratio: 3x4
+	&.ratio_3x4 {
+		&:before {
+			padding-top: 125%;
+		}
+		.cl-ib-h {
+			height: 400px;
+		}
+	}
+
+	// Ratio: 2x3
+	&.ratio_2x3 {
+		&:before {
+			padding-top: 150%;
+		}
+		.cl-ib-h {
+			height: 450px;
+		}
+	}
+
+	// Ratio: 1x2
+	&.ratio_1x2 {
+		&:before {
+			padding-top: 200%;
+		}
+		.cl-ib-h {
+			height: 600px;
+		}
 	}
 
 	// Animation Type: Melete
@@ -166,5 +216,10 @@
 				top: 0;
 			}
 		}
+	}
+
+	// Animation Type: Aidos
+	&.animation_aidos {
+
 	}
 }

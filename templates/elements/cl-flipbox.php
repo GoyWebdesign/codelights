@@ -19,10 +19,10 @@
  * @var $back_image int ID of the WP attachment image
  * @var $back_title string
  * @var $back_text string Back-side text
- * @var $back_button_label string Back button label
- * @var $back_button_size string Back button size: 'xs' / 's' / 'm' / 'l' / 'xl'
- * @var $back_button_color string
- * @var $back_button_bgcolor string
+ * @var $back_btn_label string Back button label
+ * @var $back_btn_size string Back button size: 'xs' / 's' / 'm' / 'l' / 'xl'
+ * @var $back_btn_color string
+ * @var $back_btn_bgcolor string
  * @var $back_bgcolor string
  * @var $back_border_style string Back border style: 'none' / 'dotted' / 'dashed' / 'solid' / 'double'
  * @var $back_border_color string
@@ -140,18 +140,18 @@ if ( ! empty( $back_title ) ) {
 if ( ! empty( $back_text ) ) {
 	$output .= '<p class="cl-flipbox-back-text">' . $back_text . '</p>';
 }
-if ( ! empty( $back_button_label ) ) {
-	$back_button_inner_css = '';
-	if ( ! empty( $back_button_color ) ) {
-		$back_button_inner_css .= 'color:' . $back_button_color . ';';
+if ( ! empty( $back_btn_label ) ) {
+	$back_btn_inner_css = '';
+	if ( ! empty( $back_btn_color ) ) {
+		$back_btn_inner_css .= 'color:' . $back_btn_color . ';';
 	}
-	if ( ! empty( $back_button_bgcolor ) ) {
-		$back_button_inner_css .= 'background-color:' . $back_button_bgcolor . ';';
+	if ( ! empty( $back_btn_bgcolor ) ) {
+		$back_btn_inner_css .= 'background-color:' . $back_btn_bgcolor . ';';
 	}
-	if ( ! empty( $back_button_inner_css ) ) {
-		$back_button_inner_css = ' style="' . $back_button_inner_css . '"';
+	if ( ! empty( $back_btn_inner_css ) ) {
+		$back_btn_inner_css = ' style="' . $back_btn_inner_css . '"';
 	}
-	$output .= '<div class="cl-flipbox-back-button size_' . $back_button_size . '"' . $back_button_inner_css . '>' . $back_button_label . '</div>';
+	$output .= '<div class="cl-btn size_' . $back_btn_size . '"' . $back_btn_inner_css . '>' . $back_btn_label . '</div>';
 }
 $output .= '</div>';
 
