@@ -55,11 +55,9 @@ abstract class CL_Widget extends WP_Widget {
 			return parent::form( $instance );
 		}
 
-		$form_id = 'cl-widgetform-' . rand( 0, 999 );
-
 		uasort( $this->config['params'], array( 'CL_Widget', 'sort_by_weight' ) );
 
-		echo '<div class="cl-widgetform" id="' . $form_id . '"><div class="cl-widgetform-h">';
+		echo '<div class="cl-widgetform"><div class="cl-widgetform-h">';
 
 		foreach ( $this->config['params'] as $param_name => $param ) {
 			if ( ! isset( $param['type'] ) ) {
@@ -156,7 +154,7 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_checkbox( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
-
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 
 		if ( is_array( $value ) ) {
@@ -170,7 +168,7 @@ abstract class CL_Widget extends WP_Widget {
 			$values = array( __( 'Yes', 'codelights' ) => 1 );
 		}
 
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . '  type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . '  type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<span class="cl-form-row-label">' . $param['heading'] . ':</span><br />';
 		$output .= '</div>';
@@ -207,8 +205,9 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_dropdown( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -238,9 +237,10 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_textarea( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -264,6 +264,7 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_textarea_html( $param, $value ) {
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$content = $value;
 		$editor_id = $this->get_field_id( $param['name'] );
@@ -275,7 +276,7 @@ abstract class CL_Widget extends WP_Widget {
 			'default_editor' => 'tmce',
 		);
 
-		$output = '<div class="cl-form-row ' . $row_class . ' type_' . esc_attr( $param['type'] ) . ' for_' . esc_attr( $param['name'] ) . ' cl-widget-textarea-html-wrapper">';
+		$output = '<div class="cl-form-row ' . $row_class . ' type_' . esc_attr( $param['type'] ) . ' for_' . esc_attr( $param['name'] ) . ' cl-widget-textarea-html-wrapper" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -305,9 +306,10 @@ abstract class CL_Widget extends WP_Widget {
 	public function form_textarea_exploded( $param, $value ) {
 		$value = str_replace( ",", "\n", $value );
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -331,15 +333,18 @@ abstract class CL_Widget extends WP_Widget {
 	 */
 	public function form_textarea_raw_html( $param, $value ) {
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field">';
-		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" class="widefat" rows="16">' . htmlentities( rawurldecode( base64_decode( $value ) ), ENT_COMPAT, 'UTF-8' ) . '</textarea>';
-		$output .= '<input id="' . $this->get_field_id( 'raw_area_html_field' ) . '" name="' . $this->get_field_name( 'raw_area_html_field' ) . '" type="hidden" value="' . $param['name'] . '">';
+		//$output .= '<textarea id="' . $field_id . '" class="widefat" rows="16">' . htmlentities( rawurldecode( base64_decode( $value ) ), ENT_COMPAT, 'UTF-8' ) . '</textarea>';
+		$output .= '<textarea id="' . $field_id . '" class="widefat" rows="16"></textarea>';
+		$output .= '<input type="hidden" name="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '">';
+		//$output .= '<input id="' . $this->get_field_id( 'raw_area_html_field' ) . '" name="' . $this->get_field_name( 'raw_area_html_field' ) . '" type="hidden" value="' . $param['name'] . '">';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
@@ -357,9 +362,10 @@ abstract class CL_Widget extends WP_Widget {
 	 */
 	public function form_colorpicker( $param, $value ) {
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -382,9 +388,10 @@ abstract class CL_Widget extends WP_Widget {
 		}
 
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div id="cl-attach-images-group" class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group">';
+		$output = '<div id="cl-attach-images-group" class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -404,7 +411,7 @@ abstract class CL_Widget extends WP_Widget {
 		if ( $param['multiple'] == 'false' AND $has_images === TRUE ) {
 			$style = 'style="display:none;"';
 		}
-		$output .= '<a id="cl-widget-add_images-button" ' . $style . ' class="cl_widget_add_images_button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
+		$output .= '<a id="cl-widget-add_images-button" ' . $style . ' class="cl-widget-add-images-button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
 
 		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" class="cl-attached-images" name="' . $this->get_field_name( $param['name'] ) . '" value="' . esc_attr( $value ) . '"/>';
 		$output .= '<input type="hidden" class="multiple-attachments" value="' . esc_attr( $param['multiple'] ) . '"/>';
@@ -419,6 +426,7 @@ abstract class CL_Widget extends WP_Widget {
 
 	public function form_insert_link( $param, $value ) {
 		$field_id = $this->get_field_id( $param['name'] );
+		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
 		if ( ! empty ( $value ) AND strpos( $value, '|' ) !== FALSE ) {
@@ -432,7 +440,7 @@ abstract class CL_Widget extends WP_Widget {
 			$url_components[ $key ] = $val;
 		}
 
-		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -452,6 +460,7 @@ abstract class CL_Widget extends WP_Widget {
 		echo $output;
 	}
 
+	/*
 	public function update( $new_instance, $old_instance ) {
 		$instance = $new_instance;
 
@@ -462,6 +471,7 @@ abstract class CL_Widget extends WP_Widget {
 
 		return $instance;
 	}
+	*/
 
 }
 

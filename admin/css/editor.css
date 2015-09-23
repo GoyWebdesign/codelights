@@ -31,7 +31,7 @@ div#widgets-right .sidebars-column-2 {
 	clear: both;
 }
 
-.cl_widget_add_images_button {
+.cl-widget-add-images-button {
 	background: #f5f5f5 url('../img/add.png') center center no-repeat;
 	border: 1px solid #dfdfdf;
 	color: #f5f5f5;
