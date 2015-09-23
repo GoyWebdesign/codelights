@@ -27,17 +27,6 @@ jQuery.fn.cssMod = function(mod, value){
 };
 
 /**
- * Function.bind: simple function for defining scopes for functions called from events
- */
-Function.prototype.usBind = function(scope, args){
-	var self = this;
-	return function(){
-		return self.apply(scope, args || arguments);
-	};
-};
-
-
-/**
  * CodeLights Form Fields
  */
 !function($){
@@ -125,47 +114,28 @@ Function.prototype.usBind = function(scope, args){
 
 // Some codelights field example
 !function($){
-	window.CLField['textfield'] = {
-		init: function(options){
-			this.parentInit(options);
-			// Do something
-		},
-		getValue: function(){
-			var value = this.parentGetValue();
-			// Do something
-			return value;
-		},
-		setValue: function(value){
-			this.parentSetValue(value);
-			// Do something
-		}
-	};
 
+	/**
+	 * Field Type: Checkbox
+	 */
 	window.CLField['checkbox'] = {
 		init: function(options){
+			this.$input = this.$row.find('[name="' + this.name + '[]"]');
 			this.parentInit(options);
-			// Do something
 		},
 		getValue: function(){
-			var values = new Array();
-			this.$row.find('input').each(function(index){
-				var $input = $(this);
-				var checked = $input.prop('checked');
-				values[index] = checked;
+			var values = [];
+			this.$input.filter(':checked').each(function(index, input){
+				values.push(input.value);
 			});
-			return values;
+			return values.join(',');
 		},
-		setValue: function(values){
-			if (typeof values != 'undefined' && values.length > 0) {
-				this.$row.find('input').each(function(index){
-					var $input = $(this);
-					if (values[index] === true) {
-						$input.prop('checked', true);
-					} else {
-						$input.prop('checked', false);
-					}
-				});
-			}
+		setValue: function(value){
+			if (typeof value != 'string') return;
+			value = value.split(',');
+			this.$input.each(function(index, input){
+				$(this).attr('checked', ($.inArray(this.value, value) != -1) ? 'checked' : false);
+			});
 		}
 	};
 
@@ -437,7 +407,7 @@ Function.prototype.usBind = function(scope, args){
 			}).bind(this);
 
 			// open WP media uploader
-			this.$buttonAddImage = this.$row.find('.cl-widget-add-images-button').on('click', this._open.usBind(this));
+			this.$buttonAddImage = this.$row.find('.cl-widget-add-images-button').on('click', this._open.bind(this));
 
 			this.$row.on('click', '.attachment-delete-link', function(event){
 				classObject.fireEvent('click', classObject._deleteImageFromList($(this)));
