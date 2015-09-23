@@ -232,7 +232,8 @@ jQuery.fn.cssMod = function(mod, value){
 		}
 	};
 
-	window.CLField['insert_link'] = {
+	// TODO Test with two field instances at the same page
+	window.CLField['link'] = {
 		init: function(){
 			this.$insertButton = this.$row.find('.cl-insert-link-button');
 			this.$insertButton.on('click', function(event){
@@ -242,23 +243,25 @@ jQuery.fn.cssMod = function(mod, value){
 				wpLink.open();
 				wpLink.textarea = $('#' + textareaID);
 				var existingLinkTitle = this.$row.find('.cl-linkdialog-title').text();
-				if (existingLinkTitle !== 'undefined' || existingLinkTitle.length > 0) {
+				if (existingLinkTitle.length > 0) {
 					$('#wp-link-text').val(existingLinkTitle);
 				}
 				var existingLinkUrl = this.$row.find('.cl-linkdialog-url').text();
-				if (existingLinkUrl !== 'undefined' || existingLinkUrl.length > 0) {
+				if (existingLinkUrl.length > 0) {
 					$('#wp-link-url').val(existingLinkUrl);
 				}
 				var existingLinkTarget = this.$row.find('.cl-linkdialog-target').text();
 				if (existingLinkTarget == '_blank') {
+					// TODO prop vs attr
+					// TODO Remove checkbox when needed
 					$('#wp-link-target').prop('checked', true);
 				}
-				event.preventDefault();
 			}.bind(this));
 		},
 		_addLinkListeners: function(){
 			var $container = this.$row;
 			var classObject = this;
+			// TODO Maybe the link modal has some kind of API?
 			$('body').on('click', '#wp-link-submit', function(event){
 				var wpLinkText = $('#wp-link-text').val(),
 					linkAtts = wpLink.getAttrs(),
@@ -284,6 +287,7 @@ jQuery.fn.cssMod = function(mod, value){
 				return false;
 			});
 		},
+		// TODO Events are not removed at cross click, overlay click and esc press closing cases
 		_removeLinkListeners: function(){
 			if (typeof wpActiveEditor != 'undefined') {
 				wpActiveEditor = undefined;
@@ -301,9 +305,11 @@ jQuery.fn.cssMod = function(mod, value){
 			this.parentInit(options);
 			// tinymce editor handler
 			this.$widget = this.$row.closest('.widget.open');
+			// TODO Use this.$input instead
 			this.$textarea = this.$row.find('textarea');
 
 			// handler for click on save button in widget
+			// TODO Remove this from here
 			if (this.$widget.length > 0) {
 				this.$widget.on('click', function(){
 					this.fireEvent('click', this._save());
@@ -311,7 +317,7 @@ jQuery.fn.cssMod = function(mod, value){
 			}
 
 			var widgetTextareaID = this.$textarea.attr('id'),
-				tmceHidden = this.$textarea.is(":visible"),
+				tmceHidden = this.$textarea.is(':visible'),
 				tmceActive = this._isTinymceActive(widgetTextareaID),
 			// check is buttons is configured
 				initTextareaID;
@@ -329,10 +335,12 @@ jQuery.fn.cssMod = function(mod, value){
 
 			var quicktagsActive = this._isQuicktagsActive(initTextareaID);
 
+			// TODO Write link to the relevant issue description
 			window.setTimeout(function(){
 				// TinyMCE instance deactivation
 				if (tmceActive === true) {
 					if (tmceHidden === true) {
+						// TODO Write link to the relevant FireFox issue
 						try {
 							tinymce.remove();
 						} catch (e) {
@@ -362,6 +370,7 @@ jQuery.fn.cssMod = function(mod, value){
 					QTags._buttonsInit();
 				}
 
+				// TODO Try to initialize via variable with direct dom link (this.$input), not by its id
 				tinyMCEPreInit.mceInit[widgetTextareaID].selector = '#' + widgetTextareaID;
 				tinyMCEPreInit.mceInit[widgetTextareaID].height = '100%';
 				tinymce.init(tinyMCEPreInit.mceInit[widgetTextareaID]);
@@ -379,14 +388,17 @@ jQuery.fn.cssMod = function(mod, value){
 		},
 		// Check if the tinymce quicktags buttons is created
 		_isQuicktagsActive: function(textareaID){
+			// TODO Remove joda style
 			return 'object' === typeof QTags.instances[textareaID];
 		},
 		// Check if the tinymce instance is configured
 		_isTinymceConfigured: function(textareaID){
+			// TODO Remove joda style
 			return 'undefined' !== typeof tinyMCEPreInit.mceInit[textareaID];
 		},
 		// Check if the tinymce instance is active
 		_isTinymceActive: function(textareaID){
+			// TODO Remove joda style
 			return 'object' === typeof tinymce && 'object' === typeof tinymce.get(textareaID) && null !== tinymce.get(textareaID);
 		}
 	};
@@ -556,7 +568,7 @@ jQuery(document).ready(function($){
 	newAttachImages.fireEvent('beforeShow');
 
 	// init handler for insert link button on Widget Area load
-	var newLinkWindow = new CLField('#widgets-right .type_insert_link:first');
+	var newLinkWindow = new CLField('#widgets-right .type_link:first');
 	newLinkWindow.fireEvent('beforeShow');
 
 	// init tabs in widget on Widget Area load
@@ -589,7 +601,7 @@ jQuery(document).ready(function($){
 		newRawHTML.fireEvent('beforeShow');
 
 		// init handler for insert link button on Page Builder panel open
-		var newLinkWindow = new CLField('#widgets-right .type_insert_link:first');
+		var newLinkWindow = new CLField('#widgets-right .type_link:first');
 		newLinkWindow.fireEvent('beforeShow');
 
 	});
@@ -628,7 +640,7 @@ jQuery(document).ready(function($){
 			newAttachImages.createAttachmentsListAfterAjax($widget);
 
 			// init handler for insert link button in Widget Area after ajax
-			var newLinkWindow = new CLField('#widgets-right .type_insert_link:first');
+			var newLinkWindow = new CLField('#widgets-right .type_link:first');
 			newLinkWindow.fireEvent('beforeShow');
 
 			// init tabs in Widget Area after ajax
