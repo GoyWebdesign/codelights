@@ -300,6 +300,7 @@ jQuery.fn.cssMod = function(mod, value){
 		}
 	};
 
+	// TODO Test with two field instances at the same page
 	window.CLField['textarea_html'] = {
 		init: function(options){
 			this.parentInit(options);
@@ -403,6 +404,7 @@ jQuery.fn.cssMod = function(mod, value){
 		}
 	};
 
+	// TODO Test with two field instances at the same page
 	window.CLField['attach_images'] = {
 		init: function(options){
 			this.parentInit(options);
@@ -414,24 +416,24 @@ jQuery.fn.cssMod = function(mod, value){
 			// init sortable images
 			this.$row.find('.sortable-attachment-list').sortable({
 				stop: function(event, ui){
-					classObject._sortImagesInList();
-				}
-			}).bind(this);
+					this._sortImagesInList();
+				}.bind(this)
+			});
 
 			// open WP media uploader
 			this.$buttonAddImage = this.$row.find('.cl-widget-add-images-button').on('click', this._open.bind(this));
 
 			this.$row.on('click', '.attachment-delete-link', function(event){
-				classObject.fireEvent('click', classObject._deleteImageFromList($(this)));
 				event.preventDefault();
-			});
+				this.fireEvent('click', this._deleteImageFromList($(event.target)));
+			}.bind(this));
 
 		},
 		// add image button hide if no multiple images and one image chosen after ajax
 		addImageButtonAfterAjax: function($widget){
 			var $findres = $widget.find('.attachments-thumbnail');
 
-			if (this.multiple == 'false' && $findres.length > 0) {
+			if ( ! this.multiple && $findres.length > 0) {
 				this.$buttonAddImage.css('display', 'none');
 			}
 		},
@@ -448,8 +450,8 @@ jQuery.fn.cssMod = function(mod, value){
 			}
 		},
 		_open: function(){
+			// TODO Rename "Insert into post" button to "Save selection"
 			var $attachments = this.$row.find('.cl-images-container'),
-				multipleAttachments = (this.multiple === 'true'),
 				$parent = this,
 				fileFrame;
 
@@ -457,9 +459,9 @@ jQuery.fn.cssMod = function(mod, value){
 			fileFrame = wp.media.frames.file_frame = wp.media({
 				title: wp.media.view.l10n.editGalleryTitle,
 				button: {
-					text: wp.media.view.l10n.insertIntoPost,
+					text: wp.media.view.l10n.insertIntoPost
 				},
-				multiple: multipleAttachments // Set to true to allow multiple files to be selected
+				multiple: this.multiple // Set to true to allow multiple files to be selected
 			});
 
 			// When an image is selected, run a callback.
@@ -478,7 +480,7 @@ jQuery.fn.cssMod = function(mod, value){
 					}
 
 					var galleryImagesArray = $parent._getAttachmentsList(attachmentsListID); // array
-					if (multipleAttachments !== false) {
+					if (this.multiple) {
 
 						var isImageExsist = false;
 						for (var i = 0; i < galleryImagesArray.length; i++) {
@@ -503,8 +505,8 @@ jQuery.fn.cssMod = function(mod, value){
 						$parent.$buttonAddImage.css('display', 'none');
 					}
 
-				});
-			}).bind(this);
+				}.bind(this));
+			}.bind(this));
 			// Finally, open the modal
 			fileFrame.open();
 		},
@@ -649,6 +651,7 @@ jQuery(document).ready(function($){
 	});
 
 	// handler of mouse events on images in sortable list
+	// TODO Remove with native css hovers
 	$(document).on('mouseenter', '.attachments-thumbnail', function(event){
 		$(this).children('.attachment-delete-wrapper').css('background-color', 'rgba(0,0,0,0.5)');
 		$(this).children('.attachment-delete').css('display', 'block');
