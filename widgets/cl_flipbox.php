@@ -78,6 +78,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'description' => 'Description for the exploded textarea',
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
 				),
+				/*
 				'rawhtml' => array(
 					'type' => 'textarea_raw_html',
 					'heading' => __( 'Raw html content', 'codelights' ),
@@ -85,6 +86,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 700,
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
 				),
+				*/
 				'colorfield' => array(
 					'type' => 'colorpicker',
 					'heading' => __( 'Color of something', 'codelights' ),
@@ -94,7 +96,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 				),
 				'attachedimages' => array(
 					'type' => 'attach_images',
-					'multiple' => 'true',
+					'multiple' => TRUE,
 					'heading' => __( 'A little box of images', 'codelights' ),
 					'std' => '',
 					'weight' => 1000,

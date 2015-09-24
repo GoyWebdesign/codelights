@@ -395,12 +395,17 @@ abstract class CL_Widget extends WP_Widget {
 		}
 
 		$param['multiple'] = ( ! isset( $param['multiple'] ) OR $param['multiple'] );
+		if ( $param['multiple'] === TRUE ) {
+			$multiple_class = 'multiple';
+		} else {
+			$multiple_class = '';
+		}
 
 		$field_id = $this->get_field_id( $param['name'] );
 		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div id="cl-attach-images-group" class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group" data-name="' . esc_attr( $field_name ) . '">';
+		$output = '<div id="cl-attach-images-group" class="cl-form-row ' . $row_class . ' ' . $multiple_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
@@ -421,9 +426,7 @@ abstract class CL_Widget extends WP_Widget {
 			$style = 'style="display:none;"';
 		}
 		$output .= '<a id="cl-widget-add_images-button" ' . $style . ' class="cl-widget-add-images-button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
-
 		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" class="cl-attached-images" name="' . $this->get_field_name( $param['name'] ) . '" value="' . esc_attr( $value ) . '"/>';
-		$output .= '<input type="hidden" class="multiple-attachments" value="' . intval( $param['multiple'] ) . '"/>';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';

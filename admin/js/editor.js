@@ -281,7 +281,7 @@ jQuery.fn.cssMod = function(mod, value){
 				event.preventDefault();
 			});
 
-			$(document).on('wplink-close', function() {
+			$(document).on('wplink-close', function(){
 				classObject._removeLinkListeners();
 			});
 		},
@@ -300,7 +300,7 @@ jQuery.fn.cssMod = function(mod, value){
 	};
 
 	// TODO Test with two field instances at the same page
-	// problems after ajax widget update, need to be fixed
+	// working, but reinitialization after ajax update is needed
 	window.CLField['textarea_html'] = {
 		init: function(options){
 			this.parentInit(options);
@@ -330,18 +330,21 @@ jQuery.fn.cssMod = function(mod, value){
 			// TODO Write link to the relevant issue description
 			// http://www.tinymce.com/develop/bugtracker_view.php?id=4528
 			// http://www.tinymce.com/forum/viewtopic.php?id=22824
-			// but now it working without setTimeout
-			//window.setTimeout(function(){
+			// http://www.tinymce.com/forum/viewtopic.php%3Fpid%3D112768
+			// but now it working without setTimeout with one instance on a page,
+			// and not working with two instances on the page
+			window.setTimeout(function(){
 				// TinyMCE instance deactivation
 				if (tmceActive === true) {
 					if (tmceHidden === true) {
 						// TODO Write link to the relevant FireFox issue
 						// http://www.tinymce.com/develop/bugtracker_view.php?id=3152
-						// but now it working without try {} catch {}
-						//try {
+						// but now it working without try {} catch {} with one instance on a page,
+						// and not working with two instances on the page
+						try {
 							tinymce.remove();
-						//} catch (e) {
-						//}
+						} catch (e) {
+						}
 
 					} else {
 						tinymce.get(initTextareaID).remove();
@@ -372,12 +375,13 @@ jQuery.fn.cssMod = function(mod, value){
 				tinyMCEPreInit.mceInit[widgetTextareaID].selector = '#' + widgetTextareaID;
 				tinyMCEPreInit.mceInit[widgetTextareaID].height = '100%';
 				tinymce.init(tinyMCEPreInit.mceInit[widgetTextareaID]);
-			//}, 500);
+			}, 500);
 		},
 		save: function(){
 			if (this.$input.length > 0) {
 				var textareaId = this.$input.attr('id'),
 					newTinyMCEEditor = tinymce.get(textareaId);
+				console.log(textareaId);
 				newTinyMCEEditor.save();
 			}
 		},
@@ -406,13 +410,15 @@ jQuery.fn.cssMod = function(mod, value){
 
 	// TODO rebuild getValue, setValue for VC data format
 	// TODO Test with two field instances at the same page
+	// tested, OK
 	window.CLField['attach_images'] = {
 		init: function(options){
 			this.parentInit(options);
 			var classObject = this;
 
 			// TODO replace hidden input by class type_
-			this.multiple = this.$row.find('.multiple-attachments').val();
+			// replaced
+			this.multiple = this.$row.hasClass('multiple');
 			this.$attachedImages = this.$row.find('.cl-attached-images');
 
 			// init sortable images
@@ -431,11 +437,23 @@ jQuery.fn.cssMod = function(mod, value){
 			}.bind(this));
 
 		},
+		// TODO make handler from USOF
+		getValue: function(){
+			var value = this.parentGetValue();
+			// Do something
+			return value;
+		},
+
+		// TODO make handler from USOF
+		setValue: function(value){
+			this.parentSetValue(value);
+			// Do something
+		},
+
 		// add image button hide if no multiple images and one image chosen after ajax
 		addImageButtonAfterAjax: function($widget){
 			var $findres = $widget.find('.attachments-thumbnail');
-
-			if (!this.multiple && $findres.length > 0) {
+			if (this.multiple !== true && $findres.length > 0) {
 				this.$buttonAddImage.css('display', 'none');
 			}
 		},
@@ -482,8 +500,7 @@ jQuery.fn.cssMod = function(mod, value){
 					}
 
 					var galleryImagesArray = $parent._getAttachmentsList($container); // array
-					if (this.multiple) {
-
+					if (this.multiple === true) {
 						var isImageExsist = false;
 						for (var i = 0; i < galleryImagesArray.length; i++) {
 							if (galleryImagesArray[i] == attachment.id) {
@@ -526,10 +543,7 @@ jQuery.fn.cssMod = function(mod, value){
 				$container = $parent.find('.cl-images-container');
 
 			$image.closest('li').remove();
-			if (this.multiple == 'false') {
-				this.$buttonAddImage.css('display', 'block');
-				this.$attachedImages.removeAttr('value');
-			} else {
+			if (this.multiple === true) {
 				var galleryImagesArray = this._getAttachmentsList($container);
 				if (typeof galleryImagesArray !== 'undefined' && galleryImagesArray.length > 0) {
 					var galleryImagesVal = galleryImagesArray.toString();
@@ -537,6 +551,9 @@ jQuery.fn.cssMod = function(mod, value){
 				} else {
 					this.$attachedImages.removeAttr('value');
 				}
+			} else {
+				this.$buttonAddImage.css('display', 'block');
+				this.$attachedImages.removeAttr('value');
 			}
 		},
 
@@ -589,9 +606,9 @@ jQuery(document).ready(function($){
 	 newColorPicker.setValue(newvalue);
 	 */
 	/*
-	var secondColorPicker = new CLField('#widgets-right .type_colorpicker:eq(1)');
-	secondColorPicker.fireEvent('beforeShow');
-	*/
+	 var secondColorPicker = new CLField('#widgets-right .type_colorpicker:eq(1)');
+	 secondColorPicker.fireEvent('beforeShow');
+	 */
 
 	// textarea_raw_html initialization
 	var newRawHTML = new CLField('#widgets-right .type_textarea_raw_html:first');
@@ -605,11 +622,21 @@ jQuery(document).ready(function($){
 	var newLinkWindow = new CLField('#widgets-right .type_link:first');
 	newLinkWindow.fireEvent('beforeShow');
 
-	// init handler for insert link button on Widget Area load
-	/*
+	/**
+	 * second widget
+	 * @type {Window.CLField}
+	 */
+	// init Color Picker to all inputs that have 'color-field' class in Widget Area after ajax
+	var secondColorPicker = new CLField('#widgets-right .type_colorpicker:eq(1)');
+	secondColorPicker.fireEvent('beforeShow');
+
+	// init sortable images on Widget Area load
+	var secondAttachImages = new CLField('#widgets-right .type_attach_images:eq(1)');
+	secondAttachImages.fireEvent('beforeShow');
+
+	// init handler for insert link button in Widget Area after ajax
 	var secondLinkWindow = new CLField('#widgets-right .type_link:eq(1)');
 	secondLinkWindow.fireEvent('beforeShow');
-	*/
 
 	// init tabs in widget on Widget Area load
 	clTabs.init();
@@ -644,6 +671,7 @@ jQuery(document).ready(function($){
 		var newLinkWindow = new CLField('#widgets-right .type_link:first');
 		newLinkWindow.fireEvent('beforeShow');
 
+
 	});
 
 	/* --------- end scripts initialization in a siteorigin page builder modal window --------- */
@@ -652,8 +680,11 @@ jQuery(document).ready(function($){
 
 	// Event handler for widget Save button click
 	$('#widgets-right').on('click', 'input[name=savewidget]', function(){
-		var newTinyMCE = new CLField('#widgets-right .type_textarea_html:first');
+		var newTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(0)');
 		newTinyMCE.save();
+
+		var secondTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(1)');
+		secondTinyMCE.save();
 	});
 
 	// Event handler for widget updated after ajax
@@ -661,20 +692,21 @@ jQuery(document).ready(function($){
 		if ($widget.is('[id*=_cl_]')) {
 			event.preventDefault();
 
-			var newRawHTML = new CLField('#widgets-right .type_textarea_raw_html:first');
-			newRawHTML.fireEvent('beforeShow');
+			/*
+			 var newRawHTML = new CLField('#widgets-right .type_textarea_raw_html:eq(0)');
+			 newRawHTML.fireEvent('beforeShow');
+			 */
 
 			// init Color Picker to all inputs that have 'color-field' class in Widget Area after ajax
-			var newColorPicker = new CLField('#widgets-right .type_colorpicker:first');
+			var newColorPicker = new CLField('#widgets-right .type_colorpicker:eq(0)');
 			newColorPicker.fireEvent('beforeShow');
 
 			// reinit TinyMCE editor in widget after ajax
-			//clWidgetTMCE.init($widget);
-			var newTinyMCE = new CLField('#widgets-right .type_textarea_html:first');
+			var newTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(0)');
 			newTinyMCE.fireEvent('beforeShow');
 
 			// init sortable images on Widget Area load
-			var newAttachImages = new CLField('#widgets-right .type_attach_images:first');
+			var newAttachImages = new CLField('#widgets-right .type_attach_images:eq(0)');
 			newAttachImages.fireEvent('beforeShow');
 
 			// add image button hide if no multiple images and one image chosen after ajax
@@ -689,6 +721,33 @@ jQuery(document).ready(function($){
 			var newLinkWindow = new CLField('#widgets-right .type_link:eq(0)');
 			newLinkWindow.fireEvent('beforeShow');
 
+			/**
+			 * second widget
+			 * @type {Window.CLField}
+			 */
+			// init Color Picker to all inputs that have 'color-field' class in Widget Area after ajax
+			var secondColorPicker = new CLField('#widgets-right .type_colorpicker:eq(1)');
+			secondColorPicker.fireEvent('beforeShow');
+
+			// reinit TinyMCE editor in widget after ajax
+			var secondTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(1)');
+			secondTinyMCE.fireEvent('beforeShow');
+
+			// init sortable images on Widget Area load
+			var secondAttachImages = new CLField('#widgets-right .type_attach_images:eq(1)');
+			secondAttachImages.fireEvent('beforeShow');
+
+			// add image button hide if no multiple images and one image chosen after ajax
+			// single only
+			secondAttachImages.addImageButtonAfterAjax($widget);
+
+			// create list of attachments in hidden input after ajax
+			// single & multiple
+			secondAttachImages.createAttachmentsListAfterAjax($widget);
+
+			// init handler for insert link button in Widget Area after ajax
+			var secondLinkWindow = new CLField('#widgets-right .type_link:eq(1)');
+			secondLinkWindow.fireEvent('beforeShow');
 
 			// init tabs in Widget Area after ajax
 			clTabs.init();
