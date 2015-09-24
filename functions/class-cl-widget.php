@@ -380,12 +380,20 @@ abstract class CL_Widget extends WP_Widget {
 		echo $output;
 	}
 
+	public function form_attach_image( $param, $value ) {
+		$param['multiple'] = FALSE;
+		$this->form_attach_images( $param, $value );
+	}
+
 	public function form_attach_images( $param, $value ) {
 		if ( strpos( $value, ',' ) !== FALSE ) {
 			$images = array_map( 'intval', explode( ',', $value ) );
 		} elseif ( $value != '' ) {
+			// TODO int instead of integer, bool instead of boolean
 			$images = (integer) $value;
 		}
+
+		$param['multiple'] = ( ! isset( $param['multiple'] ) OR $param['multiple'] );
 
 		$field_id = $this->get_field_id( $param['name'] );
 		$field_name = $this->get_field_name( $param['name'] );
@@ -408,13 +416,13 @@ abstract class CL_Widget extends WP_Widget {
 			$has_images = TRUE;
 		}
 		$output .= '</ul>';
-		if ( $param['multiple'] == 'false' AND $has_images === TRUE ) {
+		if ( ! $param['multiple'] AND $has_images === TRUE ) {
 			$style = 'style="display:none;"';
 		}
 		$output .= '<a id="cl-widget-add_images-button" ' . $style . ' class="cl-widget-add-images-button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
 
 		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" class="cl-attached-images" name="' . $this->get_field_name( $param['name'] ) . '" value="' . esc_attr( $value ) . '"/>';
-		$output .= '<input type="hidden" class="multiple-attachments" value="' . esc_attr( $param['multiple'] ) . '"/>';
+		$output .= '<input type="hidden" class="multiple-attachments" value="' . intval( $param['multiple'] ) . '"/>';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
@@ -424,7 +432,7 @@ abstract class CL_Widget extends WP_Widget {
 		echo $output;
 	}
 
-	public function form_insert_link( $param, $value ) {
+	public function form_link( $param, $value ) {
 		$field_id = $this->get_field_id( $param['name'] );
 		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
@@ -446,7 +454,7 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field">';
 		$output .= '<textarea id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" class="cl-insert-link-container">' . esc_attr( $value ) . '</textarea>';
-		$output .= '<a id="insert_wp_link" class="button button-default button-large cl-insert-link-button" href="#">' . __( 'Insert link', 'codelights' ) . '</a>';
+		$output .= '<a id="insert_wp_link" class="button button-default button-large cl-insert-link-button" href="javascript:void(0)">' . __( 'Insert link', 'codelights' ) . '</a>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'Title:', 'codelights' ) . '</span>';
 		$output .= '<span class="cl-linkdialog-title">' . esc_attr( urldecode( $url_components['title'] ) ) . '</span>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'URL:', 'codelights' ) . '</span>';
