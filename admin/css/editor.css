@@ -8,6 +8,10 @@ div#widgets-right .sidebars-column-2 {
 
 /* classes for inputs */
 
+.cl-textarea-exploded-values {
+	display: none;
+}
+
 .cl-form-row-label {
 	font-weight: 600;
 }
@@ -88,21 +92,27 @@ div#widgets-right .sidebars-column-2 {
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0);
 	z-index: 60;
+	opacity: 0;
 }
 
-.attachment-delete {
+.attachment-delete-wrapper:hover{
+	background-color: rgba(0,0,0,0.5);
+	opacity: 1;
+}
+
+.attachment-delete-link {
 	position: absolute;
 	top: 0;
 	right: 0;
 	padding: 10px;
 	font-size: 3em;
-	display: none;
 	z-index: 70;
+	text-decoration: none;
+	color: #ffffff;
 }
 
-.attachment-delete a {
+.attachment-delete-link:hover {
 	color: #ffffff;
-	text-decoration: none;
 }
 
 .attachments-thumbnail .centered {

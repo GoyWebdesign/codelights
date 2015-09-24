@@ -101,7 +101,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
 				),
 				'amazinglink' => array(
-					'type' => 'insert_link',
+					'type' => 'link',
 					'heading' => __( 'An amazing link', 'codelights' ),
 					'std' => 'url:http%3A%2F%2Fgoogle.ru|title:Google|target:_blank',
 					'weight' => 1100,

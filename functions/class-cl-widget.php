@@ -304,7 +304,7 @@ abstract class CL_Widget extends WP_Widget {
 	 * @param string $value Current value
 	 */
 	public function form_textarea_exploded( $param, $value ) {
-		$value = str_replace( ",", "\n", $value );
+		$value_visible = str_replace( ",", "\n", $value );
 		$field_id = $this->get_field_id( $param['name'] );
 		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
@@ -314,7 +314,8 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field input_' . esc_attr( $param['type'] ) . '">';
-		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" class="widefat">' . esc_attr( $value ) . '</textarea>';
+		$output .= '<textarea class="widefat cl-textarea-exploded-content">' . esc_attr( $value_visible ) . '</textarea>';
+		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" class="widefat cl-textarea-exploded-values">' . esc_attr( $value ) . '</textarea>';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
@@ -408,11 +409,11 @@ abstract class CL_Widget extends WP_Widget {
 		$has_images = FALSE;
 		if ( is_array( $images ) AND ! empty( $images ) ) {
 			foreach ( $images as $image ) {
-				$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $image . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
+				$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $image . '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
 			}
 			$has_images = TRUE;
 		} elseif ( ! is_array( $images ) AND $images != '' ) {
-			$output .= '<li class="attachments-thumbnail ui-sortable-handle" id="' . $images . '"><span class="attachment-delete-wrapper"></span><span class="attachment-delete"><a href="#" class="attachment-delete-link" id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
+			$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $images . '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
 			$has_images = TRUE;
 		}
 		$output .= '</ul>';
