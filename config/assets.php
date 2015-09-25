@@ -25,8 +25,9 @@ return array(
 	 * $handle => array( $src, $deps, $ver, $in_footer )
 	 */
 	'scripts' => array(
-		'cl-ib' => array( $cl_uri . '/js/cl-ib.js', array( 'jquery' ), FALSE, TRUE ),
+		'cl-counter' => array( $cl_uri . '/js/cl-counter.js', array( 'jquery' ), FALSE, TRUE ),
 		'cl-flipbox' => array( $cl_uri . '/js/cl-flipbox.js', array( 'jquery' ), FALSE, TRUE ),
+		'cl-ib' => array( $cl_uri . '/js/cl-ib.js', array( 'jquery' ), FALSE, TRUE ),
 	),
 
 );

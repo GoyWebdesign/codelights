@@ -2,13 +2,69 @@
 
 return array(
 
+	'cl-counter' => array(
+		'base' => 'cl-counter',
+		'name' => __( 'Counter', 'codelights' ),
+		'description' => __( 'Animated text with numbers', 'codelights' ),
+		'class' => '',
+		'category' => 'CodeLights',
+		'icon' => 'icon-cl-counter',
+		'params' => array(
+			array(
+				'param_name' => 'initial',
+				'heading' => __( 'Initial string', 'codelights' ),
+				'description' => __( 'Initial string with all the prefixes, suffixes and decimal marks if needed.', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '0',
+			),
+			array(
+				'param_name' => 'final',
+				'heading' => __( 'Final string', 'codelights' ),
+				'description' => __( 'Final value the way it should look like, when the animation ends.', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '100',
+			),
+			array(
+				'param_name' => 'animation',
+				'heading' => __( 'Digits Animation Type', 'codelights' ),
+				'type' => 'dropdown',
+				'value' => array(
+					__( 'None', 'codelights' ) => 'none',
+					__( 'Slide Up', 'codelights' ) => 'slideup',
+					__( 'Slide Down', 'codelights' ) => 'slidedown',
+				),
+				'std' => 'none',
+				'edit_field_class' => 'vc_col-sm-6 vc_column',
+			),
+			array(
+				'param_name' => 'size',
+				'heading' => __( 'Font Size', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '20',
+				'edit_field_class' => 'vc_col-sm-6 vc_column',
+			),
+			array(
+				'param_name' => 'substring',
+				'heading' => __( 'Substring', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '',
+			),
+			array(
+				'param_name' => 'el_class',
+				'heading' => __( 'Extra class name', 'us' ),
+				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'us' ),
+				'type' => 'textfield',
+//				'weight' => 10,
+			),
+		),
+	),
 	'cl-flipbox' => array(
 		'base' => 'cl-flipbox',
 		'name' => __( 'FlipBox', 'codelights' ),
 		'description' => __( 'Two-sided content element, flipping on hover', 'codelights' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'cl-flipbox',
+		'icon' => 'icon-cl-flipbox',
 		'params' => array(
 			/**
 			 * Front Side
@@ -342,7 +398,7 @@ return array(
 		'description' => __( 'Hoverable image with additional data', 'codelights' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'cl-ib',
+		'icon' => 'icon-cl-ib',
 		'params' => array(
 			/**
 			 * Content
