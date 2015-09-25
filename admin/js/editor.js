@@ -90,12 +90,14 @@ jQuery.fn.cssMod = function(mod, value){
 		// set this input value
 		setValue: function(value){
 			this.$input.val(value);
+			this.render();
 			this.fireEvent('change', value);
 		},
 		addEvent: function(trigger, fn){
 			if (this.$$events[trigger] === undefined) this.$$events[trigger] = [];
 			this.$$events[trigger].push(fn);
 		},
+		render: function(){},
 		fireEvent: function(trigger, values){
 			if (this.$$events[trigger] === undefined || this.$$events[trigger].length == 0) return;
 			for (var index = 0; index < this.$$events[trigger].length; index++) {
@@ -118,8 +120,6 @@ jQuery.fn.cssMod = function(mod, value){
 	/**
 	 * Field Type: Checkbox
 	 */
-		// TODO rebuild getValue, setValue for VC data format
-		// rebuilded, tested
 	window.CLField['checkbox'] = {
 		init: function(options){
 			this.$input = this.$row.find('[name="' + this.name + '[]"]');
@@ -136,6 +136,7 @@ jQuery.fn.cssMod = function(mod, value){
 			if (typeof value != 'string') return;
 			value = value.split(',');
 			this.$input.each(function(index, input){
+				// TODO Maybe use true/false values insted of 'checked'/false
 				$(this).prop('checked', ($.inArray(this.value, value) != -1) ? 'checked' : false);
 			});
 		}
@@ -168,43 +169,6 @@ jQuery.fn.cssMod = function(mod, value){
 			var value = this.$textarea.val();
 			value = value.split('\n').join(',');
 			this.$input.val(value);
-		}
-	};
-
-	// TODO rebuild getValue, setValue for VC data format
-	window.CLField['textarea_raw_html'] = {
-		init: function(options){
-			this.$textarea = this.$row.find('textarea');
-			var inputValue = this._getInputValue(),
-				textareaValue = decodeURIComponent(atob(inputValue));
-			this.$textarea.val(textareaValue);
-
-			this.$textarea.on('change keyup', function(){
-				this.fireEvent('change', this._updateInputValue());
-			}.bind(this));
-		},
-		deinit: function(){
-			this.parentDeinit();
-			// Do something
-		},
-		getValue: function(){
-			var value = this.$textarea.val();
-			// Do something
-			return value;
-		},
-		setValue: function(value){
-			this.$textarea.val(value);
-			value = btoa(encodeURIComponent(value));
-			this.parentSetValue(value);
-		},
-		_getInputValue: function(){
-			var value = this.parentGetValue();
-			return value;
-		},
-		_updateInputValue: function(){
-			var value = this.$textarea.val();
-			value = btoa(encodeURIComponent(value));
-			this.parentSetValue(value);
 		}
 	};
 
@@ -295,7 +259,6 @@ jQuery.fn.cssMod = function(mod, value){
 			wpLink.close();
 
 			$('body').off('click', '#wp-link-submit');
-			$('body').off('click', '#wp-link-cancel');
 		}
 	};
 
@@ -579,14 +542,12 @@ jQuery(document).ready(function($){
 	 */
 
 	// test CLField['textarea_exploded']
-	/*
-	 var newTextareaExploded = new CLField('#widgets-right .type_textarea_exploded:first');
+	/* var newTextareaExploded = new CLField('#widgets-right .type_textarea_exploded:first');
 	 newTextareaExploded.fireEvent('beforeShow');
 	 var values = newTextareaExploded.getValue();
 	 console.log(values);
 	 values = values + ',new value';
-	 newTextareaExploded.setValue(values);
-	 */
+	 newTextareaExploded.setValue(values);*/
 
 	// init Color Picker to all inputs that have 'color-field' class on Widget Area load
 	var newColorPicker = new CLField('#widgets-right .type_colorpicker:eq(0)');
