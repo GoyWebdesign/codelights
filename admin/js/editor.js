@@ -189,76 +189,54 @@ jQuery.fn.cssMod = function(mod, value){
 	// tested, OK
 	window.CLField['link'] = {
 		init: function(){
+			this.$document = $(document);
 			this.$insertButton = this.$row.find('.cl-insert-link-button');
-			this.$insertButton.on('click', function(event){
-				this._addLinkListeners();
-				var textareaID = this.$row.find('.cl-insert-link-container').attr('id');
-				window.wpActiveEditor = textareaID;
-				wpLink.open();
-				wpLink.textarea = $('#' + textareaID);
-				var existingLinkTitle = this.$row.find('.cl-linkdialog-title').text();
-				if (existingLinkTitle.length > 0) {
-					$('#wp-link-text').val(existingLinkTitle);
-				}
-				var existingLinkUrl = this.$row.find('.cl-linkdialog-url').text();
-				if (existingLinkUrl.length > 0) {
-					$('#wp-link-url').val(existingLinkUrl);
-				}
-				var existingLinkTarget = this.$row.find('.cl-linkdialog-target').text();
-				if (existingLinkTarget == '_blank') {
-					// TODO prop vs attr
-					// prop: http://anton.shevchuk.name/book/code/property.html
-					$('#wp-link-target').prop('checked', true);
+			this.$linkUrl = this.$row.find('.cl-linkdialog-url');
+			this.$linkTitle = this.$row.find('.cl-linkdialog-title');
+			this.$linkTarget = this.$row.find('.cl-linkdialog-target');
 
-				} else {
-					// TODO Remove checkbox when needed
-					// checkbox removed if target not _blank
-					$('#wp-link-target').prop('checked', false);
-				}
-			}.bind(this));
+			this._events = {
+				open: function(event){
+					window.wpActiveEditor = this.$input.attr('id');
+					wpLink.open();
+					wpLink.textarea = this.$input;
+					$('#wp-link-url').val(this.$linkUrl.html());
+					$('#wp-link-text').val(this.$linkTitle.html());
+					$('#wp-link-target').prop('checked', (this.$linkTarget.html() == '_blank'));
+					$('#wp-link-submit').on('click', this._events.submit);
+					this.$document.on('wplink-close', this._events.close);
+				}.bind(this),
+				submit: function(event){
+					event.preventDefault();
+					var wpLinkText = $('#wp-link-text').val(),
+						linkAtts = wpLink.getAttrs(),
+						encodedUrl = encodeURIComponent(linkAtts.href),
+						encodedTitle = encodeURIComponent(wpLinkText),
+						encodedTarget = encodeURIComponent(linkAtts.target);
+					this.setValue('url:' + encodedUrl + '|title:' + encodedTitle + '|target:' + encodedTarget);
+					this._events.close();
+				}.bind(this),
+				close: function(){
+					this.$document.off('wplink-close', this._events.close);
+					$('#wp-link-submit').off('click', this._events.submit);
+					if (typeof wpActiveEditor != 'undefined') wpActiveEditor = undefined;
+					wpLink.close();
+				}.bind(this)
+			};
+
+			this.$insertButton.on('click', this._events.open);
 		},
-		_addLinkListeners: function(){
-			var $container = this.$row;
-			var classObject = this;
-			// TODO Maybe the link modal has some kind of API?
-			// we use API: wpLink.getAttrs()
-			// about link title: https://core.trac.wordpress.org/ticket/32095#comment:5
-			// https://core.trac.wordpress.org/ticket/28206
-			// if it's needed, we can restore title, using approach from plugin https://wordpress.org/plugins/restore-link-title-field/
-			$('body').on('click', '#wp-link-submit', function(event){
-				var wpLinkText = $('#wp-link-text').val(),
-					linkAtts = wpLink.getAttrs(),
-					$textarea = $container.find('.cl-insert-link-container'),
-					$linkValUrl = $container.find('.cl-linkdialog-url'),
-					$linkValTitle = $container.find('.cl-linkdialog-title'),
-					$linkValTarget = $container.find('.cl-linkdialog-target'),
-					encodedUrl = encodeURIComponent(linkAtts.href),
-					encodedTitle = encodeURIComponent(wpLinkText),
-					encodedTarget = encodeURIComponent(linkAtts.target),
-					linkValEncoded = 'url:' + encodedUrl + '|title:' + encodedTitle + '|target:' + encodedTarget;
-
-				$textarea.text(linkValEncoded);
-				$linkValTitle.text(wpLinkText);
-				$linkValUrl.text(linkAtts.href);
-				$linkValTarget.text(linkAtts.target);
-				classObject._removeLinkListeners();
-				event.preventDefault();
-			});
-
-			$(document).on('wplink-close', function(){
-				classObject._removeLinkListeners();
-			});
-		},
-		// TODO Events are not removed at cross click, overlay click and esc press closing cases
-		// replaced by 'wplink-close' event
-		_removeLinkListeners: function(){
-			if (typeof wpActiveEditor != 'undefined') {
-				wpActiveEditor = undefined;
+		render: function(){
+			var value = this.getValue(),
+				parts = value.split('|'),
+				data = {};
+			for (var i = 0; i < parts.length; i++){
+				var part = parts[i].split(':', 2);
+				if (part.length > 1) data[part[0]] = decodeURIComponent(part[1]);
 			}
-
-			wpLink.close();
-
-			$('body').off('click', '#wp-link-submit');
+			this.$linkTitle.text(data.title || '');
+			this.$linkUrl.text(data.url || '');
+			this.$linkTarget.text(data.target || '');
 		}
 	};
 
@@ -707,21 +685,6 @@ jQuery(document).ready(function($){
 			clTabs.init();
 		}
 	});
-
-	// handler of mouse events on images in sortable list
-	// TODO Remove with native css hovers
-	// replaced by css
-	/*
-	 $(document).on('mouseenter', '.attachments-thumbnail', function(event){
-	 $(this).children('.attachment-delete-wrapper').css('background-color', 'rgba(0,0,0,0.5)');
-	 $(this).children('.attachment-delete').css('display', 'block');
-	 event.preventDefault();
-	 }).on('mouseleave', '.attachments-thumbnail', function(event){
-	 $(this).children('.attachment-delete-wrapper').css('background-color', 'rgba(0,0,0,0)');
-	 $(this).children('.attachment-delete').css('display', 'none');
-	 event.preventDefault();
-	 });
-	 */
 
 	/* --------- events handlers ends here --------- */
 
