@@ -459,7 +459,7 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field">';
 		$output .= '<textarea id="' . esc_attr( $field_id ) . '" name="' . $this->get_field_name( $param['name'] ) . '" class="cl-insert-link-container">' . esc_attr( $value ) . '</textarea>';
-		$output .= '<a id="insert_wp_link" class="button button-default button-large cl-insert-link-button" href="javascript:void(0)">' . __( 'Insert link', 'codelights' ) . '</a>';
+		$output .= '<a class="button button-default button-large cl-insert-link-button" href="javascript:void(0)">' . __( 'Insert link', 'codelights' ) . '</a>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'Title:', 'codelights' ) . '</span>';
 		$output .= '<span class="cl-linkdialog-title">' . esc_attr( urldecode( $url_components['title'] ) ) . '</span>';
 		$output .= '<span class="cl-linkdialog-label">' . __( 'URL:', 'codelights' ) . '</span>';
