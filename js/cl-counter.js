@@ -88,7 +88,7 @@
 			// Obtaining the list of the optimal actions
 			var _actions = [];
 			for (i = initial.length, j = final.length; i > 0 || j > 0;) {
-				var min = Math.min.apply(Math, [dist[i - 1][j - 1], dist[i - 1][j], dist[i][j - 1]].filter(function(n){ return n != undefined; })),
+				var min = Math.min.apply(Math, [dist[i - 1][j - 1], dist[i - 1][j], dist[i][j - 1]].filter(function(n){ return n !== undefined; })),
 					type = '';
 				if (min < dist[i][j]) {
 					type = 'M'; // Modify by default
