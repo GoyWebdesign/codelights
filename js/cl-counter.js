@@ -87,8 +87,8 @@
 			}
 			// Obtaining the list of the optimal actions
 			var _actions = [];
-			for (i = initial.length, j = final.length; i > 0 && j > 0;) {
-				var min = Math.min(dist[i - 1][j - 1], dist[i - 1][j], dist[i][j - 1]),
+			for (i = initial.length, j = final.length; i > 0 || j > 0;) {
+				var min = Math.min.apply(Math, [dist[i - 1][j - 1], dist[i - 1][j], dist[i][j - 1]].filter(function(n){ return n != undefined; })),
 					type = '';
 				if (min < dist[i][j]) {
 					type = 'M'; // Modify by default
@@ -106,12 +106,11 @@
 			var posDiff = 0,
 				actions = [];
 			for (i = 0; i < _actions.length; i++) {
-				var pos = _actions[i][1] + posDiff + (_actions[i][0] != 'I' ? -1 : 0),
-					action = [_actions[i][0], pos];
-				if (_actions[i][0] == 'M' || _actions[i][0] == 'I') action.push(final.charAt(_actions[i][2] - 1));
+				var pos = _actions[i][1] + posDiff + (_actions[i][0] != 'I' ? -1 : 0);
+				actions[i] = [_actions[i][0], pos];
+				if (_actions[i][0] != 'R') actions[i][2] = final.charAt(_actions[i][2] - 1);
 				if (_actions[i][0] == 'R') posDiff--;
 				if (_actions[i][0] == 'I') posDiff++;
-				actions.push(action);
 			}
 			return actions;
 		}
