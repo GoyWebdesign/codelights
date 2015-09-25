@@ -325,7 +325,7 @@ jQuery.fn.cssMod = function(mod, value){
 				}
 			});
 
-			var quicktagsActive = this._isQuicktagsActive(initTextareaID);
+			var quicktagsActive = this._isQuicktagsActive(widgetTextareaID);
 
 			// TODO Write link to the relevant issue description
 			// http://www.tinymce.com/develop/bugtracker_view.php?id=4528
@@ -342,17 +342,18 @@ jQuery.fn.cssMod = function(mod, value){
 						// but now it working without try {} catch {} with one instance on a page,
 						// and not working with two instances on the page
 						try {
-							tinymce.remove();
+							//tinymce.remove();
+							tinymce.get(widgetTextareaID).remove();
 						} catch (e) {
 						}
 
 					} else {
-						tinymce.get(initTextareaID).remove();
+						//tinymce.get(initTextareaID).remove();
 					}
 				}
 
 				//textarea init
-				tinyMCEPreInit.mceInit[widgetTextareaID] = tinyMCEPreInit.mceInit[initTextareaID];
+				//tinyMCEPreInit.mceInit[widgetTextareaID] = tinyMCEPreInit.mceInit[initTextareaID];
 
 				if (quicktagsActive === true) {
 					// TinyMCE instance activation
@@ -360,11 +361,11 @@ jQuery.fn.cssMod = function(mod, value){
 					var prevInstances, newInstance;
 					prevInstances = QTags.instances;
 					QTags.instances = [];
-					quicktags(tinyMCEPreInit.qtInit[initTextareaID]);
+					quicktags(tinyMCEPreInit.qtInit[widgetTextareaID]);
 					QTags._buttonsInit();
-					newInstance = QTags.instances[initTextareaID];
+					newInstance = QTags.instances[widgetTextareaID];
 					QTags.instances = prevInstances;
-					QTags.instances[initTextareaID] = newInstance;
+					QTags.instances[widgetTextareaID] = newInstance;
 				} else {
 					new QTags(widgetTextareaID);
 					QTags._buttonsInit();
@@ -381,7 +382,6 @@ jQuery.fn.cssMod = function(mod, value){
 			if (this.$input.length > 0) {
 				var textareaId = this.$input.attr('id'),
 					newTinyMCEEditor = tinymce.get(textareaId);
-				console.log(textareaId);
 				newTinyMCEEditor.save();
 			}
 		},
@@ -414,12 +414,12 @@ jQuery.fn.cssMod = function(mod, value){
 	window.CLField['attach_images'] = {
 		init: function(options){
 			this.parentInit(options);
-			var classObject = this;
 
 			// TODO replace hidden input by class type_
 			// replaced
 			this.multiple = this.$row.hasClass('multiple');
 			this.$attachedImages = this.$row.find('.cl-attached-images');
+			this.$attachments = this.$row.find('.cl-images-container');
 
 			// init sortable images
 			this.$row.find('.sortable-attachment-list').sortable({
@@ -463,8 +463,8 @@ jQuery.fn.cssMod = function(mod, value){
 			var $container = $widget.find('.cl-images-container'),
 				galleryImagesArray = this._getAttachmentsList($container);
 			if (typeof galleryImagesArray !== 'undefined' && galleryImagesArray.length > 0) {
-				var gallery_images_val = galleryImagesArray.toString();
-				this.$attachedImages.val(gallery_images_val);
+				var galleryImagesVal = galleryImagesArray.toString();
+				this.$attachedImages.val(galleryImagesVal);
 			} else {
 				this.$attachedImages.removeAttr('value');
 			}
@@ -472,12 +472,9 @@ jQuery.fn.cssMod = function(mod, value){
 		_open: function(){
 			// TODO Rename "Insert into post" button to "Save selection"
 			// renamed
-			var $attachments = this.$row.find('.cl-images-container'),
-				$parent = this,
-				fileFrame;
 
 			// Create the media frame.
-			fileFrame = wp.media.frames.file_frame = wp.media({
+			var fileFrame = wp.media.frames.file_frame = wp.media({
 				title: wp.media.view.l10n.editGalleryTitle,
 				button: {
 					text: wp.media.view.l10n.insertIntoPost = 'Save selection'
@@ -487,8 +484,7 @@ jQuery.fn.cssMod = function(mod, value){
 
 			// When an image is selected, run a callback.
 			fileFrame.on('select', function(){
-				var $container = $parent.$row.find('.cl-images-container'), // ul with attached images
-					selection = fileFrame.state().get('selection');
+				var selection = fileFrame.state().get('selection');
 
 				selection.map(function(attachment){
 
@@ -499,7 +495,7 @@ jQuery.fn.cssMod = function(mod, value){
 						var attachmentSize = attachment.sizes.full;
 					}
 
-					var galleryImagesArray = $parent._getAttachmentsList($container); // array
+					var galleryImagesArray = this._getAttachmentsList(this.$attachments); // array
 					if (this.multiple === true) {
 						var isImageExsist = false;
 						for (var i = 0; i < galleryImagesArray.length; i++) {
@@ -509,19 +505,19 @@ jQuery.fn.cssMod = function(mod, value){
 						}
 
 						if (isImageExsist === false) {
-							$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" data-image="' + attachment.id + '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' + attachment.name + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
+							this.$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" data-image="' + attachment.id + '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' + attachment.name + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
 							galleryImagesArray.push(attachment.id); // array
 							var galleryImagesRes = galleryImagesArray.toString(); // string
-							$parent.$attachedImages.val(galleryImagesRes);
+							this.$attachedImages.val(galleryImagesRes);
 						} else {
-							$attachments.append('<li class="attachments-thumbnail-error">This image is already in the Gallery</li>');
+							this.$attachments.append('<li class="attachments-thumbnail-error">This image is already in the Gallery</li>');
 							$('.attachments-thumbnail-error').fadeOut(3000);
 						}
 
 					} else {
-						$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" data-image="' + attachment.id + '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' + attachment.id + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
-						$parent.$attachedImages.val(attachment.id);
-						$parent.$buttonAddImage.css('display', 'none');
+						this.$attachments.append('<li class="attachments-thumbnail ui-sortable-handle" data-image="' + attachment.id + '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' + attachment.id + '">&times;</a></span><div class="centered"><img src="' + attachmentSize.url + '" height="' + attachmentSize.height + '" width="' + attachmentSize.width + '"></div></li>');
+						this.$attachedImages.val(attachment.id);
+						this.$buttonAddImage.css('display', 'none');
 					}
 
 				}.bind(this));
@@ -531,20 +527,16 @@ jQuery.fn.cssMod = function(mod, value){
 		},
 
 		_sortImagesInList: function(){
-			var $container = this.$row.find('.cl-images-container'),
-				galleryImagesArray = this._getAttachmentsList($container),
+			var galleryImagesArray = this._getAttachmentsList(this.$attachments),
 				galleryImagesRes = galleryImagesArray.toString();
 			this.$attachedImages.val(galleryImagesRes);
 		},
 
 		// delete the image from list of attached images
 		_deleteImageFromList: function($image){
-			var $parent = $image.closest('.cl-attach-images-group'),
-				$container = $parent.find('.cl-images-container');
-
 			$image.closest('li').remove();
 			if (this.multiple === true) {
-				var galleryImagesArray = this._getAttachmentsList($container);
+				var galleryImagesArray = this._getAttachmentsList(this.$attachments);
 				if (typeof galleryImagesArray !== 'undefined' && galleryImagesArray.length > 0) {
 					var galleryImagesVal = galleryImagesArray.toString();
 					this.$attachedImages.val(galleryImagesVal);
@@ -611,15 +603,17 @@ jQuery(document).ready(function($){
 	 */
 
 	// textarea_raw_html initialization
-	var newRawHTML = new CLField('#widgets-right .type_textarea_raw_html:first');
+	/*
+	var newRawHTML = new CLField('#widgets-right .type_textarea_raw_html:eq(0)');
 	newRawHTML.fireEvent('beforeShow');
+	*/
 
 	// init sortable images on Widget Area load
-	var newAttachImages = new CLField('#widgets-right .type_attach_images:first');
+	var newAttachImages = new CLField('#widgets-right .type_attach_images:eq(0)');
 	newAttachImages.fireEvent('beforeShow');
 
 	// init handler for insert link button on Widget Area load
-	var newLinkWindow = new CLField('#widgets-right .type_link:first');
+	var newLinkWindow = new CLField('#widgets-right .type_link:eq(0)');
 	newLinkWindow.fireEvent('beforeShow');
 
 	/**
@@ -671,7 +665,6 @@ jQuery(document).ready(function($){
 		var newLinkWindow = new CLField('#widgets-right .type_link:first');
 		newLinkWindow.fireEvent('beforeShow');
 
-
 	});
 
 	/* --------- end scripts initialization in a siteorigin page builder modal window --------- */
@@ -679,12 +672,12 @@ jQuery(document).ready(function($){
 	/* events handlers starts here */
 
 	// Event handler for widget Save button click
-	$('#widgets-right').on('click', 'input[name=savewidget]', function(){
-		var newTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(0)');
-		newTinyMCE.save();
-
-		var secondTinyMCE = new CLField('#widgets-right .type_textarea_html:eq(1)');
-		secondTinyMCE.save();
+	$('#widgets-right').on('click', 'input[name=savewidget]', function(event){
+		var $button = $(event.target),
+			$parent = $button.closest('form'),
+			$row = $parent.find('.type_textarea_html'),
+			updateTinyMCE = new CLField($row);
+		updateTinyMCE.save();
 	});
 
 	// Event handler for widget updated after ajax

@@ -391,7 +391,8 @@ abstract class CL_Widget extends WP_Widget {
 			$images = array_map( 'intval', explode( ',', $value ) );
 		} elseif ( $value != '' ) {
 			// TODO int instead of integer, bool instead of boolean
-			$images = (integer) $value;
+			// replaced
+			$images = (int) $value;
 		}
 
 		$param['multiple'] = ( ! isset( $param['multiple'] ) OR $param['multiple'] );
