@@ -14,6 +14,7 @@
 // Finding numbers positions in both initial and final strings
 $pos = array();
 foreach ( array( 'initial', 'final' ) as $key ) {
+	$pos[ $key ] = array();
 	// In this array we'll store the string's character number, where primitive changes from letter to number or back
 	preg_match_all( '~([\d]+([\.,·][\d]+)?)~', $$key, $matches, PREG_OFFSET_CAPTURE );
 	foreach ( $matches[0] as $match ) {

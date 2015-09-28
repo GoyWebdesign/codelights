@@ -425,7 +425,7 @@ jQuery.fn.cssMod = function(mod, value){
 
 			// When an image is selected, run a callback.
 			fileFrame.on('select', function(){
-				var selection = fileFrame.state().get('selection');
+				var selection = fileFrame.curState().get('selection');
 
 				selection.map(function(attachment){
 
