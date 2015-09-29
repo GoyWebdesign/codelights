@@ -29,7 +29,11 @@ add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
 function cl_register_admin_scripts() {
 	global $cl_uri;
 	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
-	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
+
+	wp_register_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
+	wp_localize_script( 'cl-admin-script', 'clAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+	wp_enqueue_script('cl-admin-script');
+
 
 	$screen = get_current_screen();
 	$post_type = $screen->id;
@@ -58,10 +62,10 @@ function cl_customize_controls_print_scripts() {
 /**
  * Enqueue all my widget's admin scripts
  */
-add_action( 'admin_print_scripts-widgets.php', 'mywidget_enqueue_scripts' );
+add_action( 'admin_print_scripts-widgets.php', 'cl_so_widget_enqueue_scripts' );
 // Add this to enqueue your scripts on Page Builder too
-add_action( 'siteorigin_panel_enqueue_admin_scripts', 'mywidget_enqueue_scripts' );
-function mywidget_enqueue_scripts() {
+add_action( 'siteorigin_panel_enqueue_admin_scripts', 'cl_so_widget_enqueue_scripts' );
+function cl_so_widget_enqueue_scripts() {
 	global $cl_uri;
 	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
 	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
@@ -75,4 +79,21 @@ function mywidget_enqueue_scripts() {
 	wp_enqueue_script( 'wp-link' );
 	wp_enqueue_script( 'jquery-ui-core' );
 	wp_enqueue_script( 'jquery-ui-sortable' );
+}
+
+/* wp_ajax_ - only for registered users */
+add_action( 'wp_ajax_cl_image_url_by_id', 'cl_get_image_url' );
+function cl_get_image_url() {
+	$image_id = $_POST['value'];
+
+	$thumbnail = wp_get_attachment_image_src($image_id, 'thumbnail');
+	if ($thumbnail !== FALSE) {
+		$url = $thumbnail[0];
+		$success = 'true';
+	} else {
+		$message = __('No image with ID ', 'codelights') . $image_id;
+	}
+	$response = Array ('success' => $success, 'message' => $message, 'url' => $url);
+	echo json_encode($response);
+	die();
 }

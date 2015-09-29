@@ -117,7 +117,7 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '<nav>';
 		$output .= '<ul class="cl-tabs-navigation">';
 		$output .= '<li><a data-content="first-tab" class="selected" href="#0">First tab</a></li>';
-		$output .= '<li><a data-content="second-tab" href="#0">Second tab</a></li>';
+		$output .= '<li><a data-content="second-tab" href="#1">Second tab</a></li>';
 		$output .= '</ul>'; // .cl-tabs-navigation
 		$output .= '</nav>';
 
@@ -157,15 +157,18 @@ abstract class CL_Widget extends WP_Widget {
 		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 
-		if ( is_array( $value ) ) {
-			$current_value = $value;
-		} else {
-			$current_value = array( $value => 0 );
-		}
-		if ( isset( $param['value'] ) AND is_array( $param['value'] ) ) {
+		if ( is_array( $param['value'] ) ) {
 			$values = $param['value'];
 		} else {
-			$values = array( __( 'Yes', 'codelights' ) => 1 );
+			$values = array( __( 'Yes', 'codelights' ) => 'yes' );
+		}
+
+		if ( strpos( $value, ',' ) !== FALSE ) {
+			// if list of values is array (multiple checkbox)
+			$current_values = explode( ',', $value );
+		} else {
+			// if list of values is string (single checkbox)
+			$current_values = array( __( 'Yes', 'codelights' ) => $value );
 		}
 
 		$output = '<div class="cl-form-row ' . $row_class . ' for_' . esc_attr( $param['name'] ) . '  type_' . esc_attr( $param['type'] ) . '" data-name="' . esc_attr( $field_name ) . '">';
@@ -176,18 +179,19 @@ abstract class CL_Widget extends WP_Widget {
 		if ( ! empty( $values ) ) {
 			$output .= '<div class="cl-form-row-field">';
 			foreach ( $values as $label => $v ) {
-				if ( count( $current_value ) > 0 AND in_array( $v, $current_value ) ) {
-					$checked = ' checked';
+				if ( count( $current_values ) > 0 AND in_array( $v, $current_values ) ) {
+					$checked = 'checked="checked"';
 				} else {
 					$checked = '';
 				}
 				$output .= ' <label class="cl-checkbox-label">';
-				$output .= '<input id="' . esc_attr( $field_id ) . '" value="' . $v . '" class="widefat" type="checkbox" name="' . esc_attr( $this->get_field_name( $param['name'] ) ) . '[]"' . $checked . '>';
+				$output .= '<input value="' . $v . '" class="widefat" type="checkbox" ' . $checked . '>';
 				$output .= $label;
 				$output .= '</label>';
 			}
 			$output .= '</div>';
 		}
+		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '">';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
 		}
@@ -315,7 +319,7 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field input_' . esc_attr( $param['type'] ) . '">';
 		$output .= '<textarea class="widefat cl-textarea-exploded-content">' . esc_attr( $value_visible ) . '</textarea>';
-		$output .= '<textarea id="' . $field_id . '" name="' . $this->get_field_name( $param['name'] ) . '" class="widefat cl-textarea-exploded-values">' . esc_attr( $value ) . '</textarea>';
+		$output .= '<textarea id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) . '" class="cl-textarea-exploded-values">' . esc_attr( $value ) . '</textarea>';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
@@ -342,10 +346,8 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field">';
-		//$output .= '<textarea id="' . $field_id . '" class="widefat" rows="16">' . htmlentities( rawurldecode( base64_decode( $value ) ), ENT_COMPAT, 'UTF-8' ) . '</textarea>';
 		$output .= '<textarea id="' . $field_id . '" class="widefat" rows="16"></textarea>';
 		$output .= '<input type="hidden" name="' . esc_attr( $field_name ) . '" value="' . esc_attr( $value ) . '">';
-		//$output .= '<input id="' . $this->get_field_id( 'raw_area_html_field' ) . '" name="' . $this->get_field_name( 'raw_area_html_field' ) . '" type="hidden" value="' . $param['name'] . '">';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-form-row-description">' . esc_attr( $param['description'] ) . '</div>';
@@ -390,8 +392,6 @@ abstract class CL_Widget extends WP_Widget {
 		if ( strpos( $value, ',' ) !== FALSE ) {
 			$images = array_map( 'intval', explode( ',', $value ) );
 		} elseif ( $value != '' ) {
-			// TODO int instead of integer, bool instead of boolean
-			// replaced
 			$images = (int) $value;
 		}
 
@@ -406,27 +406,27 @@ abstract class CL_Widget extends WP_Widget {
 		$field_name = $this->get_field_name( $param['name'] );
 		$row_class = $this->vendor_prefixes( $param['edit_field_class'] );
 		$param['heading'] = isset( $param['heading'] ) ? $param['heading'] : $param['name'];
-		$output = '<div id="cl-attach-images-group" class="cl-form-row ' . $row_class . ' ' . $multiple_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group" data-name="' . esc_attr( $field_name ) . '">';
+		$output = '<div class="cl-form-row ' . $row_class . ' ' . $multiple_class . ' for_' . esc_attr( $param['name'] ) . ' type_' . esc_attr( $param['type'] ) . ' cl-attach-images-group" data-name="' . esc_attr( $field_name ) . '">';
 		$output .= '<div class="cl-form-row-label">';
 		$output .= '<label for="' . esc_attr( $field_id ) . '">' . esc_attr( $param['heading'] ) . ':</label>';
 		$output .= '</div>';
 		$output .= '<div class="cl-form-row-field">';
-		$output .= '<ul id="cl-images-container" class="cl-images-container ui-sortable sortable-attachment-list">';
+		$output .= '<ul class="cl-images-container ui-sortable sortable-attachment-list">';
 		$has_images = FALSE;
 		if ( is_array( $images ) AND ! empty( $images ) ) {
 			foreach ( $images as $image ) {
-				$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $image . '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
+				$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $image . '"><span class="attachment-delete-wrapper"><a href="javascript:void(0)" class="attachment-delete-link" data-id="' . $image . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $image ) . '</div></li>';
 			}
 			$has_images = TRUE;
 		} elseif ( ! is_array( $images ) AND $images != '' ) {
-			$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $images . '"><span class="attachment-delete-wrapper"><a href="#" class="attachment-delete-link" data-id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
+			$output .= '<li class="attachments-thumbnail ui-sortable-handle" data-image="' . $images . '"><span class="attachment-delete-wrapper"><a href="javascript:void(0)" class="attachment-delete-link" data-id="' . $images . '">&times;</a></span><div class="centered">' . wp_get_attachment_image( $images ) . '</div></li>';
 			$has_images = TRUE;
 		}
 		$output .= '</ul>';
 		if ( ! $param['multiple'] AND $has_images === TRUE ) {
 			$style = 'style="display:none;"';
 		}
-		$output .= '<a id="cl-widget-add_images-button" ' . $style . ' class="cl-widget-add-images-button" title="' . __( 'Add images', 'codelights' ) . '" href="#">' . __( 'Add images', 'codelights' ) . '</a>';
+		$output .= '<a ' . $style . ' class="cl-widget-add-images-button" title="' . __( 'Add images', 'codelights' ) . '" href="javascript:void(0)">' . __( 'Add images', 'codelights' ) . '</a>';
 		$output .= '<input type="hidden" id="' . esc_attr( $field_id ) . '" class="cl-attached-images" name="' . $this->get_field_name( $param['name'] ) . '" value="' . esc_attr( $value ) . '"/>';
 		$output .= '</div>';
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
@@ -472,20 +472,6 @@ abstract class CL_Widget extends WP_Widget {
 		$output .= '</div>';
 		echo $output;
 	}
-
-	/*
-	public function update( $new_instance, $old_instance ) {
-		$instance = $new_instance;
-
-		// encode raw html
-		$raw_area_html_field = $new_instance['raw_area_html_field'];
-		$raw_html_value = base64_encode( $new_instance[ $raw_area_html_field ] );
-		$instance[ $raw_area_html_field ] = $raw_html_value;
-
-		return $instance;
-	}
-	*/
-
 }
 
 //add_action( 'widgets_init', 'cl_widgets_init' );

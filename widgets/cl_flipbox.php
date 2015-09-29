@@ -44,11 +44,10 @@ class CL_Widget_Flipbox extends CL_Widget {
 				'rightside' => array(
 					'type' => 'checkbox',
 					'heading' => __( 'Right side', 'codelights' ),
-					'std' => 1,
 					'value' => array(
-						'One' => 1,
-						'Two' => 2,
-						'Three' => 3,
+						'One' => 'one',
+						'Two' => 'two',
+						'Three' => 'three',
 					),
 					'weight' => 400,
 					'description' => 'Description for the checkbox group',
@@ -57,7 +56,6 @@ class CL_Widget_Flipbox extends CL_Widget {
 				'darkside' => array(
 					'type' => 'checkbox',
 					'heading' => __( 'Dark side', 'codelights' ),
-					'std' => 0,
 					'weight' => 500,
 					'description' => 'Description for one checkbox',
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
@@ -78,15 +76,6 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'description' => 'Description for the exploded textarea',
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
 				),
-				/*
-				'rawhtml' => array(
-					'type' => 'textarea_raw_html',
-					'heading' => __( 'Raw html content', 'codelights' ),
-					'std' => base64_encode( '<p>Default raw html content for textarea</p>' ),
-					'weight' => 700,
-					'edit_field_class' => 'vc_col-sm-12 vc_column',
-				),
-				*/
 				'colorfield' => array(
 					'type' => 'colorpicker',
 					'heading' => __( 'Color of something', 'codelights' ),
