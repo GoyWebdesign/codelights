@@ -88,8 +88,8 @@
 		this.$container = $(container);
 		this.initial = this.$container.html() + '';
 		this.final = this.$container.data('final') + '';
-		this.states = this.getStates(this.initial, this.final);
-		this.len = 1 / (this.states.length - 1);
+		this.partsStates = this.getStates(this.initial, this.final);
+		this.len = 1 / (this.partsStates.length - 1);
 		// Text value won't be changed on each frame, so we'll update it only on demand
 		this.curState = 0;
 		this.duration = parseInt(this.$container.data('duration') || 10000);
@@ -102,7 +102,7 @@
 		step: function(now){
 			var state = Math.round(Math.max(0, now / this.len));
 			if (state == this.curState) return;
-			this.$container.html(this.states[state]);
+			this.$container.html(this.partsStates[state]);
 			this.curState = state;
 		},
 		/**

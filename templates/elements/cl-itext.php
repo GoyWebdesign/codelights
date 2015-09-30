@@ -15,7 +15,7 @@
  */
 
 // Main element classes, inner css and additional attributes
-$classes = ' animation_' . $animation_type;
+$classes = ' type_' . $animation_type;
 
 $texts_arr = explode( "\n", strip_tags( $texts ) );
 
