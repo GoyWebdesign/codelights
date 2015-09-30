@@ -28,8 +28,6 @@ if ( ! empty( $inner_css ) ) {
 }
 
 $js_data = array(
-	'texts' => $texts_arr,
-	'type' => $animation_type,
 	'duration' => $animation_duration,
 	'delay' => $animation_delay,
 );
@@ -48,17 +46,10 @@ foreach ( $texts_arr as $index => $text ) {
 	$_parts[ $index ] = $matches[0];
 }
 
-// TODO Remove test data below
-$_parts = array(
-	array( 'a', 'b', 'c' ),
-	array( 'a', 'b', 'c', 'd' ),
-	array( 'b', 'c', 'd' ),
-);
-
 // Getting the whole set of parts with all the intermediate values (part_index => part_states)
-$parts = array();
+$groups = array();
 foreach ( $_parts[0] as $part ) {
-	$parts[] = array( $part );
+	$groups[] = array( $part );
 }
 
 for ( $i_index = count( $_parts ) - 1; $i_index > 0; $i_index -- ) {
@@ -89,38 +80,74 @@ for ( $i_index = count( $_parts ) - 1; $i_index > 0; $i_index -- ) {
 			$min = min( $min, $dist[ $i ][ $j - 1 ] );
 		}
 		if ( $min >= $dist[ $i ][ $j ] ) {
-			$parts[ $j - 1 ][ $i_index ] = $initial[ $i - 1 ];
+			$groups[ $j - 1 ][ $i_index ] = $initial[ $i - 1 ];
 			continue;
 		}
 		if ( $i > 0 AND $j > 0 AND $min == $dist[ $i - 1 ][ $j - 1 ] ) {
 			// Modify
-			$parts[ $j - 1 ][ $i_index ] = $initial[ $i - 1 ];
+			$groups[ $j - 1 ][ $i_index ] = $initial[ $i - 1 ];
 		} elseif ( $j > 0 AND $min == $dist[ $i ][ $j - 1 ] ) {
 			// Remove
-			$parts[ $j - 1 ][ $i_index ] = '';
+			$groups[ $j - 1 ][ $i_index ] = '';
 			$i ++;
 		} elseif ( $min == $dist[ $i - 1 ][ $j ] ) {
 			// Insert
 			if ( $j == 0 ) {
-				array_unshift( $parts, '' );
+				array_unshift( $groups, '' );
 			} else {
-				array_splice( $parts, $j, 0, '' );
+				array_splice( $groups, $j, 0, '' );
 			}
-			$parts[ $j ] = array_fill( 0, count( $_parts ), '' );
-			$parts[ $j ][ $i_index ] = $initial[ $i - 1 ];
+			$groups[ $j ] = array_fill( 0, count( $_parts ), '' );
+			$groups[ $j ][ $i_index ] = $initial[ $i - 1 ];
 			$j ++;
 		}
 	}
 	// Updating final parts
 	$_parts[ $i_index ] = array();
-	foreach ( $parts as $parts_group ) {
+	foreach ( $groups as $parts_group ) {
 		$_parts[ $i_index ][] = $parts_group[ $i_index ];
 	}
 }
 
+// Finding the dynamic parts and their animation indexes
+$group_changes = array();
+foreach ( $groups as $index => $group ) {
+	$group_changes[ $index ] = array();
+	for ( $i = 0; $i < count( $_parts ); $i ++ ) {
+		if ( $group[ $i ] != $group[ isset( $group[ $i + 1 ] ) ? ( $i + 1 ) : 0 ] ) {
+			$group_changes[ $index ][] = $i;
+		}
+	}
+}
+
+// Combining groups that are either static, or are changed at the same time
+for ( $i = 1; $i < count( $group_changes ); $i ++ ) {
+	if ( $group_changes[ $i - 1 ] == $group_changes[ $i ] ) {
+		// Combining with the previous element
+		foreach ( $groups[ $i - 1 ] AS $index => $part ) {
+			$groups[ $i - 1 ][ $index ] .= $groups[ $i ][ $index ];
+		}
+		array_splice( $groups, $i, 1 );
+		array_splice( $group_changes, $i, 1 );
+		$i--;
+	}
+}
 
 $output = '<' . $tag . ' class="cl-itext' . $classes . '"' . $inner_css . cl_pass_data_to_js( $js_data ) . '>';
-$output .= $texts_arr[0];
+foreach ( $groups as $index => $group ) {
+	ksort( $group );
+	if ( empty( $group_changes[ $index ] ) ) {
+		// Static part
+		$output .= $group[0];
+	} else {
+		$output .= '<span class="cl-itext-part';
+		// Animation classes (just in case site editor wants some custom styling for them)
+		foreach ( $group_changes[ $index ] as $changesat ) {
+			$output .= ' changesat_' . $changesat;
+		}
+		$output .= '"' . cl_pass_data_to_js( $group ) . '>' . $group[0] . '</span>';
+	}
+}
 $output .= '</' . $tag . '>';
 
 echo $output;
