@@ -123,8 +123,7 @@
 				}
 			}
 			// Obtaining the intermediate states
-			var states = [final],
-				posDiff = 0;
+			var states = [final];
 			for (i = initial.length, j = final.length; i > 0 || j > 0; i--, j--) {
 				var min = dist[i][j];
 				if (i > 0) min = Math.min(min, dist[i - 1][j], (j > 0) ? dist[i - 1][j - 1] : min);

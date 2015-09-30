@@ -296,3 +296,15 @@ function cl_image_sizes_select_values( $size_names = array( 'large', 'medium', '
 
 	return $image_sizes;
 }
+
+/**
+ * Transform some variable to elm's onclick attribute, so it could be obtained from JavaScript as:
+ * var data = elm.onclick()
+ *
+ * @param mixed $data Data to pass
+ *
+ * @return string Element attribute ' onclick="..."'
+ */
+function cl_pass_data_to_js( $data ) {
+	return ' onclick=\'return ' . str_replace( "'", '&#39;', json_encode( $data ) ) . '\'';
+}

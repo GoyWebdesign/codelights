@@ -17,8 +17,8 @@ return array(
 	'styles' => array(
 		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/font-awesome.min.css', array(), '4.4.0', 'all' ),
 		'cl-core' => array( $cl_uri . '/css/cl-core.css', array(), FALSE, 'all' ),
-		'cl-ib' => array( $cl_uri . '/css/cl-ib.css', array( 'cl-core' ), FALSE, 'all' ),
 		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), FALSE, 'all' ),
+		'cl-ib' => array( $cl_uri . '/css/cl-ib.css', array( 'cl-core' ), FALSE, 'all' ),
 	),
 	/**
 	 * Each script entry contains params for wp_enqueue_script function:
@@ -29,6 +29,7 @@ return array(
 		'cl-counter' => array( $cl_uri . '/js/cl-counter.js', array( 'jquery', 'cl-core' ), FALSE, TRUE ),
 		'cl-flipbox' => array( $cl_uri . '/js/cl-flipbox.js', array( 'jquery' ), FALSE, TRUE ),
 		'cl-ib' => array( $cl_uri . '/js/cl-ib.js', array( 'jquery' ), FALSE, TRUE ),
+		'cl-itext' => array( $cl_uri . '/js/cl-itext.js', array( 'jquery' ), FALSE, TRUE ),
 	),
 
 );
