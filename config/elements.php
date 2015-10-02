@@ -557,20 +557,6 @@ return array(
 				'weight' => 70,
 			),
 			array(
-				'param_name' => 'direction',
-				'heading' => __( 'Animation Direction', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Up', 'codelights' ) => 'n',
-					__( 'Right', 'codelights' ) => 'e',
-					__( 'Down', 'codelights' ) => 's',
-					__( 'Left', 'codelights' ) => 'w',
-				),
-				'std' => 'w',
-				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 60,
-			),
-			array(
 				'param_name' => 'animation_duration',
 				'heading' => __( 'Duration', 'codelights' ),
 				'type' => 'dropdown',
