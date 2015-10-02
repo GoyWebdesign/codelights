@@ -26,8 +26,7 @@
  */
 
 // Main element classes, inner css and additional attributes
-$classes = ' animation_' . $animation;
-$classes .= ' ratio_' . $ratio;
+$classes = ' animation_' . $animation . ' ratio_' . $ratio;
 
 $tag = 'div';
 $atts = '';

@@ -3,9 +3,46 @@
 .cl-flipbox {
 	display: inline-block;
 	position: relative;
-	.perspective(1000px);
-	.transform(translateZ(0));
+
+	// Preserving the needed aspect ratio
+	&:before {
+		content: '';
+		display: block;
+	}
+	&.ratio_2x1:before {
+		padding-top: 50%;
+	}
+	&.ratio_3x2:before {
+		padding-top: 66.6666%;
+	}
+	&.ratio_4x3:before {
+		padding-top: 75%;
+	}
+	&.ratio_1x1:before {
+		padding-top: 100%;
+	}
+	&.ratio_3x4:before {
+		padding-top: 125%;
+	}
+	&.ratio_2x3:before {
+		padding-top: 150%;
+	}
+	&.ratio_1x2:before {
+		padding-top: 200%;
+	}
+
 	&-h {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		.perspective(1000px);
+		.transform(translateZ(0));
+		.transition-property(none);
+		.transform-origin(0 0);
+	}
+	&-hh {
 		position: relative;
 		width: 100%;
 		height: 100%;
@@ -116,7 +153,7 @@
 
 		// Animation: Card Flip. Direction: North-East
 		&.direction_ne {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotate3d(1, 1, 0, 0deg));
 			}
 			.cl-flipbox-back {
@@ -124,7 +161,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotate3d(1, 1, 0, 180deg));
 				}
 			}
@@ -151,7 +188,7 @@
 
 		// Animation: Card Flip. Direction: South-Eest
 		&.direction_se {
-			.cl-flipbox-h,
+			.cl-flipbox-hh,
 			.cl-flipbox-front {
 				.transform(rotate3d(-1, 1, 0, 0deg));
 			}
@@ -160,7 +197,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h,
+				.cl-flipbox-hh,
 				.cl-flipbox-front {
 					.transform(rotate3d(-1, 1, 0, 90deg));
 				}
@@ -191,7 +228,7 @@
 
 		// Animation: Card Flip. Direction: South-West
 		&.direction_sw {
-			.cl-flipbox-h,
+			.cl-flipbox-hh,
 			.cl-flipbox-front {
 				.transform(rotate3d(1, 1, 0, 0deg));
 			}
@@ -200,7 +237,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h,
+				.cl-flipbox-hh,
 				.cl-flipbox-front {
 					.transform(rotate3d(1, 1, 0, -90deg));
 				}
@@ -231,7 +268,7 @@
 
 		// Animation: Card Flip. Direction: North-West
 		&.direction_nw {
-			.cl-flipbox-h,
+			.cl-flipbox-hh,
 			.cl-flipbox-front {
 				.transform(rotate3d(-1, 1, 0, 0deg));
 			}
@@ -240,7 +277,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h,
+				.cl-flipbox-hh,
 				.cl-flipbox-front {
 					.transform(rotate3d(-1, 1, 0, -90deg));
 				}
@@ -257,7 +294,7 @@
 
 		// Animation: Cube Tilt. Direction: North
 		&.direction_n {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg));
 			}
 			.cl-flipbox-front {
@@ -268,7 +305,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(90deg) translateY(-50%));
 				}
 			}
@@ -276,7 +313,7 @@
 
 		// Animation: Cube Tilt. Direction: East
 		&.direction_e {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateY(90deg) translateX(50%) rotateY(-90deg));
 			}
 			.cl-flipbox-front {
@@ -287,7 +324,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateY(90deg) translateX(50%));
 				}
 			}
@@ -295,7 +332,7 @@
 
 		// Animation: Cube Tilt. Direction: South
 		&.direction_s {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(-90deg) translateY(50%) rotateX(90deg));
 			}
 			.cl-flipbox-front {
@@ -306,7 +343,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(-90deg) translateY(50%));
 				}
 			}
@@ -314,7 +351,7 @@
 
 		// Animation: Cube Tilt. Direction: West
 		&.direction_w {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateY(-90deg) translateX(-50%) rotateY(90deg));
 			}
 			.cl-flipbox-front {
@@ -325,7 +362,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateY(-90deg) translateX(-50%));
 				}
 			}
@@ -337,7 +374,7 @@
 
 		// Animation: Cube Flip. Direction: North
 		&.direction_n {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg));
 			}
 			.cl-flipbox-front {
@@ -351,7 +388,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(90deg) translateY(-50%) rotateX(90deg));
 				}
 			}
@@ -359,7 +396,7 @@
 
 		// Animation: Cube Flip. Direction: North-East
 		&.direction_ne {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg));
 			}
 			.cl-flipbox-front {
@@ -376,7 +413,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, 1, 0, 180deg));
 				}
 			}
@@ -384,7 +421,7 @@
 
 		// Animation: Cube Flip. Direction: East
 		&.direction_e {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateY(90deg) translateX(50%) rotateY(-90deg));
 			}
 			.cl-flipbox-front {
@@ -398,7 +435,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateY(90deg) translateX(50%) rotateY(90deg) );
 				}
 			}
@@ -406,7 +443,7 @@
 
 		// Animation: Cube Flip. Direction: South-East
 		&.direction_se {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg));
 			}
 			.cl-flipbox-front {
@@ -423,7 +460,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, 1, 0, 180deg));
 				}
 			}
@@ -431,7 +468,7 @@
 
 		// Animation: Cube Flip. Direction: South
 		&.direction_s {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateX(-90deg) translateY(50%) rotateX(90deg));
 			}
 			.cl-flipbox-front {
@@ -448,7 +485,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateX(-90deg) translateY(50%) rotateX(-90deg));
 				}
 			}
@@ -466,7 +503,7 @@
 
 		// Animation: Cube Flip. Direction: West
 		&.direction_w {
-			.cl-flipbox-h {
+			.cl-flipbox-hh {
 				.transform(rotateY(-90deg) translateX(-50%) rotateY(90deg));
 			}
 			.cl-flipbox-front {
@@ -480,7 +517,7 @@
 			}
 			&:hover,
 			&.hover {
-				.cl-flipbox-h {
+				.cl-flipbox-hh {
 					.transform(rotateY(-90deg) translateX(-50%) rotateY(-90deg));
 				}
 			}
