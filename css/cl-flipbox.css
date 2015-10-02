@@ -1,13 +1,49 @@
 .cl-flipbox {
   display: inline-block;
   position: relative;
+}
+.cl-flipbox:before {
+  content: '';
+  display: block;
+}
+.cl-flipbox.ratio_2x1:before {
+  padding-top: 50%;
+}
+.cl-flipbox.ratio_3x2:before {
+  padding-top: 66.6666%;
+}
+.cl-flipbox.ratio_4x3:before {
+  padding-top: 75%;
+}
+.cl-flipbox.ratio_1x1:before {
+  padding-top: 100%;
+}
+.cl-flipbox.ratio_3x4:before {
+  padding-top: 125%;
+}
+.cl-flipbox.ratio_2x3:before {
+  padding-top: 150%;
+}
+.cl-flipbox.ratio_1x2:before {
+  padding-top: 200%;
+}
+.cl-flipbox-h {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   perspective: 1000px;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  -webkit-transition-property: none;
+  transition-property: none;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
-.cl-flipbox-h {
+.cl-flipbox-hh {
   position: relative;
   width: 100%;
   height: 100%;
@@ -115,7 +151,7 @@
   -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
-.cl-flipbox.animation_cardflip.direction_ne .cl-flipbox-h {
+.cl-flipbox.animation_cardflip.direction_ne .cl-flipbox-hh {
   -webkit-transform: rotate3d(1, 1, 0, 0deg);
   transform: rotate3d(1, 1, 0, 0deg);
 }
@@ -123,8 +159,8 @@
   -webkit-transform: rotate3d(1, 1, 0, -180deg);
   transform: rotate3d(1, 1, 0, -180deg);
 }
-.cl-flipbox.animation_cardflip.direction_ne:hover .cl-flipbox-h,
-.cl-flipbox.animation_cardflip.direction_ne.hover .cl-flipbox-h {
+.cl-flipbox.animation_cardflip.direction_ne:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cardflip.direction_ne.hover .cl-flipbox-hh {
   -webkit-transform: rotate3d(1, 1, 0, 180deg);
   transform: rotate3d(1, 1, 0, 180deg);
 }
@@ -146,7 +182,7 @@
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-.cl-flipbox.animation_cardflip.direction_se .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_se .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_se .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, 0deg);
   transform: rotate3d(-1, 1, 0, 0deg);
@@ -155,8 +191,8 @@
   -webkit-transform: rotate3d(-1, 1, 0, -180deg);
   transform: rotate3d(-1, 1, 0, -180deg);
 }
-.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-h,
-.cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
@@ -185,7 +221,7 @@
   -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
-.cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_sw .cl-flipbox-front {
   -webkit-transform: rotate3d(1, 1, 0, 0deg);
   transform: rotate3d(1, 1, 0, 0deg);
@@ -194,8 +230,8 @@
   -webkit-transform: rotate3d(1, 1, 0, 180deg);
   transform: rotate3d(1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-h,
-.cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(1, 1, 0, -90deg);
@@ -224,7 +260,7 @@
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-.cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_nw .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, 0deg);
   transform: rotate3d(-1, 1, 0, 0deg);
@@ -233,8 +269,8 @@
   -webkit-transform: rotate3d(-1, 1, 0, 180deg);
   transform: rotate3d(-1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-h,
-.cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-h,
+.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, -90deg);
@@ -245,7 +281,7 @@
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
   transform: rotate3d(-1, 1, 0, 90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_n .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_n .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
 }
@@ -257,12 +293,12 @@
   -webkit-transform: translateY(50%) rotateX(-90deg);
   transform: translateY(50%) rotateX(-90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_n:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubetilt.direction_n.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_n:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubetilt.direction_n.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%);
   transform: rotateX(90deg) translateY(-50%);
 }
-.cl-flipbox.animation_cubetilt.direction_e .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_e .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%) rotateY(-90deg);
   transform: rotateY(90deg) translateX(50%) rotateY(-90deg);
 }
@@ -274,12 +310,12 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_e:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubetilt.direction_e.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_e:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubetilt.direction_e.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%);
   transform: rotateY(90deg) translateX(50%);
 }
-.cl-flipbox.animation_cubetilt.direction_s .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_s .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%) rotateX(90deg);
   transform: rotateX(-90deg) translateY(50%) rotateX(90deg);
 }
@@ -291,12 +327,12 @@
   -webkit-transform: translateY(-50%) rotateX(90deg);
   transform: translateY(-50%) rotateX(90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_s:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubetilt.direction_s.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_s:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubetilt.direction_s.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%);
   transform: rotateX(-90deg) translateY(50%);
 }
-.cl-flipbox.animation_cubetilt.direction_w .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_w .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
   transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
@@ -308,12 +344,12 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_w:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubetilt.direction_w.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubetilt.direction_w:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubetilt.direction_w.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%);
   transform: rotateY(-90deg) translateX(-50%);
 }
-.cl-flipbox.animation_cubeflip.direction_n .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_n .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
 }
@@ -329,12 +365,12 @@
   -webkit-transform: translateY(50%) rotateX(-90deg);
   transform: translateY(50%) rotateX(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_n:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_n.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_n:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_n.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_ne .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_ne .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
 }
@@ -354,12 +390,12 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_ne:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_ne.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_ne:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_ne.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, 1, 0, 180deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cubeflip.direction_e .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_e .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%) rotateY(-90deg);
   transform: rotateY(90deg) translateX(50%) rotateY(-90deg);
 }
@@ -375,12 +411,12 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_e:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_e.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_e:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_e.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%) rotateY(90deg);
   transform: rotateY(90deg) translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_se .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_se .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg);
 }
@@ -400,12 +436,12 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_se:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_se.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_se:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_se.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, 1, 0, 180deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cubeflip.direction_s .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_s .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%) rotateX(90deg);
   transform: rotateX(-90deg) translateY(50%) rotateX(90deg);
 }
@@ -425,8 +461,8 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_s:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_s.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_s:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_s.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%) rotateX(-90deg);
   transform: rotateX(-90deg) translateY(50%) rotateX(-90deg);
 }
@@ -438,7 +474,7 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_w .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_w .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
   transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
@@ -454,8 +490,8 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_w:hover .cl-flipbox-h,
-.cl-flipbox.animation_cubeflip.direction_w.hover .cl-flipbox-h {
+.cl-flipbox.animation_cubeflip.direction_w:hover .cl-flipbox-hh,
+.cl-flipbox.animation_cubeflip.direction_w.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%) rotateY(-90deg);
   transform: rotateY(-90deg) translateX(-50%) rotateY(-90deg);
 }

@@ -39,7 +39,7 @@ if ( ! empty( $el_class ) ) {
 	$classes .= ' ' . $el_class;
 }
 
-// Counting the parts that will actually be changed and splitting them into different spans
+// Getting words and their delimiters to work on this level of abstraction
 $_parts = array();
 foreach ( $texts_arr as $index => $text ) {
 	preg_match_all( '~\w+|[^\w]+~u', $text, $matches );

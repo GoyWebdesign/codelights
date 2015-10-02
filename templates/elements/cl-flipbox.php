@@ -32,7 +32,7 @@
  * @var $animation_duration string In milliseconds: '100ms' / '200ms' / ... / '900ms'
  * @var $animation_easing string Easing CSS class name
  * @var $width mixed In pixels or percents: '100' / '100%'
- * @var $height int In pixels
+ * @var $ratio string Aspect ratio: '2x1' / '3x2' / '4x3' / '1x1' / '3x4' / '2x3' / '1x2'
  * @var $el_class string Extra class name
  */
 
@@ -41,7 +41,7 @@ if ( $animation == 'cubetilt' AND in_array( $direction, array( 'ne', 'se', 'sw',
 	$animation = 'cubeflip';
 }
 // Main element classes, inner css and additional attributes
-$classes = ' animation_' . $animation . ' direction_' . $direction;
+$classes = ' animation_' . $animation . ' direction_' . $direction . ' ratio_' . $ratio;
 
 $tag = 'div';
 $atts = '';
@@ -79,7 +79,7 @@ if ( ! empty( $animation_duration ) ) {
 if ( ! empty( $helper_inner_css ) ) {
 	$helper_inner_css = ' style="' . esc_attr( $helper_inner_css ) . '"';
 }
-$output .= '<div class="cl-flipbox-h' . $helper_classes . '"' . $helper_inner_css . '>';
+$output .= '<div class="cl-flipbox-h' . $helper_classes . '"' . $helper_inner_css . '><div class="cl-flipbox-hh">';
 $front_inner_css = '';
 if ( ! empty( $front_bgcolor ) ) {
 	$front_inner_css .= 'background-color: ' . $front_bgcolor . ';';
@@ -167,7 +167,7 @@ if ( $animation == 'cubeflip' ) {
 	}
 }
 
-$output .= '</div>';
+$output .= '</div></div>';
 $output .= '</' . $tag . '>';
 
 echo $output;

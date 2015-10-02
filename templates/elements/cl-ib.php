@@ -18,7 +18,6 @@
  * @var $btn_bgcolor string
  * @var $link string URL of the overall element or button in a 'vc_link' format
  * @var $animation string Animation type: 'melete' / 'soter' / 'phorcys' / 'aidos' / ...
- * @var $direction string Animation direction: 'n' / 'e' / 's' / 'w'
  * @var $animation_duration string In milliseconds: '100ms' / '200ms' / ... / '900ms'
  * @var $animation_easing string Easing CSS class name
  * @var $width mixed In pixels or percents: '100' / '100%'
@@ -27,8 +26,7 @@
  */
 
 // Main element classes, inner css and additional attributes
-$classes = ' animation_' . $animation . ' direction_' . $direction;
-$classes .= ' ratio_' . $ratio;
+$classes = ' animation_' . $animation . ' ratio_' . $ratio;
 
 $tag = 'div';
 $atts = '';
