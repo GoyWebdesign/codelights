@@ -98,7 +98,8 @@ jQuery.fn.cssMod = function(mod, value){
 			if (this.$$events[trigger] === undefined) this.$$events[trigger] = [];
 			this.$$events[trigger].push(fn);
 		},
-		render: function(){},
+		render: function(){
+		},
 		fireEvent: function(trigger, values){
 			if (this.$$events[trigger] === undefined || this.$$events[trigger].length == 0) return;
 			for (var index = 0; index < this.$$events[trigger].length; index++) {
@@ -228,7 +229,7 @@ jQuery.fn.cssMod = function(mod, value){
 			var value = this.getValue(),
 				parts = value.split('|'),
 				data = {};
-			for (var i = 0; i < parts.length; i++){
+			for (var i = 0; i < parts.length; i++) {
 				var part = parts[i].split(':', 2);
 				if (part.length > 1) data[part[0]] = decodeURIComponent(part[1]);
 			}
@@ -468,6 +469,43 @@ jQuery.fn.cssMod = function(mod, value){
 
 }(jQuery);
 
+/**
+ * CLForm Core
+ */
+!function($){
+	function CLForm(container, options){
+		window.$clfield = this;
+		this.init(container, options);
+	}
+
+	CLForm.prototype = {
+		init: function(container, options){
+			this.$container = $(container);
+			this.$blocks = {};
+			this.$field = {};
+			this.showIf = {};
+			$.each(this.$container.find('.cl-form-row'), function(index, block){
+				var $block = $(block),
+					id = $block.data('id');
+				this.$blocks[id] = $block;
+				this.showIf[id] = true;
+				var shouldBeShown = this.executeShowIf(this.showIf[id]);
+				if (shouldBeShown) {
+					this.$container.fireEvent(this.$blocks[id], 'beforeShow');
+					this.$container.fireEvent(this.$blocks[id], 'afterShow');
+				}
+			}.bind(this));
+		},
+
+		executeShowIf: function(conditions){
+			return true;
+		}
+
+	};
+
+	new CLForm('.cl-widgetform');
+}(jQuery);
+
 
 jQuery(document).ready(function($){
 	'use strict';
@@ -475,6 +513,7 @@ jQuery(document).ready(function($){
 	/* scripts initialization on Widget Area load */
 
 	// init checkboxes on Widget Area load
+	/*
 	var firstCB = new CLField('#widgets-right .type_checkbox:eq(0)');
 	firstCB.fireEvent('beforeShow');
 
@@ -497,6 +536,7 @@ jQuery(document).ready(function($){
 	// init handler for insert link button on Widget Area load
 	var newLinkWindow = new CLField('#widgets-right .type_link:eq(0)');
 	newLinkWindow.fireEvent('beforeShow');
+	*/
 
 	/**
 	 * second widget
@@ -504,6 +544,7 @@ jQuery(document).ready(function($){
 	 */
 
 	// init checkboxes on Widget Area load
+	/*
 	var thirdCB = new CLField('#widgets-right .type_checkbox:eq(2)');
 	thirdCB.fireEvent('beforeShow');
 
@@ -526,9 +567,11 @@ jQuery(document).ready(function($){
 	// init handler for insert link button in Widget Area after ajax
 	//var secondLinkWindow = new CLField('#widgets-right .type_link:eq(1)');
 	//secondLinkWindow.fireEvent('beforeShow');
+	 */
 
 	// init tabs in widget on Widget Area load
 	clTabs.init();
+
 
 	/* --------- end scripts initialization on Widget Area load --------- */
 

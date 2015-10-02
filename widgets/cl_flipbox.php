@@ -8,7 +8,7 @@ class CL_Widget_Flipbox extends CL_Widget {
 		$this->config = array(
 			'name' => '(CodeLights) ' . __( 'Flipbox', 'codelights' ),
 			'description' => __( 'Amazing flippable element', 'codelights' ),
-			'classname' => 'cl-widget-class',
+			'class' => 'cl_widget_class',
 			'category' => __( 'CodeLights', 'codelights' ),
 			'icon' => 'cl-icon.png',
 			'params' => array(
