@@ -73,7 +73,6 @@ return array(
 				'heading' => __( 'Icon', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 290,
 			),
 			array(
 				'param_name' => 'front_icon_style',
@@ -86,7 +85,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 280,
 			),
 			array(
 				'param_name' => 'front_icon_size',
@@ -103,7 +101,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 270,
 			),
 			array(
 				'param_name' => 'front_icon_color',
@@ -112,7 +109,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 260,
 			),
 			array(
 				'param_name' => 'front_icon_bgcolor',
@@ -121,14 +117,12 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'front_icon', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 250,
 			),
 			array(
 				'param_name' => 'front_image',
 				'heading' => __( 'Image', 'codelights' ),
 				'type' => 'attach_image',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 240,
 			),
 			array(
 				'param_name' => 'front_title',
@@ -136,21 +130,18 @@ return array(
 				'type' => 'textfield',
 				'admin_label' => TRUE,
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 230,
 			),
 			array(
 				'param_name' => 'front_text',
 				'heading' => __( 'Text', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 220,
 			),
 			array(
 				'param_name' => 'front_bgcolor',
 				'heading' => __( 'Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 210,
 			),
 			array(
 				'param_name' => 'front_border_color',
@@ -158,7 +149,6 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 200,
 			),
 			array(
 				'param_name' => 'front_border_size',
@@ -178,7 +168,6 @@ return array(
 				'std' => '1px',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Front Side', 'codelights' ),
-				'weight' => 190,
 			),
 			/**
 			 * Back Side
@@ -188,21 +177,18 @@ return array(
 				'heading' => __( 'Image', 'codelights' ),
 				'type' => 'attach_image',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 180,
 			),
 			array(
 				'param_name' => 'back_title',
 				'heading' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 170,
 			),
 			array(
 				'param_name' => 'back_text',
 				'heading' => __( 'Text', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 160,
 			),
 			array(
 				'param_name' => 'back_btn_label',
@@ -210,7 +196,6 @@ return array(
 				'type' => 'textfield',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 150,
 			),
 			array(
 				'param_name' => 'back_btn_size',
@@ -226,7 +211,6 @@ return array(
 				'std' => 'm',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 140,
 			),
 			array(
 				'param_name' => 'back_btn_color',
@@ -234,7 +218,6 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 130,
 			),
 			array(
 				'param_name' => 'back_button_bgcolor',
@@ -242,14 +225,12 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 120,
 			),
 			array(
 				'param_name' => 'back_bgcolor',
 				'heading' => __( 'Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 110,
 			),
 			array(
 				'param_name' => 'back_border_color',
@@ -257,7 +238,6 @@ return array(
 				'type' => 'colorpicker',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 100,
 			),
 			array(
 				'param_name' => 'back_border_size',
@@ -277,7 +257,6 @@ return array(
 				'std' => '1px',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Back Side', 'codelights' ),
-				'weight' => 90,
 			),
 			/**
 			 * Animation
@@ -293,7 +272,6 @@ return array(
 					__( 'Cover Open', 'codelights' ) => 'coveropen',
 				),
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 80,
 			),
 			array(
 				'param_name' => 'direction',
@@ -311,7 +289,6 @@ return array(
 				),
 				'std' => 'w',
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 70,
 			),
 			array(
 				'param_name' => 'animation_duration',
@@ -334,7 +311,6 @@ return array(
 				'std' => '600ms',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 60,
 			),
 			array(
 				'param_name' => 'animation_easing',
@@ -352,25 +328,20 @@ return array(
 				'std' => 'easeInOutSine',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 50,
 			),
 			/**
-			 * General Settings
+			 * General
 			 */
 			array(
 				'param_name' => 'link',
 				'heading' => __( 'FlipBox Link', 'codelights' ),
 				'type' => 'vc_link',
-//				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 40,
 			),
 			array(
 				'param_name' => 'width',
 				'heading' => __( 'Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-//				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 30,
 			),
 			array(
 				'param_name' => 'ratio',
@@ -386,16 +357,12 @@ return array(
 					'1x2 (' . __( 'Portrait', 'codelights' ) . ')' => '1x2',
 				),
 				'std' => '3x2',
-//				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 20,
 			),
 			array(
 				'param_name' => 'el_class',
 				'heading' => __( 'Extra class name', 'us' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'us' ),
 				'type' => 'textfield',
-//				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 10,
 			),
 		),
 	),
@@ -416,7 +383,6 @@ return array(
 				'type' => 'attach_image',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 210,
 			),
 			array(
 				'param_name' => 'size',
@@ -426,7 +392,6 @@ return array(
 				'std' => 'large',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 200,
 			),
 			array(
 				'param_name' => 'title',
@@ -435,7 +400,6 @@ return array(
 				'admin_label' => TRUE,
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 190,
 			),
 			array(
 				'param_name' => 'title_size',
@@ -446,7 +410,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'title', 'not_empty' => TRUE ),
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 180,
 			),
 			array(
 				'param_name' => 'text',
@@ -454,7 +417,6 @@ return array(
 				'type' => 'textarea',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 170,
 			),
 			array(
 				'param_name' => 'text_size',
@@ -465,7 +427,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'text', 'not_empty' => TRUE ),
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 160,
 			),
 			array(
 				'param_name' => 'icon',
@@ -473,7 +434,6 @@ return array(
 				'type' => 'textfield',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 150,
 			),
 			array(
 				'param_name' => 'icon_size',
@@ -484,7 +444,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'icon', 'not_empty' => TRUE ),
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 140,
 			),
 			array(
 				'param_name' => 'link_type',
@@ -496,7 +455,6 @@ return array(
 					__( 'Separate Button', 'codelights' ) => 'btn',
 				),
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 130,
 			),
 			array(
 				'param_name' => 'btn_label',
@@ -505,7 +463,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'weight' => 120,
 			),
 			array(
 				'param_name' => 'btn_size',
@@ -516,7 +473,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'dependency' => array( 'element' => 'btn_label', 'not_empty' => TRUE ),
 				'group' => __( 'Content', 'codelights' ),
-				'weight' => 110,
 			),
 			array(
 				'param_name' => 'btn_color',
@@ -525,7 +481,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'weight' => 100,
 			),
 			array(
 				'param_name' => 'btn_bgcolor',
@@ -534,7 +489,6 @@ return array(
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Content', 'codelights' ),
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'weight' => 90,
 			),
 			array(
 				'param_name' => 'link',
@@ -542,7 +496,6 @@ return array(
 				'type' => 'vc_link',
 				'group' => __( 'Content', 'codelights' ),
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'banner', 'btn' ) ),
-				'weight' => 80,
 			),
 			/**
 			 * Animation
@@ -562,7 +515,6 @@ return array(
 					__( 'Nike', 'codelights' ) => 'nike',
 				),
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 70,
 			),
 			array(
 				'param_name' => 'animation_duration',
@@ -585,7 +537,6 @@ return array(
 				'std' => '600ms',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 50,
 			),
 			array(
 				'param_name' => 'animation_easing',
@@ -603,18 +554,15 @@ return array(
 				'std' => 'easeInOutSine',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
 				'group' => __( 'Animation', 'codelights' ),
-				'weight' => 40,
 			),
 			/**
-			 * General Settings
+			 * General
 			 */
 			array(
 				'param_name' => 'width',
 				'heading' => __( 'Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 30,
 			),
 			array(
 				'param_name' => 'ratio',
@@ -630,16 +578,12 @@ return array(
 					'1x2 (' . __( 'Portrait', 'codelights' ) . ')' => '1x2',
 				),
 				'std' => '3x2',
-				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 20,
 			),
 			array(
 				'param_name' => 'el_class',
 				'heading' => __( 'Extra class name', 'us' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'us' ),
 				'type' => 'textfield',
-				'group' => __( 'General Settings', 'codelights' ),
-				'weight' => 10,
 			),
 		),
 	),
@@ -651,13 +595,15 @@ return array(
 		'category' => 'CodeLights',
 		'icon' => 'icon-cl-itext',
 		'params' => array(
+			/**
+			 * General
+			 */
 			array(
 				'param_name' => 'texts',
 				'heading' => __( 'Text States', 'codelights' ),
 				'description' => __( 'Each state from a new line', 'codelights' ),
 				'type' => 'textarea',
 				'std' => 'We create great design' . "\n" . 'We create great websites' . "\n" . 'We create great code',
-				'group' => __( 'General', 'codelights' ),
 			),
 			array(
 				'param_name' => 'font_size',
@@ -665,7 +611,6 @@ return array(
 				'description' => __( 'In pixels', 'codelights' ),
 				'type' => 'string',
 				'std' => '20',
-				'group' => __( 'General', 'codelights' ),
 			),
 			array(
 				'param_name' => 'color',
@@ -673,7 +618,6 @@ return array(
 				'type' => 'colorpicker',
 				'std' => '',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'group' => __( 'General', 'codelights' ),
 			),
 			array(
 				'param_name' => 'dynamic_color',
@@ -681,7 +625,6 @@ return array(
 				'type' => 'colorpicker',
 				'std' => '',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'group' => __( 'General', 'codelights' ),
 			),
 			array(
 				'param_name' => 'tag',
@@ -696,15 +639,16 @@ return array(
 					'p' => 'p',
 				),
 				'std' => 'div',
-				'group' => __( 'General', 'codelights' ),
 			),
 			array(
 				'param_name' => 'el_class',
 				'heading' => __( 'Extra class name', 'us' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'us' ),
 				'type' => 'textfield',
-				'group' => __( 'General', 'codelights' ),
 			),
+			/**
+			 * Animation
+			 */
 			array(
 				'param_name' => 'animation_type',
 				'heading' => __( 'Type', 'codelights' ),
