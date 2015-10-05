@@ -36,9 +36,15 @@
  * @var $el_class string Extra class name
  */
 
-if ( $animation == 'cubetilt' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
+if ( in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
 	// When rotating cubetilt in diaginal direction, we're actually doing a cube flip animation instead
-	$animation = 'cubeflip';
+	if ( $animation == 'cubetilt' ) {
+		$animation = 'cubeflip';
+	}
+	// Diagonal cube-like animations is geometrically possible only for cubes
+	if ( $animation == 'cubeflip' ) {
+		$ratio = '1x1';
+	}
 }
 // Main element classes, inner css and additional attributes
 $classes = ' animation_' . $animation . ' direction_' . $direction . ' ratio_' . $ratio;
@@ -80,6 +86,10 @@ if ( ! empty( $helper_inner_css ) ) {
 	$helper_inner_css = ' style="' . esc_attr( $helper_inner_css ) . '"';
 }
 $output .= '<div class="cl-flipbox-h' . $helper_classes . '"' . $helper_inner_css . '><div class="cl-flipbox-hh">';
+if ( $animation == 'cubeflip' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
+	$output .= '<div class="cl-flipbox-hhh">';
+}
+
 $front_inner_css = '';
 if ( ! empty( $front_bgcolor ) ) {
 	$front_inner_css .= 'background-color: ' . $front_bgcolor . ';';
@@ -167,6 +177,9 @@ if ( $animation == 'cubeflip' ) {
 	}
 }
 
+if ( $animation == 'cubeflip' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
+	$output .= '</div>';
+}
 $output .= '</div></div>';
 $output .= '</' . $tag . '>';
 
