@@ -28,7 +28,7 @@ return array(
 	'scripts' => array(
 		'cl-core' => array( $cl_uri . '/js/cl-core.js', array( 'jquery' ), FALSE, TRUE ),
 		'cl-counter' => array( $cl_uri . '/js/cl-counter.js', array( 'jquery', 'cl-core' ), FALSE, TRUE ),
-		'cl-flipbox' => array( $cl_uri . '/js/cl-flipbox.js', array( 'jquery' ), FALSE, TRUE ),
+		'cl-flipbox' => array( $cl_uri . '/js/cl-flipbox.js', array( 'jquery', 'cl-core' ), FALSE, TRUE ),
 		'cl-ib' => array( $cl_uri . '/js/cl-ib.js', array( 'jquery' ), FALSE, TRUE ),
 		'cl-itext' => array( $cl_uri . '/js/cl-itext.js', array( 'jquery', 'cl-core' ), FALSE, TRUE ),
 	),

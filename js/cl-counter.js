@@ -192,12 +192,5 @@
 			}
 		}
 	};
-	$.fn.clCounter = function(){
-		this.each(function(index, container){
-			$(container).data('clCounter', new CLCounter(container));
-		});
-	};
-	$(function(){
-		$('.cl-counter').clCounter();
-	});
+	$cl.elements['cl-counter'] = CLCounter;
 }(jQuery);

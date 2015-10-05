@@ -27,6 +27,71 @@ jQuery.fn.cssMod = function(mod, value){
 };
 
 /**
+ * Globally available CodeLights helpers
+ */
+!function($){
+	if (window.$cl === undefined) window.$cl = {};
+	// Known elements and their constructors
+	window.$cl.elements = {};
+
+	$(function(){
+		for (var elm in $cl.elements) {
+			if (!$cl.elements.hasOwnProperty(elm)) continue;
+			$('.' + elm).each(function(){
+				$(this).data(elm, new $cl.elements[elm](this));
+			});
+		}
+	});
+
+	// Class mutators
+	$cl.mutators = {};
+	$cl.mutators.Scalable = {
+		/**
+		 * Makes the current element scalable: resizes selected inner dom elements proportionally if they are set in pixels
+		 * @param rules object css-selectors => array of the resizable properties
+		 * @param baseWidth int Container's width, at which elements should have the current pixel-based values
+		 */
+		makeScalable: function(rules, baseWidth){
+			// If container's width is fixed (may only be set inline) than doing nothing
+			if (this.$container[0].style.width.indexOf('px') != -1) return;
+			// List of properties that could be set in pixels from inline
+			if (baseWidth === undefined) baseWidth = 300;
+			this.scalables = {};
+			for (var selector in rules){
+				if ( ! rules.hasOwnProperty(selector)) continue;
+				var $elm = this.$container.find(selector);
+				if ($elm.length == 0) continue;
+				for (var i = 0; i < rules[selector].length; i++) {
+					var prop = rules[selector][i],
+						baseValue = $elm.css(prop);
+					if (typeof baseValue == 'string' && baseValue.substring(baseValue.length - 2) == 'px' && parseInt(baseValue) != 0) {
+						// Found some resizable property
+						if (this.scalables[selector] === undefined) this.scalables[selector] = {$elm: $elm};
+						this.scalables[selector][prop] = parseInt(baseValue);
+					}
+				}
+			}
+			// Events
+			if (this._events === undefined) this._events = {};
+			this._events.scale = function(){
+				var width = this.$container.width(),
+					scale = width / baseWidth;
+				for (var selector in this.scalables){
+					if ( ! this.scalables.hasOwnProperty(selector)) continue;
+					for (var prop in this.scalables[selector]){
+						if ( ! this.scalables[selector].hasOwnProperty(prop) || prop == '$elm') continue;
+						this.scalables[selector].$elm.css(prop, (this.scalables[selector][prop] * scale) + 'px');
+					}
+				}
+			}.bind(this);
+			$(window).on('resize load', this._events.scale);
+			this._events.scale();
+		}
+	};
+}(jQuery);
+
+
+/**
  * CLScroll
  */
 !function($){
