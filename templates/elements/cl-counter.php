@@ -52,7 +52,7 @@ $output .= cl_prepare_inline_css( array(
 $output .= '>';
 
 // Determining if we treat each part as a number or as a letter combination
-for ( $index = 0, $length = count( $pos['initial'] ) - 1; $index < $length; $index ++ ) {
+for ( $index = 0, $length = count( $pos['initial'] ) - 1; $index < $length; $index++ ) {
 	$part_type = ( $index % 2 ) ? 'number' : 'text';
 	$part_initial = substr( $initial, $pos['initial'][ $index ], $pos['initial'][ $index + 1 ] - $pos['initial'][ $index ] );
 	$part_final = substr( $final, $pos['final'][ $index ], $pos['final'][ $index + 1 ] - $pos['final'][ $index ] );

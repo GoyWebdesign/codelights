@@ -650,50 +650,6 @@ return array(
 				'std' => 'We create great design' . "\n" . 'We create great websites' . "\n" . 'We create great code',
 			),
 			array(
-				'param_name' => 'font_size',
-				'heading' => __( 'Font Size', 'codelights' ),
-				'description' => __( 'In pixels', 'codelights' ),
-				'type' => 'string',
-				'std' => '20',
-			),
-			array(
-				'param_name' => 'color',
-				'heading' => __( 'Basic Text Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'std' => '',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
-			),
-			array(
-				'param_name' => 'dynamic_color',
-				'heading' => __( 'Dynamic Part Text Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'std' => '',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
-			),
-			array(
-				'param_name' => 'tag',
-				'heading' => __( 'Tag Name', 'codelights' ),
-				'description' => __( 'May be useful for SEO', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					'div' => 'div',
-					'h1' => 'h1',
-					'h2' => 'h2',
-					'h3' => 'h3',
-					'p' => 'p',
-				),
-				'std' => 'div',
-			),
-			array(
-				'param_name' => 'el_class',
-				'heading' => __( 'Extra class name', 'codelights' ),
-				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
-				'type' => 'textfield',
-			),
-			/**
-			 * Animation
-			 */
-			array(
 				'param_name' => 'animation_type',
 				'heading' => __( 'Type', 'codelights' ),
 				'type' => 'dropdown',
@@ -703,7 +659,6 @@ return array(
 					__( 'Modify the shortest way', 'codelights' ) => 'shortest',
 				),
 				'std' => 'replace',
-				'group' => __( 'Animation', 'codelights' ),
 			),
 			array(
 				'param_name' => 'duration',
@@ -725,10 +680,9 @@ return array(
 				),
 				'std' => '600ms',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'group' => __( 'Animation', 'codelights' ),
 			),
 			array(
-				'param_name' => 'animation_delay',
+				'param_name' => 'delay',
 				'heading' => __( 'Delay', 'codelights' ),
 				'type' => 'dropdown',
 				'value' => array(
@@ -743,9 +697,65 @@ return array(
 					sprintf( _n( '%d second', '%d seconds', 9, 'codelights' ), 9 ) => '9000ms',
 					sprintf( _n( '%d second', '%d seconds', 10, 'codelights' ), 10 ) => '10000ms',
 				),
-				'std' => '5s',
+				'std' => '5000ms',
 				'edit_field_class' => 'vc_col-sm-6 vc_column',
-				'group' => __( 'Animation', 'codelights' ),
+			),
+			/**
+			 * Custom
+			 */
+			array(
+				'param_name' => 'font_size',
+				'heading' => __( 'Font Size', 'codelights' ),
+				'description' => __( 'In pixels', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '20',
+				'group' => __( 'Custom', 'codelights' ),
+			),
+			array(
+				'param_name' => 'dynamic_bold',
+				'heading' => '',
+				'type' => 'checkbox',
+				'value' => array( __( 'Bold Dynamic Text', 'codelights' ) => TRUE ),
+				'std' => TRUE,
+				'group' => __( 'Custom', 'codelights' ),
+			),
+			array(
+				'param_name' => 'color',
+				'heading' => __( 'Basic Text Color', 'codelights' ),
+				'type' => 'colorpicker',
+				'std' => '',
+				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'group' => __( 'Custom', 'codelights' ),
+			),
+			array(
+				'param_name' => 'dynamic_color',
+				'heading' => __( 'Dynamic Text Color', 'codelights' ),
+				'type' => 'colorpicker',
+				'std' => '',
+				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'group' => __( 'Custom', 'codelights' ),
+			),
+			array(
+				'param_name' => 'tag',
+				'heading' => __( 'Tag Name', 'codelights' ),
+				'description' => __( 'For SEO purposes', 'codelights' ),
+				'type' => 'dropdown',
+				'value' => array(
+					'div' => 'div',
+					'h1' => 'h1',
+					'h2' => 'h2',
+					'h3' => 'h3',
+					'p' => 'p',
+				),
+				'std' => 'div',
+				'group' => __( 'Custom', 'codelights' ),
+			),
+			array(
+				'param_name' => 'el_class',
+				'heading' => __( 'Extra class name', 'codelights' ),
+				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
+				'type' => 'textfield',
+				'group' => __( 'Custom', 'codelights' ),
 			),
 		),
 	),
