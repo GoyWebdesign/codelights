@@ -4,39 +4,7 @@
 	display: inline-block;
 	position: relative;
 
-	// Preserving the needed aspect ratio
-	&:before {
-		content: '';
-		display: block;
-	}
-	&.ratio_2x1:before {
-		padding-top: 50%;
-	}
-	&.ratio_3x2:before {
-		padding-top: 66.6666%;
-	}
-	&.ratio_4x3:before {
-		padding-top: 75%;
-	}
-	&.ratio_1x1:before {
-		padding-top: 100%;
-	}
-	&.ratio_3x4:before {
-		padding-top: 125%;
-	}
-	&.ratio_2x3:before {
-		padding-top: 150%;
-	}
-	&.ratio_1x2:before {
-		padding-top: 200%;
-	}
-
 	&-h {
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
 		.perspective(1000px);
 		.transform(translateZ(0));
 		.transition-property(none);
@@ -56,7 +24,9 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+		box-sizing: border-box;
 		.backface-visibility(hidden);
+		.transition-property(transform);
 		.transition-duration(inherit);
 		.transition-timing-function(inherit);
 	}
@@ -64,6 +34,12 @@
 	&-back {
 		padding: 20px;
 		text-align: center;
+		background-size: cover;
+		&-h,
+		&-title,
+		&-desc {
+			color: inherit;
+		}
 	}
 	&-front {
 		position: relative;
@@ -71,7 +47,8 @@
 		&-icon {
 			display: inline-block;
 			box-sizing: content-box;
-			&.style_default {}
+			&.style_default {
+			}
 			&.style_circle {
 				border-width: 1px;
 				border-style: solid;
@@ -438,7 +415,7 @@
 			&:hover,
 			&.hover {
 				.cl-flipbox-hh {
-					.transform(rotateY(90deg) translateX(50%) rotateY(90deg) );
+					.transform(rotateY(90deg) translateX(50%) rotateY(90deg));
 				}
 			}
 		}

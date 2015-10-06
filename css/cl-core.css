@@ -4,6 +4,39 @@
   line-height: 1.5;
   padding: 0 10px;
 }
+[class^="cl-"][class*=" ratio_"]:before {
+  content: '';
+  display: block;
+}
+[class^="cl-"].ratio_2x1:before {
+  padding-top: 50%;
+}
+[class^="cl-"].ratio_3x2:before {
+  padding-top: 66.6666%;
+}
+[class^="cl-"].ratio_4x3:before {
+  padding-top: 75%;
+}
+[class^="cl-"].ratio_1x1:before {
+  padding-top: 100%;
+}
+[class^="cl-"].ratio_3x4:before {
+  padding-top: 125%;
+}
+[class^="cl-"].ratio_2x3:before {
+  padding-top: 150%;
+}
+[class^="cl-"].ratio_1x2:before {
+  padding-top: 200%;
+}
+[class^="cl-"] [class^="cl-"][class*=" ratio_"] > [class$="-h"],
+[class^="cl-"] [class^="cl-"][class*=" ratio_"] > [class*="-h "] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
 .easing_linear {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;

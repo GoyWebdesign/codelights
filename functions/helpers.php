@@ -244,6 +244,65 @@ function cl_prepare_icon_class( $icon_class ) {
 }
 
 /**
+ * Prepare a proper inline-css string from given css proper
+ *
+ * @param array $props
+ * @param bool $style_attr
+ *
+ * @return string
+ */
+function cl_prepare_inline_css( $props, $style_attr = TRUE ) {
+	$result = '';
+	foreach ( $props as $prop => $value ) {
+		if ( empty( $value ) ) {
+			continue;
+		}
+		switch ( $prop ) {
+			// Properties that can be set either in percents or in pixels
+			case 'width':
+			case 'padding':
+				if ( is_string( $value ) AND strpos( $value, '%' ) !== FALSE ) {
+					$result .= $prop . ':' . floatval( $value ) . '%;';
+				} else {
+					$result .= $prop . ':' . intval( $value ) . 'px;';
+				}
+				break;
+			// Properties that can be set only in pixels
+			case 'height':
+			case 'font-size':
+			case 'line-height':
+			case 'border-width':
+				$result .= $prop . ':' . intval( $value ) . 'px;';
+				break;
+			// Properties that need vendor prefixes
+			case 'transition-duration':
+				$result .= '-webkit-' . $prop . ':' . $value . 'px;' . $prop . ':' . $value . ';';
+				break;
+			// Properties with image values
+			case 'background-image':
+				if ( is_numeric( $value ) ) {
+					$image = wp_get_attachment_image_src( $value, 'full' );
+					if ( $image ) {
+						$result .= $prop . ':url("' . $image[0] . '");';
+					}
+				} else {
+					$result .= $prop . ':url("' . $value . '");';
+				}
+				break;
+			// All other properties
+			default:
+				$result .= $prop . ':' . $value . ';';
+				break;
+		}
+	}
+	if ( ! empty( $result ) AND $style_attr ) {
+		$result = ' style="' . esc_attr( $result ) . '"';
+	}
+
+	return $result;
+}
+
+/**
  * Get image size information as an array
  *
  * @param string $size_name

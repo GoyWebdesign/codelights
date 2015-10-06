@@ -2,37 +2,7 @@
   display: inline-block;
   position: relative;
 }
-.cl-flipbox:before {
-  content: '';
-  display: block;
-}
-.cl-flipbox.ratio_2x1:before {
-  padding-top: 50%;
-}
-.cl-flipbox.ratio_3x2:before {
-  padding-top: 66.6666%;
-}
-.cl-flipbox.ratio_4x3:before {
-  padding-top: 75%;
-}
-.cl-flipbox.ratio_1x1:before {
-  padding-top: 100%;
-}
-.cl-flipbox.ratio_3x4:before {
-  padding-top: 125%;
-}
-.cl-flipbox.ratio_2x3:before {
-  padding-top: 150%;
-}
-.cl-flipbox.ratio_1x2:before {
-  padding-top: 200%;
-}
 .cl-flipbox-h {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   perspective: 1000px;
@@ -58,9 +28,12 @@
   display: block;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transition-property: transform;
+  transition-property: transform;
   -webkit-transition-duration: inherit;
   transition-duration: inherit;
   -webkit-transition-timing-function: inherit;
@@ -70,6 +43,15 @@
 .cl-flipbox-back {
   padding: 20px;
   text-align: center;
+  background-size: cover;
+}
+.cl-flipbox-front-h,
+.cl-flipbox-back-h,
+.cl-flipbox-front-title,
+.cl-flipbox-back-title,
+.cl-flipbox-front-desc,
+.cl-flipbox-back-desc {
+  color: inherit;
 }
 .cl-flipbox-front {
   position: relative;

@@ -13,6 +13,43 @@
 	}
 }
 
+// Css-based ratios
+[class^="cl-"] {
+	&[class*=" ratio_"]:before {
+		content: '';
+		display: block;
+	}
+	&.ratio_2x1:before {
+		padding-top: 50%;
+	}
+	&.ratio_3x2:before {
+		padding-top: 66.6666%;
+	}
+	&.ratio_4x3:before {
+		padding-top: 75%;
+	}
+	&.ratio_1x1:before {
+		padding-top: 100%;
+	}
+	&.ratio_3x4:before {
+		padding-top: 125%;
+	}
+	&.ratio_2x3:before {
+		padding-top: 150%;
+	}
+	&.ratio_1x2:before {
+		padding-top: 200%;
+	}
+	[class^="cl-"][class*=" ratio_"] > [class$="-h"],
+	[class^="cl-"][class*=" ratio_"] > [class*="-h "] {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
 // Easings
 .easing_linear {
 	.transition-timing-function(linear);
