@@ -243,16 +243,20 @@ jQuery.fn.cssMod = function(mod, value){
 		init: function(options){
 			this.parentInit(options);
 			this.textareaID = this.$input.attr('id');
+			var tinymceActive = this._isTinymceActive();
+			console.log(tinymceActive);
 
 			// tinymce editor handler
-			tinymce.get(this.textareaID).remove();
+			if (tinymceActive !== false) {
+				tinymce.get(this.textareaID).remove();
 
-			new QTags(this.textareaID);
-			QTags._buttonsInit();
+				new QTags(this.textareaID);
+				QTags._buttonsInit();
 
-			tinyMCEPreInit.mceInit[this.textareaID].selector = '#' + this.textareaID;
-			tinyMCEPreInit.mceInit[this.textareaID].height = '100%';
-			tinymce.init(tinyMCEPreInit.mceInit[this.textareaID]);
+				tinyMCEPreInit.mceInit[this.textareaID].selector = '#' + this.textareaID;
+				tinyMCEPreInit.mceInit[this.textareaID].height = '100%';
+				tinymce.init(tinyMCEPreInit.mceInit[this.textareaID]);
+			}
 		},
 		save: function(){
 			tinymce.get(this.textareaID).save();
@@ -272,6 +276,10 @@ jQuery.fn.cssMod = function(mod, value){
 			} else {
 				this.parentSetValue(value);
 			}
+		},
+		// Check if the tinymce instance is active
+		_isTinymceActive: function(){
+			return typeof tinymce === 'object' && typeof tinymce.get(this.textareaID) === 'object' && tinymce.get(this.textareaID) !== null;
 		}
 	};
 
@@ -473,12 +481,12 @@ jQuery.fn.cssMod = function(mod, value){
  * CLForm Core
  */
 !function($){
-	function CLForm(container, options){
+	window.CLForm = function(container, options){
 		window.$clfield = this;
 		this.init(container, options);
-	}
+	};
 
-	CLForm.prototype = {
+	window.CLForm.prototype = {
 		init: function(container, options){
 			this.$container = $(container);
 			this.$blocks = {};
@@ -489,21 +497,42 @@ jQuery.fn.cssMod = function(mod, value){
 					id = $block.data('id');
 				this.$blocks[id] = $block;
 				this.showIf[id] = true;
-				var shouldBeShown = this.executeShowIf(this.showIf[id]);
+				var shouldBeShown = this.execDependency(this.showIf[id]);
 				if (shouldBeShown) {
-					this.$container.fireEvent(this.$blocks[id], 'beforeShow');
-					this.$container.fireEvent(this.$blocks[id], 'afterShow');
+					this.$field[id] = new CLField($block);
+					this.$field[id].fireEvent('beforeShow');
+					this.$field[id].fireEvent('afterShow');
 				}
 			}.bind(this));
 		},
 
-		executeShowIf: function(conditions){
+		execDependency: function(conditions){
 			return true;
+		},
+
+		getValue: function(id){
+			return this.$field[id].getValue();
+		},
+
+		setValue: function(id, value){
+			this.$field[id].setValue(value);
+		},
+
+		getValues: function(){
+			var values = {};
+			for (var id in this.$blocks) {
+				values[id] = this.$field[id].getValue();
+			}
+			return values;
+		},
+
+		setValues: function(values){
+			for (var id in values) {
+				this.$field[id].setValue(values[id]);
+			}
 		}
 
 	};
-
-	new CLForm('.cl-widgetform');
 }(jQuery);
 
 
@@ -512,62 +541,8 @@ jQuery(document).ready(function($){
 
 	/* scripts initialization on Widget Area load */
 
-	// init checkboxes on Widget Area load
-	/*
-	var firstCB = new CLField('#widgets-right .type_checkbox:eq(0)');
-	firstCB.fireEvent('beforeShow');
-
-	// init checkboxes on Widget Area load
-	var secondCB = new CLField('#widgets-right .type_checkbox:eq(1)');
-	secondCB.fireEvent('beforeShow');
-
-	// init checkboxes on Widget Area load
-	var firstTE = new CLField('#widgets-right .type_textarea_exploded:eq(0)');
-	firstTE.fireEvent('beforeShow');
-
-	// init Color Picker to all inputs that have 'color-field' class on Widget Area load
-	var newColorPicker = new CLField('#widgets-right .type_colorpicker:eq(0)');
-	newColorPicker.fireEvent('beforeShow');
-
-	// init sortable images on Widget Area load
-	var newAttachImages = new CLField('#widgets-right .type_attach_images:eq(0)');
-	newAttachImages.fireEvent('beforeShow');
-
-	// init handler for insert link button on Widget Area load
-	var newLinkWindow = new CLField('#widgets-right .type_link:eq(0)');
-	newLinkWindow.fireEvent('beforeShow');
-	*/
-
-	/**
-	 * second widget
-	 * @type {Window.CLField}
-	 */
-
-	// init checkboxes on Widget Area load
-	/*
-	var thirdCB = new CLField('#widgets-right .type_checkbox:eq(2)');
-	thirdCB.fireEvent('beforeShow');
-
-	// init checkboxes on Widget Area load
-	var fourthCB = new CLField('#widgets-right .type_checkbox:eq(3)');
-	fourthCB.fireEvent('beforeShow');
-
-	// init checkboxes on Widget Area load
-	var secondTE = new CLField('#widgets-right .type_textarea_exploded:eq(1)');
-	secondTE.fireEvent('beforeShow');
-
-	// init Color Picker to all inputs that have 'color-field' class in Widget Area after ajax
-	var secondColorPicker = new CLField('#widgets-right .type_colorpicker:eq(1)');
-	secondColorPicker.fireEvent('beforeShow');
-
-	// init sortable images on Widget Area load
-	var secondAttachImages = new CLField('#widgets-right .type_attach_images:eq(1)');
-	secondAttachImages.fireEvent('beforeShow');
-
-	// init handler for insert link button in Widget Area after ajax
-	//var secondLinkWindow = new CLField('#widgets-right .type_link:eq(1)');
-	//secondLinkWindow.fireEvent('beforeShow');
-	 */
+	var $firstWidget = $('#widgets-right').find('.cl-widgetform:eq(0)'),
+		firstForm = new CLForm($firstWidget);
 
 	// init tabs in widget on Widget Area load
 	clTabs.init();
