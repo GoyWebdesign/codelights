@@ -18,7 +18,7 @@
  * @var $btn_bgcolor string
  * @var $link string URL of the overall element or button in a 'vc_link' format
  * @var $animation string Animation type: 'melete' / 'soter' / 'phorcys' / 'aidos' / ...
- * @var $animation_duration string In milliseconds: '100ms' / '200ms' / ... / '900ms'
+ * @var $duration string Animation duration in milliseconds: '100ms' / '200ms' / ... / '900ms'
  * @var $animation_easing string Easing CSS class name
  * @var $width mixed In pixels or percents: '100' / '100%'
  * @var $ratio string Aspect ratio: '2x1' / '3x2' / '4x3' / '1x1' / '3x4' / '2x3' / '1x2'
@@ -106,8 +106,8 @@ if ( ! empty( $el_class ) ) {
 $output = '<' . $tag . $atts . ' class="cl-ib' . $classes . '"' . $inner_css . '>';
 $helper_classes = ' easing_' . $animation_easing;
 $helper_inner_css = '';
-if ( ! empty( $animation_duration ) ) {
-	$helper_inner_css .= '-webkit-transition-duration:' . $animation_duration . ';transition-duration:' . $animation_duration . ';';
+if ( ! empty( $duration ) ) {
+	$helper_inner_css .= '-webkit-transition-duration:' . $duration . ';transition-duration:' . $duration . ';';
 }
 if ( ! empty( $helper_inner_css ) ) {
 	$helper_inner_css = ' style="' . esc_attr( $helper_inner_css ) . '"';

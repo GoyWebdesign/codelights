@@ -8,7 +8,7 @@
  * @var $color string Basic text color
  * @var $dynamic_color string Changing part text color
  * @var $animation_type string Animation type: 'replace' / 'terminal' / 'shortest'
- * @var $animation_duration string Animation duration: '100ms' / '200ms' / ... / '1200ms'
+ * @var $duration string Animation duration: '100ms' / '200ms' / ... / '1200ms'
  * @var $animation_delay string Animation delay: '1000ms' / '2000ms' / ... / '10000ms'
  * @var $tag string Tag name: 'div' / 'h1' / 'h2' / 'h3' / 'p'
  * @var $el_class string Extra class name
@@ -28,7 +28,7 @@ if ( ! empty( $inner_css ) ) {
 }
 
 $js_data = array(
-	'duration' => $animation_duration,
+	'duration' => $duration,
 	'delay' => $animation_delay,
 );
 if ( ! empty( $dynamic_color ) ) {

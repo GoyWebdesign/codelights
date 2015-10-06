@@ -5,9 +5,13 @@
  *
  * @var $initial string The initial string
  * @var $final string The final string
+ * @var $duration string Animation duration: '100ms' / '200ms' / ... / '1200ms'
  * @var $animation string Digits animation type: 'none' / 'slideup' / 'slidedown'
- * @var $size string Font size
- * @var $substring string
+ * @var $title string
+ * @var $value_size string Font size
+ * @var $title_size string Title size
+ * @var $value_color string Value color
+ * @var $title_color string Title color
  * @var $el_class string Extra class name
  */
 
@@ -40,19 +44,29 @@ foreach ( array( 'initial', 'final' ) as $key ) {
 }
 
 $output = '<div class="cl-counter">';
-$output .= '<div class="cl-counter-text">';
+$output .= '<div class="cl-counter-value"';
+$output .= cl_prepare_inline_css( array(
+	'color' => $value_color,
+	'font-size' => $value_size,
+) );
+$output .= '>';
 
-// Do we treat this as a number or as a letter combination
+// Determining if we treat each part as a number or as a letter combination
 for ( $index = 0, $length = count( $pos['initial'] ) - 1; $index < $length; $index ++ ) {
 	$part_type = ( $index % 2 ) ? 'number' : 'text';
 	$part_initial = substr( $initial, $pos['initial'][ $index ], $pos['initial'][ $index + 1 ] - $pos['initial'][ $index ] );
 	$part_final = substr( $final, $pos['final'][ $index ], $pos['final'][ $index + 1 ] - $pos['final'][ $index ] );
-	$output .= '<span class="cl-counter-text-part type_' . $part_type . '" data-final="' . esc_attr( $part_final ) . '">' . $part_initial . '</span>';
+	$output .= '<span class="cl-counter-value-part type_' . $part_type . '" data-final="' . esc_attr( $part_final ) . '">' . $part_initial . '</span>';
 }
 
 $output .= '</div>';
-if ( ! empty( $substring ) ) {
-	$output .= '<div class="cl-counter-substring">' . $substring . '</div>';
+if ( ! empty( $title ) ) {
+	$output .= '<div class="cl-counter-title"';
+	$output .= cl_prepare_inline_css( array(
+		'color' => $title_color,
+		'font-size' => $title_size,
+	) );
+	$output .= '>' . $title . '</div>';
 }
 $output .= '</div>';
 echo $output;

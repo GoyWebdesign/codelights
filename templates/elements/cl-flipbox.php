@@ -10,7 +10,7 @@
  * @var $back_btn_color string
  * @var $animation string Animation type: 'cardflip' / 'cubetilt' / 'cubeflip' / 'coveropen'
  * @var $direction string Animation direction: 'n' / 'ne' / 'e' / 'se' / 's' / 'sw' / 'w' / 'nw'
- * @var $animation_duration string In milliseconds: '100ms' / '200ms' / ... / '900ms'
+ * @var $duration string Animation duration in milliseconds: '100ms' / '200ms' / ... / '900ms'
  * @var $animation_easing string Easing CSS class name
  * @var $front_icon_type string Front icon type: 'none' / 'font' / 'image'
  * @var $front_icon_name string The name of the front icon if present (ex: 'star' / 'fa-star')
@@ -74,7 +74,7 @@ $output = '<' . $tag . $atts . ' class="cl-flipbox' . $classes . '"' . $inline_c
 
 $helper_classes = ' easing_' . $animation_easing;
 $helper_inline_css = cl_prepare_inline_css( array(
-	'transition-duration' => $animation_duration,
+	'transition-duration' => $duration,
 ) );
 $output .= '<div class="cl-flipbox-h' . $helper_classes . '"' . $helper_inline_css . '><div class="cl-flipbox-hh">';
 if ( $animation == 'cubeflip' AND in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {

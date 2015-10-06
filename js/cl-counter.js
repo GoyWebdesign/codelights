@@ -156,7 +156,7 @@
 		this.$container = $(container);
 		this.parts = [];
 		this.duration = this.$container.data('duration') || 2000;
-		this.$container.find('.cl-counter-text-part').each(function(index, part){
+		this.$container.find('.cl-counter-value-part').each(function(index, part){
 			var $part = $(part);
 			// Skipping the ones that won't be changed
 			if ($part.html() + '' == $part.data('final') + '') return;
