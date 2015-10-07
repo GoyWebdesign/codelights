@@ -39,7 +39,7 @@ function cl_config( $path, $default = NULL ) {
 		$configs[ $config_name ] = apply_filters( 'cl_config_' . $config_name, $config );
 	}
 	$value = $configs[ $config_name ];
-	for ( $i = 1; $i < count( $path ); $i ++ ) {
+	for ( $i = 1; $i < count( $path ); $i++ ) {
 		if ( is_array( $value ) AND isset( $value[ $path[ $i ] ] ) ) {
 			$value = $value[ $path[ $i ] ];
 		} else {
@@ -295,7 +295,7 @@ function cl_prepare_inline_css( $props, $style_attr = TRUE ) {
 				break;
 		}
 	}
-	if ( ! empty( $result ) AND $style_attr ) {
+	if ( $style_attr AND ! empty( $result ) ) {
 		$result = ' style="' . esc_attr( $result ) . '"';
 	}
 
@@ -366,4 +366,34 @@ function cl_image_sizes_select_values( $size_names = array( 'large', 'medium', '
  */
 function cl_pass_data_to_js( $data ) {
 	return ' onclick=\'return ' . str_replace( "'", '&#39;', json_encode( $data ) ) . '\'';
+}
+
+/**
+ * Parse hex color value and return red, green and blue integer values in a single array
+ *
+ * @param string $hex
+ *
+ * @return array
+ */
+function cl_hex_to_rgb( $hex ) {
+	$hex = preg_replace( '~[^0-9a-f]+~', '', $hex );
+	if ( strlen( $hex ) == 3 ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+	if ( strlen( $hex ) != 6 ) {
+		return array( 255, 255, 255 );
+	}
+
+	return array( hexdec( $hex[0] . $hex[1] ), hexdec( $hex[2] . $hex[3] ), hexdec( $hex[4] . $hex[5] ) );
+}
+
+/**
+ * Get hex form of rgb color values
+ *
+ * @param array $rgb Red, green and blue integer values within a single array
+ *
+ * @return string
+ */
+function cl_rgb_to_hex( $rgb ) {
+	return '#' . implode( '', array_map( 'dechex', $rgb ) );
 }

@@ -32,13 +32,19 @@
 	}
 	&-front,
 	&-back {
-		padding: 20px;
+		padding: 30px;
 		text-align: center;
 		background-size: cover;
 		&-h,
 		&-title,
 		&-desc {
 			color: inherit;
+		}
+		&-icon,
+		&-title,
+		&-desc {
+			padding: 0;
+			margin: 0 0 20px;
 		}
 	}
 	&-front {
@@ -49,9 +55,12 @@
 			box-sizing: content-box;
 			&.style_default {
 			}
-			&.style_circle {
+			&.style_circle,
+			&.style_square {
 				border-width: 1px;
 				border-style: solid;
+			}
+			&.style_circle {
 				border-radius: 50%;
 			}
 

@@ -138,7 +138,7 @@ return array(
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
 			),
 			array(
-				'param_name' => 'back_button_bgcolor',
+				'param_name' => 'back_btn_bgcolor',
 				'heading' => __( 'Button Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
@@ -203,7 +203,7 @@ return array(
 			),
 			array(
 				'param_name' => 'animation_easing',
-				'heading' => __( 'Easing', 'codelights' ),
+				'heading' => __( 'Animation Easing', 'codelights' ),
 				'type' => 'dropdown',
 				'value' => array(
 					__( 'Linear', 'codelights' ) => 'linear',
@@ -222,7 +222,7 @@ return array(
 			 */
 			array(
 				'param_name' => 'front_icon_type',
-				'heading' => __( 'Icon to display', 'codelights' ),
+				'heading' => __( 'Icon to Display', 'codelights' ),
 				'type' => 'dropdown',
 				'value' => array(
 					__( 'None', 'codelights' ) => 'none',
@@ -296,7 +296,16 @@ return array(
 				'param_name' => 'front_title',
 				'heading' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
+				'std' => 'FlipBox Title', // Not translatable
 				'admin_label' => TRUE,
+				'group' => __( 'Front Side', 'codelights' ),
+			),
+			array(
+				'param_name' => 'front_title_size',
+				'heading' => __( 'Title Font Size (px)', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '',
+				'dependency' => array( 'element' => 'front_title', 'not_empty' => TRUE ),
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -330,6 +339,15 @@ return array(
 				'param_name' => 'back_title',
 				'heading' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
+				'std' => 'FlipBox Title', // Not translatable
+				'group' => __( 'Back Side', 'codelights' ),
+			),
+			array(
+				'param_name' => 'back_title_size',
+				'heading' => __( 'Title Font Size (px)', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '',
+				'dependency' => array( 'element' => 'back_title', 'not_empty' => TRUE ),
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			array(
