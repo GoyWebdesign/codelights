@@ -41,9 +41,13 @@
 }
 .cl-flipbox-front,
 .cl-flipbox-back {
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   background-size: cover;
+}
+.cl-flipbox-front {
+  position: relative;
+  z-index: 1;
 }
 .cl-flipbox-front-h,
 .cl-flipbox-back-h,
@@ -53,9 +57,18 @@
 .cl-flipbox-back-desc {
   color: inherit;
 }
-.cl-flipbox-front {
-  position: relative;
-  z-index: 1;
+.cl-flipbox-front-icon,
+.cl-flipbox-back-icon,
+.cl-flipbox-front-title,
+.cl-flipbox-back-title,
+.cl-flipbox-front-desc,
+.cl-flipbox-back-desc {
+  padding: 0;
+  margin: 0 0 20px;
+}
+.cl-flipbox-front-h > *:last-child,
+.cl-flipbox-back-h > *:last-child {
+  margin-bottom: 0;
 }
 .cl-flipbox-front-icon {
   display: inline-block;
