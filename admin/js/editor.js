@@ -244,7 +244,6 @@ jQuery.fn.cssMod = function(mod, value){
 			this.parentInit(options);
 			this.textareaID = this.$input.attr('id');
 			var tinymceActive = this._isTinymceActive();
-			console.log(tinymceActive);
 
 			// tinymce editor handler
 			if (tinymceActive !== false) {
@@ -491,22 +490,75 @@ jQuery.fn.cssMod = function(mod, value){
 			this.$container = $(container);
 			this.$blocks = {};
 			this.$field = {};
+			// Showing conditions (fieldId => condition)
 			this.showIf = {};
+			// Showing dependencies (fieldId => affected field ids)
+			this.showIfDeps = {};
 			$.each(this.$container.find('.cl-form-row'), function(index, block){
 				var $block = $(block),
 					id = $block.data('id');
+
+				/* get dependencies */
+				var param = $block.data('param_settings');
+				if (param !== undefined && param !== null) {
+					this.showIf[id] = {};
+					if (param.element !== undefined) {
+						this.showIfDeps[id] = this.$container.find('.for_' + param.element).data('id');
+					}
+					if (param.not_empty !== undefined) {
+						this.showIf[id]['not_empty'] = param.not_empty;
+					}
+					if (param.callback !== undefined) {
+						this.showIf[id]['callback'] = param.callback;
+					}
+					if (param.value !== undefined) {
+						this.showIf[id]['value'] = param.value;
+					}
+				}
+
+
 				this.$blocks[id] = $block;
-				this.showIf[id] = true;
-				var shouldBeShown = this.execDependency(this.showIf[id]);
-				if (shouldBeShown) {
+				var shouldBeShown = this.execDependency(id);
+
+
+				/*
+				 var isVisible = this.$blocks[id].data('visible');
+				 if (isVisible === undefined) {
+				 isVisible = (this.$blocks[id].css('display') != 'none');
+				 } else {
+				 isVisible = (isVisible == 1);
+				 }
+				 */
+
+				if (shouldBeShown === true) {
 					this.$field[id] = new CLField($block);
 					this.$field[id].fireEvent('beforeShow');
 					this.$field[id].fireEvent('afterShow');
+				} else {
+					this.$blocks[id].css('display', 'none');
 				}
 			}.bind(this));
+
+			/*
+			 for (var fieldId in this.showIfDeps){
+			 this.$field[fieldId].addEvent('change', function(field){
+
+			 });
+			 }
+			 */
+
 		},
 
-		execDependency: function(conditions){
+		execDependency: function(id){
+			if (this.showIfDeps[id] !== undefined) {
+				var parentID = this.showIfDeps[id];
+				if (this.showIf[id]['not_empty'] !== undefined) {
+					var fieldValue = (this.getValue(parentID).length > 0);
+					if (this.showIf[id]['not_empty'] !== fieldValue) {
+						return false;
+					}
+				}
+			}
 			return true;
 		},
 

@@ -59,6 +59,10 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 500,
 					'description' => 'Description for one checkbox',
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
+					'dependency' => array(
+						'element' => 'rightside',
+						'not_empty' => FALSE,
+					),
 				),
 				'innercontent' => array(
 					'type' => 'textarea_html',

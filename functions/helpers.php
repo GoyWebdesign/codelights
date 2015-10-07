@@ -397,3 +397,14 @@ function cl_hex_to_rgb( $hex ) {
 function cl_rgb_to_hex( $rgb ) {
 	return '#' . implode( '', array_map( 'dechex', $rgb ) );
 }
+
+/**
+ * Transform array to data attribute
+ *
+ * @param array $data Data to pass
+ *
+ * @return string Element attribute 'data-param_settings="{values}"'
+ */
+function cl_array_to_data_js( $data ) {
+	return str_replace( '"', '&quot;', json_encode( $data ) );
+}
