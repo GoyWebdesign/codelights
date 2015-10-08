@@ -99,14 +99,20 @@ jQuery.fn.cssMod = function(mod, value){
 		this.$window = $(window);
 
 		this.waypoints = [];
+		this.inited = false;
 
 		this._events = {
+			init: function(){
+				this.locateAll();
+				this.$window.on('resize load', this._events.resize);
+				this.$window.on('scroll', this._events.scroll);
+			}.bind(this),
 			resize: this.resize.bind(this),
 			scroll: this.scroll.bind(this)
 		};
 
-		this.$window.on('resize load', this._events.resize);
-		this.$window.on('scroll', this._events.scroll);
+		// Some of the modern themes may have js-resized fullscreen sections, so taking this into account
+		setTimeout(this._events.init, 75);
 	};
 	CLScroll.prototype = {
 		/**
@@ -123,7 +129,6 @@ jQuery.fn.cssMod = function(mod, value){
 				offset: (typeof offset == 'string' && offset.indexOf('%') != -1) ? offset : parseInt(offset),
 				fn: fn
 			};
-			this._locateWaypoint(waypoint);
 			this.waypoints.push(waypoint);
 		},
 
