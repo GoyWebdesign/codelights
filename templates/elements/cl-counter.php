@@ -20,7 +20,7 @@ $pos = array();
 foreach ( array( 'initial', 'final' ) as $key ) {
 	$pos[ $key ] = array();
 	// In this array we'll store the string's character number, where primitive changes from letter to number or back
-	preg_match_all( '~([\d]+([\.,�][\d]+)?)~', $$key, $matches, PREG_OFFSET_CAPTURE );
+	preg_match_all( '~(\(\-?\d+([\.,\'· ]\d+)*\))|(\-?\d+([\.,\'· ]\d+)*)~u', $$key, $matches, PREG_OFFSET_CAPTURE );
 	foreach ( $matches[0] as $match ) {
 		$pos[ $key ][] = $match[1];
 		$pos[ $key ][] = $match[1] + strlen( $match[0] );

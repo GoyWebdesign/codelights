@@ -12,14 +12,18 @@
 		this.initialString = this.$container.html() + '';
 		this.finalString = this.$container.data('final') + '';
 		this.format = this.getFormat(this.initialString, this.finalString);
-		var pattern;
 		if (this.format.decMark) {
-			pattern = new RegExp('[^0-9\\' + this.format.decMark + ']+');
+			var pattern = new RegExp('[^0-9\/' + this.format.decMark + ']+', 'g');
+			this.initial = parseFloat(this.initialString.replace(pattern, '').replace(this.format.decMark, '.'));
+			this.final = parseFloat(this.finalString.replace(pattern, '').replace(this.format.decMark, '.'));
 		} else {
-			pattern = new RegExp('[^0-9]+');
+			this.initial = parseInt(this.initialString.replace(/[^0-9]+/g, ''));
+			this.final = parseInt(this.finalString.replace(/[^0-9]+/g, ''));
 		}
-		this.initial = window[this.format.decMark ? 'parseFloat' : 'parseInt'](this.initialString.replace(pattern, ''));
-		this.final = window[this.format.decMark ? 'parseFloat' : 'parseInt'](this.finalString.replace(pattern, ''));
+		if (this.format.accounting) {
+			if (this.initialString.length > 0 && this.initialString[0] == '(') this.initial = -this.initial;
+			if (this.finalString.length > 0 && this.finalString[0] == '(') this.final = -this.final;
+		}
 	};
 	CLCounterNumber.prototype = {
 		/**
@@ -27,11 +31,29 @@
 		 * @param now float Relative state between 0 and 1
 		 */
 		step: function(now){
-			var value = (1 - now) * this.initial + this.final * now;
-			if (!this.format.decMark) {
-				value = Math.round(value);
+			var value = (1 - now) * this.initial + this.final * now,
+				intPart = Math[this.format.decMark ? 'floor' : 'round'](value).toString(),
+				result = '';
+			if (this.format.zerofill) {
+				intPart = '0'.repeat(this.format.intDigits - intPart.length) + intPart;
 			}
-			this.$container.html(value);
+			if (this.format.groupMark) {
+				if (this.format.indian) {
+					result += intPart.replace(/(\d)(?=(\d\d)+\d$)/g, '$1' + this.format.groupMark);
+				} else {
+					result += intPart.replace(/\B(?=(\d{3})+(?!\d))/g, this.format.groupMark);
+				}
+			} else {
+				result += intPart;
+			}
+			if (this.format.decMark) {
+				var decimalPart = (value % 1).toFixed(this.format.decDigits).substring(2);
+				result += this.format.decMark + decimalPart;
+			}
+			if (this.format.accounting && result.length > 0 && result[0] == '-') {
+				result = '(' + result.substring(1) + ')';
+			}
+			this.$container.html(result);
 		},
 		/**
 		 * Get number format based on initial and final number strings
@@ -60,20 +82,24 @@
 			if (str.charAt(0) == '(') format.accounting = true;
 			if (/^0[0-9]/.test(str)) format.zerofill = true;
 			str = str.replace(/[\(\)\-]/g, '');
-			if (marks.length == 0) return format;
-			if (marks.length > 1) {
-				format.groupMark = marks.charAt(0);
-				if (marks.charAt(0) != marks.charAt(marks.length - 1)) format.decMark = marks.charAt(marks.length - 1);
-				if (!format.decMark && str.split(format.groupMark)[1].length == 2) format.indian = true;
-			} else/*if (marks.length == 1)*/ {
-				if (str.indexOf(marks) == 1) {
-					format[(str.length == 5) ? 'groupMark' : 'decMark'] = marks;
-				} else {
-					format.groupMark = marks;
+			if (marks.length != 0) {
+				if (marks.length > 1) {
+					format.groupMark = marks.charAt(0);
+					if (marks.charAt(0) != marks.charAt(marks.length - 1)) format.decMark = marks.charAt(marks.length - 1);
+					if (str.split(format.groupMark).length > 2 && str.split(format.groupMark)[1].length == 2) format.indian = true;
+				} else/*if (marks.length == 1)*/ {
+					if (str.indexOf(marks) == 1) {
+						format[(str.length == 5) ? 'groupMark' : 'decMark'] = marks;
+					} else {
+						format.groupMark = marks;
+					}
+				}
+				if (format.decMark) {
+					format.decDigits = str.length - str.indexOf(format.decMark) - 1;
 				}
 			}
-			if (format.decMark) {
-				format.decNumber = str.length - str.indexOf(format.decMark) - 1;
+			if (format.zerofill) {
+				format.intDigits = str.replace(/[^\d]+/g, '').length - (format.decDigits || 0);
 			}
 			return format;
 		}
@@ -92,7 +118,6 @@
 		this.len = 1 / (this.partsStates.length - 1);
 		// Text value won't be changed on each frame, so we'll update it only on demand
 		this.curState = 0;
-		this.duration = parseInt(this.$container.data('duration') || 10000);
 	};
 	CLCounterText.prototype = {
 		/**
@@ -167,10 +192,10 @@
 				this.parts.push(new CLCounterText($part));
 			}
 		}.bind(this));
-		if (window.$cl !== undefined && window.$cl.scroll !== undefined){
+		if (window.$cl !== undefined && window.$cl.scroll !== undefined) {
 			// Animate element when it becomes visible
 			$cl.scroll.addWaypoint(this.$container, '15%', this.animate.bind(this));
-		}else{
+		} else {
 			// No waypoints available: animate right from the start
 			this.animate();
 		}
