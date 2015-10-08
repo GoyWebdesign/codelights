@@ -57,8 +57,8 @@ jQuery.fn.cssMod = function(mod, value){
 			// List of properties that could be set in pixels from inline
 			if (baseWidth === undefined) baseWidth = 300;
 			this.scalables = {};
-			for (var selector in rules){
-				if ( ! rules.hasOwnProperty(selector)) continue;
+			for (var selector in rules) {
+				if (!rules.hasOwnProperty(selector)) continue;
 				var $elm = this.$container.find(selector);
 				if ($elm.length == 0) continue;
 				for (var i = 0; i < rules[selector].length; i++) {
@@ -76,10 +76,10 @@ jQuery.fn.cssMod = function(mod, value){
 			this._events.scale = function(){
 				var width = this.$container.width(),
 					scale = width / baseWidth;
-				for (var selector in this.scalables){
-					if ( ! this.scalables.hasOwnProperty(selector)) continue;
-					for (var prop in this.scalables[selector]){
-						if ( ! this.scalables[selector].hasOwnProperty(prop) || prop == '$elm') continue;
+				for (var selector in this.scalables) {
+					if (!this.scalables.hasOwnProperty(selector)) continue;
+					for (var prop in this.scalables[selector]) {
+						if (!this.scalables[selector].hasOwnProperty(prop) || prop == '$elm') continue;
 						this.scalables[selector].$elm.css(prop, (this.scalables[selector][prop] * scale) + 'px');
 					}
 				}
@@ -106,6 +106,7 @@ jQuery.fn.cssMod = function(mod, value){
 				this.locateAll();
 				this.$window.on('resize load', this._events.resize);
 				this.$window.on('scroll', this._events.scroll);
+				this.inited = true;
 			}.bind(this),
 			resize: this.resize.bind(this),
 			scroll: this.scroll.bind(this)
@@ -129,6 +130,7 @@ jQuery.fn.cssMod = function(mod, value){
 				offset: (typeof offset == 'string' && offset.indexOf('%') != -1) ? offset : parseInt(offset),
 				fn: fn
 			};
+			if (this.inited) this._locateWaypoint(waypoint);
 			this.waypoints.push(waypoint);
 		},
 
