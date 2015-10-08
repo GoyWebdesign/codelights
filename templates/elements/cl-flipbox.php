@@ -11,7 +11,7 @@
  * @var $animation string Animation type: 'cardflip' / 'cubetilt' / 'cubeflip' / 'coveropen'
  * @var $direction string Animation direction: 'n' / 'ne' / 'e' / 'se' / 's' / 'sw' / 'w' / 'nw'
  * @var $duration string Animation duration in milliseconds: '100ms' / '200ms' / ... / '900ms'
- * @var $animation_easing string Easing CSS class name
+ * @var $easing string Easing CSS class name
  * @var $front_icon_type string Front icon type: 'none' / 'font' / 'image'
  * @var $front_icon_name string The name of the front icon if present (ex: 'star' / 'fa-star')
  * @var $front_icon_size int Front icon font size
@@ -60,8 +60,7 @@ if ( ! empty( $valign ) ) {
 $tag = 'div';
 $atts = '';
 if ( $link_type != 'none' AND ! empty( $link ) ) {
-	$link = cl_parse_vc_link( $link );
-	$link_atts = ' href="' . esc_attr( $link['url'] ) . '" title="' . esc_attr( $link['title'] ) . '" target="' . esc_attr( $link['target'] ) . '"';
+	$link_atts = cl_parse_vc_link( $link, TRUE );
 	// Altering the whole element's div with anchor when it has a link
 	if ( $link_type == 'container' ) {
 		$tag = 'a';
@@ -76,7 +75,7 @@ $inline_css = cl_prepare_inline_css( array(
 ) );
 $output = '<' . $tag . $atts . ' class="cl-flipbox' . $classes . '"' . $inline_css . '>';
 
-$helper_classes = ' easing_' . $animation_easing;
+$helper_classes = ' easing_' . $easing;
 $helper_inline_css = cl_prepare_inline_css( array(
 	'transition-duration' => $duration,
 ) );

@@ -209,23 +209,34 @@ function cl_shortcode_atts( $atts, $shortcode ) {
  * Parsing vc_link field type properly
  *
  * @param string $value
+ * @param bool $as_string Return prepared anchor attributes string instead of array
  *
- * @return array
+ * @return mixed
  */
-function cl_parse_vc_link( $value ) {
+function cl_parse_vc_link( $value, $as_string = FALSE ) {
 	$result = array( 'url' => '', 'title' => '', 'target' => '' );
 	$params_pairs = explode( '|', $value );
 	if ( ! empty( $params_pairs ) ) {
 		foreach ( $params_pairs as $pair ) {
 			$param = explode( ':', $pair, 2 );
 			if ( ! empty( $param[0] ) && isset( $param[1] ) ) {
-				$result[ $param[0] ] = rawurldecode( $param[1] );
+				$result[ $param[0] ] = trim( rawurldecode( $param[1] ) );
 			}
 		}
 	}
 
-	// Some of the values may have excess spaces, like the target's ' _blank' value.
-	return array_map( 'trim', $result );
+	if ( $as_string ) {
+		$string = '';
+		foreach ( $result as $attr => $value ) {
+			if ( ! empty( $value ) ) {
+				$string .= ' ' . ( ( $attr == 'url' ) ? 'href' : $attr ) . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		return $string;
+	}
+
+	return $result;
 }
 
 /**
@@ -276,7 +287,7 @@ function cl_prepare_inline_css( $props, $style_attr = TRUE ) {
 				break;
 			// Properties that need vendor prefixes
 			case 'transition-duration':
-				$result .= '-webkit-' . $prop . ':' . $value . 'px;' . $prop . ':' . $value . ';';
+				$result .= '-webkit-' . $prop . ':' . $value . ';' . $prop . ':' . $value . ';';
 				break;
 			// Properties with image values
 			case 'background-image':
