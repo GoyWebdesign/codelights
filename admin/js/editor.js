@@ -129,7 +129,7 @@ jQuery.fn.cssMod = function(mod, value){
 			this._events = {
 				change: function(event){
 					var value = this._getCheckboxes();
-					this.$input.val(value);
+					this.setValue(value);
 				}.bind(this)
 			};
 
@@ -165,7 +165,7 @@ jQuery.fn.cssMod = function(mod, value){
 			this.$textarea.on('input paste', this._events.change);
 		},
 		setValue: function(value){
-			this.$input.val(value);
+			this.parentSetValue(value);
 			value = value.split(',').join('\n');
 			this.$textarea.val(value);
 		},
@@ -272,6 +272,7 @@ jQuery.fn.cssMod = function(mod, value){
 		setValue: function(value){
 			if (this.$input.is(':visible') === false) {
 				tinymce.get(this.textareaID).setContent(value);
+				this.parentFireEvent('change');
 			} else {
 				this.parentSetValue(value);
 			}
@@ -494,16 +495,23 @@ jQuery.fn.cssMod = function(mod, value){
 			this.showIf = {};
 			// Showing dependencies (fieldId => affected field ids)
 			this.showIfDeps = {};
+			// Showing dependencies (depended field ID => field ID)
+			this.showDepended = {};
+
 			$.each(this.$container.find('.cl-form-row'), function(index, block){
 				var $block = $(block),
-					id = $block.data('id');
+					id = $block.data('id'),
+					shouldBeShown = this.execDependency(id);
+				this.$blocks[id] = $block;
 
 				/* get dependencies */
 				var param = $block.data('param_settings');
 				if (param !== undefined && param !== null) {
 					this.showIf[id] = {};
 					if (param.element !== undefined) {
-						this.showIfDeps[id] = this.$container.find('.for_' + param.element).data('id');
+						var parentID = this.$container.find('.for_' + param.element).data('id')
+						this.showIfDeps[id] = parentID;
+						this.showDepended[parentID] = id;
 					}
 					if (param.not_empty !== undefined) {
 						this.showIf[id]['not_empty'] = param.not_empty;
@@ -516,20 +524,6 @@ jQuery.fn.cssMod = function(mod, value){
 					}
 				}
 
-
-				this.$blocks[id] = $block;
-				var shouldBeShown = this.execDependency(id);
-
-
-				/*
-				 var isVisible = this.$blocks[id].data('visible');
-				 if (isVisible === undefined) {
-				 isVisible = (this.$blocks[id].css('display') != 'none');
-				 } else {
-				 isVisible = (isVisible == 1);
-				 }
-				 */
-
 				if (shouldBeShown === true) {
 					this.$field[id] = new CLField($block);
 					this.$field[id].fireEvent('beforeShow');
@@ -539,22 +533,58 @@ jQuery.fn.cssMod = function(mod, value){
 				}
 			}.bind(this));
 
-			/*
-			 for (var fieldId in this.showIfDeps){
-			 this.$field[fieldId].addEvent('change', function(field){
-
-			 });
-			 }
-			 */
-
+			if (this.showIfDeps !== undefined) {
+				for (var fieldId in this.showIfDeps) {
+					var parentFieldID = this.showIfDeps[fieldId];
+					this.$field[parentFieldID].addEvent('change', function(field){
+						var pfID = field.$input.attr('id'),
+							fieldId = this.showDepended[pfID];
+						var shouldBeShown = this.execDependency(fieldId),
+							isShown = (this.$blocks[fieldId].css('display') != 'none');
+						if (shouldBeShown === false && isShown === true) {
+							// hide element
+							this.$field[fieldId].fireEvent('beforeHide');
+							this.$blocks[fieldId].stop(true, false).slideUp(function(){
+								this.$field[fieldId].fireEvent('afterHide');
+							}.bind(this));
+						} else if (shouldBeShown === true && isShown === false) {
+							// show element
+							if (this.$field[fieldId].length == 0) {
+								this.$field[fieldId] = new CLField($block);
+							}
+							this.$field[fieldId].fireEvent('beforeShow');
+							this.$blocks[fieldId].stop(true, false).slideDown(function(){
+								this.$field[fieldId].fireEvent('afterShow');
+							}.bind(this));
+						}
+					}.bind(this));
+				}
+			}
 		},
 
 		execDependency: function(id){
 			if (this.showIfDeps[id] !== undefined) {
-				var parentID = this.showIfDeps[id];
+				var parentID = this.showIfDeps[id],
+					fieldValue = this.getValue(parentID);
+
 				if (this.showIf[id]['not_empty'] !== undefined) {
-					var fieldValue = (this.getValue(parentID).length > 0);
-					if (this.showIf[id]['not_empty'] !== fieldValue) {
+					if (this.showIf[id]['not_empty'] !== (fieldValue.length > 0)) {
+						return false;
+					}
+				}
+				if (this.showIf[id]['value'] !== undefined) {
+					var values = this.showIf[id]['value'],
+						totalresult = true;
+					for (var key in values) {
+						if (values.hasOwnProperty(key)) {
+							var condition = values[key],
+								result = fieldValue.search(condition);
+							if (result == -1) {
+								totalresult = false;
+							}
+						}
+					}
+					if (totalresult === false) {
 						return false;
 					}
 				}
