@@ -27,6 +27,10 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'weight' => 200,
 					'description' => 'Description for the textarea',
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
+					'dependency' => array(
+						'element' => 'front',
+						'not_empty' => TRUE,
+					),
 				),
 				'leftside' => array(
 					'type' => 'dropdown',
@@ -61,7 +65,8 @@ class CL_Widget_Flipbox extends CL_Widget {
 					'edit_field_class' => 'vc_col-sm-12 vc_column',
 					'dependency' => array(
 						'element' => 'rightside',
-						'not_empty' => FALSE,
+						'not_empty' => TRUE,
+						'value' => array( 'one', 'two' ),
 					),
 				),
 				'innercontent' => array(
