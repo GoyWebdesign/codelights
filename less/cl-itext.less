@@ -1,7 +1,35 @@
+@import "prefixer.less";
+
 .cl-itext {
 	display: inline-block;
 	position: relative;
-	.animated {
+	font-size: 30px;
+
+	&.dynamic_bold .dynamic {
 		font-weight: bold;
+	}
+
+	&.type_replace {
+		.cl-itext-part {
+			position: relative;
+			display: inline-block;
+			vertical-align: top;
+			.transition-duration(inherit);
+			-webkit-transition-property: width, color;
+			transition-property: width, color;
+			& > span {
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				white-space: nowrap;
+				.transition-duration(inherit);
+				.transition-property(opacity);
+				opacity: 1;
+				&.part_hidden {
+					opacity: 0;
+				}
+			}
+		}
 	}
 }

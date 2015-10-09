@@ -17,13 +17,15 @@
 
 // Main element classes, inner css and additional attributes
 $classes = ' type_' . $animation_type;
+if ( $dynamic_bold ) {
+	$classes .= ' dynamic_bold';
+}
 
 $texts_arr = explode( "\n", strip_tags( $texts ) );
 
 $js_data = array(
 	'duration' => $duration,
 	'delay' => $delay,
-	'dynamicBold' => $dynamic_bold,
 );
 if ( ! empty( $dynamic_color ) ) {
 	$js_data['dynamicColor'] = $dynamic_color;
@@ -129,6 +131,7 @@ for ( $i = 1; $i < count( $group_changes ); $i++ ) {
 
 $inline_css = cl_prepare_inline_css( array(
 	'color' => $color,
+	'transition-duration' => $duration,
 ) );
 
 $output = '<' . $tag . ' class="cl-itext' . $classes . '"' . $inline_css . cl_pass_data_to_js( $js_data ) . '>';

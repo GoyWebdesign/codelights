@@ -1,7 +1,32 @@
 .cl-itext {
   display: inline-block;
   position: relative;
+  font-size: 30px;
 }
-.cl-itext .animated {
+.cl-itext.dynamic_bold .dynamic {
   font-weight: bold;
+}
+.cl-itext.type_replace .cl-itext-part {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-transition-duration: inherit;
+  transition-duration: inherit;
+  -webkit-transition-property: width, color;
+  transition-property: width, color;
+}
+.cl-itext.type_replace .cl-itext-part > span {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  -webkit-transition-duration: inherit;
+  transition-duration: inherit;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  opacity: 1;
+}
+.cl-itext.type_replace .cl-itext-part > span.part_hidden {
+  opacity: 0;
 }

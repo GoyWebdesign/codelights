@@ -9,6 +9,7 @@
 		this.type = this.$container.cssMod('type');
 		this.duration = parseInt(data.duration) || 1000;
 		this.delay = parseInt(data.delay) || 5000;
+		this.dynamicColor = (data.dynamicColor || '');
 		this.$parts = this.$container.find('.cl-itext-part');
 		if (this.$parts.length == 0) return; // No animated parts
 		this.parts = [];
@@ -27,41 +28,61 @@
 		this.active = 0;
 		this.maxActive = this.partsStates[0].length - 1;
 		this._events = {
-			preAnimate: this.preAnimate.bind(this),
 			animate: this.animate.bind(this),
 			postAnimate: this.postAnimate.bind(this)
 		};
+		// Preparing additional stuff
+		if (this.type == 'replace') {
+			this.$partsStates = [];
+			for (var i = 0; i < this.parts.length; i++) {
+				this.parts[i].empty().addClass('dynamic');
+				this.$partsStates[i] = [];
+				for (var j = 0; j < this.partsStates[i].length; j++) {
+					// Checking if span for this state was already previously created
+					var firstIndex = this.partsStates[i].indexOf(this.partsStates[i][j]);
+					if (firstIndex < j) {
+						this.$partsStates[i].push(this.$partsStates[i][firstIndex]);
+					} else {
+						var $partState = $('<span>' + this.partsStates[i][j] + '</span>');
+						$partState.appendTo(this.parts[i]);
+						$partState.data('width', $partState.width());
+						if (j > 0) {
+							$partState.addClass('part_hidden');
+						} else {
+							this.parts[i].css('width', $partState.data('width'));
+						}
+						this.$partsStates[i].push($partState);
+					}
+				}
+				if ( ! this.parts[i].hasClass('changesat_0')) this.parts[i].removeClass('dynamic');
+			}
+		}
 		// Start animation
-		this.preAnimate();
+		this.timer = setTimeout(this._events.animate, this.delay);
 	};
 	CLItext.prototype = {
-		preAnimate: function(){
-			// Adding animation classes to the part that will change
-			if (this.animateParts[this.active] === undefined) return;
-			for (var i = 0; i < this.animateParts[this.active].length; i++) {
-				this.parts[this.animateParts[this.active][i]].addClass('animated');
-			}
-			this.timer = setTimeout(this._events.animate, this.delay / 2);
-		},
 		animate: function(){
 			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1);
-			if (this.type == 'replace'){
-				this.timer = setTimeout(function(){
-					for (var i = 0; i < this.animateParts[this.active].length; i++){
-						var partIndex = this.animateParts[this.active][i],
-							newValue = this.partsStates[partIndex][nextState];
-						this.parts[partIndex].html(newValue);
+			if (this.type == 'replace') {
+				for (var i = 0; i < this.parts.length; i++) {
+					if (this.partsStates[i][this.active] == this.partsStates[i][nextState]){
+						this.parts[i].removeClass('dynamic');
+						continue;
 					}
-					this.active = nextState;
-					this.timer = setTimeout(this._events.postAnimate, this.duration / 2 + this.delay / 2);
-				}.bind(this), this.duration / 2);
-			}else if (this.type == 'terminal'){
-			}else if (this.type == 'shortest'){
+					this.parts[i].addClass('dynamic').css({
+						width: this.$partsStates[i][nextState].data('width')
+					});
+					this.$partsStates[i][this.active].addClass('part_hidden');
+					this.$partsStates[i][nextState].removeClass('part_hidden');
+				}
+				this.timer = setTimeout(this._events.postAnimate, this.duration);
+			} else if (this.type == 'terminal') {
+			} else if (this.type == 'shortest') {
 			}
 		},
 		postAnimate: function(){
-			this.$parts.removeClass('animated');
-			this.preAnimate();
+			this.active = (this.active == this.maxActive) ? 0 : (this.active + 1);
+			this.timer = setTimeout(this._events.animate, this.delay);
 		}
 	};
 	$.fn.clItext = function(){
