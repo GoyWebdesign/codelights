@@ -37,9 +37,9 @@
   right: 0;
   bottom: 0;
 }
-.easing_linear {
-  -webkit-transition-timing-function: linear;
-  transition-timing-function: linear;
+.easing_ease {
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 .easing_easeInSine {
   -webkit-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);

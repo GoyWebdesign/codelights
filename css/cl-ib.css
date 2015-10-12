@@ -1,31 +1,7 @@
 .cl-ib {
   display: inline-block;
+  vertical-align: top;
   position: relative;
-}
-.cl-ib:before {
-  content: '';
-  display: block;
-}
-.cl-ib.ratio_2x1:before {
-  padding-top: 50%;
-}
-.cl-ib.ratio_3x2:before {
-  padding-top: 66.6666%;
-}
-.cl-ib.ratio_4x3:before {
-  padding-top: 75%;
-}
-.cl-ib.ratio_1x1:before {
-  padding-top: 100%;
-}
-.cl-ib.ratio_3x4:before {
-  padding-top: 125%;
-}
-.cl-ib.ratio_2x3:before {
-  padding-top: 150%;
-}
-.cl-ib.ratio_1x2:before {
-  padding-top: 200%;
 }
 .cl-ib-h {
   position: absolute;
@@ -40,19 +16,14 @@
   transform-origin: 0 0;
 }
 .cl-ib-image,
-.cl-ib-overlay,
 .cl-ib-content,
+.cl-ib-content-h,
 .cl-ib-title,
-.cl-ib-text,
-.cl-ib-icon,
-.cl-ib-btn {
-  -webkit-transition-duration: inherit;
-  transition-duration: inherit;
+.cl-ib-text {
   -webkit-transition-timing-function: inherit;
   transition-timing-function: inherit;
 }
 .cl-ib-image,
-.cl-ib-overlay,
 .cl-ib-content {
   position: absolute;
   left: 0;
@@ -64,43 +35,72 @@
   -webkit-background-size: cover;
   background-size: cover;
   background-position: 50% 50%;
-  z-index: -1;
 }
 .cl-ib-image img {
   display: none;
 }
-.cl-ib-overlay {
-  z-index: 2;
-}
 .cl-ib-content {
-  z-index: 3;
+  z-index: 2;
   text-align: center;
-  padding: 10px;
+  padding: 10%;
 }
-.cl-ib-title,
+.cl-ib-title {
+  line-height: 1.4;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: inherit !important;
+}
+.cl-ib-title.size_tiny {
+  font-size: 14px;
+}
+.cl-ib-title.size_small {
+  font-size: 16px;
+}
+.cl-ib-title.size_medium {
+  font-size: 20px;
+}
+.cl-ib-title.size_large {
+  font-size: 24px;
+}
+.cl-ib-title.size_huge {
+  font-size: 28px;
+}
 .cl-ib-text {
-  line-height: 1.33;
+  font-size: 13px;
+  line-height: 1.4;
 }
-.cl-ib.animation_melete .cl-ib-overlay {
-  opacity: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+.cl-ib-title + .cl-ib-text {
+  margin-top: 15px;
 }
-.cl-ib.animation_melete .cl-ib-title,
-.cl-ib.animation_melete .cl-ib-text {
-  color: #000000;
+.cl-ib.animation_melete .cl-ib-image {
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
 }
 .cl-ib.animation_melete .cl-ib-content {
   opacity: 0;
-  -webkit-transform: scale(0.8);
-  transform: scale(0.8);
+  -webkit-transform: scale(0.2);
+  transform: scale(0.2);
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.cl-ib.animation_melete .cl-ib-content:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  margin-left: -0.5em;
+}
+.cl-ib.animation_melete .cl-ib-content-h {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
 }
 .cl-ib.animation_melete:hover .cl-ib-image,
 .cl-ib.animation_melete.hover .cl-ib-image {
-  -webkit-transform: scale(1.11);
-  transform: scale(1.11);
+  opacity: 0.1;
+  -webkit-transform: scale(4);
+  transform: scale(4);
 }
-.cl-ib.animation_melete:hover .cl-ib-overlay,
-.cl-ib.animation_melete.hover .cl-ib-overlay,
 .cl-ib.animation_melete:hover .cl-ib-content,
 .cl-ib.animation_melete.hover .cl-ib-content {
   opacity: 1;

@@ -2,34 +2,8 @@
 
 .cl-ib {
 	display: inline-block;
+	vertical-align: top;
 	position: relative;
-
-	// Preserving the needed aspect ratio
-	&:before {
-		content: '';
-		display: block;
-	}
-	&.ratio_2x1:before {
-		padding-top: 50%;
-	}
-	&.ratio_3x2:before {
-		padding-top: 66.6666%;
-	}
-	&.ratio_4x3:before {
-		padding-top: 75%;
-	}
-	&.ratio_1x1:before {
-		padding-top: 100%;
-	}
-	&.ratio_3x4:before {
-		padding-top: 125%;
-	}
-	&.ratio_2x3:before {
-		padding-top: 150%;
-	}
-	&.ratio_1x2:before {
-		padding-top: 200%;
-	}
 
 	&-h {
 		position: absolute;
@@ -43,17 +17,13 @@
 	}
 	// Animations and transitions
 	&-image,
-	&-overlay,
 	&-content,
+	&-content-h,
 	&-title,
-	&-text,
-	&-icon,
-	&-btn {
-		.transition-duration(inherit);
+	&-text {
 		.transition-timing-function(inherit);
 	}
 	&-image,
-	&-overlay,
 	&-content {
 		position: absolute;
 		left: 0;
@@ -65,47 +35,77 @@
 		-webkit-background-size: cover;
 		background-size: cover;
 		background-position: 50% 50%;
-		z-index: -1;
 		img {
 			display: none;
 		}
 	}
-	&-overlay {
-		z-index: 2;
-	}
 	&-content {
-		z-index: 3;
+		z-index: 2;
 		text-align: center;
-		padding: 10px;
+		padding: 10%;
 	}
-	&-title,
+	&-title {
+		line-height: 1.4;
+		padding: 0 !important;
+		margin: 0 !important;
+		color: inherit !important;
+		
+		&.size_tiny {
+			font-size: 14px;
+			}
+		&.size_small {
+			font-size: 16px;
+			}		
+		&.size_medium {
+			font-size: 20px;
+			}
+		&.size_large {
+			font-size: 24px;
+			}
+		&.size_huge {
+			font-size: 28px;
+			}
+	}
 	&-text {
-		line-height: 1.33;
+		font-size: 13px;
+		line-height: 1.4;
+	}
+	&-title + &-text {
+		margin-top: 15px;
 	}
 
 	// Animation Type: Melete
 	&.animation_melete {
-		.cl-ib-overlay {
-			opacity: 0;
-			background-color: rgba(255, 255, 255, .5);
-		}
-		.cl-ib-title,
-		.cl-ib-text {
-			color: #000000;
-		}
+		.cl-ib-image {
+			.transition-duration(400ms);
+			}
 		.cl-ib-content {
 			opacity: 0;
-			.scale(.80);
-		}
+			.scale(.2);
+			.transition-duration(500ms);
+			
+			&:before {
+				content: '';
+				display: inline-block;
+				vertical-align: middle;
+				height: 100%;
+				margin-left: -0.5em;
+				}
+			&-h {
+				display: inline-block;
+				vertical-align: middle;
+				width: 100%;
+				}
+			}
 		&:hover,
 		&.hover {
 			.cl-ib-image {
-				.scale(1.11);
+				opacity: 0.1;
+				.scale(4);
 			}
-			.cl-ib-overlay,
 			.cl-ib-content {
 				opacity: 1;
-				.scale(1.0);
+				.scale(1);
 			}
 		}
 	}

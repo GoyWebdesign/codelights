@@ -39,7 +39,7 @@ if ( ! empty( $title ) ) {
 
 $text_html = '';
 if ( ! empty( $desc ) ) {
-	$text_html .= '<div class="cl-ib-desc">' . $desc . '</div>';
+	$text_html .= '<div class="cl-ib-text">' . $desc . '</div>';
 	$classes .= ' with_desc';
 }
 
