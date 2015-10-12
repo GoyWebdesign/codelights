@@ -5,24 +5,24 @@
  *
  * @var $image int ID of the WP attachment image
  * @var $size string WordPress image resize name
- * @var $ratio string Aspect ratio: '2x1' / '3x2' / '4x3' / '1x1' / '3x4' / '2x3' / '1x2'
  * @var $title string
  * @var $desc string
  * @var $link string URL of the overall element or button in a 'vc_link' format
  * @var $animation string Animation type: 'melete' / 'soter' / 'phorcys' / 'aidos' / ...
- * @var $duration string Animation duration in milliseconds: '100ms' / '200ms' / ... / '900ms'
- * @var $easing string Easing CSS class name
  * @var $bgcolor string Background color
  * @var $textcolor string Text color
+ * @var $ratio string Aspect ratio: '2x1' / '3x2' / '4x3' / '1x1' / '3x4' / '2x3' / '1x2'
  * @var $width string In pixels or percents: '100' / '100%'
- * @var $padding string
+ * @var $align string Text align: 'left' / 'center' / 'right'
+ * @var $padding string In pixels or percents: '20px' / '10%'
  * @var $title_size string Title size: 'tiny' / 'small' / 'medium' / 'large' / 'huge'
  * @var $title_tag string Title tag name: 'h2' / 'h3' / 'h4' / 'h5' / 'div'
+ * @var $easing string Easing CSS class name
  * @var $el_class string Extra class name
  */
 
 // Main element classes, inner css and additional attributes
-$classes = ' animation_' . $animation . ' ratio_' . $ratio;
+$classes = ' animation_' . $animation . ' ratio_' . $ratio . ' align_' . $align;
 
 // Altering whole element's div with anchor when it has a link
 $tag = empty( $link ) ? 'div' : 'a';
@@ -54,11 +54,7 @@ $output .= cl_prepare_inline_css( array(
 ) );
 $output .= '>';
 
-$output .= '<div class="cl-ib-h easing_' . $easing . '"';
-$output .= cl_prepare_inline_css( array(
-	'transition-duration' => $duration,
-) );
-$output .= '>';
+$output .= '<div class="cl-ib-h easing_' . $easing . '">';
 $img = wp_get_attachment_image_src( $image, $size );
 if ( ! $img ) {
 	// TODO set placeholder
