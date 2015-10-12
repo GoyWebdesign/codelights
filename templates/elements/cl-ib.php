@@ -67,13 +67,11 @@ if ( ! $img ) {
 $output .= '<div class="cl-ib-image" style="background-image: url(' . esc_attr( $img[0] ) . ')">';
 $output .= '<img src="' . esc_attr( $img[0] ) . '" ' . image_hwstring( $img[1], $img[2] ) . ' alt="' . esc_attr( $title ) . '" />';
 $output .= '</div>';
-// Will be quite useful lots of animations
-$output .= '<div class="cl-ib-overlay"></div>';
 $output .= '<div class="cl-ib-content"';
 $ouptut .= cl_prepare_inline_css( array(
 	'padding' => $padding,
 ) );
-$output .= '>' . $title_html . $text_html . '</div>';
+$output .= '><div class="cl-ib-content-h">' . $title_html . $text_html . '</div></div>';
 $output .= '</div>';
 $output .= '</' . $tag . '>';
 
