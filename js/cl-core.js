@@ -107,6 +107,7 @@ jQuery.fn.cssMod = function(mod, value){
 				this.$window.on('resize load', this._events.resize);
 				this.$window.on('scroll', this._events.scroll);
 				this.inited = true;
+				this._events.resize();
 			}.bind(this),
 			resize: this.resize.bind(this),
 			scroll: this.scroll.bind(this)
