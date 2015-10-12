@@ -180,7 +180,7 @@
 		// Commonly used DOM elements
 		this.$container = $(container);
 		this.parts = [];
-		this.duration = this.$container.data('duration') || 2000;
+		this.duration = parseInt(this.$container.data('duration') || 2000);
 		this.$container.find('.cl-counter-value-part').each(function(index, part){
 			var $part = $(part);
 			// Skipping the ones that won't be changed

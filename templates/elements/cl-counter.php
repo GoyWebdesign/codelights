@@ -15,6 +15,14 @@
  * @var $el_class string Extra class name
  */
 
+// Element classes and attributes
+$classes = '';
+$atts = '';
+
+if ( ! empty( $duration ) ) {
+	$atts .= ' data-duration="' . esc_attr( $duration ) . '"';
+}
+
 // Finding numbers positions in both initial and final strings
 $pos = array();
 foreach ( array( 'initial', 'final' ) as $key ) {
@@ -43,7 +51,11 @@ foreach ( array( 'initial', 'final' ) as $key ) {
 	$pos[ $key ][] = strlen( $$key );
 }
 
-$output = '<div class="cl-counter">';
+if ( ! empty( $el_class ) ) {
+	$classes .= ' ' . $el_class;
+}
+
+$output = '<div class="cl-counter' . $classes . '"' . $atts . '>';
 $output .= '<div class="cl-counter-value"';
 $output .= cl_prepare_inline_css( array(
 	'color' => $value_color,
