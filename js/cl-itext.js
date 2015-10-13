@@ -7,6 +7,10 @@
 		var data = this.$container[0].onclick() || {};
 		this.$container.removeAttr('onclick');
 		this.type = this.$container.cssMod('type');
+		this.animateChars = (this.type.substring(this.type.length - 5) == 'Chars');
+		if (this.animateChars) {
+			this.type = this.type.substring(0, this.type.length - 5);
+		}
 		this.duration = parseInt(data.duration) || 1000;
 		this.delay = parseInt(data.delay) || 5000;
 		this.dynamicColor = (data.dynamicColor || '');
@@ -15,7 +19,10 @@
 		this.parts = [];
 		this.partsStates = []; // part index => text states
 		this.animateParts = []; // animation index => animated parts indexes
-		this.$parts.each(function(partIndex, part){
+		this.$parts.css({
+			'-webkit-transition-duration': this.duration + 'ms',
+			'transition-duration': this.duration + 'ms'
+		}).each(function(partIndex, part){
 			this.parts[partIndex] = $(part);
 			this.partsStates[partIndex] = part.onclick() || [];
 			this.parts[partIndex].removeAttr('onclick');
@@ -31,58 +38,86 @@
 			animate: this.animate.bind(this),
 			postAnimate: this.postAnimate.bind(this)
 		};
-		// Preparing additional stuff
-		if (this.type == 'replace') {
-			this.$partsStates = [];
-			for (var i = 0; i < this.parts.length; i++) {
-				this.parts[i].empty().addClass('dynamic');
-				this.$partsStates[i] = [];
-				for (var j = 0; j < this.partsStates[i].length; j++) {
-					// Checking if span for this state was already previously created
-					var firstIndex = this.partsStates[i].indexOf(this.partsStates[i][j]);
-					if (firstIndex < j) {
-						this.$partsStates[i].push(this.$partsStates[i][firstIndex]);
-					} else {
-						var $partState = $('<span>' + this.partsStates[i][j] + '</span>');
-						$partState.appendTo(this.parts[i]);
-						$partState.data('width', $partState.width());
-						if (j > 0) {
-							$partState.addClass('part_hidden');
-						} else {
-							this.parts[i].css('width', $partState.data('width'));
-						}
-						this.$partsStates[i].push($partState);
-					}
-				}
-				if ( ! this.parts[i].hasClass('changesat_0')) this.parts[i].removeClass('dynamic');
-			}
-		}
 		// Start animation
-		this.timer = setTimeout(this._events.animate, this.delay);
+		this._events.animate();
+		//this.timer = setTimeout(this._events.animate, this.delay);
 	};
 	CLItext.prototype = {
 		animate: function(){
 			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1);
-			if (this.type == 'replace') {
-				for (var i = 0; i < this.parts.length; i++) {
-					if (this.partsStates[i][this.active] == this.partsStates[i][nextState]){
-						this.parts[i].removeClass('dynamic');
-						continue;
-					}
-					this.parts[i].addClass('dynamic').css({
-						width: this.$partsStates[i][nextState].data('width')
-					});
-					this.$partsStates[i][this.active].addClass('part_hidden');
-					this.$partsStates[i][nextState].removeClass('part_hidden');
+			for (var partIndex = 0; partIndex < this.parts.length; partIndex++) {
+				if (this.partsStates[partIndex][this.active] != this.partsStates[partIndex][nextState]) {
+					this.parts[partIndex].addClass('dynamic');
+					this._animatePart(partIndex);
+				} else {
+					this.parts[partIndex].removeClass('dynamic');
 				}
-				this.timer = setTimeout(this._events.postAnimate, this.duration);
-			} else if (this.type == 'terminal') {
-			} else if (this.type == 'shortest') {
 			}
+			this.timer = setTimeout(this._events.postAnimate, this.duration + this.delay / 2);
+		},
+		/**
+		 * Animate a certain dynamic part
+		 * @param partIndex
+		 * @private
+		 */
+		_animatePart: function(partIndex){
+			// Preparing part for animation
+			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1),
+				nextValue = this.partsStates[partIndex][nextState],
+				$curSpan = this.parts[partIndex].wrapInner('<span></span>').children('span'),
+				$nextSpan = $('<span class="measure"></span>').html(nextValue).appendTo(this.parts[partIndex]),
+				nextWidth = $nextSpan.width(),
+				outType = (this.type == 'flipInX') ? 'flipOutX' : 'fadeOut',
+				i;
+			// Measuring the future part width
+			this.parts[partIndex].css('width', this.parts[partIndex].width());
+			setTimeout(function(){
+				this.parts[partIndex].css('width', nextWidth);
+			}.bind(this), 25);
+			$curSpan.css({
+				position: 'absolute',
+				left: 0,
+				top: 0,
+				'-webkit-transition-duration': (this.duration / 5) + 'ms',
+				'transition-duration': (this.duration / 5) + 'ms'
+			}).addClass('animated_' + outType);
+			$nextSpan.css('width', nextWidth).removeClass('measure').prependTo(this.parts[partIndex]);
+			if (this.animateChars) {
+				$nextSpan.empty();
+				var $chars = [],
+					charDuration = Math.floor(this.duration / nextValue.length);
+				for (i = 0; i < nextValue.length; i++) {
+					$chars.push($('<span>' + nextValue[i] + '</span>').css({
+						'-webkit-transition-duration': charDuration + 'ms',
+						'transition-duration': charDuration + 'ms'
+					}).appendTo($nextSpan));
+				}
+				$.each($chars, function(index, char){
+					setTimeout(function(){
+						$(char).addClass('animated_' + this.type);
+					}.bind(this), charDuration * index);
+				}.bind(this));
+			} else {
+				$nextSpan.wrapInner('<span></span>').children('span').css({
+					'-webkit-transition-duration': this.duration + 'ms',
+					'transition-duration': this.duration + 'ms'
+				}).addClass('animated_' + this.type);
+			}
+			setTimeout(this._cleanupPartAnimation.bind(this, partIndex), this.duration + this.delay / 2);
+		},
+		/**
+		 * Clean up a certain part from animation
+		 * @param partIndex
+		 * @private
+		 */
+		_cleanupPartAnimation: function(partIndex){
+			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1),
+				nextValue = this.partsStates[partIndex][nextState];
+			this.parts[partIndex].css('width', '').html(nextValue);
 		},
 		postAnimate: function(){
 			this.active = (this.active == this.maxActive) ? 0 : (this.active + 1);
-			this.timer = setTimeout(this._events.animate, this.delay);
+			this.timer = setTimeout(this._events.animate, this.delay / 2);
 		}
 	};
 	$.fn.clItext = function(){

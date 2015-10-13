@@ -38,7 +38,7 @@ if ( ! empty( $el_class ) ) {
 // Getting words and their delimiters to work on this level of abstraction
 $_parts = array();
 foreach ( $texts_arr as $index => $text ) {
-	preg_match_all( '~\w+|[^\w]+~u', $text, $matches );
+	preg_match_all( '~[\w\-]+|[^\w\-]+~u', $text, $matches );
 	$_parts[ $index ] = $matches[0];
 }
 
@@ -131,7 +131,6 @@ for ( $i = 1; $i < count( $group_changes ); $i++ ) {
 
 $inline_css = cl_prepare_inline_css( array(
 	'color' => $color,
-	'transition-duration' => $duration,
 ) );
 
 $output = '<' . $tag . ' class="cl-itext' . $classes . '"' . $inline_css . cl_pass_data_to_js( $js_data ) . '>';

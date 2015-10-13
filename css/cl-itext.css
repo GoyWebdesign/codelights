@@ -3,30 +3,29 @@
   position: relative;
   font-size: 30px;
 }
-.cl-itext.dynamic_bold .dynamic {
-  font-weight: bold;
-}
-.cl-itext.type_replace .cl-itext-part {
+.cl-itext-part {
   position: relative;
   display: inline-block;
-  vertical-align: top;
-  -webkit-transition-duration: inherit;
-  transition-duration: inherit;
-  -webkit-transition-property: width, color;
-  transition-property: width, color;
+  white-space: nowrap;
+  -webkit-transition-property: width;
+  transition-property: width;
 }
-.cl-itext.type_replace .cl-itext-part > span {
-  display: inline-block;
+.cl-itext-part > span.measure {
   position: absolute;
   left: 0;
   top: 0;
-  white-space: nowrap;
-  -webkit-transition-duration: inherit;
-  transition-duration: inherit;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-  opacity: 1;
-}
-.cl-itext.type_replace .cl-itext-part > span.part_hidden {
   opacity: 0;
+}
+.cl-itext-part > span > span {
+  display: inline-block;
+  visibility: hidden;
+}
+.cl-itext-part > span > span[class^="animated_"] {
+  visibility: visible;
+}
+.cl-itext-part > span > span:last-child {
+  margin-right: -200px;
+}
+.cl-itext.dynamic_bold .dynamic {
+  font-weight: bold;
 }

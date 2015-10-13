@@ -9,10 +9,10 @@ jQuery.fn.cssMod = function(mod, value){
 	// Remove class modificator
 	if (value === false) {
 		return this.each(function(){
-			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-z0-9\_]+( |$)'), '$2');
+			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_]+( |$)'), '$2');
 		});
 	}
-	var pcre = new RegExp('^.*?' + mod + '\_([a-z0-9\_]+).*?$'),
+	var pcre = new RegExp('^.*?' + mod + '\_([a-zA-Z0-9\_]+).*?$'),
 		arr;
 	// Retrieve modificator
 	if (value === undefined) {
@@ -21,7 +21,7 @@ jQuery.fn.cssMod = function(mod, value){
 	// Set modificator
 	else {
 		return this.each(function(){
-			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-z0-9\_]+( |$)'), '$1' + mod + '_' + value + '$2');
+			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_]+( |$)'), '$1' + mod + '_' + value + '$2');
 		});
 	}
 };

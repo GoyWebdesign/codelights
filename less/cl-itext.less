@@ -5,31 +5,36 @@
 	position: relative;
 	font-size: 30px;
 
-	&.dynamic_bold .dynamic {
-		font-weight: bold;
-	}
+	&-part {
+		position: relative;
+		display: inline-block;
+		white-space: nowrap;
+		.transition-property(width);
 
-	&.type_replace {
-		.cl-itext-part {
-			position: relative;
-			display: inline-block;
-			vertical-align: top;
-			.transition-duration(inherit);
-			-webkit-transition-property: width, color;
-			transition-property: width, color;
-			& > span {
-				display: inline-block;
+		// Changeable parts
+		> span {
+			&.measure {
 				position: absolute;
 				left: 0;
 				top: 0;
-				white-space: nowrap;
-				.transition-duration(inherit);
-				.transition-property(opacity);
-				opacity: 1;
-				&.part_hidden {
-					opacity: 0;
+				opacity: 0;
+			}
+
+			// Characters
+			> span {
+				display: inline-block;
+				visibility: hidden;
+				&[class^="animated_"] {
+					visibility: visible;
+				}
+				&:last-child {
+					margin-right: -200px;
 				}
 			}
 		}
+	}
+
+	&.dynamic_bold .dynamic {
+		font-weight: bold;
 	}
 }
