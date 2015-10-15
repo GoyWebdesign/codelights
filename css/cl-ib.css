@@ -2,6 +2,7 @@
   display: inline-block;
   vertical-align: top;
   position: relative;
+  width: 100%;
 }
 .cl-ib-h {
   position: absolute;
@@ -43,6 +44,12 @@
   z-index: 2;
   text-align: center;
   padding: 10%;
+}
+.cl-ib.align_left .cl-ib-content {
+  text-align: left;
+}
+.cl-ib.align_right .cl-ib-content {
+  text-align: right;
 }
 .cl-ib-title {
   line-height: 1.4;
@@ -107,38 +114,81 @@
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-.cl-ib.animation_soter .cl-ib-h {
-  -webkit-perspective: 600px;
-  -moz-perspective: 600px;
-  perspective: 600px;
-}
 .cl-ib.animation_soter .cl-ib-image {
-  left: -20%;
-  right: 0;
+  z-index: 1;
+  border-radius: 50%;
+  -webkit-transform: scale(0.3);
+  transform: scale(0.3);
+  -webkit-transition-property: transform border-radius;
+  transition-property: transform border-radius;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.cl-ib.animation_soter.ratio_2x1 .cl-ib-image {
+  top: -50%;
+  bottom: -50%;
+  -webkit-transform-origin: 90% 50%;
+  transform-origin: 90% 50%;
+}
+.cl-ib.animation_soter.ratio_3x2 .cl-ib-image {
+  top: -25%;
+  bottom: -25%;
+  -webkit-transform-origin: 90% 66%;
+  transform-origin: 90% 66%;
+}
+.cl-ib.animation_soter.ratio_4x3 .cl-ib-image {
+  top: -16.67%;
+  bottom: -16.67%;
+  -webkit-transform-origin: 90% 72%;
+  transform-origin: 90% 72%;
+}
+.cl-ib.animation_soter.ratio_1x1 .cl-ib-image {
+  -webkit-transform-origin: 90% 90%;
+  transform-origin: 90% 90%;
+}
+.cl-ib.animation_soter.ratio_3x4 .cl-ib-image {
+  left: -12.5%;
+  right: -12.5%;
+  -webkit-transform: scale(0.225);
+  transform: scale(0.225);
+  -webkit-transform-origin: 76% 90%;
+  transform-origin: 76% 90%;
+}
+.cl-ib.animation_soter.ratio_2x3 .cl-ib-image {
+  left: -25%;
+  right: -25%;
+  -webkit-transform: scale(0.2);
+  transform: scale(0.2);
+  -webkit-transform-origin: 73% 94%;
+  transform-origin: 73% 94%;
+}
+.cl-ib.animation_soter.ratio_1x2 .cl-ib-image {
+  left: -50%;
+  right: -50%;
+  -webkit-transform: scale(0.15);
+  transform: scale(0.15);
+  -webkit-transform-origin: 66% 95%;
+  transform-origin: 66% 95%;
 }
 .cl-ib.animation_soter .cl-ib-content {
-  top: 5%;
-  left: 5%;
-  bottom: 5%;
-  right: 50%;
-  border: 1px white solid;
-  -webkit-transform-origin: 0% 50%;
-  transform-origin: 0% 50%;
-  -webkit-transform: rotateY(-90deg);
-  transform: rotateY(-90deg);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
+  z-index: 0;
+  right: 33%;
+  -webkit-transition-property: transform opacity;
+  transition-property: transform opacity;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 .cl-ib.animation_soter:hover .cl-ib-image,
 .cl-ib.animation_soter.hover .cl-ib-image {
-  left: 0;
-  right: -20%;
+  border-radius: 0;
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
 }
 .cl-ib.animation_soter:hover .cl-ib-content,
 .cl-ib.animation_soter.hover .cl-ib-content {
-  -webkit-transform: rotateY(0deg);
-  transform: rotateY(0deg);
+  opacity: 0;
+  -webkit-transform: translate3d(-40%, -40%, 0) scale(2);
+  transform: translate3d(-40%, -40%, 0) scale(2);
 }
 .cl-ib.animation_phorcys .cl-ib-image {
   bottom: -10%;
