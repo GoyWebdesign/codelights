@@ -149,26 +149,26 @@
 .cl-ib.animation_soter.ratio_3x4 .cl-ib-image {
   left: -12.5%;
   right: -12.5%;
-  -webkit-transform: scale(0.225);
-  transform: scale(0.225);
-  -webkit-transform-origin: 76% 90%;
-  transform-origin: 76% 90%;
+  -webkit-transform: scale(0.24);
+  transform: scale(0.24);
+  -webkit-transform-origin: 79.5% 92.5%;
+  transform-origin: 79.5% 92.5%;
 }
 .cl-ib.animation_soter.ratio_2x3 .cl-ib-image {
   left: -25%;
   right: -25%;
   -webkit-transform: scale(0.2);
   transform: scale(0.2);
-  -webkit-transform-origin: 73% 94%;
-  transform-origin: 73% 94%;
+  -webkit-transform-origin: 73.5% 94%;
+  transform-origin: 73.5% 94%;
 }
 .cl-ib.animation_soter.ratio_1x2 .cl-ib-image {
   left: -50%;
   right: -50%;
   -webkit-transform: scale(0.15);
   transform: scale(0.15);
-  -webkit-transform-origin: 66% 95%;
-  transform-origin: 66% 95%;
+  -webkit-transform-origin: 66.5% 95.7%;
+  transform-origin: 66.5% 95.7%;
 }
 .cl-ib.animation_soter .cl-ib-content {
   z-index: 0;
