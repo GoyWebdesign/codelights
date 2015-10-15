@@ -64,7 +64,7 @@ $output .= '<div class="cl-ib-image" style="background-image: url(' . esc_attr( 
 $output .= '<img src="' . esc_attr( $img[0] ) . '" ' . image_hwstring( $img[1], $img[2] ) . ' alt="' . esc_attr( $title ) . '" />';
 $output .= '</div>';
 $output .= '<div class="cl-ib-content"';
-$ouptut .= cl_prepare_inline_css( array(
+$output .= cl_prepare_inline_css( array(
 	'padding' => $padding,
 ) );
 $output .= '><div class="cl-ib-content-h">' . $title_html . $text_html . '</div></div>';
