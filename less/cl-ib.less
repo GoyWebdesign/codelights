@@ -4,6 +4,7 @@
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
+	word-wrap: normal;
 	width: 100%;
 
 	&-h {
@@ -113,7 +114,7 @@
 			border-radius: 50%;
 			.transform(scale(0.3));
 			.transition-property(transform border-radius);
-			.transition-duration(300ms);
+			.transition-duration(400ms);
 		}
 		&.ratio_2x1 .cl-ib-image {
 			top: -50%;
@@ -155,7 +156,7 @@
 			z-index: 0;
 			right: 33%;
 			.transition-property(transform opacity);
-			.transition-duration(300ms);
+			.transition-duration(400ms);
 		}
 		&:hover,
 		&.hover {
@@ -346,96 +347,148 @@
 	// Animation Type: Hebe
 	&.animation_hebe {
 		.cl-ib-image {
+			background-color: inherit;
+			.scale(1.1);
 			.transition-duration(500ms);
+			}
+		.cl-ib-image:before,
+		.cl-ib-image:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: inherit;
+			opacity: 0.3;
+			.transform(translateY(100%));
+			.transition-property(transform opacity);
+			.transition-duration(500ms);
+			}
+		.cl-ib-image:after {
+			.transform(translateY(-100%));
 			}
 		.cl-ib-content {
 			top: 50%;
 			bottom: auto;
+			.transform(translateY(-50%));
+			}
+		.cl-ib-title {
 			opacity: 0;
-			.transform(translate3d(0,-50%,0) scale(0.2));
-			.transition-duration(400ms);
+			.transform(translateY(-20px));
+			.transition-property(transform opacity);
+			.transition-duration(600ms);
+			}
+		.cl-ib-desc {
+			opacity: 0;
+			.transform(translateY(20px));
+			.transition-property(transform opacity);
+			.transition-duration(600ms);
 			}
 		&:hover,
 		&.hover {
 			.cl-ib-image {
-				opacity: 0.1;
-				.scale(4);
-			}
-			.cl-ib-content {
+				.scale(1);
+				}
+			.cl-ib-image:before,
+			.cl-ib-image:after {
+				opacity: 0.6;
+				.transform(translateY(0));
+				}
+			.cl-ib-title {
 				opacity: 1;
-				.transform(translate3d(0,-50%,0) scale(1));
-			}
+				.transform(translateY(0));
+				}
+			.cl-ib-desc {
+				opacity: 1;
+				.transform(translateY(0));
+				}
 		}
 	}
 		
 	// Animation Type: Aphelia
 	&.animation_aphelia {
 		.cl-ib-image {
-			.transition-duration(500ms);
+			opacity: 0.25;
+			-webkit-filter: grayscale(1);
+					filter: grayscale(1);
+			.transition-property(filter opacity);
+			.transition-duration(400ms);
 			}
 		.cl-ib-content {
-			opacity: 0;
-			.scale(.2);
+			top: 50%;
+			bottom: auto;
+			.transform(translateY(-50%));
+			}
+		.cl-ib-title {
+			opacity: 1;
+			.transform(translateY(0) scale(1));
+			.transition-property(transform opacity);
 			.transition-duration(400ms);
-			
-			&:before {
-				content: '';
-				display: inline-block;
-				vertical-align: middle;
-				height: 100%;
-				margin-left: -0.5em;
-				}
-			&-h {
-				display: inline-block;
-				vertical-align: middle;
-				width: 100%;
-				}
+			}
+		.cl-ib-desc {
+			opacity: 1;
+			.transform(translateY(0) scale(1));
+			.transition-property(transform opacity);
+			.transition-duration(400ms);
 			}
 		&:hover,
 		&.hover {
 			.cl-ib-image {
-				opacity: 0.1;
-				.scale(4);
-			}
-			.cl-ib-content {
 				opacity: 1;
-				.scale(1);
+				-webkit-filter: grayscale(0);
+						filter: grayscale(0);
 			}
+			.cl-ib-title {
+				opacity: 0;
+				.transform(translateY(-40px) scale(0.8));
+				}
+			.cl-ib-desc {
+				opacity: 0;
+				.transform(translateY(40px) scale(0.8));
+				}
 		}
 	}
 	
 	// Animation Type: Nike
 	&.animation_nike {
 		.cl-ib-image {
-			.transition-duration(500ms);
+			-webkit-filter: grayscale(1);
+					filter: grayscale(1);
+			.transform(translateY(25%));
+			.transition-property(transform filter);
+			.transition-duration(400ms);
+		}
+		.cl-ib-h:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 50%;
+			background-color: inherit;
+			.transform(translateY(0));
+			.transition-property(transform);
+			.transition-duration(400ms);
 			}
 		.cl-ib-content {
-			opacity: 0;
-			.scale(.2);
-			.transition-duration(400ms);
-			
-			&:before {
-				content: '';
-				display: inline-block;
-				vertical-align: middle;
-				height: 100%;
-				margin-left: -0.5em;
-				}
-			&-h {
-				display: inline-block;
-				vertical-align: middle;
-				width: 100%;
-				}
-			}
+			opacity: 1;
+			.transition-property(transform opacity);
+			.transition-duration(250ms);
+		}
 		&:hover,
 		&.hover {
 			.cl-ib-image {
-				opacity: 0.1;
-				.scale(4);
+				-webkit-filter: grayscale(0);
+						filter: grayscale(0);
+				.transform(translateY(0));
 			}
+			.cl-ib-h:after {
+				.transform(translateY(-100%));
+				}
 			.cl-ib-content {
-				opacity: 1;
-				.scale(1);
+				opacity: 0;
+				.transform(translateY(-20px));
 			}
 		}
 	}
