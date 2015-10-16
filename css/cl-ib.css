@@ -11,6 +11,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  background-color: inherit;
   -webkit-transition-property: none;
   transition-property: none;
   -webkit-transform-origin: 0 0;
@@ -76,32 +77,20 @@
 .cl-ib-desc {
   font-size: 13px;
   line-height: 1.4;
-}
-.cl-ib-title + .cl-ib-desc {
   margin-top: 15px;
 }
 .cl-ib.animation_melete .cl-ib-image {
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
-}
-.cl-ib.animation_melete .cl-ib-content {
-  opacity: 0;
-  -webkit-transform: scale(0.2);
-  transform: scale(0.2);
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
 }
-.cl-ib.animation_melete .cl-ib-content:before {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-  height: 100%;
-  margin-left: -0.5em;
-}
-.cl-ib.animation_melete .cl-ib-content-h {
-  display: inline-block;
-  vertical-align: middle;
-  width: 100%;
+.cl-ib.animation_melete .cl-ib-content {
+  top: 50%;
+  bottom: auto;
+  opacity: 0;
+  -webkit-transform: translate3d(0, -50%, 0) scale(0.2);
+  transform: translate3d(0, -50%, 0) scale(0.2);
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
 }
 .cl-ib.animation_melete:hover .cl-ib-image,
 .cl-ib.animation_melete.hover .cl-ib-image {
@@ -112,8 +101,8 @@
 .cl-ib.animation_melete:hover .cl-ib-content,
 .cl-ib.animation_melete.hover .cl-ib-content {
   opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
+  -webkit-transform: translate3d(0, -50%, 0) scale(1);
+  transform: translate3d(0, -50%, 0) scale(1);
 }
 .cl-ib.animation_soter .cl-ib-image {
   z-index: 1;
@@ -202,12 +191,7 @@
 }
 .cl-ib.animation_phorcys .cl-ib-content {
   top: auto;
-  padding-top: 20%;
-  color: #fff;
-  -webkit-transition-property: padding color;
-  transition-property: padding color;
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
+  padding-top: 20% !important;
 }
 .cl-ib.animation_phorcys .cl-ib-content:before {
   content: '';
@@ -219,22 +203,30 @@
   background: linear-gradient(transparent 0%, rgba(30, 30, 30, 0.8) 100%) repeat-x rgba(30, 30, 30, 0);
   -webkit-transition-property: opacity;
   transition-property: opacity;
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 .cl-ib.animation_phorcys .cl-ib-content-h {
   position: relative;
+}
+.cl-ib.animation_phorcys .cl-ib-title {
+  color: #fff !important;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 .cl-ib.animation_phorcys .cl-ib-desc {
   position: relative;
   opacity: 0;
   line-height: 0;
+  margin-top: 0;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition-property: opacity line-height;
-  transition-property: opacity line-height;
-  -webkit-transition-duration: 400ms;
-  transition-duration: 400ms;
+  -webkit-transition-property: opacity line-height margin;
+  transition-property: opacity line-height margin;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 .cl-ib.animation_phorcys:hover .cl-ib-image,
 .cl-ib.animation_phorcys.hover .cl-ib-image {
@@ -242,17 +234,251 @@
   -webkit-transform: translate3d(0, -8%, 0);
   transform: translate3d(0, -8%, 0);
 }
-.cl-ib.animation_phorcys:hover .cl-ib-content,
-.cl-ib.animation_phorcys.hover .cl-ib-content {
-  padding-bottom: 20%;
-  color: inherit;
-}
 .cl-ib.animation_phorcys:hover .cl-ib-content:before,
 .cl-ib.animation_phorcys.hover .cl-ib-content:before {
   opacity: 0;
+}
+.cl-ib.animation_phorcys:hover .cl-ib-title,
+.cl-ib.animation_phorcys.hover .cl-ib-title {
+  color: inherit !important;
 }
 .cl-ib.animation_phorcys:hover .cl-ib-desc,
 .cl-ib.animation_phorcys.hover .cl-ib-desc {
   opacity: 1;
   line-height: 1.5;
+  margin-top: 15px;
+}
+.cl-ib.animation_aidos .cl-ib-h {
+  background-color: inherit;
+}
+.cl-ib.animation_aidos .cl-ib-image {
+  background-color: inherit;
+  -webkit-transform: translate3d(0, 0, 0) scale(1.01);
+  transform: translate3d(0, 0, 0) scale(1.01);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_aidos .cl-ib-image:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50;
+  height: 40px;
+  width: 40px;
+  margin: -20px 0 0 -20px;
+  background-color: inherit;
+  -webkit-transform: translate3d(-35px, 0, 0) rotate(45deg);
+  transform: translate3d(-35px, 0, 0) rotate(45deg);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_aidos .cl-ib-content {
+  right: auto;
+  width: 50%;
+}
+.cl-ib.animation_aidos .cl-ib-title {
+  opacity: 0;
+  -webkit-transform: translate3d(-10%, 0, 0);
+  transform: translate3d(-10%, 0, 0);
+  -webkit-transition-property: transform opacity;
+  transition-property: transform opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_aidos .cl-ib-desc {
+  opacity: 0;
+  -webkit-transform: translate3d(10%, 0, 0);
+  transform: translate3d(10%, 0, 0);
+  -webkit-transition-property: transform opacity;
+  transition-property: transform opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_aidos:hover .cl-ib-image,
+.cl-ib.animation_aidos.hover .cl-ib-image {
+  -webkit-transform: translate3d(50%, 0, 0) scale(1.01);
+  transform: translate3d(50%, 0, 0) scale(1.01);
+}
+.cl-ib.animation_aidos:hover .cl-ib-image:after,
+.cl-ib.animation_aidos.hover .cl-ib-image:after {
+  -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+  transform: translate3d(0, 0, 0) rotate(45deg);
+}
+.cl-ib.animation_aidos:hover .cl-ib-title,
+.cl-ib.animation_aidos.hover .cl-ib-title {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.cl-ib.animation_aidos:hover .cl-ib-desc,
+.cl-ib.animation_aidos.hover .cl-ib-desc {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.cl-ib.animation_caeros .cl-ib-image {
+  background-color: inherit;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+.cl-ib.animation_caeros .cl-ib-image:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: inherit;
+  opacity: 0.25;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_caeros .cl-ib-title {
+  text-align: center;
+  -webkit-transform: translate3d(0, 30px, 0);
+  transform: translate3d(0, 30px, 0);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_caeros .cl-ib-desc {
+  opacity: 0;
+  text-align: center;
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  -webkit-transition-property: transform opacity;
+  transition-property: transform opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_caeros:hover .cl-ib-image,
+.cl-ib.animation_caeros.hover .cl-ib-image {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+  -webkit-transition-duration: 7s;
+  transition-duration: 7s;
+}
+.cl-ib.animation_caeros:hover .cl-ib-image:after,
+.cl-ib.animation_caeros.hover .cl-ib-image:after {
+  opacity: 0.75;
+}
+.cl-ib.animation_caeros:hover .cl-ib-title,
+.cl-ib.animation_caeros.hover .cl-ib-title {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.cl-ib.animation_caeros:hover .cl-ib-desc,
+.cl-ib.animation_caeros.hover .cl-ib-desc {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.cl-ib.animation_hebe .cl-ib-image {
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.cl-ib.animation_hebe .cl-ib-content {
+  top: 50%;
+  bottom: auto;
+  opacity: 0;
+  -webkit-transform: translate3d(0, -50%, 0) scale(0.2);
+  transform: translate3d(0, -50%, 0) scale(0.2);
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_hebe:hover .cl-ib-image,
+.cl-ib.animation_hebe.hover .cl-ib-image {
+  opacity: 0.1;
+  -webkit-transform: scale(4);
+  transform: scale(4);
+}
+.cl-ib.animation_hebe:hover .cl-ib-content,
+.cl-ib.animation_hebe.hover .cl-ib-content {
+  opacity: 1;
+  -webkit-transform: translate3d(0, -50%, 0) scale(1);
+  transform: translate3d(0, -50%, 0) scale(1);
+}
+.cl-ib.animation_aphelia .cl-ib-image {
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.cl-ib.animation_aphelia .cl-ib-content {
+  opacity: 0;
+  -webkit-transform: scale(0.2);
+  transform: scale(0.2);
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_aphelia .cl-ib-content:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  margin-left: -0.5em;
+}
+.cl-ib.animation_aphelia .cl-ib-content-h {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+.cl-ib.animation_aphelia:hover .cl-ib-image,
+.cl-ib.animation_aphelia.hover .cl-ib-image {
+  opacity: 0.1;
+  -webkit-transform: scale(4);
+  transform: scale(4);
+}
+.cl-ib.animation_aphelia:hover .cl-ib-content,
+.cl-ib.animation_aphelia.hover .cl-ib-content {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.cl-ib.animation_nike .cl-ib-image {
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+.cl-ib.animation_nike .cl-ib-content {
+  opacity: 0;
+  -webkit-transform: scale(0.2);
+  transform: scale(0.2);
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_nike .cl-ib-content:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  margin-left: -0.5em;
+}
+.cl-ib.animation_nike .cl-ib-content-h {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+.cl-ib.animation_nike:hover .cl-ib-image,
+.cl-ib.animation_nike.hover .cl-ib-image {
+  opacity: 0.1;
+  -webkit-transform: scale(4);
+  transform: scale(4);
+}
+.cl-ib.animation_nike:hover .cl-ib-content,
+.cl-ib.animation_nike.hover .cl-ib-content {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
