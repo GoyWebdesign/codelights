@@ -18,6 +18,7 @@
 }
 .cl-ib-image,
 .cl-ib-content,
+.cl-ib-content:before,
 .cl-ib-content-h,
 .cl-ib-title,
 .cl-ib-text {
@@ -192,29 +193,66 @@
 }
 .cl-ib.animation_phorcys .cl-ib-image {
   bottom: -10%;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition-property: transform opacity;
+  transition-property: transform opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
 }
 .cl-ib.animation_phorcys .cl-ib-content {
-  top: 70%;
-  bottom: -70%;
-  background: rgba(0, 0, 0, 0) linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 10%) repeat scroll 0 0;
+  top: auto;
+  padding-top: 20%;
+  color: #fff;
+  -webkit-transition-property: padding color;
+  transition-property: padding color;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_phorcys .cl-ib-content:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 0%, rgba(30, 30, 30, 0.8) 100%) repeat-x rgba(30, 30, 30, 0);
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.cl-ib.animation_phorcys .cl-ib-content-h {
+  position: relative;
 }
 .cl-ib.animation_phorcys .cl-ib-text {
   position: relative;
   opacity: 0;
-  top: 5%;
+  line-height: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition-property: opacity line-height;
+  transition-property: opacity line-height;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
 }
 .cl-ib.animation_phorcys:hover .cl-ib-image,
 .cl-ib.animation_phorcys.hover .cl-ib-image {
-  top: -10%;
-  bottom: 0;
+  opacity: 0.15;
+  -webkit-transform: translate3d(0, -8%, 0);
+  transform: translate3d(0, -8%, 0);
 }
 .cl-ib.animation_phorcys:hover .cl-ib-content,
 .cl-ib.animation_phorcys.hover .cl-ib-content {
-  top: 50%;
-  bottom: -50%;
+  padding-bottom: 20%;
+  color: inherit;
+}
+.cl-ib.animation_phorcys:hover .cl-ib-content:before,
+.cl-ib.animation_phorcys.hover .cl-ib-content:before {
+  opacity: 0;
 }
 .cl-ib.animation_phorcys:hover .cl-ib-text,
 .cl-ib.animation_phorcys.hover .cl-ib-text {
   opacity: 1;
-  top: 0;
+  line-height: 1.5;
 }
