@@ -21,7 +21,7 @@
 .cl-ib-content:before,
 .cl-ib-content-h,
 .cl-ib-title,
-.cl-ib-text {
+.cl-ib-desc {
   -webkit-transition-timing-function: inherit;
   transition-timing-function: inherit;
 }
@@ -73,11 +73,11 @@
 .cl-ib-title.size_huge {
   font-size: 28px;
 }
-.cl-ib-text {
+.cl-ib-desc {
   font-size: 13px;
   line-height: 1.4;
 }
-.cl-ib-title + .cl-ib-text {
+.cl-ib-title + .cl-ib-desc {
   margin-top: 15px;
 }
 .cl-ib.animation_melete .cl-ib-image {
@@ -225,7 +225,7 @@
 .cl-ib.animation_phorcys .cl-ib-content-h {
   position: relative;
 }
-.cl-ib.animation_phorcys .cl-ib-text {
+.cl-ib.animation_phorcys .cl-ib-desc {
   position: relative;
   opacity: 0;
   line-height: 0;
@@ -251,8 +251,8 @@
 .cl-ib.animation_phorcys.hover .cl-ib-content:before {
   opacity: 0;
 }
-.cl-ib.animation_phorcys:hover .cl-ib-text,
-.cl-ib.animation_phorcys.hover .cl-ib-text {
+.cl-ib.animation_phorcys:hover .cl-ib-desc,
+.cl-ib.animation_phorcys.hover .cl-ib-desc {
   opacity: 1;
   line-height: 1.5;
 }

@@ -606,7 +606,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
-				'param_name' => 'title_size_mobiles',
+				'param_name' => 'title_mobile_size',
 				'heading' => __( 'Title Size for mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
@@ -615,7 +615,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
-				'param_name' => 'desc_size_mobiles',
+				'param_name' => 'desc_mobile_size',
 				'heading' => __( 'Description Size for mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
