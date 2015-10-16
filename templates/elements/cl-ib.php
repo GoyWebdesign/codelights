@@ -64,6 +64,7 @@ if ( ! empty( $desc ) ) {
 }
 
 // TODO Append properly styles from all the elemets to a single header-inserted css
+$custom_css = '';
 if ( ! empty( $mobile_css_rules ) ) {
 	// Unique styled element number
 	global $cl_custom_css_id;
