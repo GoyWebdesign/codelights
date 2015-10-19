@@ -7,7 +7,7 @@
  * @var $size string WordPress image resize name
  * @var $title string
  * @var $desc string
- * @var $link string URL of the overall element or button in a 'vc_link' format
+ * @var $link string URL of the overall element or button in a encoded link format
  * @var $animation string Animation type: 'melete' / 'soter' / 'phorcys' / 'aidos' / ...
  * @var $bgcolor string Background color
  * @var $textcolor string Text color
@@ -29,7 +29,7 @@ $classes = ' animation_' . $animation . ' ratio_' . $ratio . ' align_' . $align;
 
 // Altering whole element's div with anchor when it has a link
 $tag = empty( $link ) ? 'div' : 'a';
-$atts = empty( $link ) ? '' : cl_parse_vc_link( $link, TRUE );
+$atts = empty( $link ) ? '' : cl_parse_link_value( $link, TRUE );
 
 // Mobile css rules
 $mobile_css_rules = array();

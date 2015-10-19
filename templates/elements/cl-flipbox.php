@@ -4,7 +4,7 @@
  * Output a single flipbox element.
  *
  * @var $link_type string Link type: 'none' / 'container' / 'btn'
- * @var $link string URL of the overall flipbox anchor in a 'vc_link' format
+ * @var $link string URL of the overall flipbox anchor in a encoded link format
  * @var $back_btn_label string Back button label
  * @var $back_btn_bgcolor string Back button background color
  * @var $back_btn_color string
@@ -60,7 +60,7 @@ if ( ! empty( $valign ) ) {
 $tag = 'div';
 $atts = '';
 if ( $link_type != 'none' AND ! empty( $link ) ) {
-	$link_atts = cl_parse_vc_link( $link, TRUE );
+	$link_atts = cl_parse_link_value( $link, TRUE );
 	// Altering the whole element's div with anchor when it has a link
 	if ( $link_type == 'container' ) {
 		$tag = 'a';

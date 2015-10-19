@@ -1,0 +1,29 @@
+<?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
+
+/**
+ * Output element's form checkbox field
+ *
+ * @var $name string Form's field name
+ * @var $id string Form's field ID
+ * @var $value string Current value
+ * @var $options array List of value => title options
+ */
+if ( ! isset( $options ) OR empty( $options ) ) {
+	$options = array( __( 'Yes', 'codelights' ) => 'yes' );
+}
+
+$values = explode( ',', $value );
+
+$output = '';
+
+foreach ( $options as $title => $option ) {
+	$output .= '<label class="cl-checkbox">';
+	$output .= '<input type="checkbox" value="' . esc_attr( $option ) . '"';
+	if ( in_array( $option, $values ) ) {
+		$output .= ' checked="checked"';
+	}
+	$output .= ' /></label>';
+}
+$output .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+
+echo $output;

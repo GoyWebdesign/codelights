@@ -213,7 +213,7 @@ function cl_shortcode_atts( $atts, $shortcode ) {
  *
  * @return mixed
  */
-function cl_parse_vc_link( $value, $as_string = FALSE ) {
+function cl_parse_link_value( $value, $as_string = FALSE ) {
 	$result = array( 'url' => '', 'title' => '', 'target' => '' );
 	$params_pairs = explode( '|', $value );
 	if ( ! empty( $params_pairs ) ) {
