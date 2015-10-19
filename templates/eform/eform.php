@@ -16,56 +16,101 @@ global $cl_eform_index;
 $field_name_pattern = isset( $field_name_pattern ) ? $field_name_pattern : '%s';
 $field_id_pattern = isset( $field_id_pattern ) ? $field_id_pattern : ( 'cl_eform_' . $cl_eform_index . '_%s' );
 $values = isset( $values ) ? $values : array();
-?>
-<div class="cl-eform">
-	<div class="cl-eform-h">
 
-		<?php foreach ( $params as $index => $param ): ?>
+// Ordering params by weight and grouping them
+foreach ( $params as $index => $param ) {
+	$params[ $index ]['_index'] = $index;
+}
+if ( ! function_exists( 'cl_usort_by_weight' ) ) {
+	function cl_usort_by_weight( &$elm1, &$elm2 ) {
+		$weight1 = isset( $elm2['weight'] ) ? $elm2['weight'] : 0;
+		$weight2 = isset( $elm1['weight'] ) ? $elm1['weight'] : 0;
+		if ( $weight1 == $weight2 ) {
+			// Preserving the initial order for elements with the same weight
+			return $elm1['_index'] - $elm2['_index'];
+		}
 
-			<?php
-			if ( ! isset( $param['param_name'] ) ) {
-				if ( WP_DEBUG ) {
-					wp_die( 'Parameter name for ' . json_encode( $param ) . ' must be defined' );
-				}
-				continue;
-			}
-			$param['type'] = isset( $param['type'] ) ? $param['type'] : 'textfield';
-			$classes = ' type_' . $param['type'] . ' for_' . $param['param_name'];
-			if ( isset( $param['edit_field_class'] ) ) {
-				// TODO Translate vendor prefixes
-				$classes .= ' ' . $param['edit_field_class'];
-			}
-			$param['group'] = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
-			$param['std'] = isset( $param['std'] ) ? $param['std'] : '';
-			$field = array(
-				'name' => isset( $field_name_fn ) ? $field_name_fn( $param['param_name'] ) : sprintf( $field_name_pattern, $param['param_name'] ),
-				'id' => isset( $field_id_fn ) ? $field_id_fn( $param['param_name'] ) : sprintf( $field_id_pattern, $param['param_name'] ),
-				'value' => isset( $values[ $param['param_name'] ] ) ? $values[ $param['param_name'] ] : $param['std'],
-			);
-			if ( in_array( $field['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
-				$field['options'] = $param['value'];
-			}
-			if ( $field['type'] == 'attach_image' ) {
-				$field['type'] = 'attach_images';
-				$field['multiple'] = FALSE;
-			}
-			?>
+		return ( $weight1 < $weight2 ) ? -1 : 1;
+	}
+}
+usort( $params, 'cl_usort_by_weight' );
 
-			<div class="cl-eform-row<?php echo esc_attr( $classes ) ?>">
-				<?php if ( isset( $param['heading'] ) AND ! empty( $param['heading'] ) ): ?>
-					<div class="cl-eform-row-heading">
-						<label for="<?php echo esc_attr( $param['id'] ) ?>"><?php echo $param['heading'] ?></label>
-					</div>
-				<?php endif; ?>
-				<div class="cl-eform-row-field">
-					<?php cl_load_template( 'eform/' . $param['type'], $field ) ?>
-				</div>
-				<?php if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ): ?>
-					<div class="cl-eform-row-description"><?php echo $param['description'] ?></div>
-				<?php endif; ?>
-			</div>
+// Validating, sanitizing and grouping params
+$groups = array();
+foreach ( $params as $index => $param ) {
+	if ( ! isset( $param['param_name'] ) ) {
+		if ( WP_DEBUG ) {
+			wp_die( 'Parameter name for ' . json_encode( $param ) . ' must be defined' );
+		}
+		continue;
+	}
+	$param['type'] = isset( $param['type'] ) ? $param['type'] : 'textfield';
+	$param['edit_field_class'] = isset( $param['edit_field_class'] ) ? $param['edit_field_class'] : '';
+	$param['std'] = isset( $param['std'] ) ? $param['std'] : '';
+	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
+	if ( ! isset( $groups[ $group ] ) ) {
+		$groups[ $group ] = array();
+	}
+	$groups[ $group ][] = &$params[ $index ];
+}
 
-		<?php endforeach; ?>
+$output = '<div class="cl-eform"><div class="cl-eform-h">';
+if ( count( $groups ) > 1 ) {
+	$output .= '<div class="cl-tabs">';
+	$output .= '<div class="cl-tabs-list">';
+	foreach ( $groups as $group => &$group_params ) {
+		$output .= '<div class="cl-tabs-item">' . $group . '</div>';
+	}
+	$output .= '</div>';
+	$output .= '<div class="cl-tabs-sections">';
+}
 
-	</div>
-</div>
+foreach ( $groups as &$group_params ) {
+	if ( count( $groups ) > 1 ) {
+		$output .= '<div class="cl-tabs-section">';
+	}
+	foreach ( $params as $index => $param ) {
+
+		$output .= '<div class="cl-eform-row type_' . $param['type'] . ' for_' . $param['param_name'] . ' ' . $param['edit_field_class'] . '">';
+		if ( isset( $param['heading'] ) AND ! empty( $param['heading'] ) ) {
+			$output .= '<div class="cl-eform-row-heading">';
+			$output .= '<label for="' . esc_attr( $param['id'] ) . '">' . $param['heading'] . '</label>';
+			$output .= '</div>';
+		}
+		$output .= '<div class="cl-eform-row-field">';
+
+		// Outputting the field itself
+		$field = array(
+			'name' => isset( $field_name_fn ) ? $field_name_fn( $param['param_name'] ) : sprintf( $field_name_pattern, $param['param_name'] ),
+			'id' => isset( $field_id_fn ) ? $field_id_fn( $param['param_name'] ) : sprintf( $field_id_pattern, $param['param_name'] ),
+			'value' => isset( $values[ $param['param_name'] ] ) ? $values[ $param['param_name'] ] : $param['std'],
+		);
+		if ( in_array( $field['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
+			$field['options'] = $param['value'];
+		}
+		if ( $field['type'] == 'attach_image' ) {
+			$field['type'] = 'attach_images';
+			$field['multiple'] = FALSE;
+		}
+		$output .= cl_get_template( 'eform/' . $param['type'], $field );
+
+		$output .= '</div>';
+		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
+			$output .= '<div class="cl-eform-row-description">' . $param['description'] . '</div>';
+		}
+		$output .= '</div><!-- .cl-eform-row -->';
+	}
+	if ( count( $groups ) > 1 ) {
+		$output .= '<div class="cl-tabs-section">';
+	}
+}
+
+if ( count( $groups ) > 1 ) {
+	$output .= '</div><!-- .cl-tabs-sections -->';
+	$output .= '</div><!-- .cl-tabs -->';
+}
+$output .= '</div></div>';
+
+echo $output;
+
+

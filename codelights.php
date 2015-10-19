@@ -31,9 +31,8 @@ function cl_register_admin_scripts() {
 	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
 
 	wp_register_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
-	wp_localize_script( 'cl-admin-script', 'clAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-	wp_enqueue_script('cl-admin-script');
-
+	wp_localize_script( 'cl-admin-script', 'clAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	wp_enqueue_script( 'cl-admin-script' );
 
 	$screen = get_current_screen();
 	$post_type = $screen->id;
@@ -86,14 +85,14 @@ add_action( 'wp_ajax_cl_image_url_by_id', 'cl_get_image_url' );
 function cl_get_image_url() {
 	$image_id = $_POST['value'];
 
-	$thumbnail = wp_get_attachment_image_src($image_id, 'thumbnail');
-	if ($thumbnail !== FALSE) {
+	$thumbnail = wp_get_attachment_image_src( $image_id, 'thumbnail' );
+	if ( $thumbnail !== FALSE ) {
 		$url = $thumbnail[0];
 		$success = 'true';
 	} else {
-		$message = __('No image with ID ', 'codelights') . $image_id;
+		$message = __( 'No image with ID ', 'codelights' ) . $image_id;
 	}
-	$response = Array ('success' => $success, 'message' => $message, 'url' => $url);
-	echo json_encode($response);
+	$response = Array( 'success' => $success, 'message' => $message, 'url' => $url );
+	echo json_encode( $response );
 	die();
 }
