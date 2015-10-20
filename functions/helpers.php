@@ -66,6 +66,9 @@ function cl_load_template( $template, $vars = NULL ) {
 	}
 
 	do_action( 'cl_before_template:' . $template, $vars );
+	if ( ! file_exists( $cl_dir . '/templates/' . $template . '.php' ) ) {
+		wp_die( 'File not found: ' . $cl_dir . '/templates/' . $template . '.php' );
+	}
 	include $cl_dir . '/templates/' . $template . '.php';
 	do_action( 'cl_after_template:' . $template, $vars );
 }

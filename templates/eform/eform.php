@@ -3,19 +3,20 @@
 /**
  * Output a single element's editing form
  *
+ * @var $name string ELement name
  * @var $params array List of config-based params
  * @var $values array List of param_name => value
  * @var $field_name_fn callable Function to generate field string name based on param name
- * @var $field_name_pattern string Sprintf pattern to generate field string name when $field_name_fn is not set
+ * @var $field_name_pattern string Sprintf pattern to generate field string name (when $field_name_fn is not set)
  * @var $field_id_fn callable Function to generate field string ID based on param name
- * @var $field_id_pattern string Sprintf pattern to generate field string ID when $field_id_fn is not set
+ * @var $field_id_pattern string Sprintf pattern to generate field string ID (when $field_id_fn is not set)
  */
 
 // Validating and sanitizing input
 global $cl_eform_index;
 $field_name_pattern = isset( $field_name_pattern ) ? $field_name_pattern : '%s';
 $field_id_pattern = isset( $field_id_pattern ) ? $field_id_pattern : ( 'cl_eform_' . $cl_eform_index . '_%s' );
-$values = isset( $values ) ? $values : array();
+$values = ( isset( $values ) AND is_array( $values ) ) ? $values : array();
 
 // Ordering params by weight and grouping them
 foreach ( $params as $index => $param ) {
@@ -23,14 +24,14 @@ foreach ( $params as $index => $param ) {
 }
 if ( ! function_exists( 'cl_usort_by_weight' ) ) {
 	function cl_usort_by_weight( &$elm1, &$elm2 ) {
-		$weight1 = isset( $elm2['weight'] ) ? $elm2['weight'] : 0;
-		$weight2 = isset( $elm1['weight'] ) ? $elm1['weight'] : 0;
-		if ( $weight1 == $weight2 ) {
+		$weight1 = isset( $elm1['weight'] ) ? $elm1['weight'] : 0;
+		$weight2 = isset( $elm2['weight'] ) ? $elm2['weight'] : 0;
+		if ( $weight2 == $weight1 ) {
 			// Preserving the initial order for elements with the same weight
 			return $elm1['_index'] - $elm2['_index'];
 		}
 
-		return ( $weight1 < $weight2 ) ? -1 : 1;
+		return ( $weight2 < $weight1 ) ? -1 : 1;
 	}
 }
 usort( $params, 'cl_usort_by_weight' );
@@ -54,7 +55,7 @@ foreach ( $params as $index => $param ) {
 	$groups[ $group ][] = &$params[ $index ];
 }
 
-$output = '<div class="cl-eform"><div class="cl-eform-h">';
+$output = '<div class="cl-eform for_' . $name . '"><div class="cl-eform-h">';
 if ( count( $groups ) > 1 ) {
 	$output .= '<div class="cl-tabs">';
 	$output .= '<div class="cl-tabs-list">';
@@ -85,11 +86,11 @@ foreach ( $groups as &$group_params ) {
 			'id' => isset( $field_id_fn ) ? $field_id_fn( $param['param_name'] ) : sprintf( $field_id_pattern, $param['param_name'] ),
 			'value' => isset( $values[ $param['param_name'] ] ) ? $values[ $param['param_name'] ] : $param['std'],
 		);
-		if ( in_array( $field['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
+		if ( in_array( $param['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
 			$field['options'] = $param['value'];
 		}
-		if ( $field['type'] == 'attach_image' ) {
-			$field['type'] = 'attach_images';
+		if ( $param['type'] == 'attach_image' ) {
+			$param['type'] = 'attach_images';
 			$field['multiple'] = FALSE;
 		}
 		$output .= cl_get_template( 'eform/' . $param['type'], $field );
@@ -98,10 +99,13 @@ foreach ( $groups as &$group_params ) {
 		if ( isset( $param['description'] ) AND ! empty( $param['description'] ) ) {
 			$output .= '<div class="cl-eform-row-description">' . $param['description'] . '</div>';
 		}
+		if ( isset( $param['dependency'] ) AND ! empty( $param['dependency'] ) ) {
+			$output .= '<div class="cl-eform-row-dependency"' . cl_pass_data_to_js( $param['dependency'] ) . '></div>';
+		}
 		$output .= '</div><!-- .cl-eform-row -->';
 	}
 	if ( count( $groups ) > 1 ) {
-		$output .= '<div class="cl-tabs-section">';
+		$output .= '</div><!-- .cl-tabs-section -->';
 	}
 }
 

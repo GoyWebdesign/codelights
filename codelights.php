@@ -22,7 +22,7 @@ require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
-require $cl_dir . '/widgets/cl_flipbox.php';
+//require $cl_dir . '/widgets/cl_flipbox.php';
 
 /* load admin js and css styles */
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
@@ -92,7 +92,7 @@ function cl_get_image_url() {
 	} else {
 		$message = __( 'No image with ID ', 'codelights' ) . $image_id;
 	}
-	$response = Array( 'success' => $success, 'message' => $message, 'url' => $url );
+	$response = array( 'success' => $success, 'message' => $message, 'url' => $url );
 	echo json_encode( $response );
 	die();
 }

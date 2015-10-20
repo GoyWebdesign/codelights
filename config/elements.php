@@ -43,7 +43,7 @@ return array(
 					sprintf( __( '%s s', 'codelights' ), '10' ) => '10000ms',
 				),
 				'std' => '600ms',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'animation',
@@ -55,7 +55,7 @@ return array(
 					__( 'Slide Down', 'codelights' ) => 'slidedown',
 				),
 				'std' => 'none',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'title',
@@ -68,7 +68,7 @@ return array(
 				'heading' => __( 'Value Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '50',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -76,21 +76,21 @@ return array(
 				'heading' => __( 'Title Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '20',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
 				'param_name' => 'value_color',
 				'heading' => __( 'Value Color', 'codelights' ),
 				'type' => 'colorpicker',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
 				'param_name' => 'title_color',
 				'heading' => __( 'Title Color', 'codelights' ),
 				'type' => 'colorpicker',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -126,7 +126,7 @@ return array(
 			array(
 				'param_name' => 'link',
 				'heading' => __( 'Link URL', 'codelights' ),
-				'type' => 'vc_link',
+				'type' => 'link',
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'container', 'btn' ) ),
 			),
 			array(
@@ -140,14 +140,14 @@ return array(
 				'heading' => __( 'Button Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'back_btn_color',
 				'heading' => __( 'Button Text Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'animation',
@@ -159,7 +159,7 @@ return array(
 					__( 'Cube Flip', 'codelights' ) => 'cubeflip',
 					__( 'Cover Open', 'codelights' ) => 'coveropen',
 				),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'direction',
@@ -176,7 +176,7 @@ return array(
 					__( 'Up-Left', 'codelights' ) => 'nw',
 				),
 				'std' => 'w',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'duration',
@@ -197,7 +197,7 @@ return array(
 					sprintf( __( '%d ms', 'codelights' ), 1200 ) => '1200ms',
 				),
 				'std' => '600ms',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'easing',
@@ -213,7 +213,7 @@ return array(
 					'easeInOutBack' => 'easeInOutBack',
 				),
 				'std' => 'easeInOutSine',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			/**
 			 * Front Side
@@ -242,7 +242,7 @@ return array(
 				'type' => 'textfield',
 				'std' => '20',
 				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -255,7 +255,7 @@ return array(
 					__( 'Square Background', 'codelights' ) => 'square',
 				),
 				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -263,7 +263,7 @@ return array(
 				'heading' => __( 'Icon Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -271,7 +271,7 @@ return array(
 				'heading' => __( 'Icon Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -381,7 +381,7 @@ return array(
 				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -390,7 +390,7 @@ return array(
 				'description' => __( 'Leave blank use front height', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -405,7 +405,7 @@ return array(
 				'heading' => __( 'Border Radius', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -413,14 +413,14 @@ return array(
 				'heading' => __( 'Border Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '2',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
 				'param_name' => 'border_color',
 				'heading' => __( 'Border Color', 'codelights' ),
 				'type' => 'colorpicker',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -428,7 +428,7 @@ return array(
 				'heading' => __( 'Padding', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '20',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -455,7 +455,7 @@ return array(
 				'param_name' => 'image',
 				'heading' => __( 'Banner Image', 'codelights' ),
 				'type' => 'attach_image',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'size',
@@ -463,7 +463,7 @@ return array(
 				'type' => 'dropdown',
 				'value' => cl_image_sizes_select_values(),
 				'std' => 'large',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'title',
@@ -479,7 +479,7 @@ return array(
 			array(
 				'param_name' => 'link',
 				'heading' => __( 'Link', 'codelights' ),
-				'type' => 'vc_link',
+				'type' => 'link',
 			),
 			array(
 				'param_name' => 'animation',
@@ -504,7 +504,7 @@ return array(
 				'heading' => __( 'Background Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'std' => '#444',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -512,7 +512,7 @@ return array(
 				'heading' => __( 'Text Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'std' => '#fff',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -529,7 +529,7 @@ return array(
 					'1x2 (' . __( 'Portrait', 'codelights' ) . ')' => '1x2',
 				),
 				'std' => '3x2',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -537,7 +537,7 @@ return array(
 				'heading' => __( 'Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -550,7 +550,7 @@ return array(
 					__( 'Right', 'codelights' ) => 'right',
 				),
 				'std' => 'center',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -558,7 +558,7 @@ return array(
 				'heading' => __( 'Padding', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '10%',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			array(
@@ -593,7 +593,7 @@ return array(
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '30px',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
@@ -602,7 +602,7 @@ return array(
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '16px',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
@@ -611,7 +611,7 @@ return array(
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '24px',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
@@ -620,7 +620,7 @@ return array(
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '16px',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			array(
@@ -694,7 +694,7 @@ return array(
 					sprintf( __( '%d ms', 'codelights' ), 1200 ) => '1200ms',
 				),
 				'std' => '600ms',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
 				'param_name' => 'delay',
@@ -713,7 +713,7 @@ return array(
 					sprintf( _n( '%d second', '%d seconds', 10, 'codelights' ), 10 ) => '10000ms',
 				),
 				'std' => '5000ms',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			/**
 			 * Custom
@@ -739,7 +739,7 @@ return array(
 				'heading' => __( 'Basic Text Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'std' => '',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
@@ -747,7 +747,7 @@ return array(
 				'heading' => __( 'Dynamic Text Color', 'codelights' ),
 				'type' => 'colorpicker',
 				'std' => '',
-				'edit_field_class' => 'vc_col-sm-6 vc_column',
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
