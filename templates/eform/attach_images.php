@@ -9,19 +9,23 @@
  * @var $multiple bool Allow attach multiple images?
  */
 
-$img_ids = empty($value) ? array() : array_map( 'intval', explode( ',', $value ) );
+// TODO Remove test data
+$value = '284,187';
+$multiple = TRUE;
+
+$img_ids = empty( $value ) ? array() : array_map( 'intval', explode( ',', $value ) );
 $multiple = ( ! isset( $multiple ) OR $multiple );
 
 $output = '<div class="cl-imgattach" data-multiple="' . intval( $multiple ) . '">';
 $output .= '<ul class="cl-imgattach-list">';
 foreach ( $img_ids as $img_id ) {
-	$output .= '<li data-id="' . $img_id . '"><a href="javascript:void(0)" class="cl-imgattach-delete">&times;</a>' . wp_get_attachment_image( $img_id ) . '</li>';
+	$output .= '<li data-id="' . $img_id . '"><a href="javascript:void(0)" class="cl-imgattach-delete">&times;</a>' . wp_get_attachment_image( $img_id, 'thumbnail', TRUE ) . '</li>';
 }
 $output .= '</ul>';
 $add_btn_title = $multiple ? __( 'Add images', 'codelights' ) : __( 'Add image', 'codelights' );
 $output .= '<a href="javascript:void(0)" class="cl-imgattach-add" title="' . $add_btn_title . '"';
 $output .= ' style="display: ' . ( ( $multiple OR count( $img_ids ) == 0 ) ? 'block' : 'none' ) . ';"';
-$output .= '>' . $add_btn_title . '</a>';
+$output .= '>+</a>';
 $output .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
 $output .= '</div>';
 

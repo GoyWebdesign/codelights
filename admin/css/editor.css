@@ -47,6 +47,57 @@ div#widgets-right .sidebars-column-2 {
 .cl-eform-row.cl_col-sm-6 {
   width: 50%;
 }
+.cl-eform-row.type_attach_images .cl-imgattach:before,
+.cl-eform-row.type_attach_images .cl-imgattach:after {
+  content: '';
+  display: table;
+}
+.cl-eform-row.type_attach_images .cl-imgattach:after {
+  clear: both;
+}
+.cl-eform-row.type_attach_images .cl-imgattach-list li {
+  position: relative;
+  display: block;
+  float: left;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #dfdfdf;
+  margin: 0 10px 10px 0;
+}
+.cl-eform-row.type_attach_images .cl-imgattach-list li .cl-imgattach-delete {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  line-height: 20px;
+  text-decoration: none;
+  color: #ffffff;
+}
+.cl-eform-row.type_attach_images .cl-imgattach-list li:hover .cl-imgattach-delete {
+  display: block;
+}
+.cl-eform-row.type_attach_images .cl-imgattach-list li img {
+  width: 100%;
+  height: 100%;
+}
+.cl-eform-row.type_attach_images .cl-imgattach-add {
+  display: block;
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin: 0 10px 10px 0;
+  border: 1px solid #dfdfdf;
+  line-height: 80px;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+}
 .cl-eform-row.type_dropdown select {
   width: 100%;
 }

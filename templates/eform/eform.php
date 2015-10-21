@@ -19,7 +19,7 @@ $field_id_pattern = isset( $field_id_pattern ) ? $field_id_pattern : ( 'cl_eform
 $values = ( isset( $values ) AND is_array( $values ) ) ? $values : array();
 
 // Ordering params by weight and grouping them
-foreach ( $params as $index => $param ) {
+foreach ( $params as $index => &$param ) {
 	$params[ $index ]['_index'] = $index;
 }
 if ( ! function_exists( 'cl_usort_by_weight' ) ) {
@@ -38,7 +38,7 @@ usort( $params, 'cl_usort_by_weight' );
 
 // Validating, sanitizing and grouping params
 $groups = array();
-foreach ( $params as $index => $param ) {
+foreach ( $params as $index => &$param ) {
 	if ( ! isset( $param['param_name'] ) ) {
 		if ( WP_DEBUG ) {
 			wp_die( 'Parameter name for ' . json_encode( $param ) . ' must be defined' );
@@ -46,6 +46,10 @@ foreach ( $params as $index => $param ) {
 		continue;
 	}
 	$param['type'] = isset( $param['type'] ) ? $param['type'] : 'textfield';
+	if ( $param['type'] == 'attach_image' ) {
+		$param['type'] = 'attach_images';
+		$param['multiple'] = FALSE;
+	}
 	$param['edit_field_class'] = isset( $param['edit_field_class'] ) ? $param['edit_field_class'] : '';
 	$param['std'] = isset( $param['std'] ) ? $param['std'] : '';
 	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
@@ -73,7 +77,7 @@ foreach ( $groups as &$group_params ) {
 	if ( count( $groups ) > 1 ) {
 		$output .= '<div class="cl-tabs-section" style="display: ' . ( $group_index ? 'none' : 'block' ) . '">';
 	}
-	foreach ( $group_params as $index => $param ) {
+	foreach ( $group_params as $index => &$param ) {
 
 		$output .= '<div class="cl-eform-row type_' . $param['type'] . ' for_' . $param['param_name'] . ' ' . $param['edit_field_class'] . '">';
 		if ( isset( $param['heading'] ) AND ! empty( $param['heading'] ) ) {
@@ -92,9 +96,8 @@ foreach ( $groups as &$group_params ) {
 		if ( in_array( $param['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
 			$field['options'] = $param['value'];
 		}
-		if ( $param['type'] == 'attach_image' ) {
-			$param['type'] = 'attach_images';
-			$field['multiple'] = FALSE;
+		if ( $param['type'] == 'attach_images' ) {
+			$field['multiple'] = isset( $param['multiple'] ) ? $param['multiple'] : TRUE;
 		}
 		$output .= cl_get_template( 'eform/' . $param['type'], $field );
 
