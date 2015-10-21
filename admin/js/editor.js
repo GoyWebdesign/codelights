@@ -200,7 +200,7 @@ jQuery.fn.cssMod = function(mod, value){
 				newValue = imgIds.join(',');
 			if (newValue != oldValue) {
 				this.$input.val(newValue);
-				this.trigger('update', [newValue]);
+				this.trigger('change', [newValue]);
 			}
 		},
 		openMediaUploader: function(){
@@ -264,6 +264,27 @@ jQuery.fn.cssMod = function(mod, value){
 			return $item;
 		}
 
+	};
+
+	/**
+	 * $cl.Field type: colorpicker
+	 */
+	$cl.Field['colorpicker'] = {
+		init: function(){
+			this.parentInit();
+			this._events = {
+				change: function(value){
+					this.trigger('change', [value]);
+				}.bind(this)
+			};
+			this.$input.wpColorPicker({
+				change: this._events.change
+			});
+		},
+		render: function(){
+			var value = this.getValue();
+			this.$input.wpColorPicker('color', value);
+		}
 	};
 
 	/**
