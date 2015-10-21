@@ -36,3 +36,63 @@ div#widgets-right .sidebars-column-2 {
 
 	}
 }
+
+// Editor forms
+.cl-eform {
+
+	margin: 0 -10px;
+
+	.cl-tabs-list {
+		padding: 0 10px;
+	}
+
+	&:before,
+	&:after {
+		content: '';
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+
+	&-row {
+		width: 100%;
+		margin-top: 10px;
+		padding: 0 10px;
+		box-sizing: border-box;
+		float: left;
+
+		// Columns
+		&.cl_col-sm-6 {
+			width: 50%;
+		}
+
+		// Row types
+		&.type_attach_images {
+		}
+		&.type_checkbox {
+		}
+		&.type_colorpicker {
+		}
+		&.type_dropdown {
+			select {
+				width: 100%;
+			}
+		}
+		&.type_link {
+		}
+		&.type_textarea {
+			textarea {
+				width: 100%;
+				resize: vertical;
+			}
+		}
+		&.type_textarea_html {
+		}
+		&.type_textfield {
+			input {
+				width: 100%;
+			}
+		}
+	}
+}

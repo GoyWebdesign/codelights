@@ -23,3 +23,37 @@ div#widgets-right .sidebars-column-2 {
   font-weight: bold;
   cursor: default;
 }
+.cl-eform {
+  margin: 0 -10px;
+}
+.cl-eform .cl-tabs-list {
+  padding: 0 10px;
+}
+.cl-eform:before,
+.cl-eform:after {
+  content: '';
+  display: table;
+}
+.cl-eform:after {
+  clear: both;
+}
+.cl-eform-row {
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  float: left;
+}
+.cl-eform-row.cl_col-sm-6 {
+  width: 50%;
+}
+.cl-eform-row.type_dropdown select {
+  width: 100%;
+}
+.cl-eform-row.type_textarea textarea {
+  width: 100%;
+  resize: vertical;
+}
+.cl-eform-row.type_textfield input {
+  width: 100%;
+}

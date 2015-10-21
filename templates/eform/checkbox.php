@@ -22,7 +22,7 @@ foreach ( $options as $title => $option ) {
 	if ( in_array( $option, $values ) ) {
 		$output .= ' checked="checked"';
 	}
-	$output .= ' /></label>';
+	$output .= ' /> ' . $title . '</label>';
 }
 $output .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
 
