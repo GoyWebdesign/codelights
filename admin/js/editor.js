@@ -271,7 +271,6 @@ jQuery.fn.cssMod = function(mod, value){
 	 */
 	$cl.Field['colorpicker'] = {
 		init: function(){
-			this.parentInit();
 			this._events = {
 				change: function(value){
 					this.trigger('change', [value]);
