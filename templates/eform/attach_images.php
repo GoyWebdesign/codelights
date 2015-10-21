@@ -9,10 +9,6 @@
  * @var $multiple bool Allow attach multiple images?
  */
 
-// TODO Remove test data
-$value = '284,187';
-$multiple = TRUE;
-
 $img_ids = empty( $value ) ? array() : array_map( 'intval', explode( ',', $value ) );
 $multiple = ( ! isset( $multiple ) OR $multiple );
 

@@ -63,6 +63,7 @@ div#widgets-right .sidebars-column-2 {
   width: 80px;
   height: 80px;
   border: 1px solid #dfdfdf;
+  background: #ffffff;
   margin: 0 10px 10px 0;
 }
 .cl-eform-row.type_attach_images .cl-imgattach-list li .cl-imgattach-delete {

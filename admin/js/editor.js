@@ -82,8 +82,8 @@ jQuery.fn.cssMod = function(mod, value){
 		this.$row = $(row);
 		if (this.$row.data('clfield')) return this.$row.data('clfield');
 		this.type = this.$row.cssMod('type');
-		this.name = this.$row.data('name');
-		this.$input = this.$row.find('[name="' + this.name + '"]');
+		this.name = this.$row.cssMod('for');
+		this.$input = this.$row.find('input[name], textarea[name], select[name]');
 		this.inited = false;
 
 		// Overloading by a certain type's declaration, moving parent functions to "parent" namespace: init => parentInit
@@ -139,9 +139,129 @@ jQuery.fn.cssMod = function(mod, value){
 			this.$field = this.$row.find('.cl-imgattach');
 			this.multiple = this.$field.data('multiple');
 			this.$list = this.$field.find('.cl-imgattach-list');
-			this.$addBtn = this.$field.find('.cl-imgattach-add');
+			this.$btnAdd = this.$field.find('.cl-imgattach-add');
 
-			console.log(this.$field[0], this.multiple)
+			this._events = {
+				openMediaUploader: this.openMediaUploader.bind(this),
+				deleteImg: function(event){
+					$(event.target).closest('li').remove();
+					this.updateInput();
+					if (!this.multiple) this.$btnAdd.css('display', this.getValue() ? 'none' : 'block');
+				}.bind(this),
+				updateInput: this.updateInput.bind(this)
+			};
+
+			this.$list.sortable({stop: this._events.updateInput});
+			this.$btnAdd.on('click', this._events.openMediaUploader);
+			this.$list.on('click', '.cl-imgattach-delete', this._events.deleteImg);
+		},
+
+		render: function(){
+			var value = this.getValue(),
+				items = {},
+				currentIds = [],
+				neededIds = value ? value.split(',').map(Number) : [];
+			this.$list.children().toArray().forEach(function(item){
+				var $item = $(item),
+					id = parseInt($item.data('id'));
+				items[id] = $item;
+				currentIds.push(id);
+			});
+			var index = 0;
+			for (index = 0; index < neededIds.length; index++) {
+				var id = neededIds[index],
+					currentIndex = currentIds.indexOf(id, index);
+				if (currentIndex == index) continue;
+				if (currentIndex == -1) {
+					// Creating the new item
+					var attachment = wp.media.attachment(id);
+					items[id] = this.createItem(attachment);
+				} else {
+					// Moving existing item
+					currentIds.splice(currentIndex, 1);
+				}
+				if (index == 0) {
+					items[id].prependTo(this.$list);
+				} else {
+					items[id].insertAfter(items[neededIds[index - 1]]);
+				}
+				currentIds.splice(index, 0, id);
+			}
+			for (; index < currentIds.length; index++) {
+				// Removing the excess items
+				items[currentIds[index]].remove();
+			}
+		},
+		updateInput: function(){
+			var oldValue = this.getValue(),
+				imgIds = this.$list.children().toArray().map(function(item){
+					return parseInt(item.getAttribute('data-id'));
+				}),
+				newValue = imgIds.join(',');
+			if (newValue != oldValue) {
+				this.$input.val(newValue);
+				this.trigger('update', [newValue]);
+			}
+		},
+		openMediaUploader: function(){
+			var value = this.getValue(),
+				initialIds = value ? value.split(',').map(Number) : [];
+			var frame = wp.media({
+				title: this.$btnAdd.attr('title'),
+				multiple: this.multiple ? 'add' : false,
+				library: {type: 'image'},
+				button: {text: this.$btnAdd.attr('title')}
+			});
+			frame.on('open', function(){
+				var selection = frame.state().get('selection');
+				initialIds.forEach(function(id){
+					selection.add(wp.media.attachment(id));
+				});
+			}.bind(this));
+			frame.on('select', function(){
+				var selection = frame.state().get('selection'),
+					updatedIds = [];
+				selection.forEach(function(attachment){
+					if (attachment.id && initialIds.indexOf(attachment.id) == -1) {
+						// Adding the new images
+						this.$list.append(this.createItem(attachment));
+					}
+					updatedIds.push(attachment.id);
+				}.bind(this));
+				initialIds.forEach(function(id){
+					if (updatedIds.indexOf(id) == -1) {
+						// Deleting images that are not present in the recent selection
+						this.$list.find('[data-id="' + id + '"]').remove();
+					}
+				}.bind(this));
+				this.updateInput();
+			}.bind(this));
+			frame.open();
+		},
+		/**
+		 * Prepare item's dom from WP attachment object
+		 * @param {Object} attachment
+		 * @return {jQuery}
+		 */
+		createItem: function(attachment){
+			if (!attachment || !attachment.attributes.id) return '';
+			var html = '<li data-id="' + attachment.id + '">' +
+				'<a class="cl-imgattach-delete" href="javascript:void(0)">&times;</a>' +
+				'<img width="150" height="150" class="attachment-thumbnail" src="';
+			if (attachment.attributes.sizes !== undefined) {
+				html += attachment.attributes.sizes.thumbnail.url;
+			}
+			html += '"></li>';
+			var $item = $(html);
+			if (attachment.attributes.sizes === undefined) {
+				// Loading missing image via ajax
+				attachment.fetch({
+					success: function(){
+						$item.find('img').attr('src', attachment.attributes.sizes.thumbnail.url);
+					}.bind(this)
+				});
+			}
+			return $item;
 		}
 
 	};
@@ -158,14 +278,11 @@ jQuery.fn.cssMod = function(mod, value){
 		this.$container = $(container);
 		this.$items = this.$container.find('.cl-tabs-item');
 		this.$sections = this.$container.find('.cl-tabs-section');
-		this.items = $.map(this.$items.toArray(), $);
-		this.sections = $.map(this.$sections.toArray(), $);
+		this.items = this.$items.toArray().map($);
+		this.sections = this.$sections.toArray().map($);
 		this.active = 0;
-		$.each(this.items, function(index, $elm){
-			//$elm.on('click', this.open.bind(this, index));
-			$elm.on('click', function(){
-				this.open(index);
-			}.bind(this));
+		this.items.forEach(function($elm, index){
+			$elm.on('click', this.open.bind(this, index));
 		}.bind(this));
 	};
 	$.extend($cl.Tabs.prototype, $cl.mixins.Events, {
