@@ -57,20 +57,23 @@ foreach ( $params as $index => $param ) {
 
 $output = '<div class="cl-eform for_' . $name . '"><div class="cl-eform-h">';
 if ( count( $groups ) > 1 ) {
+	$group_index = 0;
 	$output .= '<div class="cl-tabs">';
 	$output .= '<div class="cl-tabs-list">';
 	foreach ( $groups as $group => &$group_params ) {
-		$output .= '<div class="cl-tabs-item">' . $group . '</div>';
+		$output .= '<div class="cl-tabs-item' . ( $group_index ? '' : ' active' ) . '">' . $group . '</div>';
+		$group_index++;
 	}
 	$output .= '</div>';
 	$output .= '<div class="cl-tabs-sections">';
 }
 
+$group_index = 0;
 foreach ( $groups as &$group_params ) {
 	if ( count( $groups ) > 1 ) {
-		$output .= '<div class="cl-tabs-section">';
+		$output .= '<div class="cl-tabs-section" style="display: ' . ( $group_index ? 'none' : 'block' ) . '">';
 	}
-	foreach ( $params as $index => $param ) {
+	foreach ( $group_params as $index => $param ) {
 
 		$output .= '<div class="cl-eform-row type_' . $param['type'] . ' for_' . $param['param_name'] . ' ' . $param['edit_field_class'] . '">';
 		if ( isset( $param['heading'] ) AND ! empty( $param['heading'] ) ) {
@@ -107,6 +110,7 @@ foreach ( $groups as &$group_params ) {
 	if ( count( $groups ) > 1 ) {
 		$output .= '</div><!-- .cl-tabs-section -->';
 	}
+	$group_index++;
 }
 
 if ( count( $groups ) > 1 ) {

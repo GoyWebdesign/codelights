@@ -35,10 +35,7 @@ function cl_register_admin_scripts() {
 	wp_enqueue_script( 'cl-admin-script' );
 
 	$screen = get_current_screen();
-	$post_type = $screen->id;
-	//echo 'post type:' . $post_type;
-	// load scripts and styles only in widget area
-	if ( strpos( $post_type, 'widgets' ) !== FALSE OR strpos( $post_type, 'page' ) !== FALSE ) {
+	if ( $screen->id == 'widgets' ) {
 		wp_enqueue_script( 'tiny_mce' );
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_style( 'wp-color-picker' );
