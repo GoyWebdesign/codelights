@@ -287,6 +287,80 @@ jQuery.fn.cssMod = function(mod, value){
 	};
 
 	/**
+	 * $cl.Field type: link
+	 */
+	$cl.Field['link'] = {
+		init: function(){
+			this.$document = $(document);
+			this.$btn = this.$row.find('.cl-linkdialog-btn');
+			this.$linkUrl = this.$row.find('.cl-linkdialog-url');
+			this.$linkTitle = this.$row.find('.cl-linkdialog-title');
+			this.$linkTarget = this.$row.find('.cl-linkdialog-target');
+			this._events = {
+				open: function(event){
+					wpLink.open(this.$input.attr('id'));
+					wpLink.textarea = this.$input;
+					var data = this.decodeLink(this.getValue());
+					$('#wp-link-url').val(data.url);
+					$('#wp-link-text').val(data.title);
+					$('#wp-link-target').prop('checked', (data.target == '_blank'));
+					$('#wp-link-submit').on('click', this._events.submit);
+					this.$document.on('wplink-close', this._events.close);
+				}.bind(this),
+				submit: function(event){
+					event.preventDefault();
+					var wpLinkText = $('#wp-link-text').val(),
+						linkAtts = wpLink.getAttrs();
+					this.setValue(this.encodeLink(linkAtts.href, wpLinkText, linkAtts.target));
+					this._events.close();
+				}.bind(this),
+				close: function(){
+					this.$document.off('wplink-close', this._events.close);
+					$('#wp-link-submit').off('click', this._events.submit);
+					if (typeof wpActiveEditor != 'undefined') wpActiveEditor = undefined;
+					wpLink.close();
+				}.bind(this)
+			};
+
+			this.$btn.on('click', this._events.open);
+		},
+		render: function(){
+			var value = this.getValue(),
+				parts = value.split('|'),
+				data = {};
+			for (var i = 0; i < parts.length; i++) {
+				var part = parts[i].split(':', 2);
+				if (part.length > 1) data[part[0]] = decodeURIComponent(part[1]);
+			}
+			this.$linkTitle.text(data.title || '');
+			this.$linkUrl.text(this.shortenUrl(data.url || ''));
+			this.$linkTarget.text(data.target || '');
+		},
+		/**
+		 * Get shortened version of URL with url's beginning and end
+		 * @param url
+		 */
+		shortenUrl: function(url){
+			return (url.length <= 60) ? url : (url.substr(0, 28) + '...' + url.substr(url.length - 29));
+		},
+		encodeLink: function(url, title, target){
+			var result = 'url:' + encodeURIComponent(url);
+			if (title) result += '|title:' + encodeURIComponent(title);
+			if (target) result += '|target:' + encodeURIComponent(target);
+			return result;
+		},
+		decodeLink: function(link){
+			var atts = link.split('|'),
+				result = {url: '', title: '', target: ''};
+			atts.forEach(function(value, index){
+				var param = value.split(':', 2);
+				result[param[0]] = decodeURIComponent(param[1]).trim();
+			});
+			return result;
+		}
+	};
+
+	/**
 	 * $cl.Tabs class
 	 *
 	 * Boundable events: beforeShow, afterShow, beforeHide, afterHide

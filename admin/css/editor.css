@@ -102,6 +102,15 @@ div#widgets-right .sidebars-column-2 {
 .cl-eform-row.type_dropdown select {
   width: 100%;
 }
+.cl-eform-row.type_link textarea {
+  display: none;
+}
+.cl-eform-row.type_link .cl-linkdialog {
+  line-height: 30px;
+}
+.cl-eform-row.type_link .cl-linkdialog span {
+  margin-left: 5px;
+}
 .cl-eform-row.type_textarea textarea {
   width: 100%;
   resize: vertical;

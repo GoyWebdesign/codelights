@@ -422,3 +422,19 @@ function cl_rgb_to_hex( $rgb ) {
 function cl_array_to_data_js( $data ) {
 	return str_replace( '"', '&quot;', json_encode( $data ) );
 }
+
+function cl_maybe_load_html_editor() {
+	global $cl_html_editor_loaded;
+	if ( ! isset( $cl_html_editor_loaded ) OR ! $cl_html_editor_loaded ) {
+		if ( ! class_exists( '_WP_Editors' ) ) {
+			require( ABSPATH . WPINC . '/class-wp-editor.php' );
+		}
+		$settings = _WP_Editors::parse_settings( 'codelights', array(
+			'dfw' => TRUE,
+			'tabfocus_elements' => 'insert-media-button',
+			'editor_height' => 360,
+		) );
+		_WP_Editors::editor_settings( 'codelights', $settings );
+		$cl_html_editor_loaded = TRUE;
+	}
+}
