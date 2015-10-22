@@ -75,23 +75,6 @@ function cl_so_widget_enqueue_scripts() {
 	wp_enqueue_script( 'jquery-ui-sortable' );
 }
 
-/* wp_ajax_ - only for registered users */
-add_action( 'wp_ajax_cl_image_url_by_id', 'cl_get_image_url' );
-function cl_get_image_url() {
-	$image_id = $_POST['value'];
-
-	$thumbnail = wp_get_attachment_image_src( $image_id, 'thumbnail' );
-	if ( $thumbnail !== FALSE ) {
-		$url = $thumbnail[0];
-		$success = 'true';
-	} else {
-		$message = __( 'No image with ID ', 'codelights' ) . $image_id;
-	}
-	$response = array( 'success' => $success, 'message' => $message, 'url' => $url );
-	echo json_encode( $response );
-	die();
-}
-
 function cl_write_debug( $value, $with_backtrace = FALSE ) {
 	global $cl_dir;
 	static $first = TRUE;

@@ -9,7 +9,7 @@
  */
 
 wp_editor( $value, $id, array(
-	'media_buttons' => TRUE,
+	'media_buttons' => FALSE,
 	'textarea_name' => $name,
 	'wpautop' => FALSE,
 	'default_editor' => 'tmce',

@@ -50,6 +50,10 @@ foreach ( $params as $index => &$param ) {
 		$param['type'] = 'attach_images';
 		$param['multiple'] = FALSE;
 	}
+	if ( $param['type'] == 'textarea_html' AND $param['param_name'] != 'content' ) {
+		// For VC-compatibility we may have only one wysiwyg field and it should be called content
+		$param['type'] = 'textarea';
+	}
 	$param['edit_field_class'] = isset( $param['edit_field_class'] ) ? $param['edit_field_class'] : '';
 	$param['std'] = isset( $param['std'] ) ? $param['std'] : '';
 	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
