@@ -77,7 +77,7 @@
 }
 .cl-ib-desc {
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.5;
   margin-top: 15px;
 }
 .cl-ib.animation_melete .cl-ib-image {
@@ -245,7 +245,7 @@
 }
 .cl-ib.animation_phorcys:hover .cl-ib-desc,
 .cl-ib.animation_phorcys.hover .cl-ib-desc {
-  opacity: 1;
+  opacity: 0.75;
   line-height: 1.5;
   margin-top: 15px;
 }
@@ -261,54 +261,70 @@
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
 }
-.cl-ib.animation_aidos .cl-ib-image:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50;
-  height: 40px;
-  width: 40px;
-  margin: -20px 0 0 -20px;
+.cl-ib.animation_aidos .cl-ib-content {
+  right: auto;
+  width: 50%;
   background-color: inherit;
-  -webkit-transform: translate3d(-35px, 0, 0) rotate(45deg);
-  transform: translate3d(-35px, 0, 0) rotate(45deg);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
 }
-.cl-ib.animation_aidos .cl-ib-content {
-  right: auto;
-  width: 50%;
+.cl-ib.animation_aidos .cl-ib-content:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  margin: -20px 0 0 -20px;
+  background-color: inherit;
+  -webkit-transform: translate3d(-10px, 0, 0) rotate(45deg);
+  transform: translate3d(-10px, 0, 0) rotate(45deg);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
 }
 .cl-ib.animation_aidos .cl-ib-title {
   opacity: 0;
-  -webkit-transform: translate3d(-10%, 0, 0);
-  transform: translate3d(-10%, 0, 0);
+  -webkit-transform: translate3d(-100px, 0, 0);
+  transform: translate3d(-100px, 0, 0);
   -webkit-transition-property: transform opacity;
   transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-delay: 100ms;
+  transition-delay: 100ms;
 }
 .cl-ib.animation_aidos .cl-ib-desc {
   opacity: 0;
-  -webkit-transform: translate3d(10%, 0, 0);
-  transform: translate3d(10%, 0, 0);
+  -webkit-transform: translate3d(-100px, 0, 0);
+  transform: translate3d(-100px, 0, 0);
   -webkit-transition-property: transform opacity;
   transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-delay: 200ms;
+  transition-delay: 200ms;
 }
 .cl-ib.animation_aidos:hover .cl-ib-image,
 .cl-ib.animation_aidos.hover .cl-ib-image {
-  -webkit-transform: translate3d(50%, 0, 0) scale(1.01);
-  transform: translate3d(50%, 0, 0) scale(1.01);
+  -webkit-transform: translate3d(25%, 0, 0) scale(1.01);
+  transform: translate3d(25%, 0, 0) scale(1.01);
 }
-.cl-ib.animation_aidos:hover .cl-ib-image:after,
-.cl-ib.animation_aidos.hover .cl-ib-image:after {
-  -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
-  transform: translate3d(0, 0, 0) rotate(45deg);
+.cl-ib.animation_aidos:hover .cl-ib-content,
+.cl-ib.animation_aidos.hover .cl-ib-content {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.cl-ib.animation_aidos:hover .cl-ib-content:after,
+.cl-ib.animation_aidos.hover .cl-ib-content:after {
+  -webkit-transform: translate3d(15px, 0, 0) rotate(45deg);
+  transform: translate3d(15px, 0, 0) rotate(45deg);
 }
 .cl-ib.animation_aidos:hover .cl-ib-title,
 .cl-ib.animation_aidos.hover .cl-ib-title {
@@ -318,7 +334,7 @@
 }
 .cl-ib.animation_aidos:hover .cl-ib-desc,
 .cl-ib.animation_aidos.hover .cl-ib-desc {
-  opacity: 1;
+  opacity: 0.75;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
@@ -384,7 +400,7 @@
 }
 .cl-ib.animation_caeros:hover .cl-ib-desc,
 .cl-ib.animation_caeros.hover .cl-ib-desc {
-  opacity: 1;
+  opacity: 0.75;
   -webkit-transform: scale(1);
   transform: scale(1);
 }
@@ -461,7 +477,7 @@
 }
 .cl-ib.animation_hebe:hover .cl-ib-desc,
 .cl-ib.animation_hebe.hover .cl-ib-desc {
-  opacity: 1;
+  opacity: 0.75;
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
@@ -490,7 +506,7 @@
   transition-duration: 400ms;
 }
 .cl-ib.animation_aphelia .cl-ib-desc {
-  opacity: 1;
+  opacity: 0.75;
   -webkit-transform: translateY(0) scale(1);
   transform: translateY(0) scale(1);
   -webkit-transition-property: transform opacity;
