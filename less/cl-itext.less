@@ -1,9 +1,19 @@
 @import "prefixer.less";
 
 .cl-itext {
-	display: inline-block;
+	display: block;
 	position: relative;
-	font-size: 30px;
+	padding: 0 !important;
+	margin: 10px 0;
+	font-size: 50px;
+	text-align: center;
+	
+	&.align_left {
+		text-align: left;
+		}	
+	&.align_right {
+		text-align: right;
+		}
 
 	&-part {
 		position: relative;

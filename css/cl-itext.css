@@ -1,7 +1,16 @@
 .cl-itext {
-  display: inline-block;
+  display: block;
   position: relative;
-  font-size: 30px;
+  padding: 0 !important;
+  margin: 10px 0;
+  font-size: 50px;
+  text-align: center;
+}
+.cl-itext.align_left {
+  text-align: left;
+}
+.cl-itext.align_right {
+  text-align: right;
 }
 .cl-itext-part {
   position: relative;
