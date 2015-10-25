@@ -29,20 +29,13 @@ return array(
 				'heading' => __( 'Animation Duration', 'codelights' ),
 				'type' => 'dropdown',
 				'value' => array(
-					sprintf( __( '%s s', 'codelights' ), '0.5' ) => '500ms',
 					sprintf( __( '%s s', 'codelights' ), '1' ) => '1000ms',
-					sprintf( __( '%s s', 'codelights' ), '1.5' ) => '1500ms',
 					sprintf( __( '%s s', 'codelights' ), '2' ) => '2000ms',
 					sprintf( __( '%s s', 'codelights' ), '3' ) => '3000ms',
 					sprintf( __( '%s s', 'codelights' ), '4' ) => '4000ms',
 					sprintf( __( '%s s', 'codelights' ), '5' ) => '5000ms',
-					sprintf( __( '%s s', 'codelights' ), '6' ) => '6000ms',
-					sprintf( __( '%s s', 'codelights' ), '7' ) => '7000ms',
-					sprintf( __( '%s s', 'codelights' ), '8' ) => '8000ms',
-					sprintf( __( '%s s', 'codelights' ), '9' ) => '9000ms',
-					sprintf( __( '%s s', 'codelights' ), '10' ) => '10000ms',
 				),
-				'std' => '600ms',
+				'std' => '3000ms',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
@@ -202,10 +195,8 @@ return array(
 					sprintf( __( '%d ms', 'codelights' ), 800 ) => '800ms',
 					sprintf( __( '%d ms', 'codelights' ), 900 ) => '900ms',
 					sprintf( __( '%d ms', 'codelights' ), 1000 ) => '1000ms',
-					sprintf( __( '%d ms', 'codelights' ), 1100 ) => '1100ms',
-					sprintf( __( '%d ms', 'codelights' ), 1200 ) => '1200ms',
 				),
-				'std' => '600ms',
+				'std' => '500ms',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
@@ -213,7 +204,7 @@ return array(
 				'heading' => __( 'Animation Easing', 'codelights' ),
 				'type' => 'dropdown',
 				'value' => array(
-					__( 'Linear', 'codelights' ) => 'linear',
+					'ease' => 'ease',
 					'easeInOutSine' => 'easeInOutSine',
 					'easeInQuad' => 'easeInQuad',
 					'easeInOutCirc' => 'easeInOutCirc',
@@ -480,6 +471,7 @@ return array(
 				'param_name' => 'title',
 				'heading' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
+				'std' => 'Banner Title', // Not translatable
 				'admin_label' => TRUE,
 			),
 			array(
