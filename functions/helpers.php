@@ -290,6 +290,9 @@ function cl_prepare_inline_css( $props, $style_attr = TRUE ) {
 				break;
 			// Properties that need vendor prefixes
 			case 'transition-duration':
+				if ( ! preg_match( '~^(\d+ms)|(\d{0,2}(\.\d+)?s)$~', $value ) ) {
+					$value = ( ( strpos( $value, '.' ) !== FALSE ) ? intval( ( floatval( $value ) * 1000 ) ) : intval( $value ) ) . 'ms';
+				}
 				$result .= '-webkit-' . $prop . ':' . $value . ';' . $prop . ':' . $value . ';';
 				break;
 			// Properties with image values

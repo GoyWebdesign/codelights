@@ -10,7 +10,7 @@
  * @var $back_btn_color string
  * @var $animation string Animation type: 'cardflip' / 'cubetilt' / 'cubeflip' / 'coveropen'
  * @var $direction string Animation direction: 'n' / 'ne' / 'e' / 'se' / 's' / 'sw' / 'w' / 'nw'
- * @var $duration string Animation duration in milliseconds: '100ms' / '200ms' / ... / '900ms'
+ * @var $duration string Animation duration in milliseconds
  * @var $easing string Easing CSS class name
  * @var $front_icon_type string Front icon type: 'none' / 'font' / 'image'
  * @var $front_icon_name string The name of the front icon if present (ex: 'star' / 'fa-star')
@@ -160,7 +160,7 @@ if ( ! empty( $back_title ) ) {
 if ( ! empty( $back_desc ) ) {
 	$output .= '<p class="cl-flipbox-back-desc">' . $back_desc . '</p>';
 }
-if ( ! empty( $back_btn_label ) ) {
+if ( $link_type == 'btn' AND isset( $link_atts ) AND ! empty( $back_btn_label ) ) {
 	$back_btn_inline_css = cl_prepare_inline_css( array(
 		'color' => $back_btn_color,
 		'background-color' => $back_btn_bgcolor,

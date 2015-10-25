@@ -183,20 +183,9 @@ return array(
 			array(
 				'param_name' => 'duration',
 				'heading' => __( 'Animation Duration', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					sprintf( __( '%d ms', 'codelights' ), 100 ) => '100ms',
-					sprintf( __( '%d ms', 'codelights' ), 200 ) => '200ms',
-					sprintf( __( '%d ms', 'codelights' ), 300 ) => '300ms',
-					sprintf( __( '%d ms', 'codelights' ), 400 ) => '400ms',
-					sprintf( __( '%d ms', 'codelights' ), 500 ) => '500ms',
-					sprintf( __( '%d ms', 'codelights' ), 600 ) => '600ms',
-					sprintf( __( '%d ms', 'codelights' ), 700 ) => '700ms',
-					sprintf( __( '%d ms', 'codelights' ), 800 ) => '800ms',
-					sprintf( __( '%d ms', 'codelights' ), 900 ) => '900ms',
-					sprintf( __( '%d ms', 'codelights' ), 1000 ) => '1000ms',
-				),
-				'std' => '500ms',
+				'description' => __( 'In milliseconds', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '500',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 			),
 			array(
