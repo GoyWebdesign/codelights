@@ -1,8 +1,10 @@
 .cl-btn {
   display: inline-block;
-  border-radius: 5px;
+  vertical-align: top;
   line-height: 1.5;
-  padding: 0 10px;
+  padding: 8px 24px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 [class^="cl-"][class*=" ratio_"]:before {
   content: '';

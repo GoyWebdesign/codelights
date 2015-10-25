@@ -107,7 +107,7 @@ if ( $front_icon_type == 'font' AND ! empty( $front_icon_name ) ) {
 	}
 	if ( ! empty( $front_icon_size ) ) {
 		$front_icon_size = intval( $front_icon_size );
-		$front_icon_boxsize = $front_icon_size * ( ( $front_icon_style == 'default' ) ? 1 : 2 );
+		$front_icon_boxsize = $front_icon_size * ( ( $front_icon_style == 'default' ) ? 1 : 2.3 );
 		$front_icon_css_props += array(
 			'width' => $front_icon_boxsize,
 			'height' => $front_icon_boxsize,
@@ -158,7 +158,7 @@ if ( ! empty( $back_title ) ) {
 	$output .= '>' . $back_title . '</h4>';
 }
 if ( ! empty( $back_desc ) ) {
-	$output .= '<p class="cl-flipbox-back-text">' . $back_desc . '</p>';
+	$output .= '<p class="cl-flipbox-back-desc">' . $back_desc . '</p>';
 }
 if ( ! empty( $back_btn_label ) ) {
 	$back_btn_inline_css = cl_prepare_inline_css( array(

@@ -141,6 +141,7 @@ return array(
 				'param_name' => 'back_btn_label',
 				'heading' => __( 'Button Label', 'codelights' ),
 				'type' => 'textfield',
+				'std' => 'READ MORE', // Not translatable
 				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
 			),
 			array(
@@ -248,7 +249,7 @@ return array(
 				'param_name' => 'front_icon_size',
 				'heading' => __( 'Icon Size (px)', 'codelights' ),
 				'type' => 'textfield',
-				'std' => '20',
+				'std' => '35',
 				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
@@ -304,6 +305,7 @@ return array(
 				'type' => 'textfield',
 				'std' => 'FlipBox Title', // Not translatable
 				'admin_label' => TRUE,
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -311,7 +313,7 @@ return array(
 				'heading' => __( 'Title Font Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'dependency' => array( 'element' => 'front_title', 'not_empty' => TRUE ),
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			array(
@@ -346,6 +348,7 @@ return array(
 				'heading' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'FlipBox Title', // Not translatable
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			array(
@@ -353,7 +356,7 @@ return array(
 				'heading' => __( 'Title Font Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'dependency' => array( 'element' => 'back_title', 'not_empty' => TRUE ),
+				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			array(
@@ -420,7 +423,7 @@ return array(
 				'param_name' => 'border_size',
 				'heading' => __( 'Border Width', 'codelights' ),
 				'type' => 'textfield',
-				'std' => '2',
+				'std' => '0',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
@@ -435,7 +438,7 @@ return array(
 				'param_name' => 'padding',
 				'heading' => __( 'Padding', 'codelights' ),
 				'type' => 'textfield',
-				'std' => '20',
+				'std' => '15%',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
