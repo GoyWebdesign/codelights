@@ -25,6 +25,12 @@ return array(
 				'std' => '100',
 			),
 			array(
+				'param_name' => 'title',
+				'heading' => __( 'Counter Title', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '',
+			),
+			array(
 				'param_name' => 'duration',
 				'heading' => __( 'Animation Duration', 'codelights' ),
 				'type' => 'dropdown',
@@ -37,6 +43,7 @@ return array(
 				),
 				'std' => '3000ms',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
 				'param_name' => 'animation',
@@ -49,12 +56,7 @@ return array(
 				),
 				'std' => 'none',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
-			),
-			array(
-				'param_name' => 'title',
-				'heading' => __( 'Counter Title', 'codelights' ),
-				'type' => 'textfield',
-				'std' => '',
+				'group' => __( 'Custom', 'codelights' ),
 			),
 			array(
 				'param_name' => 'value_size',
