@@ -7,19 +7,21 @@
 	margin: 10px 0;
 	font-size: 50px;
 	text-align: center;
-	
+
 	&.align_left {
 		text-align: left;
-		}	
+	}
 	&.align_right {
 		text-align: right;
-		}
+	}
 
 	&-part {
 		position: relative;
 		display: inline-block;
 		white-space: nowrap;
-		.transition-property(width);
+		text-align: left;
+		-webkit-transition-property: width, color;
+		transition-property: width, color;
 
 		// Changeable parts
 		> span {

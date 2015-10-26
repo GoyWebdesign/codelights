@@ -48,9 +48,15 @@
 			for (var partIndex = 0; partIndex < this.parts.length; partIndex++) {
 				if (this.partsStates[partIndex][this.active] != this.partsStates[partIndex][nextState]) {
 					this.parts[partIndex].addClass('dynamic');
+					if (this.dynamicColor) {
+						this.parts[partIndex].css('color', this.dynamicColor);
+					}
 					this._animatePart(partIndex);
 				} else {
 					this.parts[partIndex].removeClass('dynamic');
+					if (this.dynamicColor) {
+						this.parts[partIndex].css('color', '');
+					}
 				}
 			}
 			this.timer = setTimeout(this._events.postAnimate, this.duration + this.delay / 2);

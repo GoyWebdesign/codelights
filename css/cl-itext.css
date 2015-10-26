@@ -16,8 +16,9 @@
   position: relative;
   display: inline-block;
   white-space: nowrap;
-  -webkit-transition-property: width;
-  transition-property: width;
+  text-align: left;
+  -webkit-transition-property: width, color;
+  transition-property: width, color;
 }
 .cl-itext-part > span.measure {
   position: absolute;
