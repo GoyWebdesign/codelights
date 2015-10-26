@@ -4,19 +4,21 @@
  * Output a single Ineractive Banner element.
  *
  * @var $texts string newline-separated text states
- * @var $animation_type string Animation type: 'replace' / 'terminal' / 'shortest'
- * @var $duration string Animation duration: '100ms' / '200ms' / ... / '1200ms'
- * @var $delay string Animation delay: '1000ms' / '2000ms' / ... / '10000ms'
- * @var $font_size int Font size in pixels
  * @var $dynamic_bold bool Bold dynamic text?
+ * @var $animation_type string Animation type: 'replace' / 'terminal' / 'shortest'
+ * @var $font_size int Font size in pixels
+ * @var $font_size_mobile int Font size for mobiles in pixels
  * @var $color string Basic text color
  * @var $dynamic_color string Changing part text color
+ * @var $align string Text alignment: 'left' / 'center' / 'right'
  * @var $tag string Tag name: 'div' / 'h1' / 'h2' / 'h3' / 'p'
+ * @var $duration string Animation duration in milliseconds
+ * @var $delay string Animation delay in seconds
  * @var $el_class string Extra class name
  */
 
 // Main element classes, inner css and additional attributes
-$classes = ' type_' . $animation_type;
+$classes = ' type_' . $animation_type . ' align_' . $align;
 if ( $dynamic_bold ) {
 	$classes .= ' dynamic_bold';
 }
@@ -24,8 +26,8 @@ if ( $dynamic_bold ) {
 $texts_arr = explode( "\n", strip_tags( $texts ) );
 
 $js_data = array(
-	'duration' => $duration,
-	'delay' => $delay,
+	'duration' => intval( $duration ),
+	'delay' => intval( floatval( $delay ) * 1000 ),
 );
 if ( ! empty( $dynamic_color ) ) {
 	$js_data['dynamicColor'] = $dynamic_color;
@@ -131,7 +133,21 @@ for ( $i = 1; $i < count( $group_changes ); $i++ ) {
 
 $inline_css = cl_prepare_inline_css( array(
 	'color' => $color,
+	'font-size' => $font_size,
 ) );
+
+$custom_css = '';
+if ( ! empty( $font_size_mobile ) AND (int) $font_size_mobile != (int) $font_size ) {
+	// Unique styled element number
+	global $cl_custom_css_id;
+	$cl_custom_css_id = isset( $cl_custom_css_id ) ? ( $cl_custom_css_id + 1 ) : 1;
+	$custom_css .= '<style type="text/css">';
+	$custom_css .= '@media only screen and (max-width: 599px) {';
+	$custom_css .= '.cl_custom_css_' . $cl_custom_css_id . ' { font-size: ' . intval( $font_size_mobile ) . 'px !important; }';
+	$custom_css .= '}';
+	$custom_css .= '</style>';
+	$classes .= ' cl_custom_css_' . $cl_custom_css_id;
+}
 
 $output = '<' . $tag . ' class="cl-itext' . $classes . '"' . $inline_css . cl_pass_data_to_js( $js_data ) . '>';
 foreach ( $groups as $index => $group ) {
@@ -149,5 +165,7 @@ foreach ( $groups as $index => $group ) {
 	}
 }
 $output .= '</' . $tag . '>';
+
+$output .= $custom_css;
 
 echo $output;
