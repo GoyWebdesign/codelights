@@ -93,7 +93,7 @@
 				var $chars = [],
 					charDuration = Math.floor(this.duration / nextValue.length);
 				for (i = 0; i < nextValue.length; i++) {
-					$chars.push($('<span>' + nextValue[i] + '</span>').css({
+					$chars.push($('<span>' + ((nextValue[i] != ' ') ? nextValue[i] : '&nbsp;') + '</span>').css({
 						'-webkit-transition-duration': charDuration + 'ms',
 						'transition-duration': charDuration + 'ms'
 					}).appendTo($nextSpan));

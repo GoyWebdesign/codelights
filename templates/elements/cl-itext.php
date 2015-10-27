@@ -112,7 +112,7 @@ $group_changes = array();
 foreach ( $groups as $index => $group ) {
 	$group_changes[ $index ] = array();
 	for ( $i = 0; $i < count( $_parts ); $i++ ) {
-		if ( $group[ $i ] != $group[ isset( $group[ $i + 1 ] ) ? ( $i + 1 ) : 0 ] ) {
+		if ( $group[ $i ] != $group[ isset( $group[ $i + 1 ] ) ? ( $i + 1 ) : 0 ] OR $group[ $i ] === '' ) {
 			$group_changes[ $index ][] = $i;
 		}
 	}
