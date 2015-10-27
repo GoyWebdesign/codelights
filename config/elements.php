@@ -33,15 +33,9 @@ return array(
 			array(
 				'param_name' => 'duration',
 				'heading' => __( 'Animation Duration', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					sprintf( __( '%s s', 'codelights' ), '1' ) => '1000ms',
-					sprintf( __( '%s s', 'codelights' ), '2' ) => '2000ms',
-					sprintf( __( '%s s', 'codelights' ), '3' ) => '3000ms',
-					sprintf( __( '%s s', 'codelights' ), '4' ) => '4000ms',
-					sprintf( __( '%s s', 'codelights' ), '5' ) => '5000ms',
-				),
-				'std' => '3000ms',
+				'description' => __( 'In milliseconds', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '3000',
 				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
