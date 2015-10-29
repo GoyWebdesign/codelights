@@ -249,7 +249,8 @@ jQuery.fn.cssMod = function(mod, value){
 				'<a class="cl-imgattach-delete" href="javascript:void(0)">&times;</a>' +
 				'<img width="150" height="150" class="attachment-thumbnail" src="';
 			if (attachment.attributes.sizes !== undefined) {
-				html += attachment.attributes.sizes.thumbnail.url;
+				var size = (attachment.attributes.sizes.thumbnail !== undefined) ? 'thumbnail' : 'full';
+				html += attachment.attributes.sizes[size].url;
 			}
 			html += '"></li>';
 			var $item = $(html);
@@ -257,7 +258,8 @@ jQuery.fn.cssMod = function(mod, value){
 				// Loading missing image via ajax
 				attachment.fetch({
 					success: function(){
-						$item.find('img').attr('src', attachment.attributes.sizes.thumbnail.url);
+						var size = (attachment.attributes.sizes.thumbnail !== undefined) ? 'thumbnail' : 'full';
+						$item.find('img').attr('src', attachment.attributes.sizes[size].url);
 					}.bind(this)
 				});
 			}
@@ -283,6 +285,17 @@ jQuery.fn.cssMod = function(mod, value){
 		render: function(){
 			var value = this.getValue();
 			this.$input.wpColorPicker('color', value);
+		}
+	};
+
+	/**
+	 * $cl.Field type: dropdown
+	 */
+	$cl.Field['dropdown'] = {
+		init: function(){
+			this.$input.on('change keyup', function(){
+				this.trigger('change', [this.getValue()]);
+			}.bind(this));
 		}
 	};
 
@@ -399,6 +412,7 @@ jQuery.fn.cssMod = function(mod, value){
 	/**
 	 * $cl.EForm class
 	 * @param container
+	 * @param {Object} options
 	 * @constructor
 	 */
 	$cl.EForm = function(container){
@@ -408,6 +422,10 @@ jQuery.fn.cssMod = function(mod, value){
 			this.tabs = new $cl.Tabs(this.$tabs);
 		}
 
+		// Dependencies rules and the list of dependent fields for all the affecting fields
+		this.deps = {};
+		this.affects = {};
+
 		this.$fields = this.$container.find('.cl-eform-row');
 		this.fields = {};
 		this.$fields.each(function(index, row){
@@ -415,11 +433,86 @@ jQuery.fn.cssMod = function(mod, value){
 				name = $row.cssMod('for');
 			this.fields[name] = new $cl.Field($row);
 			this.fields[name].trigger('beforeShow');
+			var $dependency = $row.find('.cl-eform-row-dependency');
+			if ($dependency.length) {
+				this.deps[name] = ($dependency[0].onclick() || {});
+				if (this.affects[this.deps[name].element] === undefined) this.affects[this.deps[name].element] = [];
+				this.affects[this.deps[name].element].push(name);
+			}
+		}.bind(this));
+
+		$.each(this.affects, function(name, affectedList){
+			var onChangeFn = function(){
+				for (var index = 0; index < affectedList.length; index++) {
+					if (this.shouldBeVisible(affectedList[index])) {
+						this.fields[affectedList[index]].$row.show();
+					} else {
+						this.fields[affectedList[index]].$row.hide();
+					}
+				}
+			}.bind(this);
+			this.fields[name].bind('change', onChangeFn);
+			onChangeFn();
 		}.bind(this));
 	};
+	$.extend($cl.EForm.prototype, {
+		/**
+		 * Get a particular field value
+		 * @param {String} name Field name
+		 * @return {String}
+		 */
+		getValue: function(name){
+			return (this.fields[name] === undefined) ? null : this.fields[name].getValue();
+		},
+		setValue: function(name, value){
+			if (this.fields[name] !== undefined) this.field[name].setValue(value);
+		},
+		getValues: function(){
+			var values = {};
+			this.fields.forEach(function(field, name){
+				values[name] = field.getValue();
+			}.bind(this));
+			return values;
+		},
+		setValues: function(values){
+			values.forEach(function(value, name){
+				if (this.fields[name] !== undefined) this.field[name].setValue(value);
+			}.bind(this));
+		},
+		/**
+		 * Check if the field should be visible
+		 * @param {String} name
+		 * @return {Boolean}
+		 */
+		shouldBeVisible: function(name){
+			if (this.deps[name] === undefined) return true;
+			var dep = this.deps[name],
+				value = this.fields[dep.element].getValue();
+			if (dep.value !== undefined) {
+				return (dep.value instanceof Array) ? (dep.value.indexOf(value) != -1) : (value == dep.value);
+			} else if (dep.not_empty !== undefined) {
+				return (value != '');
+			} else return true;
+		}
+	});
 
+	// For admin widgets only!
 	$('#widgets-right .cl-eform').each(function(){
 		new $cl.EForm(this);
 	});
+	$(document).bind('widget-added', function(event, widget){
+		new $cl.EForm($(widget).find('.cl-eform'));
+	});
+	$(document).bind('widget-updated', function(event, widget){
+		new $cl.EForm($(widget).find('.cl-eform'));
+	});
+	// Widget's fields may be shown
+	$(document).bind('wp-pin-menu', function(){
+		console.log('toggled sidebar block');
+	});
+	// TODO Re-create on widget save
+	// TODO Widget toggle
+	// TODO Widget deletion
+
 
 }(jQuery);

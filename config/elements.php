@@ -103,12 +103,12 @@ return array(
 			 * General
 			 */
 			// TODO Remove when textarea_html works fine
-			array(
+			/*array(
 				'param_name' => 'content',
 				'heading' => 'Content',
 				'type' => 'textarea_html',
 				'std' => '',
-			),
+			),*/
 			array(
 				'param_name' => 'link_type',
 				'heading' => __( 'Link', 'codelights' ),

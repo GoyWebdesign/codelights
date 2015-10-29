@@ -56,6 +56,10 @@ foreach ( $params as $index => &$param ) {
 	}
 	$param['edit_field_class'] = isset( $param['edit_field_class'] ) ? $param['edit_field_class'] : '';
 	$param['std'] = isset( $param['std'] ) ? $param['std'] : '';
+	// Filling missing values with standard ones
+	if ( ! isset( $values[ $param['param_name'] ] ) ) {
+		$values[ $param['param_name'] ] = $param['std'];
+	}
 	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
 	if ( ! isset( $groups[ $group ] ) ) {
 		$groups[ $group ] = array();
@@ -83,20 +87,31 @@ foreach ( $groups as &$group_params ) {
 	}
 	foreach ( $group_params as $index => &$param ) {
 
-		$output .= '<div class="cl-eform-row type_' . $param['type'] . ' for_' . $param['param_name'] . ' ' . $param['edit_field_class'] . '">';
+		// Field params
+		$field = array(
+			'name' => isset( $field_name_fn ) ? $field_name_fn( $param['param_name'] ) : sprintf( $field_name_pattern, $param['param_name'] ),
+			'id' => isset( $field_id_fn ) ? $field_id_fn( $param['param_name'] ) : sprintf( $field_id_pattern, $param['param_name'] ),
+			'value' => $values[ $param['param_name'] ],
+		);
+
+		// Field visibility is defined by the dependency value
+		$field_is_shown = TRUE;
+		if ( isset( $param['dependency'] ) AND ! empty( $param['dependency'] ) AND isset( $param['dependency']['element'] ) AND isset( $values[ $param['dependency']['element'] ] ) ) {
+			if ( isset( $param['dependency']['value'] ) ) {
+				$field_is_shown = in_array( $values[ $param['dependency']['element'] ], (array) $param['dependency']['value'] );
+			} elseif ( isset( $param['dependency']['not_empty'] ) ) {
+				$field_is_shown = ( $values[ $param['dependency']['element'] ] != '' );
+			}
+		}
+
+		$output .= '<div class="cl-eform-row type_' . $param['type'] . ' for_' . $param['param_name'] . ' ' . $param['edit_field_class'] . '"' . ( $field_is_shown ? '' : ' style="display: none"' ) . '>';
 		if ( isset( $param['heading'] ) AND ! empty( $param['heading'] ) ) {
 			$output .= '<div class="cl-eform-row-heading">';
-			$output .= '<label for="' . esc_attr( $param['id'] ) . '">' . $param['heading'] . '</label>';
+			$output .= '<label for="' . esc_attr( $field['id'] ) . '">' . $param['heading'] . '</label>';
 			$output .= '</div>';
 		}
 		$output .= '<div class="cl-eform-row-field">';
 
-		// Outputting the field itself
-		$field = array(
-			'name' => isset( $field_name_fn ) ? $field_name_fn( $param['param_name'] ) : sprintf( $field_name_pattern, $param['param_name'] ),
-			'id' => isset( $field_id_fn ) ? $field_id_fn( $param['param_name'] ) : sprintf( $field_id_pattern, $param['param_name'] ),
-			'value' => isset( $values[ $param['param_name'] ] ) ? $values[ $param['param_name'] ] : $param['std'],
-		);
 		if ( in_array( $param['type'], array( 'checkbox', 'dropdown' ) ) AND isset( $param['value'] ) ) {
 			$field['options'] = $param['value'];
 		}
