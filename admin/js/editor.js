@@ -500,10 +500,7 @@ jQuery.fn.cssMod = function(mod, value){
 	$('#widgets-right .cl-eform').each(function(){
 		new $cl.EForm(this);
 	});
-	$(document).bind('widget-added', function(event, widget){
-		new $cl.EForm($(widget).find('.cl-eform'));
-	});
-	$(document).bind('widget-updated', function(event, widget){
+	$(document).bind('widget-added widget-updated', function(event, widget){
 		new $cl.EForm($(widget).find('.cl-eform'));
 	});
 	// Widget's fields may be shown

@@ -52,6 +52,7 @@ abstract class CL_Widget extends WP_Widget {
 	 * @param array $instance The settings for the particular instance of the widget.
 	 */
 	public function widget( $args, $instance ) {
+		cl_enqueue_assets( $this->id_base );
 		$instance = cl_shortcode_atts( $instance, $this->id_base );
 		cl_load_template( 'elements/' . $this->id_base, $instance );
 	}
