@@ -17,6 +17,7 @@ $cl_uri = plugins_url( '', __FILE__ );
 require $cl_dir . '/functions/helpers.php';
 require $cl_dir . '/functions/shortcodes.php';
 
+require $cl_dir . '/editors-support/native/native.php';
 require $cl_dir . '/editors-support/js_composer/js_composer.php';
 require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 
@@ -26,10 +27,13 @@ require $cl_dir . '/functions/class-cl-widget.php';
 /* load admin js and css styles */
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
 function cl_register_admin_scripts() {
-	global $cl_uri;
+	global $cl_uri, $post_type;
 
 	$screen = get_current_screen();
-	if ( $screen->base == 'widgets' ) {
+	$is_widgets = ( $screen->base == 'widgets' );
+	$is_customizer = ( $screen->base == 'customize' );
+	$is_content_editor = ( isset( $post_type ) AND post_type_supports( $post_type, 'editor' ) );
+	if ( $is_widgets OR $is_customizer OR $is_content_editor ) {
 		wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
 
 		wp_register_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
@@ -41,7 +45,6 @@ function cl_register_admin_scripts() {
 		}
 
 		// For link field type
-
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}

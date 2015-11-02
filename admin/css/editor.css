@@ -118,3 +118,8 @@ div#widgets-right .sidebars-column-2 {
 .cl-eform-row.type_textfield input {
   width: 100%;
 }
+#qt_content_codelights {
+  width: 30px;
+  text-indent: -10000px;
+  background: url(../../editors-support/native/icon.png) 50% 50% no-repeat;
+}
