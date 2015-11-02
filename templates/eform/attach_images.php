@@ -19,9 +19,7 @@ foreach ( $img_ids as $img_id ) {
 }
 $output .= '</ul>';
 $add_btn_title = $multiple ? __( 'Add images', 'codelights' ) : __( 'Add image', 'codelights' );
-$output .= '<a href="javascript:void(0)" class="cl-imgattach-add" title="' . $add_btn_title . '"';
-$output .= ' style="display: ' . ( ( $multiple OR count( $img_ids ) == 0 ) ? 'block' : 'none' ) . ';"';
-$output .= '>+</a>';
+$output .= '<a href="javascript:void(0)" class="cl-imgattach-add" title="' . $add_btn_title . '">+</a>';
 $output .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
 $output .= '</div>';
 

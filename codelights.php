@@ -22,7 +22,6 @@ require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
-//require $cl_dir . '/widgets/cl_flipbox.php';
 
 /* load admin js and css styles */
 add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );

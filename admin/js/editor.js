@@ -146,7 +146,6 @@ jQuery.fn.cssMod = function(mod, value){
 				deleteImg: function(event){
 					$(event.target).closest('li').remove();
 					this.updateInput();
-					if (!this.multiple) this.$btnAdd.css('display', this.getValue() ? 'none' : 'block');
 				}.bind(this),
 				updateInput: this.updateInput.bind(this)
 			};
@@ -199,8 +198,7 @@ jQuery.fn.cssMod = function(mod, value){
 				}),
 				newValue = imgIds.join(',');
 			if (newValue != oldValue) {
-				this.$input.val(newValue);
-				this.trigger('change', [newValue]);
+				this.$input.val(newValue).trigger('change');
 			}
 		},
 		openMediaUploader: function(){
@@ -273,9 +271,14 @@ jQuery.fn.cssMod = function(mod, value){
 	 */
 	$cl.Field['colorpicker'] = {
 		init: function(){
+			this.parentInit();
+			this.changeTimer = null;
 			this._events = {
 				change: function(value){
-					this.trigger('change', [value]);
+					clearTimeout(this.changeTimer);
+					this.changeTimer = setTimeout(function(){
+						this.$input.trigger('change');
+					}.bind(this), 100);
 				}.bind(this)
 			};
 			this.$input.wpColorPicker({
@@ -325,6 +328,7 @@ jQuery.fn.cssMod = function(mod, value){
 					var wpLinkText = $('#wp-link-text').val(),
 						linkAtts = wpLink.getAttrs();
 					this.setValue(this.encodeLink(linkAtts.href, wpLinkText, linkAtts.target));
+					this.$input.trigger('change');
 					this._events.close();
 				}.bind(this),
 				close: function(){
@@ -496,8 +500,11 @@ jQuery.fn.cssMod = function(mod, value){
 		}
 	});
 
-	// For admin widgets only!
-	$('#widgets-right .cl-eform').each(function(){
+}(jQuery);
+
+// Admin widgets editor
+if (window.wpWidgets !== undefined) jQuery(function($){
+	$('#widgets-right').find('.cl-eform').each(function(){
 		new $cl.EForm(this);
 	});
 	$(document).bind('widget-added widget-updated', function(event, widget){
@@ -505,11 +512,22 @@ jQuery.fn.cssMod = function(mod, value){
 	});
 	// Widget's fields may be shown
 	$(document).bind('wp-pin-menu', function(){
-		console.log('toggled sidebar block');
+		//console.log('toggled sidebar block');
 	});
 	// TODO Re-create on widget save
 	// TODO Widget toggle
 	// TODO Widget deletion
+});
 
-
-}(jQuery);
+// Customizer widgets editor
+if (window._wpCustomizeWidgetsSettings !== undefined) jQuery(function($){
+	$('#widgets-right').find('.cl-eform').each(function(){
+		new $cl.EForm(this);
+	});
+	$(document).bind('widget-added widget-updated', function(event, widget){
+		new $cl.EForm($(widget).find('.cl-eform'));
+	});
+	// TODO Re-create on widget save
+	// TODO Widget toggle
+	// TODO Widget deletion
+});

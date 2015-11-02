@@ -14,7 +14,7 @@
 		this.forceSquare = (animation == 'cubeflip' && ['ne', 'se', 'sw', 'nw'].indexOf(direction) != -1);
 
 		// Container height is determined by the maximum content height
-		this.autoSize = (container.style.height == '' && ! this.forceSquare);
+		this.autoSize = (this.$front[0].style.height == '' && ! this.forceSquare);
 
 		// Content is centered
 		this.centerContent = (this.$container.cssMod('valign') == 'center');
