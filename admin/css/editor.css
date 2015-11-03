@@ -118,6 +118,68 @@ div#widgets-right .sidebars-column-2 {
 .cl-eform-row.type_textfield input {
   width: 100%;
 }
+.cl-elist {
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  top: 100px;
+  width: 900px;
+  margin-left: -450px;
+  background: #eeeeee;
+  border: 1px black solid;
+  padding: 20px;
+}
+.cl-elist-title {
+  margin: 0;
+}
+.cl-elist-closer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+.cl-elist-list:before,
+.cl-elist-list:after {
+  content: '';
+  display: table;
+}
+.cl-elist-list:after {
+  clear: both;
+}
+.cl-elist-item {
+  float: left;
+  width: 33.33%;
+  height: 130px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.cl-ebuilder {
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  top: 100px;
+  width: 600px;
+  margin-left: -300px;
+  background: #eeeeee;
+  border: 1px black solid;
+  padding: 20px;
+}
+.cl-ebuilder-closer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+}
 #qt_content_codelights {
   width: 30px;
   text-indent: -10000px;

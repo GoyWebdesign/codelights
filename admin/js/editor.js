@@ -26,8 +26,8 @@ jQuery.fn.cssMod = function(mod, value){
 	}
 };
 
+if (window.$cl === undefined) window.$cl = {};
 !function($){
-	if (window.$cl === undefined) window.$cl = {};
 	if (window.$cl.mixins === undefined) window.$cl.mixins = {};
 
 	/**
@@ -36,7 +36,7 @@ jQuery.fn.cssMod = function(mod, value){
 	 */
 	$cl.mixins.Events = {
 		/**
-		 * Attach a handler to an event for the elements
+		 * Attach a handler to an event for the class instance
 		 * @param {String} eventType A string containing event type, such as 'beforeShow' or 'change'
 		 * @param {Function} handler A function to execute each time the event is triggered
 		 */
@@ -44,37 +44,44 @@ jQuery.fn.cssMod = function(mod, value){
 			if (this.$$events === undefined) this.$$events = {};
 			if (this.$$events[eventType] === undefined) this.$$events[eventType] = [];
 			this.$$events[eventType].push(handler);
+			return this;
 		},
 		/**
-		 * Remove a previously-attached event handler from the elements.
+		 * Remove a previously-attached event handler from the class instance
 		 * @param {String} eventType A string containing event type, such as 'beforeShow' or 'change'
-		 * @param {Function} handler The function that is to be no longer executed.
+		 * @param {Function} [handler] The function that is to be no longer executed.
+		 * @chainable
 		 */
 		unbind: function(eventType, handler){
-			if (this.$$events === undefined || this.$$events[eventType] === undefined) return;
-			var handlerPos = $.inArray(handler, this.$$events[eventType]);
-			if (handlerPos != -1) {
-				this.$$events[eventType].splice(handlerPos, 1);
+			if (this.$$events === undefined || this.$$events[eventType] === undefined) return this;
+			if (handler !== undefined) {
+				var handlerPos = $.inArray(handler, this.$$events[eventType]);
+				if (handlerPos != -1) {
+					this.$$events[eventType].splice(handlerPos, 1);
+				}
+			} else {
+				this.$$events[eventType] = [];
 			}
+			return this;
 		},
 		/**
 		 * Execute all handlers and behaviours attached to the class instance for the given event type
 		 * @param {String} eventType A string containing event type, such as 'beforeShow' or 'change'
 		 * @param {Array} extraParameters Additional parameters to pass along to the event handler
+		 * @chainable
 		 */
 		trigger: function(eventType, extraParameters){
-			if (this.$$events === undefined || this.$$events[eventType] === undefined || this.$$events[eventType].length == 0) return;
+			if (this.$$events === undefined || this.$$events[eventType] === undefined || this.$$events[eventType].length == 0) return this;
 			for (var index = 0; index < this.$$events[eventType].length; index++) {
-				this.$$events[eventType][index](this, extraParameters);
+				this.$$events[eventType][index].apply(this, extraParameters);
 			}
+			return this;
 		}
 	};
 
 	/**
 	 * $cl.Field class
-	 *
 	 * Boundable events: beforeShow, afterShow, change, beforeHide, afterHide
-	 *
 	 * @param row
 	 * @constructor
 	 */
@@ -479,7 +486,7 @@ jQuery.fn.cssMod = function(mod, value){
 			return values;
 		},
 		setValues: function(values){
-			values.forEach(function(value, name){
+			$.each(function(name, value){
 				if (this.fields[name] !== undefined) this.field[name].setValue(value);
 			}.bind(this));
 		},
@@ -499,6 +506,140 @@ jQuery.fn.cssMod = function(mod, value){
 			} else return true;
 		}
 	});
+
+	/**
+	 * $cl.Elist class: A popup with elements list to choose from. Behaves as a singleton.
+	 * Boundable events: beforeShow, afterShow, beforeHide, afterHide, select
+	 * @constructor
+	 */
+	$cl.EList = function(){
+		if ($cl.elist !== undefined) return $cl.elist;
+		this.$container = $('.cl-elist');
+		if (this.$container.length > 0) this.init();
+	};
+	$.extend($cl.EList.prototype, $cl.mixins.Events, {
+		init: function(){
+			this.$closer = this.$container.find('.cl-elist.closer');
+			this.$list = this.$container.find('.cl-elist-list');
+			this._events = {
+				select: function(event){
+					var $item = $(event.target).closest('.cl-elist-item');
+					this.hide();
+					this.trigger('select', [$item.data('name')]);
+				}.bind(this),
+				hide: this.hide.bind(this)
+			};
+			this.$closer.on('click', this._events.hide);
+			this.$list.on('click', '.cl-elist-item', this._events.select);
+		},
+		show: function(){
+			if (this.$container.length == 0) {
+				// Loading elements list html via ajax
+				$.ajax({
+					type: 'post',
+					url: $cl.ajaxUrl,
+					data: {
+						action: 'cl_get_elist_template'
+					},
+					success: function(html){
+						this.$container = $(html).css('display', 'none').appendTo($(document.body));
+						this.init();
+						this.show();
+					}.bind(this),
+					error: function(){
+						this.trigger('beforeShow').trigger('afterShow').trigger('beforeHide').trigger('afterHide');
+					}.bind(this)
+				});
+				return;
+			}
+
+			this.trigger('beforeShow');
+			this.$container.css('display', 'block');
+			this.trigger('afterShow');
+		},
+		hide: function(){
+			this.trigger('beforeHide');
+			this.$container.css('display', 'none');
+			this.trigger('afterHide');
+		}
+	});
+	// Singleton instance
+	$cl.elist = new $cl.EList;
+
+	/**
+	 * $cl.EBuilder class: A popup with loadable elements forms
+	 * Boundable events: beforeShow, afterShow, beforeHide, afterHide, save
+	 * @constructor
+	 */
+	$cl.EBuilder = function(){
+		this.$container = $('.cl-ebuilder');
+		if (this.$container.length != 0) this.init();
+	};
+	$.extend($cl.EBuilder.prototype, $cl.mixins.Events, {
+		init: function(){
+			this.$closer = this.$container.find('.cl-ebuilder-closer');
+			// Actve element
+			this.active = false;
+			// Eforms containers and class instances
+			this.$eforms = {};
+			this.eforms = {};
+			this._events = {
+				hide: this.hide.bind(this)
+			};
+			this.$closer.on('click', this._events.hide);
+		},
+		/**
+		 * Show element form for a specified element name and initial values
+		 * @param {String} name
+		 * @param {Object} values
+		 */
+		show: function(name, values){
+			if (this.$container.length == 0) {
+				var html = '<div class="cl-ebuilder"><div class="cl-ebuilder-closer">&times;</div></div>';
+				this.$container = $(html).appendTo($(document.body));
+				this.init();
+			}
+
+			if (this.eforms[name] === undefined) {
+				// Loading particular element form's html via ajax
+				$.ajax({
+					type: 'post',
+					url: $cl.ajaxUrl,
+					data: {
+						action: 'cl_get_eform_template',
+						name: name
+						// We don't submit current values to retrieve default values for further shortcodes processing
+					},
+					success: function(html){
+						this.$eforms[name] = $(html).css('display', 'none').appendTo(this.$container);
+						this.eforms[name] = new $cl.EForm(this.$eforms[name]);
+						this.show(name, values);
+					}.bind(this),
+					error: function(){
+						this.trigger('beforeShow').trigger('afterShow').trigger('beforeHide').trigger('afterHide');
+					}.bind(this)
+				});
+				return;
+			}
+
+			this.eforms[name].setValues(values);
+			if (this.eforms[name].tabs !== undefined) this.eforms[name].tabs.open(0);
+			this.$eforms[name].css('display', 'block');
+			this.active = name;
+			this.trigger('beforeShow');
+			this.$container.css('display', 'block');
+			this.trigger('afterShow');
+		},
+		hide: function(){
+			this.trigger('beforeHide');
+			this.$container.css('display', 'none');
+			if (this.$eforms[this.active] !== undefined) this.$eforms[this.active].css('display', 'none');
+			this.trigger('afterHide');
+			this.active = false;
+		}
+	});
+	// Singletone instance
+	$cl.ebuilder = new $cl.EBuilder;
 
 }(jQuery);
 
@@ -527,7 +668,7 @@ jQuery.fn.cssMod = function(mod, value){
 	 * @return {{}} action, new selection, shortcode data (if found)
 	 */
 	$cl.fn.handleShortcodeCall = function(text, startOffset, endOffset){
-		var shortcode = {};
+		var handler = {};
 		// If user selected a shortcode or its part
 		if (startOffset < endOffset && text[endOffset - 1] == ']') {
 			endOffset--;
@@ -540,23 +681,23 @@ jQuery.fn.cssMod = function(mod, value){
 			// In some shortcode
 			if (text.substr(prevOpen, 4) == '[cl-') {
 				// Edit existing shortcode
-				var shortcodeText = text.substring(prevOpen, nextClose + 1);
-				shortcode.action = 'edit';
-				shortcode.selection = [prevOpen, nextClose + 1];
-				shortcode.name = shortcodeText.substring(1, shortcodeText.indexOf(' '));
-				shortcode.atts = $cl.fn.shortcodeParseAtts(shortcodeText);
+				var shortcode = text.substring(prevOpen, nextClose + 1);
+				handler.action = 'edit';
+				handler.selection = [prevOpen, nextClose + 1];
+				handler.shortcode = shortcode.substring(1, Math.min(shortcode.indexOf(' '), shortcode.indexOf(']')));
+				handler.values = $cl.fn.shortcodeParseAtts(shortcode);
 				// Parsing the shorcode data
 			} else {
 				// Inside of 3-rd party shortcode: inserting codelights shortcode just after it
-				shortcode.action = 'insert';
-				shortcode.selection = [nextClose + 1, nextClose + 1];
+				handler.action = 'insert';
+				handler.selection = [nextClose + 1, nextClose + 1];
 			}
 		} else {
 			// Insert to the cursor position
-			shortcode.action = 'insert';
-			shortcode.selection = [startOffset, endOffset];
+			handler.action = 'insert';
+			handler.selection = [startOffset, endOffset];
 		}
-		return shortcode;
+		return handler;
 	};
 }(jQuery);
 

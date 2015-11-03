@@ -1,4 +1,4 @@
-(function(){
+!function($){
 	tinymce.create('tinymce.plugins.codelights', {
 		init: function(ed, url){
 			ed.addButton('codelights', {
@@ -7,28 +7,41 @@
 				image: url + '/icon.png'
 			});
 
-			ed.addCommand('codelights', function(){
+			var btnAction = function(){
 				// Determine if we're adding the new one or editing the existing shortcode
 				var range = ed.selection.getRng(),
 				// If several dom elements are selected, selection is handled as a single cursor position
 					startOffset = range[(range.startContainer == range.endContainer) ? 'startOffset' : 'endOffset'],
-					shortcode = $cl.fn.handleShortcodeCall(range.endContainer.nodeValue, startOffset, range.endOffset);
-				if (shortcode.selection !== undefined) {
+					handler = $cl.fn.handleShortcodeCall(range.endContainer.nodeValue, startOffset, range.endOffset);
+				if (handler.selection !== undefined) {
 					// Updating selection
-					if (shortcode.selection[0] == shortcode.selection[1]) {
+					if (handler.selection[0] == handler.selection[1]) {
 						// Cursor position
-						ed.selection.setCursorLocation(range.endContainer, shortcode.selection[0]);
+						ed.selection.setCursorLocation(range.endContainer, handler.selection[0]);
 					} else {
 						// Select range
 						var rng = document.createRange();
-						rng.setStart(range.startContainer, shortcode.selection[0]);
-						rng.setEnd(range.endContainer, shortcode.selection[1]);
+						rng.setStart(range.startContainer, handler.selection[0]);
+						rng.setEnd(range.endContainer, handler.selection[1]);
 						ed.selection.setRng(rng);
 					}
 				}
 
-				//ed.execCommand('mceInsertContent', 0, 'HELLO');
-			});
+				if (handler.action == 'insert') {
+					$cl.elist.unbind('select').bind('select', function(name){
+						ed.insertContent('['+name+']');
+						range = ed.selection.getRng();
+						ed.selection.setCursorLocation(range.endContainer, range.endOffset - 1);
+						btnAction();
+					});
+					$cl.elist.show();
+				} else if (handler.action == 'edit') {
+					console.log(handler);
+					$cl.ebuilder.show(handler.shortcode, handler.values);
+				}
+			};
+
+			ed.addCommand('codelights', btnAction);
 		},
 
 		getInfo: function(){
@@ -44,4 +57,4 @@
 
 	// Register plugin
 	tinymce.PluginManager.add('codelights', tinymce.plugins.codelights);
-})();
+}(jQuery);
