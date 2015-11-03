@@ -502,6 +502,64 @@ jQuery.fn.cssMod = function(mod, value){
 
 }(jQuery);
 
+// Helper functions
+!function($){
+	if ($cl.fn === undefined) $cl.fn = {};
+	/**
+	 * Retrieve all attributes from the shortcodes tag. (WordPress-function js analog).
+	 * @param text
+	 * @return {Array} List of attributes and their value
+	 */
+	$cl.fn.shortcodeParseAtts = function(text){
+		var atts = {};
+		text.replace(/([a-z0-9_\-]+)=\"([^\"\]]+)"/g, function(m, key, value){
+			atts[key] = value;
+		});
+		return atts;
+	};
+	/**
+	 * Handle "codelights" action within a plain text and determine what will be the new selection and the way it should
+	 * be handled (insert / edit)
+	 *
+	 * @param {String} text Initial plain text with shortcodes
+	 * @param {Number} startOffset Selection start offset
+	 * @param {Number} endOffset
+	 * @return {{}} action, new selection, shortcode data (if found)
+	 */
+	$cl.fn.handleShortcodeCall = function(text, startOffset, endOffset){
+		var shortcode = {};
+		// If user selected a shortcode or its part
+		if (startOffset < endOffset && text[endOffset - 1] == ']') {
+			endOffset--;
+		}
+		var prevOpen = text.lastIndexOf('[', endOffset - 1),
+			prevClose = text.lastIndexOf(']', endOffset - 1),
+			nextOpen = text.indexOf('[', endOffset),
+			nextClose = text.indexOf(']', endOffset);
+		if (prevOpen != -1 && nextClose != -1 && prevOpen > prevClose && (nextOpen == -1 || nextOpen > nextClose)) {
+			// In some shortcode
+			if (text.substr(prevOpen, 4) == '[cl-') {
+				// Edit existing shortcode
+				var shortcodeText = text.substring(prevOpen, nextClose + 1);
+				shortcode.action = 'edit';
+				shortcode.selection = [prevOpen, nextClose + 1];
+				shortcode.name = shortcodeText.substring(1, shortcodeText.indexOf(' '));
+				shortcode.atts = $cl.fn.shortcodeParseAtts(shortcodeText);
+				// Parsing the shorcode data
+			} else {
+				// Inside of 3-rd party shortcode: inserting codelights shortcode just after it
+				shortcode.action = 'insert';
+				shortcode.selection = [nextClose + 1, nextClose + 1];
+			}
+		} else {
+			// Insert to the cursor position
+			shortcode.action = 'insert';
+			shortcode.selection = [startOffset, endOffset];
+		}
+		return shortcode;
+	};
+}(jQuery);
+
 // Admin widgets editor
 if (window.wpWidgets !== undefined) jQuery(function($){
 	$('#widgets-right').find('.cl-eform').each(function(){

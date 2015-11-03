@@ -3,18 +3,19 @@
  * Native WordPress editor Shortcode Builder
  */
 
-add_action( 'init', 'cl_init_buttons' );
-function cl_init_buttons() {
-	add_filter( 'mce_buttons', 'cl_mce_buttons' );
-	add_filter( 'mce_external_plugins', 'cl_mce_external_plugins' );
-}
-
+add_filter( 'mce_buttons', 'cl_mce_buttons' );
 function cl_mce_buttons( $buttons ) {
-	$buttons[] = 'codelights';
+	$index = array_search( 'wp_more', $buttons );
+	if ( $index !== FALSE ) {
+		array_splice( $buttons, $index + 1, 0, 'codelights' );
+	} else {
+		$buttons[] = 'codelights';
+	}
 
 	return $buttons;
 }
 
+add_filter( 'mce_external_plugins', 'cl_mce_external_plugins' );
 function cl_mce_external_plugins( $mce_external_plugins ) {
 	global $cl_uri;
 	$mce_external_plugins['codelights'] = $cl_uri . '/editors-support/native/tinymce.js';
