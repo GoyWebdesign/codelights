@@ -545,9 +545,6 @@ if (window.$cl === undefined) window.$cl = {};
 						this.$container = $(html).css('display', 'none').appendTo($(document.body));
 						this.init();
 						this.show();
-					}.bind(this),
-					error: function(){
-						this.trigger('beforeShow').trigger('afterShow').trigger('beforeHide').trigger('afterHide');
 					}.bind(this)
 				});
 				return;
@@ -595,8 +592,21 @@ if (window.$cl === undefined) window.$cl = {};
 		 */
 		show: function(name, values){
 			if (this.$container.length == 0) {
-				var html = '<div class="cl-ebuilder"><div class="cl-ebuilder-closer">&times;</div></div>';
-				this.$container = $(html).appendTo($(document.body));
+				// Loading ebuilder and initial form's html
+				$.ajax({
+					type: 'post',
+					url: $cl.ajaxUrl,
+					data: {
+						action: 'cl_get_ebuilder_template',
+						name: name
+					},
+					success: function(html){
+						if (html == '') return;
+						this.$container = $(html).css('display', 'none').appendTo($(document.body));
+						this.init();
+						this.show(name, values);
+					}.bind(this)
+				});
 				this.init();
 			}
 
@@ -614,9 +624,6 @@ if (window.$cl === undefined) window.$cl = {};
 						this.$eforms[name] = $(html).css('display', 'none').appendTo(this.$container);
 						this.eforms[name] = new $cl.EForm(this.$eforms[name]);
 						this.show(name, values);
-					}.bind(this),
-					error: function(){
-						this.trigger('beforeShow').trigger('afterShow').trigger('beforeHide').trigger('afterHide');
 					}.bind(this)
 				});
 				return;

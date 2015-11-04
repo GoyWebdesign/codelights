@@ -20,13 +20,15 @@ require $cl_dir . '/functions/shortcodes.php';
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
 
+require $cl_dir . '/editors-support/native/native.php';
+require $cl_dir . '/editors-support/js_composer/js_composer.php';
+require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+
 // Ajax requests
 if ( is_admin() ) {
 	if ( ! defined( 'DOING_AJAX' ) OR ! DOING_AJAX ) {
 		// Admin interface
-		require $cl_dir . '/editors-support/native/native.php';
-		require $cl_dir . '/editors-support/js_composer/js_composer.php';
-		require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+
 	} elseif ( isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3 ) == 'cl_' ) {
 		// Ajax methods
 		require $cl_dir . '/functions/ajax.php';
