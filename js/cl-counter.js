@@ -112,7 +112,7 @@
 	 */
 	var CLCounterText = function(container){
 		this.$container = $(container);
-		this.initial = this.$container.html() + '';
+		this.initial = this.$container.text() + '';
 		this.final = this.$container.data('final') + '';
 		this.partsStates = this.getStates(this.initial, this.final);
 		this.len = 1 / (this.partsStates.length - 1);
