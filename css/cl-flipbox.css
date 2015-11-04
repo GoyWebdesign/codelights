@@ -45,6 +45,8 @@
   text-align: center;
   background-size: cover;
   background-color: #eee;
+  border-style: solid;
+  border-width: 0;
 }
 .cl-flipbox-front-h,
 .cl-flipbox-back-h,
