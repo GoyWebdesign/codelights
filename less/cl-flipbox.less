@@ -72,7 +72,7 @@
 			i {
 				line-height: inherit;
 				vertical-align: top;
-				}
+			}
 			&.style_circle {
 				border-radius: 50%;
 			}
@@ -86,18 +86,19 @@
 		top: 0;
 		z-index: -1;
 	}
-	&:hover,
-	&.hover {
-		.cl-flipbox-front {
-			z-index: -1;
-		}
-		.cl-flipbox-back {
-			z-index: 1;
-		}
-	}
 
 	// Animation: Card Flip
 	&.animation_cardflip {
+
+		&:hover,
+		&.hover {
+			.cl-flipbox-front {
+				z-index: -1;
+			}
+			.cl-flipbox-back {
+				z-index: 1;
+			}
+		}
 
 		// Animation: Card Flip. Direction: North
 		&.direction_n {
@@ -259,6 +260,16 @@
 	// Animation: Cube Tilt
 	&.animation_cubetilt {
 
+		&:hover,
+		&.hover {
+			.cl-flipbox-front {
+				z-index: -1;
+			}
+			.cl-flipbox-back {
+				z-index: 1;
+			}
+		}
+
 		// Animation: Cube Tilt. Direction: North
 		&.direction_n {
 			.cl-flipbox-hh {
@@ -338,6 +349,16 @@
 
 	// Animation: Cube Flip
 	&.animation_cubeflip {
+
+		&:hover,
+		&.hover {
+			.cl-flipbox-front {
+				z-index: -1;
+			}
+			.cl-flipbox-back {
+				z-index: 1;
+			}
+		}
 
 		// Animation: Cube Flip. Direction: North
 		&.direction_n {
