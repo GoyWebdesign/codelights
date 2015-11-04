@@ -161,7 +161,13 @@ foreach ( $groups as $index => $group ) {
 		foreach ( $group_changes[ $index ] as $changesat ) {
 			$output .= ' changesat_' . $changesat;
 		}
-		$output .= '"' . cl_pass_data_to_js( $group ) . '>' . $group[0] . '</span>';
+		if ( in_array( '0', $group_changes[ $index ] ) ) {
+			// Highlighting dynamic parts at start
+			$output .= ' dynamic"' . cl_prepare_inline_css( array( 'color' => $dynamic_color ) );
+		} else {
+			$output .= '"';
+		}
+		$output .= cl_pass_data_to_js( $group ) . '>' . $group[0] . '</span>';
 	}
 }
 $output .= '</' . $tag . '>';

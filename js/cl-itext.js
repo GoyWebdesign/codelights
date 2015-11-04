@@ -39,8 +39,7 @@
 			postAnimate: this.postAnimate.bind(this)
 		};
 		// Start animation
-		this._events.animate();
-		//this.timer = setTimeout(this._events.animate, this.delay);
+		this.timer = setTimeout(this._events.animate, this.delay);
 	};
 	CLItext.prototype = {
 		animate: function(){
@@ -71,7 +70,7 @@
 			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1),
 				nextValue = this.partsStates[partIndex][nextState],
 				$curSpan = this.parts[partIndex].wrapInner('<span></span>').children('span'),
-				$nextSpan = $('<span class="measure"></span>').html(nextValue).appendTo(this.parts[partIndex]),
+				$nextSpan = $('<span class="measure"></span>').html(nextValue.replace(' ', '&nbsp;')).appendTo(this.parts[partIndex]),
 				nextWidth = $nextSpan.width(),
 				outType = (this.type == 'flipInX') ? 'flipOutX' : 'fadeOut',
 				i;
@@ -119,7 +118,7 @@
 		_cleanupPartAnimation: function(partIndex){
 			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1),
 				nextValue = this.partsStates[partIndex][nextState];
-			this.parts[partIndex].css('width', '').html(nextValue);
+			this.parts[partIndex].css('width', '').html(nextValue.replace(' ', '&nbsp;'));
 		},
 		postAnimate: function(){
 			this.active = (this.active == this.maxActive) ? 0 : (this.active + 1);
