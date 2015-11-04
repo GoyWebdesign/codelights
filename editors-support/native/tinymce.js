@@ -26,7 +26,6 @@
 						ed.selection.setRng(rng);
 					}
 				}
-
 				if (handler.action == 'insert') {
 					$cl.elist.unbind('select').bind('select', function(name){
 						ed.insertContent('[' + name + ']');

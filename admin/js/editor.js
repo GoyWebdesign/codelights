@@ -712,6 +712,7 @@ if (window.$cl === undefined) window.$cl = {};
 	 */
 	$cl.fn.handleShortcodeCall = function(text, startOffset, endOffset){
 		var handler = {};
+		if (typeof text != 'string') text = '';
 		// If user selected a shortcode or its part
 		if (startOffset < endOffset && text[endOffset - 1] == ']') {
 			endOffset--;
@@ -727,9 +728,8 @@ if (window.$cl === undefined) window.$cl = {};
 				var shortcode = text.substring(prevOpen, nextClose + 1);
 				handler.action = 'edit';
 				handler.selection = [prevOpen, nextClose + 1];
-				handler.shortcode = shortcode.substring(1, Math.min(shortcode.indexOf(' '), shortcode.indexOf(']')));
+				handler.shortcode = shortcode.replace(/\[([a-zA-Z0-9\-\_]+).+/, '$1');
 				handler.values = $cl.fn.shortcodeParseAtts(shortcode);
-				// Parsing the shorcode data
 			} else {
 				// Inside of 3-rd party shortcode: inserting codelights shortcode just after it
 				handler.action = 'insert';
