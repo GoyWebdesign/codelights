@@ -69,6 +69,11 @@
 .cl-flipbox-back-icon {
   margin: 0 0 22px;
 }
+.cl-flipbox-front-image img,
+.cl-flipbox-back-image img {
+  display: block;
+  margin: 0 auto 22px;
+}
 .cl-flipbox-front {
   position: relative;
   z-index: 1;
