@@ -29,14 +29,17 @@
 
 				if (handler.action == 'insert') {
 					$cl.elist.unbind('select').bind('select', function(name){
-						ed.insertContent('['+name+']');
+						ed.insertContent('[' + name + ']');
 						range = ed.selection.getRng();
 						ed.selection.setCursorLocation(range.endContainer, range.endOffset - 1);
 						btnAction();
 					});
 					$cl.elist.show();
 				} else if (handler.action == 'edit') {
-					console.log(handler);
+					$cl.ebuilder.unbind('save').bind('save', function(values, defaults){
+						var shortcode = $cl.fn.generateShortcode(handler.shortcode, values, defaults);
+						ed.insertContent(shortcode);
+					});
 					$cl.ebuilder.show(handler.shortcode, handler.values);
 				}
 			};

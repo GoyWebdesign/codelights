@@ -7,5 +7,7 @@ QTags.addButton(
 		if (shortcode.selection !== undefined) {
 			textarea.setSelectionRange(shortcode.selection[0], shortcode.selection[1]);
 		}
+
+
 	}
 );

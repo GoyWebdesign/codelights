@@ -9,10 +9,10 @@ jQuery.fn.cssMod = function(mod, value){
 	// Remove class modificator
 	if (value === false) {
 		return this.each(function(){
-			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-z0-9\_]+( |$)'), '$2');
+			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)'), '$2');
 		});
 	}
-	var pcre = new RegExp('^.*?' + mod + '\_([a-z0-9\_]+).*?$'),
+	var pcre = new RegExp('^.*?' + mod + '\_([a-zA-Z0-9\_\-]+).*?$'),
 		arr;
 	// Retrieve modificator
 	if (value === undefined) {
@@ -21,7 +21,7 @@ jQuery.fn.cssMod = function(mod, value){
 	// Set modificator
 	else {
 		return this.each(function(){
-			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-z0-9\_]+( |$)'), '$1' + mod + '_' + value + '$2');
+			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)'), '$1' + mod + '_' + value + '$2');
 		});
 	}
 };
@@ -480,14 +480,14 @@ if (window.$cl === undefined) window.$cl = {};
 		},
 		getValues: function(){
 			var values = {};
-			this.fields.forEach(function(field, name){
+			$.each(this.fields, function(name, field){
 				values[name] = field.getValue();
 			}.bind(this));
 			return values;
 		},
 		setValues: function(values){
-			$.each(function(name, value){
-				if (this.fields[name] !== undefined) this.field[name].setValue(value);
+			$.each(values, function(name, value){
+				if (this.fields[name] !== undefined) this.fields[name].setValue(value);
 			}.bind(this));
 		},
 		/**
@@ -539,7 +539,7 @@ if (window.$cl === undefined) window.$cl = {};
 					type: 'post',
 					url: $cl.ajaxUrl,
 					data: {
-						action: 'cl_get_elist_template'
+						action: 'cl_get_elist_html'
 					},
 					success: function(html){
 						this.$container = $(html).css('display', 'none').appendTo($(document.body));
@@ -574,16 +574,30 @@ if (window.$cl === undefined) window.$cl = {};
 	};
 	$.extend($cl.EBuilder.prototype, $cl.mixins.Events, {
 		init: function(){
-			this.$closer = this.$container.find('.cl-ebuilder-closer');
-			// Actve element
-			this.active = false;
-			// Eforms containers and class instances
+			this.$title = this.$container.find('.cl-ebuilder-title');
+			this.titles = this.$title[0].onclick() || {};
+			this.$title.removeAttr('onclick');
+			this.$closer = this.$container.find('.cl-ebuilder-closer, .cl-ebuilder-btnclose');
+			this.$body = this.$container.find('.cl-ebuilder-body');
+			// EForm containers and class instances
 			this.$eforms = {};
 			this.eforms = {};
+			// Set of default values for each elements form
+			this.defaults = {};
+			this.$container.find('.cl-eform').each(function(index, eform){
+				var $eform = $(eform).css('display', 'none'),
+					name = $eform.cssMod('for');
+				this.$eforms[name] = $eform;
+			}.bind(this));
+			this.$btnSave = this.$container.find('.cl-ebuilder-btnsave');
+			// Actve element
+			this.active = false;
 			this._events = {
-				hide: this.hide.bind(this)
+				hide: this.hide.bind(this),
+				save: this.save.bind(this)
 			};
 			this.$closer.on('click', this._events.hide);
+			this.$btnSave.on('click', this._events.save);
 		},
 		/**
 		 * Show element form for a specified element name and initial values
@@ -597,8 +611,7 @@ if (window.$cl === undefined) window.$cl = {};
 					type: 'post',
 					url: $cl.ajaxUrl,
 					data: {
-						action: 'cl_get_ebuilder_template',
-						name: name
+						action: 'cl_get_ebuilder_html'
 					},
 					success: function(html){
 						if (html == '') return;
@@ -607,31 +620,20 @@ if (window.$cl === undefined) window.$cl = {};
 						this.show(name, values);
 					}.bind(this)
 				});
-				this.init();
+				return;
 			}
 
 			if (this.eforms[name] === undefined) {
-				// Loading particular element form's html via ajax
-				$.ajax({
-					type: 'post',
-					url: $cl.ajaxUrl,
-					data: {
-						action: 'cl_get_eform_template',
-						name: name
-						// We don't submit current values to retrieve default values for further shortcodes processing
-					},
-					success: function(html){
-						this.$eforms[name] = $(html).css('display', 'none').appendTo(this.$container);
-						this.eforms[name] = new $cl.EForm(this.$eforms[name]);
-						this.show(name, values);
-					}.bind(this)
-				});
-				return;
+				// Initializing EForm on the first show
+				if (this.$eforms[name] === undefined) return;
+				this.eforms[name] = new $cl.EForm(this.$eforms[name]);
+				this.defaults[name] = this.eforms[name].getValues();
 			}
 
 			this.eforms[name].setValues(values);
 			if (this.eforms[name].tabs !== undefined) this.eforms[name].tabs.open(0);
 			this.$eforms[name].css('display', 'block');
+			this.$title.html(this.titles[name] || '');
 			this.active = name;
 			this.trigger('beforeShow');
 			this.$container.css('display', 'block');
@@ -642,7 +644,24 @@ if (window.$cl === undefined) window.$cl = {};
 			this.$container.css('display', 'none');
 			if (this.$eforms[this.active] !== undefined) this.$eforms[this.active].css('display', 'none');
 			this.trigger('afterHide');
-			this.active = false;
+		},
+		/**
+		 * Get values of the active form
+		 * @return {Object}
+		 */
+		getValues: function(){
+			return (this.eforms[this.active] !== undefined) ? this.eforms[this.active].getValues() : {};
+		},
+		/**
+		 * Get default values of the active form
+		 * @return {Object}
+		 */
+		getDefaults: function(){
+			return (this.defaults[this.active] || {});
+		},
+		save: function(){
+			this.hide();
+			this.trigger('save', [this.getValues(), this.getDefaults()]);
 		}
 	});
 	// Singletone instance
@@ -664,6 +683,23 @@ if (window.$cl === undefined) window.$cl = {};
 			atts[key] = value;
 		});
 		return atts;
+	};
+	/**
+	 * Generate shortcode string
+	 * @param {String} name Shortcode name
+	 * @param {{}} atts
+	 * @param {{}} attsDefaults
+	 * @param {String|undefined} content If not set, shortcode won't have closing tag
+	 * @return {String}
+	 */
+	$cl.fn.generateShortcode = function(name, atts, attsDefaults, content){
+		var shortcode = '[' + name;
+		$.each(atts, function(att, value){
+			if (attsDefaults[att] !== undefined && attsDefaults[att] !== value) shortcode += ' ' + att + '="' + value + '"';
+		});
+		shortcode += ']';
+		if (content !== undefined) shortcode += content + '[/' + name + ']';
+		return shortcode;
 	};
 	/**
 	 * Handle "codelights" action within a plain text and determine what will be the new selection and the way it should
