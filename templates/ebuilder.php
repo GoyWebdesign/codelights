@@ -17,7 +17,7 @@ $body = isset( $body ) ? $body : '';
 	</div>
 	<div class="cl-ebuilder-body"><?php echo $body ?></div>
 	<div class="cl-ebuilder-footer">
-		<div class="cl-ebuilder-btnclose"><?php _e( 'Close', 'codelights' ) ?></div>
-		<div class="cl-ebuilder-btnsave"><?php _e( 'Save changes', 'codelights' ) ?></div>
+		<div class="cl-ebuilder-btn for_close button"><?php _e( 'Close', 'codelights' ) ?></div>
+		<div class="cl-ebuilder-btn for_save button button-primary"><?php _e( 'Save changes', 'codelights' ) ?></div>
 	</div>
 </div>

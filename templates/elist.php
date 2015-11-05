@@ -14,11 +14,13 @@ $elements = cl_config( 'elements', array() );
 		<ul class="cl-elist-list">
 			<?php foreach ( $elements as $name => $elm ): ?>
 				<li class="cl-elist-item for_<?php echo $name ?>" data-name="<?php echo $name ?>">
-					<div class="cl-elist-item-icon <?php echo isset( $elm['icon'] ) ? $elm['icon'] : '' ?>"></div>
-					<h3 class="cl-elist-item-name"><?php echo isset( $elm['name'] ) ? $elm['name'] : $name ?></h3>
-					<?php if ( isset( $elm['description'] ) AND ! empty( $elm['description'] ) ): ?>
-						<div class="cl-elist-item-description"><?php echo $elm['description'] ?></div>
-					<?php endif; ?>
+					<div class="cl-elist-item-h">
+						<div class="cl-elist-item-icon <?php echo isset( $elm['icon'] ) ? $elm['icon'] : '' ?>"></div>
+						<div class="cl-elist-item-name"><?php echo isset( $elm['name'] ) ? $elm['name'] : $name ?></div>
+						<?php if ( isset( $elm['description'] ) AND ! empty( $elm['description'] ) ): ?>
+							<div class="cl-elist-item-description"><?php echo $elm['description'] ?></div>
+						<?php endif; ?>
+					</div>
 				</li>
 			<?php endforeach; ?>
 		</ul>
