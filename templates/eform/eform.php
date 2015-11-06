@@ -84,6 +84,7 @@ $group_index = 0;
 foreach ( $groups as &$group_params ) {
 	if ( count( $groups ) > 1 ) {
 		$output .= '<div class="cl-tabs-section" style="display: ' . ( $group_index ? 'none' : 'block' ) . '">';
+		$output .= '<div class="cl-tabs-section-h">';
 	}
 	foreach ( $group_params as $index => &$param ) {
 
@@ -130,7 +131,7 @@ foreach ( $groups as &$group_params ) {
 		$output .= '</div><!-- .cl-eform-row -->';
 	}
 	if ( count( $groups ) > 1 ) {
-		$output .= '</div><!-- .cl-tabs-section -->';
+		$output .= '</div></div><!-- .cl-tabs-section -->';
 	}
 	$group_index++;
 }
