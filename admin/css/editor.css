@@ -251,7 +251,8 @@ div#widgets-right .sidebars-column-2 {
   left: 15px;
   height: 32px;
   width: 32px;
-  background-color: #999;
+  -webkit-background-size: 32px 32px;
+  background-size: 32px 32px;
 }
 .cl-elist-item-name {
   font-size: 14px;

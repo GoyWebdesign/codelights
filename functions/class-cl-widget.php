@@ -16,6 +16,13 @@ abstract class CL_Widget extends WP_Widget {
 			return;
 		}
 
+		// Adding Widget Title param
+		array_unshift( $this->config['params'], array(
+			'param_name' => '_widget_title',
+			'heading' => __( 'Widget Title', 'codelights' ),
+			'type' => 'textfield',
+		) );
+
 		parent::__construct( $id_base, '(' . $this->config['category'] . ') ' . $this->config['name'], array(
 			'description' => $this->config['description'],
 			'classname' => $this->config['class'],
@@ -52,9 +59,14 @@ abstract class CL_Widget extends WP_Widget {
 	 * @param array $instance The settings for the particular instance of the widget.
 	 */
 	public function widget( $args, $instance ) {
+		echo $args['before_widget'];
+		if ( isset( $instance['_widget_title'] ) AND ! empty( $instance['_widget_title'] ) ) {
+			echo $args['before_title'] . $instance['_widget_title'] . $args['after_title'];
+		}
 		cl_enqueue_assets( $this->id_base );
 		$instance = cl_shortcode_atts( $instance, $this->id_base );
 		cl_load_template( 'elements/' . $this->id_base, $instance );
+		echo $args['after_widget'];
 	}
 
 }
