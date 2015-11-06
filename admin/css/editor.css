@@ -8,7 +8,7 @@ div#widgets-right .sidebars-column-2 {
 .cl-tabs-list {
   font-size: 14px;
   line-height: 19px;
-  padding: 0 20px;
+  padding: 0 15px;
   background-color: #f5f5f5;
   box-shadow: 0 -1px 0 #e5e5e5 inset;
 }
@@ -23,7 +23,7 @@ div#widgets-right .sidebars-column-2 {
 .cl-tabs-item {
   float: left;
   white-space: nowrap;
-  padding: 12px 14px;
+  padding: 12px 15px;
   cursor: pointer;
   border-radius: 3px 3px 0 0;
   transition: background 0.3s, color 0.3s;
@@ -41,8 +41,12 @@ div#widgets-right .sidebars-column-2 {
   overflow-y: auto;
 }
 .cl-tabs-section {
-  padding: 20px 10px 5px;
+  padding: 20px 15px 10px;
   overflow: hidden;
+}
+.cl-tabs-section-h {
+  display: flex;
+  flex-wrap: wrap;
 }
 .cl-eform:before,
 .cl-eform:after {
@@ -54,8 +58,7 @@ div#widgets-right .sidebars-column-2 {
 }
 .cl-eform-row {
   width: 100%;
-  margin-bottom: 15px;
-  padding: 0 10px;
+  padding: 0 15px 15px;
   box-sizing: border-box;
   float: left;
 }
@@ -149,7 +152,7 @@ div#widgets-right .sidebars-column-2 {
   line-height: 30px;
 }
 .cl-eform-row.type_link .cl-linkdialog span {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .cl-eform-row.type_textarea textarea {
   width: 100%;
@@ -170,11 +173,12 @@ div#widgets-right .sidebars-column-2 {
 .widget-content .cl-tabs-sections {
   max-height: none;
 }
+.widget-content .cl-tabs-section {
+  padding-left: 0;
+  padding-right: 0;
+}
 .customize-control .cl-eform {
   margin: -1px -10px 0;
-}
-.customize-control .cl-eform-row {
-  width: 100% !important;
 }
 .cl-elist {
   position: fixed;
@@ -197,11 +201,11 @@ div#widgets-right .sidebars-column-2 {
 }
 .cl-elist-closer {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   font-size: 30px;
   text-align: center;
   cursor: pointer;
@@ -273,7 +277,7 @@ div#widgets-right .sidebars-column-2 {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 .cl-ebuilder-header {
-  padding: 15px 20px;
+  padding: 15px 30px;
   background-color: #f5f5f5;
 }
 .cl-ebuilder-title {
@@ -283,11 +287,11 @@ div#widgets-right .sidebars-column-2 {
 }
 .cl-ebuilder-closer {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   font-size: 30px;
   text-align: center;
   cursor: pointer;
@@ -298,7 +302,7 @@ div#widgets-right .sidebars-column-2 {
   opacity: 1;
 }
 .cl-ebuilder-footer {
-  padding: 15px 20px;
+  padding: 15px;
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
 }
