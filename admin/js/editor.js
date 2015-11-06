@@ -519,7 +519,7 @@ if (window.$cl === undefined) window.$cl = {};
 	};
 	$.extend($cl.EList.prototype, $cl.mixins.Events, {
 		init: function(){
-			this.$closer = this.$container.find('.cl-elist.closer');
+			this.$closer = this.$container.find('.cl-elist-closer');
 			this.$list = this.$container.find('.cl-elist-list');
 			this._events = {
 				select: function(event){
@@ -577,8 +577,7 @@ if (window.$cl === undefined) window.$cl = {};
 			this.$title = this.$container.find('.cl-ebuilder-title');
 			this.titles = this.$title[0].onclick() || {};
 			this.$title.removeAttr('onclick');
-			this.$closer = this.$container.find('.cl-ebuilder-closer, .cl-ebuilder-btnclose');
-			this.$body = this.$container.find('.cl-ebuilder-body');
+			this.$closer = this.$container.find('.cl-ebuilder-closer, .cl-ebuilder-btn.for_close');
 			// EForm containers and class instances
 			this.$eforms = {};
 			this.eforms = {};
@@ -589,7 +588,7 @@ if (window.$cl === undefined) window.$cl = {};
 					name = $eform.cssMod('for');
 				this.$eforms[name] = $eform;
 			}.bind(this));
-			this.$btnSave = this.$container.find('.cl-ebuilder-btnsave');
+			this.$btnSave = this.$container.find('.cl-ebuilder-btn.for_save');
 			// Actve element
 			this.active = false;
 			this._events = {
