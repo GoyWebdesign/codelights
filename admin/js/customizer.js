@@ -1,4 +1,5 @@
 !function($){
+	if ($cl.isMobile) return;
 	"use strict";
 	var $wpOverlay = $('.wp-full-overlay'),
 		$customizer = $('#customize-controls');

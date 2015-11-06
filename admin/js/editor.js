@@ -27,6 +27,8 @@ jQuery.fn.cssMod = function(mod, value){
 };
 
 if (window.$cl === undefined) window.$cl = {};
+$cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 !function($){
 	if (window.$cl.mixins === undefined) window.$cl.mixins = {};
 
