@@ -1,9 +1,0 @@
-.wp-full-overlay.wide.expanded {
-  margin-left: 600px;
-}
-.wp-full-overlay.wide .wp-full-overlay-sidebar {
-  width: 600px;
-}
-.wp-full-overlay.wide.collapsed .wp-full-overlay-sidebar {
-  margin-left: -600px;
-}

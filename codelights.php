@@ -20,9 +20,14 @@ require $cl_dir . '/functions/shortcodes.php';
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
 
-require $cl_dir . '/editors-support/native/native.php';
-require $cl_dir . '/editors-support/js_composer/js_composer.php';
-require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+// Implementing editors support after admin init to be able to check which plugins were actlually loaded
+add_action( 'admin_init', 'cl_editors_support' );
+function cl_editors_support() {
+	global $cl_dir;
+	require $cl_dir . '/editors-support/native/native.php';
+	require $cl_dir . '/editors-support/js_composer/js_composer.php';
+	require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+}
 
 // Ajax requests
 if ( is_admin() ) {
@@ -36,22 +41,24 @@ if ( is_admin() ) {
 }
 
 /* load admin js and css styles */
-add_action( 'admin_enqueue_scripts', 'cl_register_admin_scripts' );
-function cl_register_admin_scripts() {
-	global $cl_uri, $post_type;
+add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
+function cl_admin_enqueue_scripts() {
+	global $cl_uri, $post_type, $wp_scripts, $wp_styles;
 
 	$screen = get_current_screen();
 	$is_widgets = ( $screen->base == 'widgets' );
 	$is_customizer = ( $screen->base == 'customize' );
 	$is_content_editor = ( isset( $post_type ) AND post_type_supports( $post_type, 'editor' ) );
 	if ( $is_widgets OR $is_customizer OR $is_content_editor ) {
-		wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
+		wp_register_style( 'cl-editor', $cl_uri . '/admin/css/editor.css' );
+		$elm_icons_style = '';
+		$wp_styles->add_data( 'cl-editor', 'data', $wp_styles->get_data( 'cl-editor', 'data' ) . $elm_icons_style );
+		wp_enqueue_style( 'cl-editor' );
 
-		wp_register_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
-		global $wp_scripts;
+		wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
 		$ajax_url_script = 'if (window.$cl === undefined) window.$cl = {}; $cl.ajaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ";\n";
-		$wp_scripts->add_data( 'cl-admin-script', 'data', $wp_scripts->get_data( 'cl-admin-script', 'data' ) . $ajax_url_script );
-		wp_enqueue_script( 'cl-admin-script' );
+		$wp_scripts->add_data( 'cl-editor', 'data', $ajax_url_script );
+		wp_enqueue_script( 'cl-editor' );
 
 		if ( ! did_action( 'wp_enqueue_media' ) ) {
 			wp_enqueue_media();
@@ -61,47 +68,4 @@ function cl_register_admin_scripts() {
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
-}
-
-add_action( 'customize_controls_print_scripts', 'cl_customize_controls_print_scripts' );
-function cl_customize_controls_print_scripts() {
-	global $cl_uri;
-	wp_enqueue_style( 'cl-customizer', $cl_uri . '/admin/css/customizer.css' );
-	wp_enqueue_script( 'cl-customizer', $cl_uri . '/admin/js/customizer.js', array( 'jquery' ), FALSE, TRUE );
-}
-
-/**
- * Enqueue all my widget's admin scripts
- */
-add_action( 'admin_print_scripts-widgets.php', 'cl_so_widget_enqueue_scripts' );
-// Add this to enqueue your scripts on Page Builder too
-//add_action( 'siteorigin_panel_enqueue_admin_scripts', 'cl_so_widget_enqueue_scripts' );
-function cl_so_widget_enqueue_scripts() {
-	global $cl_uri;
-	wp_enqueue_style( 'cl-admin-style', $cl_uri . '/admin/css/editor.css' );
-	wp_enqueue_script( 'cl-admin-script', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
-
-	// For attach_image / attach_images field types
-	if ( ! did_action( 'wp_enqueue_media' ) ) {
-		wp_enqueue_media();
-	}
-
-	wp_enqueue_script( 'jquery-ui-core' );
-	wp_enqueue_script( 'jquery-ui-sortable' );
-}
-
-function cl_write_debug( $value, $with_backtrace = FALSE ) {
-	global $cl_dir;
-	static $first = TRUE;
-	$data = '';
-	if ( $with_backtrace ) {
-		$backtrace = debug_backtrace();
-		array_shift( $backtrace );
-		$data .= print_r( $backtrace, TRUE ) . ":\n";
-	}
-	ob_start();
-	var_dump( $value );
-	$data .= ob_get_clean() . "\n\n";
-	file_put_contents( $cl_dir . '/debug.txt', $data, $first ? NULL : FILE_APPEND );
-	$first = FALSE;
 }

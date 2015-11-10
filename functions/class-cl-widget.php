@@ -1,11 +1,13 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
-abstract class CL_Widget extends WP_Widget {
+class CL_Widget extends WP_Widget {
 
-	public function __construct() {
+	/**
+	 * @param string $id_base
+	 */
+	public function __construct( $id_base ) {
 
 		// Widget's ID is defined by it's class name
-		$id_base = preg_replace( '~^cl_widget_~', 'cl-', strtolower( get_class( $this ) ) );
 		$this->config = cl_config( 'elements.' . $id_base );
 
 		if ( ! is_array( $this->config ) OR ! isset( $this->config['params'] ) OR ! is_array( $this->config['params'] ) ) {
@@ -24,11 +26,10 @@ abstract class CL_Widget extends WP_Widget {
 		) );
 
 		parent::__construct( $id_base, '(' . $this->config['category'] . ') ' . $this->config['name'], array(
-			'description' => $this->config['description'],
 			'classname' => $this->config['class'],
-			'panels_groups' => array( $this->config['category'] ),
-			'category' => $this->config['category'],
-			'icon' => $this->config['icon'],
+			'description' => $this->config['description'],
+		), array(
+			'width' => 600,
 		) );
 	}
 
@@ -74,30 +75,18 @@ abstract class CL_Widget extends WP_Widget {
 // Initializing widgets
 add_action( 'widgets_init', 'cl_widgets_init' );
 function cl_widgets_init() {
+	global $wp_widget_factory;
 	$config = cl_config( 'elements', array() );
-	foreach ( $config as $base_id => $element ) {
-		$widget_class = 'CL_Widget_' . strtoupper( $base_id[3] ) . substr( $base_id, 4 );
-		if ( ! class_exists( $widget_class ) ) {
-			wp_die( 'Widget class ' . $widget_class . ' must exist and be defined at functions/class-cl-widget.php' );
+	foreach ( $config as $name => $elm ) {
+		if ( ! isset( $elm['widget_class'] ) OR empty( $elm['widget_class'] ) ) {
+			$elm['widget_class'] = 'CL_Widget_' . ucfirst( preg_replace( '~^cl\-~', '', $name ) );
 		}
-		register_widget( $widget_class );
+		if ( ! class_exists( $elm['widget_class'] ) ) {
+			// Creating virtual empty class
+			$wp_widget_factory->widgets[ $elm['widget_class'] ] = new CL_Widget( $name );
+		} else {
+			$wp_widget_factory->register( $elm['widget_class'] );
+		}
 	}
 }
 
-// List of exact widgets should always match the original elements config list
-// TODO Replace with some kind of dynamic mapping
-class CL_Widget_Counter extends CL_Widget {
-
-}
-
-class CL_Widget_Flipbox extends CL_Widget {
-
-}
-
-class CL_Widget_Ib extends CL_Widget {
-
-}
-
-class CL_Widget_Itext extends CL_Widget {
-
-}

@@ -1,14 +1,16 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
-return array(
+global $cl_uri;
 
+return array(
 	'cl-counter' => array(
 		'base' => 'cl-counter',
 		'name' => __( 'Counter', 'codelights' ),
+		'widget_class' => 'CL_Widget_Counter',
 		'description' => __( 'Animated text with numbers', 'codelights' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'icon-cl-counter',
+		'icon' => $cl_uri . '/admin/img/cl-counter.png',
 		'params' => array(
 			array(
 				'param_name' => 'initial',
@@ -94,10 +96,11 @@ return array(
 	'cl-flipbox' => array(
 		'base' => 'cl-flipbox',
 		'name' => __( 'FlipBox', 'codelights' ),
+		'widget_class' => 'CL_Widget_Flipbox',
 		'description' => __( 'Two-sided content element, flipping on hover', 'codelights' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'icon-cl-flipbox',
+		'icon' => $cl_uri . '/admin/img/cl-flipbox.png',
 		'params' => array(
 			/**
 			 * General
@@ -423,10 +426,11 @@ return array(
 	'cl-ib' => array(
 		'base' => 'cl-ib',
 		'name' => __( 'Interactive Banner', 'codelights' ),
+		'widget_class' => 'CL_Widget_Ib',
 		'description' => __( 'Hoverable image with additional data', 'codelights' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'icon-cl-ib',
+		'icon' => $cl_uri . '/admin/img/cl-ib.png',
 		'params' => array(
 			/**
 			 * Content
@@ -626,10 +630,11 @@ return array(
 	'cl-itext' => array(
 		'base' => 'cl-itext',
 		'name' => __( 'Interactive Text', 'codelighs' ),
+		'widget_class' => 'CL_Widget_Itext',
 		'description' => __( 'Text with some dynamicatlly changing part', 'codelighs' ),
 		'class' => '',
 		'category' => 'CodeLights',
-		'icon' => 'icon-cl-itext',
+		'icon' => $cl_uri . '/admin/img/cl-itext.png',
 		'params' => array(
 			/**
 			 * General
