@@ -3,13 +3,14 @@
 /**
  * Plugin Name: CodeLights
  * Plugin URI: https://codelights.com/
- * Description: Premium-quality shortcodes.
- * Version: 1.0.0
+ * Description: Flexible high-end page elements that can be used both as shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
+ * Version: 1.0
  * Author: CodeLights
  * Author URI: https://codelights.com/
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-// Global variables that may be used for
 $cl_file = __FILE__;
 $cl_dir = plugin_dir_path( __FILE__ );
 $cl_uri = plugins_url( '', __FILE__ );
@@ -29,17 +30,11 @@ function cl_editors_support() {
 }
 
 // Ajax requests
-if ( is_admin() ) {
-	if ( ! defined( 'DOING_AJAX' ) OR ! DOING_AJAX ) {
-		// Admin interface
-
-	} elseif ( isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3 ) == 'cl_' ) {
-		// Ajax methods
-		require $cl_dir . '/functions/ajax.php';
-	}
+if ( is_admin() AND isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3 ) == 'cl_' ) {
+	require $cl_dir . '/functions/ajax.php';
 }
 
-/* load admin js and css styles */
+// Load admin scripts and styles
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
 function cl_admin_enqueue_scripts() {
 	global $cl_uri, $post_type, $wp_scripts;
