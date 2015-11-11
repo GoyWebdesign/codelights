@@ -1,5 +1,9 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
+if ( ! class_exists( 'Vc_Manager' ) ) {
+	return;
+}
+
 // Visual Composer Compatibility
 add_action( 'vc_after_set_mode', function () {
 

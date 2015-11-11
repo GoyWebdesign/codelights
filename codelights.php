@@ -20,8 +20,7 @@ require $cl_dir . '/functions/shortcodes.php';
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
 
-// Implementing editors support after admin init to be able to check which plugins were actlually loaded
-add_action( 'admin_init', 'cl_editors_support' );
+add_action( 'plugins_loaded', 'cl_editors_support' );
 function cl_editors_support() {
 	global $cl_dir;
 	require $cl_dir . '/editors-support/native/native.php';
