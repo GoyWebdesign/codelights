@@ -43,18 +43,14 @@ if ( is_admin() ) {
 /* load admin js and css styles */
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
 function cl_admin_enqueue_scripts() {
-	global $cl_uri, $post_type, $wp_scripts, $wp_styles;
+	global $cl_uri, $post_type, $wp_scripts;
 
 	$screen = get_current_screen();
 	$is_widgets = ( $screen->base == 'widgets' );
 	$is_customizer = ( $screen->base == 'customize' );
 	$is_content_editor = ( isset( $post_type ) AND post_type_supports( $post_type, 'editor' ) );
 	if ( $is_widgets OR $is_customizer OR $is_content_editor ) {
-		wp_register_style( 'cl-editor', $cl_uri . '/admin/css/editor.css' );
-		$elm_icons_style = '';
-		$wp_styles->add_data( 'cl-editor', 'data', $wp_styles->get_data( 'cl-editor', 'data' ) . $elm_icons_style );
-		wp_enqueue_style( 'cl-editor' );
-
+		wp_enqueue_style( 'cl-editor', $cl_uri . '/admin/css/editor.css' );
 		wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
 		$ajax_url_script = 'if (window.$cl === undefined) window.$cl = {}; $cl.ajaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ";\n";
 		$wp_scripts->add_data( 'cl-editor', 'data', $ajax_url_script );
@@ -68,4 +64,21 @@ function cl_admin_enqueue_scripts() {
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
+}
+
+add_action( 'customize_controls_print_styles', 'cl_customizer_icons_style' );
+function cl_customizer_icons_style() {
+	echo '<style type="text/css" id="cl_customizer_icons_style">';
+	foreach ( cl_config( 'elements', array() ) as $name => $elm ) {
+		if ( isset( $elm['icon'] ) AND ! empty( $elm['icon'] ) ) {
+			echo '#available-widgets .widget-tpl[class*=" ' . $name . '"] .widget-title::before {';
+			echo 'content: \'\';';
+			echo '-webkit-background-size: 20px 20px;';
+			echo 'background-size: 20px 20px;';
+			echo 'background-image: url(' . $elm['icon'] . ');';
+			echo '}';
+		}
+	}
+	echo '}';
+	echo '</style>';
 }
