@@ -166,12 +166,20 @@
 .widget-content .cl-tabs-sections {
   max-height: none;
 }
-.widget-content .cl-tabs-section {
-  padding-left: 0;
-  padding-right: 0;
-}
 .customize-control .cl-eform {
-  margin: -1px -10px 0;
+  margin: -21px -30px 0;
+}
+.so-content .cl-eform {
+  margin: -15px -15px 0 !important;
+}
+.so-content .cl-tabs-list {
+  padding: 0;
+}
+.so-content .cl-tabs-item {
+  border-radius: 0;
+}
+.so-content .cl-tabs-sections {
+  max-height: none;
 }
 .cl-elist {
   position: fixed;
@@ -241,7 +249,7 @@
 .cl-elist-item-icon {
   position: absolute;
   top: 24px;
-  left: 15px;
+  left: 20px;
   height: 32px;
   width: 32px;
   -webkit-background-size: 32px 32px;

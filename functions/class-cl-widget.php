@@ -29,7 +29,7 @@ class CL_Widget extends WP_Widget {
 			'classname' => $this->config['class'],
 			'description' => $this->config['description'],
 		), array(
-			'width' => 600,
+			'width' => 500,
 		) );
 	}
 
