@@ -747,11 +747,25 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 
 // Admin widgets editor
 if (window.wpWidgets !== undefined) jQuery(function($){
+	// Widget ID => active tab, to keep the current active tab on widget save
+	var formsTabs = {},
+		initWidgetEForm = function($eform){
+			var widgetId = $eform.closest('.widget').attr('id'),
+				eform = new $cl.EForm($eform);
+			if (eform.tabs) {
+				if (formsTabs[widgetId] !== undefined) {
+					eform.tabs.open(formsTabs[widgetId]);
+				}
+				eform.tabs.bind('afterShow', function(index){
+					formsTabs[widgetId] = index;
+				});
+			}
+		};
 	$('#widgets-right').find('.cl-eform').each(function(){
-		new $cl.EForm(this);
+		initWidgetEForm($(this));
 	});
 	$(document).bind('widget-added widget-updated', function(event, widget){
-		new $cl.EForm($(widget).find('.cl-eform'));
+		initWidgetEForm($(widget).find('.cl-eform'));
 	});
 	// Widget's fields may be shown
 	$(document).bind('wp-pin-menu', function(){
