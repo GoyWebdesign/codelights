@@ -1,5 +1,6 @@
 .idea
 *.db
 *.bak
+todo.txt
 log.txt
 classes.list.txt

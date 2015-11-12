@@ -58,6 +58,10 @@ function cl_admin_enqueue_scripts() {
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
+
+	if ( $is_customizer ) {
+		wp_enqueue_style( 'cl-customizer', $cl_uri . '/admin/css/customizer.css' );
+	}
 }
 
 add_action( 'customize_controls_print_styles', 'cl_customizer_icons_style' );
