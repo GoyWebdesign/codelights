@@ -318,6 +318,7 @@
   width: 30px;
   text-indent: -10000px;
   background: url(../../editors-support/native/icon.png) 50% 50% no-repeat;
+  background-size: 20px 20px;
 }
 @media (max-width: 1300px) {
   .cl-elist {
