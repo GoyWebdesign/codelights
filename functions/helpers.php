@@ -191,16 +191,16 @@ function cl_shortcode_atts( $atts, $shortcode ) {
 
 	if ( ! isset( $cl_shortcode_pairs[ $shortcode ] ) ) {
 		$cl_shortcode_pairs[ $shortcode ] = array();
-		foreach ( cl_config( 'elements.' . $shortcode . '.params', array() ) as $param ) {
-			if ( ! isset( $param['param_name'] ) ) {
+		foreach ( cl_config( 'elements.' . $shortcode . '.params', array() ) as $param_name => $param ) {
+			if ( ! isset( $param_name ) ) {
 				continue;
 			}
 			if ( isset( $param['std'] ) ) {
-				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = $param['std'];
-			} elseif ( $param['type'] == 'dropdown' AND isset( $param['value'] ) AND is_array( $param['value'] ) ) {
-				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = current( $param['value'] );
+				$cl_shortcode_pairs[ $shortcode ][ $param_name ] = $param['std'];
+			} elseif ( $param['type'] == 'select' AND isset( $param['options'] ) AND is_array( $param['options'] ) ) {
+				$cl_shortcode_pairs[ $shortcode ][ $param_name ] = key( $param['options'] );
 			} else {
-				$cl_shortcode_pairs[ $shortcode ][ $param['param_name'] ] = '';
+				$cl_shortcode_pairs[ $shortcode ][ $param_name ] = '';
 			}
 		}
 	}
@@ -367,7 +367,7 @@ function cl_image_sizes_select_values( $size_names = array( 'large', 'medium', '
 			$size_title .= ( $size['height'] == 0 ) ? __( 'Any', 'codelights' ) : $size['height'];
 			$size_title .= ' (' . ( $size['crop'] ? __( 'cropped', 'codelights' ) : __( 'not cropped', 'codelights' ) ) . ')';
 		}
-		$image_sizes[ $size_title ] = $size_name;
+		$image_sizes[ $size_name ] = $size_title;
 	}
 
 	return $image_sizes;
@@ -440,4 +440,60 @@ function cl_maybe_load_html_editor() {
 		_WP_Editors::editor_settings( 'codelights', $settings );
 		$cl_html_editor_loaded = TRUE;
 	}
+}
+
+/**
+ * Checks if the field visibility condition is true
+ *
+ * Note: at any possible syntax error we choose to show the field so it will be functional anyway.
+ *
+ * @param array $condition Showing condition
+ * @param array $values
+ *
+ * @return bool
+ */
+function cl_execute_show_if( $condition, &$values ) {
+	if ( ! is_array( $condition ) OR count( $condition ) < 3 ) {
+		// Wrong condition
+		$result = TRUE;
+	} elseif ( in_array( strtolower( $condition[1] ), array( 'and', 'or' ) ) ) {
+		// Complex or / and statement
+		$result = cl_execute_show_if( $condition[0], $values );
+		$index = 2;
+		while ( isset( $condition[ $index ] ) ){
+			$condition[ $index - 1 ] = strtolower( $condition[ $index - 1 ] );
+			if ( $condition[ $index - 1 ] == 'and' ) {
+				$result = ( $result AND cl_execute_show_if( $condition[ $index ], $values ) );
+			} elseif ( $condition[ $index - 1 ] == 'or' ) {
+				$result = ( $result OR cl_execute_show_if( $condition[ $index ], $values ) );
+			}
+			$index = $index + 2;
+		}
+	} else {
+		if ( ! isset( $values[ $condition[0] ] ) ) {
+			return TRUE;
+		}
+		$value = $values[ $condition[0] ];
+		if ( $condition[1] == '=' ) {
+			$result = ( $value == $condition[2] );
+		} elseif ( $condition[1] == '!=' OR $condition[1] == '<>' ) {
+			$result = ( $value != $condition[2] );
+		} elseif ( $condition[1] == 'in' ) {
+			$result = ( ! is_array( $condition[2] ) OR in_array( $value, $condition[2] ) );
+		} elseif ( $condition[1] == 'not in' ) {
+			$result = ( ! is_array( $condition[2] ) OR ! in_array( $value, $condition[2] ) );
+		} elseif ( $condition[1] == '<=' ) {
+			$result = ( $value <= $condition[2] );
+		} elseif ( $condition[1] == '<' ) {
+			$result = ( $value < $condition[2] );
+		} elseif ( $condition[1] == '>' ) {
+			$result = ( $value > $condition[2] );
+		} elseif ( $condition[1] == '>=' ) {
+			$result = ( $value >= $condition[2] );
+		} else {
+			$result = TRUE;
+		}
+	}
+
+	return $result;
 }

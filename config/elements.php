@@ -3,90 +3,66 @@
 global $cl_uri;
 
 return array(
+
 	'cl-counter' => array(
-		'base' => 'cl-counter',
-		'name' => __( 'Counter', 'codelights' ),
-		'widget_class' => 'CL_Widget_Counter',
+		'title' => __( 'Counter', 'codelights' ),
 		'description' => __( 'Animated text with numbers', 'codelights' ),
-		'class' => '',
 		'category' => 'CodeLights',
 		'icon' => $cl_uri . '/admin/img/cl-counter.png',
+		'widget_php_class' => 'CL_Widget_Counter',
 		'params' => array(
-			array(
-				'param_name' => 'initial',
-				'heading' => __( 'Initial Counter value', 'codelights' ),
+			'initial' => array(
+				'title' => __( 'Initial Counter value', 'codelights' ),
 				'description' => __( 'Initial string with all the prefixes, suffixes and decimal marks if needed.', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
 			),
-			array(
-				'param_name' => 'final',
-				'heading' => __( 'Final Counter value', 'codelights' ),
+			'final' => array(
+				'title' => __( 'Final Counter value', 'codelights' ),
 				'description' => __( 'Final value the way it should look like, when the animation ends.', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100',
 			),
-			array(
-				'param_name' => 'title',
-				'heading' => __( 'Counter Title', 'codelights' ),
+			'title' => array(
+				'title' => __( 'Counter Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 			),
-			array(
-				'param_name' => 'duration',
-				'heading' => __( 'Animation Duration', 'codelights' ),
+			'duration' => array(
+				'title' => __( 'Animation Duration', 'codelights' ),
 				'description' => __( 'In milliseconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '3000',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'animation',
-				'heading' => __( 'Digits Animation Type', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'None', 'codelights' ) => 'none',
-					__( 'Slide Up', 'codelights' ) => 'slideup',
-					__( 'Slide Down', 'codelights' ) => 'slidedown',
-				),
-				'std' => 'none',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Custom', 'codelights' ),
-			),
-			array(
-				'param_name' => 'value_size',
-				'heading' => __( 'Value Font Size', 'codelights' ),
+			'value_size' => array(
+				'title' => __( 'Value Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '50',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'title_size',
-				'heading' => __( 'Title Font Size', 'codelights' ),
+			'title_size' => array(
+				'title' => __( 'Title Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '20',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'value_color',
-				'heading' => __( 'Value Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'value_color' => array(
+				'title' => __( 'Value Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'title_color',
-				'heading' => __( 'Title Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'title_color' => array(
+				'title' => __( 'Title Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'el_class',
-				'heading' => __( 'Extra class name', 'codelights' ),
+			'el_class' => array(
+				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Custom', 'codelights' ),
@@ -94,97 +70,86 @@ return array(
 		),
 	),
 	'cl-flipbox' => array(
-		'base' => 'cl-flipbox',
-		'name' => __( 'FlipBox', 'codelights' ),
-		'widget_class' => 'CL_Widget_Flipbox',
+		'title' => __( 'FlipBox', 'codelights' ),
 		'description' => __( 'Two-sided content element, flipping on hover', 'codelights' ),
-		'class' => '',
 		'category' => 'CodeLights',
 		'icon' => $cl_uri . '/admin/img/cl-flipbox.png',
+		'widget_php_class' => 'CL_Widget_Flipbox',
 		'params' => array(
 			/**
 			 * General
 			 */
-			array(
-				'param_name' => 'link_type',
-				'heading' => __( 'Link', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'No Link', 'codelights' ) => 'none',
-					__( 'Add link to the whole FlipBox', 'codelights' ) => 'container',
-					__( 'Add link as a separate button', 'codelights' ) => 'btn',
+			'link_type' => array(
+				'title' => __( 'Link', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'none' => __( 'No Link', 'codelights' ),
+					'container' => __( 'Add link to the whole FlipBox', 'codelights' ),
+					'btn' => __( 'Add link as a separate button', 'codelights' ),
 				),
 				'std' => 'none',
 			),
-			array(
-				'param_name' => 'link',
-				'heading' => __( 'Link URL', 'codelights' ),
+			'link' => array(
+				'title' => __( 'Link URL', 'codelights' ),
 				'type' => 'link',
-				'dependency' => array( 'element' => 'link_type', 'value' => array( 'container', 'btn' ) ),
+				'show_if' => array( 'link_type', 'in', array( 'container', 'btn' ) ),
 			),
-			array(
-				'param_name' => 'back_btn_label',
-				'heading' => __( 'Button Label', 'codelights' ),
+			'back_btn_label' => array(
+				'title' => __( 'Button Label', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'READ MORE', // Not translatable
-				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
+				'show_if' => array( 'link_type', '=', 'btn' ),
 			),
-			array(
-				'param_name' => 'back_btn_bgcolor',
-				'heading' => __( 'Button Background Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'back_btn_bgcolor' => array(
+				'title' => __( 'Button Background Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'show_if' => array( 'link_type', '=', 'btn' ),
 			),
-			array(
-				'param_name' => 'back_btn_color',
-				'heading' => __( 'Button Text Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'dependency' => array( 'element' => 'link_type', 'value' => array( 'btn' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'back_btn_color' => array(
+				'title' => __( 'Button Text Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'show_if' => array( 'link_type', '=', 'btn' ),
 			),
-			array(
-				'param_name' => 'animation',
-				'heading' => __( 'Animation Type', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Card Flip', 'codelights' ) => 'cardflip',
-					__( 'Cube Tilt', 'codelights' ) => 'cubetilt',
-					__( 'Cube Flip', 'codelights' ) => 'cubeflip',
-					__( 'Cover Open', 'codelights' ) => 'coveropen',
+			'animation' => array(
+				'title' => __( 'Animation Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'cardflip' => __( 'Card Flip', 'codelights' ),
+					'cubetilt' => __( 'Cube Tilt', 'codelights' ),
+					'cubeflip' => __( 'Cube Flip', 'codelights' ),
+					'coveropen' => __( 'Cover Open', 'codelights' ),
 				),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			array(
-				'param_name' => 'direction',
-				'heading' => __( 'Animation Direction', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Up', 'codelights' ) => 'n',
-					__( 'Up-Right', 'codelights' ) => 'ne',
-					__( 'Right', 'codelights' ) => 'e',
-					__( 'Down-Right', 'codelights' ) => 'se',
-					__( 'Down', 'codelights' ) => 's',
-					__( 'Down-Left', 'codelights' ) => 'sw',
-					__( 'Left', 'codelights' ) => 'w',
-					__( 'Up-Left', 'codelights' ) => 'nw',
+			'direction' => array(
+				'title' => __( 'Animation Direction', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'n' => __( 'Up', 'codelights' ),
+					'ne' => __( 'Up-Right', 'codelights' ),
+					'e' => __( 'Right', 'codelights' ),
+					'se' => __( 'Down-Right', 'codelights' ),
+					's' => __( 'Down', 'codelights' ),
+					'sw' => __( 'Down-Left', 'codelights' ),
+					'w' => __( 'Left', 'codelights' ),
+					'nw' => __( 'Up-Left', 'codelights' ),
 				),
 				'std' => 'w',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			array(
-				'param_name' => 'duration',
-				'heading' => __( 'Animation Duration', 'codelights' ),
+			'duration' => array(
+				'title' => __( 'Animation Duration', 'codelights' ),
 				'description' => __( 'In milliseconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '500',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			array(
-				'param_name' => 'easing',
-				'heading' => __( 'Animation Easing', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
+			'easing' => array(
+				'title' => __( 'Animation Easing', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
 					'ease' => 'ease',
 					'easeInOutSine' => 'easeInOutSine',
 					'easeInQuad' => 'easeInQuad',
@@ -194,229 +159,204 @@ return array(
 					'easeInOutBack' => 'easeInOutBack',
 				),
 				'std' => 'easeInOutSine',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			/**
 			 * Front Side
 			 */
-			array(
-				'param_name' => 'front_icon_type',
-				'heading' => __( 'Icon to Display', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'None', 'codelights' ) => 'none',
-					__( 'FontAwesome Icon', 'codelights' ) => 'font',
-					__( 'Custom Image', 'codelights' ) => 'image',
+			'front_icon_type' => array(
+				'title' => __( 'Icon to Display', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'none' => __( 'None', 'codelights' ),
+					'font' => __( 'FontAwesome Icon', 'codelights' ),
+					'image' => __( 'Custom Image', 'codelights' ),
 				),
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_icon_name',
-				'heading' => __( 'Icon Name', 'codelights' ),
+			'front_icon_name' => array(
+				'title' => __( 'Icon Name', 'codelights' ),
 				'type' => 'textfield',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
-			array(
-				'param_name' => 'front_icon_size',
-				'heading' => __( 'Icon Size (px)', 'codelights' ),
+			'front_icon_size' => array(
+				'title' => __( 'Icon Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '35',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
-			array(
-				'param_name' => 'front_icon_style',
-				'heading' => __( 'Icon Style', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Simple', 'codelights' ) => 'default',
-					__( 'Circle Background', 'codelights' ) => 'circle',
-					__( 'Square Background', 'codelights' ) => 'square',
+			'front_icon_style' => array(
+				'title' => __( 'Icon Style', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'default' => __( 'Simple', 'codelights' ),
+					'circle' => __( 'Circle Background', 'codelights' ),
+					'square' => __( 'Square Background', 'codelights' ),
 				),
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
-			array(
-				'param_name' => 'front_icon_color',
-				'heading' => __( 'Icon Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'front_icon_color' => array(
+				'title' => __( 'Icon Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
-			array(
-				'param_name' => 'front_icon_bgcolor',
-				'heading' => __( 'Icon Background Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'font' ) ),
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'front_icon_bgcolor' => array(
+				'title' => __( 'Icon Background Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
 			array(
 				'param_name' => 'front_icon_image',
-				'heading' => __( 'Image', 'codelights' ),
-				'type' => 'attach_image',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'image' ) ),
+				'title' => __( 'Image', 'codelights' ),
+				'type' => 'image',
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'image' ),
 			),
-			array(
-				'param_name' => 'front_icon_image_width',
-				'heading' => __( 'Image Width', 'codelights' ),
+			'front_icon_image_width' => array(
+				'title' => __( 'Image Width', 'codelights' ),
 				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '32px',
-				'dependency' => array( 'element' => 'front_icon_type', 'value' => array( 'image' ) ),
 				'group' => __( 'Front Side', 'codelights' ),
+				'show_if' => array( 'front_icon_type', '=', 'image' ),
 			),
-			array(
-				'param_name' => 'front_title',
-				'heading' => __( 'Title', 'codelights' ),
+			'front_title' => array(
+				'title' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'FlipBox Title', // Not translatable
 				'admin_label' => TRUE,
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_title_size',
-				'heading' => __( 'Title Font Size (px)', 'codelights' ),
+			'front_title_size' => array(
+				'title' => __( 'Title Font Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_desc',
-				'heading' => __( 'Description', 'codelights' ),
+			'front_desc' => array(
+				'title' => __( 'Description', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_bgcolor',
-				'heading' => __( 'Background Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'front_bgcolor' => array(
+				'title' => __( 'Background Color', 'codelights' ),
+				'type' => 'color',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_textcolor',
-				'heading' => __( 'Text Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'front_textcolor' => array(
+				'title' => __( 'Text Color', 'codelights' ),
+				'type' => 'color',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'front_bgimage',
-				'heading' => __( 'Background Image', 'codelights' ),
-				'type' => 'attach_image',
+			'front_bgimage' => array(
+				'title' => __( 'Background Image', 'codelights' ),
+				'type' => 'image',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			/**
 			 * Back Side
 			 */
-			array(
-				'param_name' => 'back_title',
-				'heading' => __( 'Title', 'codelights' ),
+			'back_title' => array(
+				'title' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'FlipBox Title', // Not translatable
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'back_title_size',
-				'heading' => __( 'Title Font Size (px)', 'codelights' ),
+			'back_title_size' => array(
+				'title' => __( 'Title Font Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'back_desc',
-				'heading' => __( 'Description', 'codelights' ),
+			'back_desc' => array(
+				'title' => __( 'Description', 'codelights' ),
 				'type' => 'textarea',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'back_bgcolor',
-				'heading' => __( 'Background Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'back_bgcolor' => array(
+				'title' => __( 'Background Color', 'codelights' ),
+				'type' => 'color',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'back_textcolor',
-				'heading' => __( 'Text Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'back_textcolor' => array(
+				'title' => __( 'Text Color', 'codelights' ),
+				'type' => 'color',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
-			array(
-				'param_name' => 'back_bgimage',
-				'heading' => __( 'Background Image', 'codelights' ),
-				'type' => 'attach_image',
+			'back_bgimage' => array(
+				'title' => __( 'Background Image', 'codelights' ),
+				'type' => 'image',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			/**
 			 * Custom
 			 */
-			array(
-				'param_name' => 'width',
-				'heading' => __( 'Width', 'codelights' ),
+			'width' => array(
+				'title' => __( 'Width', 'codelights' ),
 				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'height',
-				'heading' => __( 'Height', 'codelights' ),
+			'height' => array(
+				'title' => __( 'Height', 'codelights' ),
 				'description' => __( 'Leave blank use front height', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'valign',
-				'type' => 'checkbox',
-				'value' => array( __( 'Center-Align Content Vertically', 'codelights' ) => 'center' ),
+			'valign' => array(
+				'type' => 'checkboxes',
+				'options' => array(
+					'center' => __( 'Center-Align Content Vertically', 'codelights' ),
+				),
 				'std' => 'top',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'border_radius',
-				'heading' => __( 'Border Radius', 'codelights' ),
+			'border_radius' => array(
+				'title' => __( 'Border Radius', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'border_size',
-				'heading' => __( 'Border Width', 'codelights' ),
+			'border_size' => array(
+				'title' => __( 'Border Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'border_color',
-				'heading' => __( 'Border Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'border_color' => array(
+				'title' => __( 'Border Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'padding',
-				'heading' => __( 'Padding', 'codelights' ),
+			'padding' => array(
+				'title' => __( 'Padding', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '15%',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'el_class',
-				'heading' => __( 'Extra class name', 'codelights' ),
+			'el_class' => array(
+				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Custom', 'codelights' ),
@@ -424,133 +364,118 @@ return array(
 		),
 	),
 	'cl-ib' => array(
-		'base' => 'cl-ib',
-		'name' => __( 'Interactive Banner', 'codelights' ),
-		'widget_class' => 'CL_Widget_Ib',
+		'title' => __( 'Interactive Banner', 'codelights' ),
 		'description' => __( 'Hoverable image with additional data', 'codelights' ),
-		'class' => '',
 		'category' => 'CodeLights',
 		'icon' => $cl_uri . '/admin/img/cl-ib.png',
+		'widget_php_class' => 'CL_Widget_Ib',
 		'params' => array(
 			/**
 			 * Content
 			 */
-			array(
-				'param_name' => 'image',
-				'heading' => __( 'Banner Image', 'codelights' ),
-				'type' => 'attach_image',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'image' => array(
+				'title' => __( 'Banner Image', 'codelights' ),
+				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			array(
-				'param_name' => 'size',
-				'heading' => __( 'Image Size', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => cl_image_sizes_select_values(),
+			'size' => array(
+				'title' => __( 'Image Size', 'codelights' ),
+				'type' => 'select',
+				'options' => cl_image_sizes_select_values(),
 				'std' => 'large',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			array(
-				'param_name' => 'title',
-				'heading' => __( 'Title', 'codelights' ),
+			'title' => array(
+				'title' => __( 'Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'Banner Title', // Not translatable
 				'admin_label' => TRUE,
 			),
-			array(
-				'param_name' => 'desc',
-				'heading' => __( 'Description', 'codelights' ),
+			'desc' => array(
+				'title' => __( 'Description', 'codelights' ),
 				'type' => 'textarea',
 			),
-			array(
-				'param_name' => 'link',
-				'heading' => __( 'Link', 'codelights' ),
+			'link' => array(
+				'title' => __( 'Link', 'codelights' ),
 				'type' => 'link',
 			),
-			array(
-				'param_name' => 'animation',
-				'heading' => __( 'Animation Type', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Melete', 'codelights' ) => 'melete',
-					__( 'Soter', 'codelights' ) => 'soter',
-					__( 'Phorcys', 'codelights' ) => 'phorcys',
-					__( 'Aidos', 'codelights' ) => 'aidos',
-					__( 'Caeros', 'codelights' ) => 'caeros',
-					__( 'Hebe', 'codelights' ) => 'hebe',
-					__( 'Aphelia', 'codelights' ) => 'aphelia',
-					__( 'Nike', 'codelights' ) => 'nike',
+			'animation' => array(
+				'title' => __( 'Animation Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'melete' => __( 'Melete', 'codelights' ),
+					'soter' => __( 'Soter', 'codelights' ),
+					'phorcys' => __( 'Phorcys', 'codelights' ),
+					'aidos' => __( 'Aidos', 'codelights' ),
+					'caeros' => __( 'Caeros', 'codelights' ),
+					'hebe' => __( 'Hebe', 'codelights' ),
+					'aphelia' => __( 'Aphelia', 'codelights' ),
+					'nike' => __( 'Nike', 'codelights' ),
 				),
 			),
 			/**
 			 * Design
 			 */
-			array(
-				'param_name' => 'bgcolor',
-				'heading' => __( 'Background Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'bgcolor' => array(
+				'title' => __( 'Background Color', 'codelights' ),
+				'type' => 'color',
 				'std' => '#444',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'textcolor',
-				'heading' => __( 'Text Color', 'codelights' ),
-				'type' => 'colorpicker',
+			'textcolor' => array(
+				'title' => __( 'Text Color', 'codelights' ),
+				'type' => 'color',
 				'std' => '#fff',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'ratio',
-				'heading' => __( 'Aspect Ratio', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					'2x1 (' . __( 'Landscape', 'codelights' ) . ')' => '2x1',
-					'3x2 (' . __( 'Landscape', 'codelights' ) . ')' => '3x2',
-					'4x3 (' . __( 'Landscape', 'codelights' ) . ')' => '4x3',
-					'1x1 (' . __( 'Square', 'codeligths' ) . ')' => '1x1',
-					'3x4 (' . __( 'Portrait', 'codelights' ) . ')' => '3x4',
-					'2x3 (' . __( 'Portrait', 'codelights' ) . ')' => '2x3',
-					'1x2 (' . __( 'Portrait', 'codelights' ) . ')' => '1x2',
+			'ratio' => array(
+				'title' => __( 'Aspect Ratio', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'2x1' => '2x1 (' . __( 'Landscape', 'codelights' ) . ')',
+					'3x2' => '3x2 (' . __( 'Landscape', 'codelights' ) . ')',
+					'4x3' => '4x3 (' . __( 'Landscape', 'codelights' ) . ')',
+					'1x1' => '1x1 (' . __( 'Square', 'codeligths' ) . ')',
+					'3x4' => '3x4 (' . __( 'Portrait', 'codelights' ) . ')',
+					'2x3' => '2x3 (' . __( 'Portrait', 'codelights' ) . ')',
+					'1x2' => '1x2 (' . __( 'Portrait', 'codelights' ) . ')',
 				),
 				'std' => '3x2',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'width',
-				'heading' => __( 'Width', 'codelights' ),
+			'width' => array(
+				'title' => __( 'Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'align',
-				'heading' => __( 'Text Align', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Left', 'codelights' ) => 'left',
-					__( 'Center', 'codelights' ) => 'center',
-					__( 'Right', 'codelights' ) => 'right',
+			'align' => array(
+				'title' => __( 'Text Align', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'left' => __( 'Left', 'codelights' ),
+					'center' => __( 'Center', 'codelights' ),
+					'right' => __( 'Right', 'codelights' ),
 				),
 				'std' => 'center',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'padding',
-				'heading' => __( 'Padding', 'codelights' ),
+			'padding' => array(
+				'title' => __( 'Padding', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '10%',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'easing',
-				'heading' => __( 'Animation Easing', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
+			'easing' => array(
+				'title' => __( 'Animation Easing', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
 					'ease' => 'ease',
 					'easeInOutSine' => 'easeInOutSine',
 					'easeInQuad' => 'easeInQuad',
@@ -562,9 +487,8 @@ return array(
 				'std' => 'ease',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			array(
-				'param_name' => 'el_class',
-				'heading' => __( 'Extra class name', 'codelights' ),
+			'el_class' => array(
+				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Design', 'codelights' ),
@@ -572,48 +496,43 @@ return array(
 			/**
 			 * Typography
 			 */
-			array(
-				'param_name' => 'title_size',
-				'heading' => __( 'Title Size', 'codelights' ),
+			'title_size' => array(
+				'title' => __( 'Title Size', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '30px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
-			array(
-				'param_name' => 'desc_size',
-				'heading' => __( 'Description Size', 'codelights' ),
+			'desc_size' => array(
+				'title' => __( 'Description Size', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '16px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
-			array(
-				'param_name' => 'title_mobile_size',
-				'heading' => __( 'Title Size for mobiles', 'codelights' ),
+			'title_mobile_size' => array(
+				'title' => __( 'Title Size for mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '24px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
-			array(
-				'param_name' => 'desc_mobile_size',
-				'heading' => __( 'Description Size for mobiles', 'codelights' ),
+			'desc_mobile_size' => array(
+				'title' => __( 'Description Size for mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '16px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Typography', 'codelights' ),
 			),
-			array(
-				'param_name' => 'title_tag',
-				'heading' => __( 'Title Tag Name', 'codelights' ),
+			'title_tag' => array(
+				'title' => __( 'Title Tag Name', 'codelights' ),
 				'description' => __( 'Used for SEO purposes', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
+				'type' => 'select',
+				'options' => array(
 					'h1' => 'h1',
 					'h2' => 'h2',
 					'h3' => 'h3',
@@ -628,96 +547,87 @@ return array(
 		),
 	),
 	'cl-itext' => array(
-		'base' => 'cl-itext',
-		'name' => __( 'Interactive Text', 'codelighs' ),
-		'widget_class' => 'CL_Widget_Itext',
+		'title' => __( 'Interactive Text', 'codelighs' ),
 		'description' => __( 'Text with some dynamicatlly changing part', 'codelighs' ),
-		'class' => '',
 		'category' => 'CodeLights',
 		'icon' => $cl_uri . '/admin/img/cl-itext.png',
+		'widget_php_class' => 'CL_Widget_Itext',
 		'params' => array(
 			/**
 			 * General
 			 */
-			array(
-				'param_name' => 'texts',
-				'heading' => __( 'Text States', 'codelights' ),
+			'texts' => array(
+				'title' => __( 'Text States', 'codelights' ),
 				'description' => __( 'Each state from a new line', 'codelights' ),
 				'type' => 'textarea',
 				'std' => 'We create great design' . "\n" . 'We create great websites' . "\n" . 'We create great code',
 			),
-			array(
-				'param_name' => 'dynamic_bold',
-				'heading' => '',
-				'type' => 'checkbox',
-				'value' => array( __( 'Bold Dynamic Text', 'codelights' ) => TRUE ),
+			'dynamic_bold' => array(
+				'title' => '',
+				'type' => 'checkboxes',
+				'options' => array(
+					TRUE => __( 'Bold Dynamic Text', 'codelights' ),
+				),
 				'std' => TRUE,
 			),
-			array(
-				'param_name' => 'animation_type',
-				'heading' => __( 'Animation Type', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Fade in the whole part', 'codelights' ) => 'fadeIn',
-					__( 'Flip the whole part', 'codelights' ) => 'flipInX',
-					__( 'Flip character by character', 'codelights' ) => 'flipInXChars',
-					__( 'Zoom in the whole part', 'codelights' ) => 'zoomIn',
-					__( 'Zoom in character by character', 'codelights' ) => 'zoomInChars',
+			'animation_type' => array(
+				'title' => __( 'Animation Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'fadeIn' => __( 'Fade in the whole part', 'codelights' ),
+					'flipInX' => __( 'Flip the whole part', 'codelights' ),
+					'flipInXChars' => __( 'Flip character by character', 'codelights' ),
+					'zoomIn' => __( 'Zoom in the whole part', 'codelights' ),
+					'zoomInChars' => __( 'Zoom in character by character', 'codelights' ),
 				),
 				'std' => 'fadeIn',
 			),
 			/**
 			 * Custom
 			 */
-			array(
-				'param_name' => 'font_size',
-				'heading' => __( 'Font Size', 'codelights' ),
+			'font_size' => array(
+				'title' => __( 'Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '50px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'font_size_mobile',
-				'heading' => __( 'Font Size for mobiles', 'codelights' ),
+			'font_size_mobile' => array(
+				'title' => __( 'Font Size for mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '30px',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'color',
-				'heading' => __( 'Basic Text Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'color' => array(
+				'title' => __( 'Basic Text Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'dynamic_color',
-				'heading' => __( 'Dynamic Text Color', 'codelights' ),
-				'type' => 'colorpicker',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+			'dynamic_color' => array(
+				'title' => __( 'Dynamic Text Color', 'codelights' ),
+				'type' => 'color',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'align',
-				'heading' => __( 'Text Alignment', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
-					__( 'Left', 'codelights' ) => 'left',
-					__( 'Center', 'codelights' ) => 'center',
-					__( 'Right', 'codelights' ) => 'right',
+			'align' => array(
+				'title' => __( 'Text Alignment', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'left' => __( 'Left', 'codelights' ),
+					'center' => __( 'Center', 'codelights' ),
+					'right' => __( 'Right', 'codelights' ),
 				),
 				'std' => 'center',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'tag',
-				'heading' => __( 'Tag Name', 'codelights' ),
-				'type' => 'dropdown',
-				'value' => array(
+			'tag' => array(
+				'title' => __( 'Tag Name', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
 					'div' => 'div',
 					'h1' => 'h1',
 					'h2' => 'h2',
@@ -728,35 +638,32 @@ return array(
 					'p' => 'p',
 				),
 				'std' => 'h2',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'duration',
-				'heading' => __( 'Animation Duration', 'codelights' ),
+			'duration' => array(
+				'title' => __( 'Animation Duration', 'codelights' ),
 				'description' => __( 'In milliseconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '300',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'delay',
-				'heading' => __( 'Animation Delay', 'codelights' ),
+			'delay' => array(
+				'title' => __( 'Animation Delay', 'codelights' ),
 				'description' => __( 'In seconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '5',
-				'edit_field_class' => 'cl_col-sm-6 cl_column',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Custom', 'codelights' ),
 			),
-			array(
-				'param_name' => 'el_class',
-				'heading' => __( 'Extra class name', 'codelights' ),
+			'el_class' => array(
+				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
 				'group' => __( 'Custom', 'codelights' ),
 			),
 		),
 	),
-);
 
+);

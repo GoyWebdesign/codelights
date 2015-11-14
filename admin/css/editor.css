@@ -55,7 +55,7 @@
   box-sizing: border-box;
   float: left;
 }
-.cl-eform-row-heading {
+.cl-eform-row-title {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
@@ -69,18 +69,18 @@
 .cl-eform-row.cl_col-sm-6 {
   width: 50%;
 }
-.cl-eform-row.type_attach_images .cl-imgattach:before,
-.cl-eform-row.type_attach_images .cl-imgattach:after {
+.cl-eform-row.type_images .cl-imgattach:before,
+.cl-eform-row.type_images .cl-imgattach:after {
   content: '';
   display: table;
 }
-.cl-eform-row.type_attach_images .cl-imgattach:after {
+.cl-eform-row.type_images .cl-imgattach:after {
   clear: both;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-list {
+.cl-eform-row.type_images .cl-imgattach-list {
   margin: 0;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-list li {
+.cl-eform-row.type_images .cl-imgattach-list li {
   position: relative;
   display: block;
   float: left;
@@ -91,7 +91,7 @@
   border: 1px solid #ddd;
   background: #fff;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-list li .cl-imgattach-delete {
+.cl-eform-row.type_images .cl-imgattach-list li .cl-imgattach-delete {
   cursor: pointer;
   position: absolute;
   right: 25px;
@@ -107,14 +107,14 @@
   opacity: 0;
   transition: opacity 0.3s;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-list li:hover .cl-imgattach-delete {
+.cl-eform-row.type_images .cl-imgattach-list li:hover .cl-imgattach-delete {
   opacity: 1;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-list li img {
+.cl-eform-row.type_images .cl-imgattach-list li img {
   width: 100%;
   height: 100%;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-add {
+.cl-eform-row.type_images .cl-imgattach-add {
   display: block;
   float: left;
   text-align: center;
@@ -128,14 +128,14 @@
   color: #999;
   transition: border 0.3s, color 0.3s;
 }
-.cl-eform-row.type_attach_images .cl-imgattach-add:hover {
+.cl-eform-row.type_images .cl-imgattach-add:hover {
   border-color: #00a0d2;
   color: #00a0d2;
 }
-.cl-eform-row.type_colorpicker {
+.cl-eform-row.type_color {
   width: 50%;
 }
-.cl-eform-row.type_dropdown select {
+.cl-eform-row.type_select select {
   width: 100%;
 }
 .cl-eform-row.type_link textarea {
@@ -255,7 +255,7 @@
   -webkit-background-size: 32px 32px;
   background-size: 32px 32px;
 }
-.cl-elist-item-name {
+.cl-elist-item-title {
   font-size: 14px;
   font-weight: 600;
 }

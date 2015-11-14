@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Output element's form attach_image field
+ * Output element's form image/images field
  *
  * @var $name string Form's field name
  * @var $id string Form's field ID

@@ -18,7 +18,7 @@ foreach ( $elements as $name => $elm ) {
 		$output .= ' style="background-image: url(' . $elm['icon'] . ')';
 	}
 	$output .= '"></div>';
-	$output .= '<div class="cl-elist-item-name">' . ( isset( $elm['name'] ) ? $elm['name'] : $name ) . '</div>';
+	$output .= '<div class="cl-elist-item-title">' . ( isset( $elm['title'] ) ? $elm['title'] : $name ) . '</div>';
 	if ( isset( $elm['description'] ) AND ! empty( $elm['description'] ) ) {
 		$output .= '<div class="cl-elist-item-description">' . $elm['description'] . '</div>';
 	}

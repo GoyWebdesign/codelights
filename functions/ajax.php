@@ -23,7 +23,7 @@ function ajax_cl_get_ebuilder_html() {
 
 	// Loading all the forms HTML
 	foreach ( cl_config( 'elements', array() ) as $name => $elm ) {
-		$template_vars['titles'][ $name ] = isset( $elm['name'] ) ? $elm['name'] : $name;
+		$template_vars['titles'][ $name ] = isset( $elm['title'] ) ? $elm['title'] : $name;
 		$template_vars['body'] .= cl_get_template( 'eform/eform', array(
 			'name' => $name,
 			'params' => $elm['params'],

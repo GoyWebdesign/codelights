@@ -14,7 +14,7 @@ if ( ! isset( $options ) OR empty( $options ) ) {
 }
 
 $output = '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '">';
-foreach ( $options as $title => $option ) {
+foreach ( $options as $option => $title ) {
 	$output .= '<option value="' . esc_attr( $option ) . '"' . selected( $value, $option, FALSE ) . '>' . $title . '</option>';
 }
 $output .= '</select>';

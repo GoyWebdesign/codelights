@@ -138,9 +138,9 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	});
 
 	/**
-	 * $cl.Field type: attach_images
+	 * $cl.Field type: images
 	 */
-	$cl.Field['attach_images'] = {
+	$cl.Field['images'] = {
 
 		init: function(){
 			this.parentInit();
@@ -276,9 +276,9 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	};
 
 	/**
-	 * $cl.Field type: colorpicker
+	 * $cl.Field type: color
 	 */
-	$cl.Field['colorpicker'] = {
+	$cl.Field['color'] = {
 		init: function(){
 			this.parentInit();
 			this.changeTimer = null;
@@ -301,9 +301,9 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	};
 
 	/**
-	 * $cl.Field type: dropdown
+	 * $cl.Field type: select
 	 */
-	$cl.Field['dropdown'] = {
+	$cl.Field['select'] = {
 		init: function(){
 			this.$input.on('change keyup', function(){
 				this.trigger('change', [this.getValue()]);
@@ -436,7 +436,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 		}
 
 		// Dependencies rules and the list of dependent fields for all the affecting fields
-		this.deps = {};
+		this.showIf = {};
 		this.affects = {};
 
 		this.$fields = this.$container.find('.cl-eform-row');
@@ -446,11 +446,11 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				name = $row.cssMod('for');
 			this.fields[name] = new $cl.Field($row);
 			this.fields[name].trigger('beforeShow');
-			var $dependency = $row.find('.cl-eform-row-dependency');
-			if ($dependency.length) {
-				this.deps[name] = ($dependency[0].onclick() || {});
-				if (this.affects[this.deps[name].element] === undefined) this.affects[this.deps[name].element] = [];
-				this.affects[this.deps[name].element].push(name);
+			var $showIf = $row.find('.cl-eform-row-showif');
+			if ($showIf.length) {
+				this.showIf[name] = ($showIf[0].onclick() || {});
+				if (this.affects[this.showIf[name][0]] === undefined) this.affects[this.showIf[name][0]] = [];
+				this.affects[this.showIf[name][0]].push(name);
 			}
 		}.bind(this));
 
@@ -498,14 +498,10 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 		 * @return {Boolean}
 		 */
 		shouldBeVisible: function(name){
-			if (this.deps[name] === undefined) return true;
-			var dep = this.deps[name],
-				value = this.fields[dep.element].getValue();
-			if (dep.value !== undefined) {
-				return (dep.value instanceof Array) ? (dep.value.indexOf(value) != -1) : (value == dep.value);
-			} else if (dep.not_empty !== undefined) {
-				return (value != '');
-			} else return true;
+			if (this.showIf[name] === undefined) return true;
+			var dep = this.showIf[name],
+				value = this.fields[dep[0]].getValue();
+			return (dep[2] instanceof Array) ? (dep[2].indexOf(value) != -1) : (value == dep[2]);
 		}
 	});
 
@@ -729,7 +725,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				var shortcode = text.substring(prevOpen, nextClose + 1);
 				handler.action = 'edit';
 				handler.selection = [prevOpen, nextClose + 1];
-				handler.shortcode = shortcode.replace(/\[([a-zA-Z0-9\-\_]+).+/, '$1');
+				handler.shortcode = shortcode.replace(/\[([a-zA-Z0-9\-\_]+)[^\[]+/, '$1');
 				handler.values = $cl.fn.shortcodeParseAtts(shortcode);
 			} else {
 				// Inside of 3-rd party shortcode: inserting codelights shortcode just after it

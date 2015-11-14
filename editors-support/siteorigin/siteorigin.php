@@ -8,14 +8,14 @@ add_filter( 'siteorigin_panels_widgets', 'cl_siteorigin_panels_widgets' );
 function cl_siteorigin_panels_widgets( $widgets ) {
 	$config = cl_config( 'elements', array() );
 	foreach ( $config as $name => $elm ) {
-		if ( ! isset( $elm['widget_class'] ) OR empty( $elm['widget_class'] ) ) {
-			$elm['widget_class'] = 'CL_Widget_' . ucfirst( preg_replace( '~^cl\-~', '', $name ) );
+		if ( ! isset( $elm['widget_php_class'] ) OR empty( $elm['widget_php_class'] ) ) {
+			$elm['widget_php_class'] = 'CL_Widget_' . ucfirst( preg_replace( '~^cl\-~', '', $name ) );
 		}
-		if ( empty( $widgets[ $elm['widget_class'] ] ) ) {
+		if ( empty( $widgets[ $elm['widget_php_class'] ] ) ) {
 			continue;
 		}
-		$widgets[ $elm['widget_class'] ]['groups'] = array( 'codelights' );
-		$widgets[ $elm['widget_class'] ]['icon'] = 'icon-' . $name;
+		$widgets[ $elm['widget_php_class'] ]['groups'] = array( 'codelights' );
+		$widgets[ $elm['widget_php_class'] ]['icon'] = 'icon-' . $name;
 	}
 
 	return $widgets;

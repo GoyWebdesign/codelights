@@ -4,22 +4,64 @@ if ( ! class_exists( 'Vc_Manager' ) ) {
 	return;
 }
 
-// Visual Composer Compatibility
+/**
+ * Visual Composer Compatibility
+ * @link https://wpbakery.atlassian.net/wiki/pages/viewpage.action?pageId=524332
+ */
 add_action( 'vc_after_set_mode', function () {
 
-	foreach ( cl_config( 'elements' ) as $element ) {
-		if ( isset( $element['params'] ) AND is_array( $element['params'] ) ) {
-			foreach ( $element['params'] as $index => &$param ) {
-				// Using the proper params types
-				if ( isset( $param['type'] ) AND $param['type'] == 'link' ) {
-					$param['type'] = 'vc_link';
+	$related_types = array(
+		'html' => 'textarea_html',
+		'textfield' => 'textfield',
+		'textarea' => 'textarea',
+		'select' => 'dropdown',
+		'image' => 'attach_image',
+		'images' => 'attach_images',
+		'color' => 'colorpicker',
+		'link' => 'vc_link',
+		'checkboxes' => 'checkbox',
+	);
+
+	foreach ( cl_config( 'elements' ) as $name => $elm ) {
+		$vc_elm = array(
+			'name' => isset( $elm['title'] ) ? $elm['title'] : $name,
+			'base' => $name,
+			'description' => isset( $elm['description'] ) ? $elm['description'] : '',
+			'class' => 'elm-' . $name,
+			'category' => isset( $elm['category'] ) ? $elm['category'] : __( 'Content', 'codelights' ),
+			'icon' => isset( $elm['icon'] ) ? $elm['icon'] : '',
+			'params' => array(),
+		);
+
+		if ( isset( $elm['params'] ) AND is_array( $elm['params'] ) ) {
+			foreach ( $elm['params'] as $param_name => &$param ) {
+				$vc_param = array(
+					'type' => ( isset( $param['type'] ) AND isset( $related_types[ $param['type'] ] ) ) ? $related_types[ $param['type'] ] : 'textfield',
+					'heading' => isset( $param['title'] ) ? $param['title'] : '',
+					'param_name' => $param_name,
+					'description' => isset( $param['description'] ) ? $param['description'] : '',
+					'std' => isset( $param['std'] ) ? $param['std'] : '',
+				);
+				if ( isset( $param['classes'] ) AND ! empty( $param['classes'] ) ) {
+					$vc_param['edit_field_class'] = preg_replace( '~(^|[^\w])cl_col~', '$1vc_col', $param['classes'] );
 				}
-				// Preparing the proper 'edit_field_class' vendor prefixes
-				if ( isset( $param['edit_field_class'] ) ) {
-					$param['edit_field_class'] = preg_replace( '~(^|[^\w])cl_col~', '$1vc_col', $param['edit_field_class'] );
+				if ( isset( $param['group'] ) AND ! empty( $param['group'] ) ) {
+					$vc_param['group'] = $param['group'];
 				}
+				if ( ( $vc_param['type'] == 'dropdown' OR $vc_param['type'] == 'checkbox' ) AND isset( $param['options'] ) ) {
+					$vc_param['value'] = array_flip( $param['options'] );
+				}
+				// Proper dependency rules
+				if ( isset( $param['show_if'] ) AND count( $param['show_if'] ) == 3 ) {
+					$vc_param['dependency'] = array(
+						'element' => $param['show_if'][0],
+						'value' => $param['show_if'][2],
+					);
+				}
+				$vc_elm['params'][] = $vc_param;
 			}
 		}
-		vc_map( $element );
+
+		vc_map( $vc_elm );
 	}
 } );

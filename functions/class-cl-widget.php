@@ -18,15 +18,21 @@ class CL_Widget extends WP_Widget {
 			return;
 		}
 
-		// Adding Widget Title param
-		array_unshift( $this->config['params'], array(
-			'param_name' => '_widget_title',
-			'heading' => __( 'Widget Title', 'codelights' ),
-			'type' => 'textfield',
-		) );
+		// Adding Widget Title param to the beginning
+		$this->config['params'] = array_merge( array(
+			'_widget_title' => array(
+				'title' => __( 'Widget Title', 'codelights' ),
+				'type' => 'textfield',
+			),
+		), $this->config['params'] );
 
-		parent::__construct( $id_base, '(' . $this->config['category'] . ') ' . $this->config['name'], array(
-			'classname' => $this->config['class'],
+		$name = $this->config['title'];
+		if ( isset( $this->config['category'] ) AND ! empty( $this->config['category'] ) ) {
+			$name = '(' . $this->config['category'] . ') ' . $name;
+		}
+
+		parent::__construct( $id_base, $name, array(
+			'classname' => 'widget-' . $id_base,
 			'description' => $this->config['description'],
 		), array(
 			'width' => 500,
@@ -78,14 +84,14 @@ function cl_widgets_init() {
 	global $wp_widget_factory;
 	$config = cl_config( 'elements', array() );
 	foreach ( $config as $name => $elm ) {
-		if ( ! isset( $elm['widget_class'] ) OR empty( $elm['widget_class'] ) ) {
-			$elm['widget_class'] = 'CL_Widget_' . ucfirst( preg_replace( '~^cl\-~', '', $name ) );
+		if ( ! isset( $elm['widget_php_class'] ) OR empty( $elm['widget_php_class'] ) ) {
+			$elm['widget_php_class'] = 'CL_Widget_' . ucfirst( preg_replace( '~^cl\-~', '', $name ) );
 		}
-		if ( ! class_exists( $elm['widget_class'] ) ) {
+		if ( ! class_exists( $elm['widget_php_class'] ) ) {
 			// Creating virtual empty class
-			$wp_widget_factory->widgets[ $elm['widget_class'] ] = new CL_Widget( $name );
+			$wp_widget_factory->widgets[ $elm['widget_php_class'] ] = new CL_Widget( $name );
 		} else {
-			$wp_widget_factory->register( $elm['widget_class'] );
+			$wp_widget_factory->register( $elm['widget_php_class'] );
 		}
 	}
 }

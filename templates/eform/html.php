@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Output element's form textarea_html field
+ * Output element's form html field
  *
  * @var $name string Form's field name
  * @var $id string Form's field ID
