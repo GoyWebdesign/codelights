@@ -179,24 +179,22 @@ if ( $animation == 'cubeflip' ) {
 	// We need some additional dom-elements for some of the animations (:before / :after won't suit)
 	if ( in_array( $direction, array( 'ne', 'e', 'se', 'sw', 'w', 'nw' ) ) ) {
 		// Top / bottom side flank
-		if ( ! empty( $front_bgcolor ) ) {
-			$front_rgb = cl_hex_to_rgb( $front_bgcolor );
-			for ( $i = 0; $i < 2; $i++ ) {
-				$front_rgb[ $i ] = min( 255, $front_rgb[ $i ] + 20 );
-			}
-			$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
+		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
+		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
+		for ( $i = 0; $i < 2; $i++ ) {
+			$front_rgb[ $i ] = min( 255, $front_rgb[ $i ] + 20 );
 		}
+		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
 		$output .= '<div class="cl-flipbox-yflank"' . cl_prepare_inline_css( $flank_inline_css_props ) . '></div>';
 	}
 	if ( in_array( $direction, array( 'n', 'ne', 'se', 's', 'sw', 'nw' ) ) ) {
 		// Left / right side flank
-		if ( ! empty( $front_bgcolor ) ) {
-			$front_rgb = cl_hex_to_rgb( $front_bgcolor );
-			for ( $i = 0; $i < 2; $i++ ) {
-				$front_rgb[ $i ] = max( 0, $front_rgb[ $i ] - 20 );
-			}
-			$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
+		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
+		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
+		for ( $i = 0; $i < 2; $i++ ) {
+			$front_rgb[ $i ] = max( 0, $front_rgb[ $i ] - 20 );
 		}
+		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
 		$output .= '<div class="cl-flipbox-xflank"' . cl_prepare_inline_css( $flank_inline_css_props ) . '></div>';
 	}
 }
