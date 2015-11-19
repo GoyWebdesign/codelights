@@ -211,39 +211,43 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			}
 		},
 		openMediaUploader: function(){
-			var value = this.getValue(),
-				initialIds = value ? value.split(',').map(Number) : [];
-			var frame = wp.media({
-				title: this.$btnAdd.attr('title'),
-				multiple: this.multiple ? 'add' : false,
-				library: {type: 'image'},
-				button: {text: this.$btnAdd.attr('title')}
-			});
-			frame.on('open', function(){
-				var selection = frame.state().get('selection');
-				initialIds.forEach(function(id){
-					selection.add(wp.media.attachment(id));
+			if (this.frame === undefined){
+				this.frame = wp.media({
+					title: this.$btnAdd.attr('title'),
+					multiple: this.multiple ? 'add' : false,
+					library: {type: 'image'},
+					button: {text: this.$btnAdd.attr('title')}
 				});
-			}.bind(this));
-			frame.on('select', function(){
-				var selection = frame.state().get('selection'),
-					updatedIds = [];
-				selection.forEach(function(attachment){
-					if (attachment.id && initialIds.indexOf(attachment.id) == -1) {
-						// Adding the new images
-						this.$list.append(this.createItem(attachment));
-					}
-					updatedIds.push(attachment.id);
+				this.frame.on('open', function(){
+					var value = this.getValue(),
+						initialIds = value ? value.split(',').map(Number) : [],
+						selection = this.frame.state().get('selection');
+					initialIds.forEach(function(id){
+						selection.add(wp.media.attachment(id));
+					});
 				}.bind(this));
-				initialIds.forEach(function(id){
-					if (updatedIds.indexOf(id) == -1) {
-						// Deleting images that are not present in the recent selection
-						this.$list.find('[data-id="' + id + '"]').remove();
-					}
+				this.frame.on('select', function(){
+					var value = this.getValue(),
+						initialIds = value ? value.split(',').map(Number) : [],
+						selection = this.frame.state().get('selection'),
+						updatedIds = [];
+					selection.forEach(function(attachment){
+						if (attachment.id && initialIds.indexOf(attachment.id) == -1) {
+							// Adding the new images
+							this.$list.append(this.createItem(attachment));
+						}
+						updatedIds.push(attachment.id);
+					}.bind(this));
+					initialIds.forEach(function(id){
+						if (updatedIds.indexOf(id) == -1) {
+							// Deleting images that are not present in the recent selection
+							this.$list.find('[data-id="' + id + '"]').remove();
+						}
+					}.bind(this));
+					this.updateInput();
 				}.bind(this));
-				this.updateInput();
-			}.bind(this));
-			frame.open();
+			}
+			this.frame.open();
 		},
 		/**
 		 * Prepare item's dom from WP attachment object
