@@ -1,17 +1,18 @@
 !function($){
+	var initEForms = function(){
+		$('.cl-eform:not(.inited)').each(function(index, eform){
+			var $eform = $(eform);
+			$eform.addClass('inited');
+			new $cl.EForm($eform);
+		});
+	};
 	$(document).on('panels_setup', function(event, builderView){
-		this.builderView = builderView;
+		$('.so-widget').each(function(index, widget){
+			$(widget).data('view').getEditDialog().on('form_loaded', initEForms);
+		});
 		builderView.on('content_change display_builder', function(){
 			$('.so-panels-dialog-wrapper').each(function(index, wrapper){
-				var $wrapper = $(wrapper);
-				if ($wrapper.data('cl-eform-inited')) return;
-				$wrapper.data('view').on('form_loaded', function(){
-					var $eform = $wrapper.find('.cl-eform');
-					if ($eform.length > 0){
-						new $cl.EForm($eform);
-					}
-				});
-				$wrapper.data('cl-eform-inited', 1);
+				$(wrapper).data('view').on('form_loaded', initEForms);
 			});
 		});
 	});
