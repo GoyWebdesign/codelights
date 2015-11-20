@@ -51,5 +51,6 @@
 			}
 		}
 	};
+	$.extend(CLFlipbox.prototype, $cl.mutators.TouchHover);
 	$cl.elements['cl-flipbox'] = CLFlipbox;
 }(jQuery);

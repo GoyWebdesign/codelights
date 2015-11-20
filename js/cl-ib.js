@@ -7,6 +7,6 @@
 		this.$container = $(container);
 
 	};
-	CLIb.prototype = $cl.mutators.Scalable;
+	$.extend(CLIb.prototype, $cl.mutators.TouchHover);
 	$cl.elements['cl-ib'] = CLIb;
 }(jQuery);
