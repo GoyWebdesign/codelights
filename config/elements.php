@@ -150,9 +150,7 @@ return array(
 				'title' => __( 'Animation Easing', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
-					'linear' => 'linear',
 					'ease' => 'ease',
-					'easeInOutCubic' => 'easeInOutCubic',
 					'easeInOutExpo' => 'easeInOutExpo',
 					'easeInOutCirc' => 'easeInOutCirc',
 					'easeOutBack' => 'easeOutBack',
@@ -412,6 +410,19 @@ return array(
 					'aphelia' => __( 'Aphelia', 'codelights' ),
 					'nike' => __( 'Nike', 'codelights' ),
 				),
+				'classes' => 'cl_col-sm-6 cl_column',
+			),
+			'easing' => array(
+				'title' => __( 'Animation Easing', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'ease' => 'ease',
+					'easeInOutExpo' => 'easeInOutExpo',
+					'easeInOutCirc' => 'easeInOutCirc',
+					'easeOutBack' => 'easeOutBack',
+				),
+				'std' => 'ease',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			/**
 			 * Design
@@ -472,20 +483,6 @@ return array(
 				'type' => 'textfield',
 				'std' => '10%',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
-			),
-			'easing' => array(
-				'title' => __( 'Animation Easing', 'codelights' ),
-				'type' => 'select',
-				'options' => array(
-					'linear' => 'linear',
-					'ease' => 'ease',
-					'easeInOutCubic' => 'easeInOutCubic',
-					'easeInOutExpo' => 'easeInOutExpo',
-					'easeInOutCirc' => 'easeInOutCirc',
-					'easeOutBack' => 'easeOutBack',
-				),
-				'std' => 'ease',
 				'group' => __( 'Design', 'codelights' ),
 			),
 			'el_class' => array(

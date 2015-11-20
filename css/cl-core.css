@@ -39,24 +39,12 @@
   right: 0;
   bottom: 0;
 }
-.easing_linear .cl-ib-image,
-.easing_linear .cl-ib-content,
-.easing_linear .cl-ib-content:before,
-.easing_linear .cl-ib-content-h,
-.easing_linear .cl-ib-title,
-.easing_linear .cl-ib-desc {
-  -webkit-transition-timing-function: linear;
-  transition-timing-function: linear;
-}
-.easing_easeInOutCubic .cl-ib-image,
-.easing_easeInOutCubic .cl-ib-content,
-.easing_easeInOutCubic .cl-ib-content:before,
-.easing_easeInOutCubic .cl-ib-content-h,
-.easing_easeInOutCubic .cl-ib-title,
-.easing_easeInOutCubic .cl-ib-desc {
-  -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+.easing_easeInOutExpo .cl-flipbox-hh,
+.easing_easeInOutExpo .cl-flipbox-hhh,
+.easing_easeInOutExpo .cl-flipbox-front,
+.easing_easeInOutExpo .cl-flipbox-back,
+.easing_easeInOutExpo .cl-flipbox-xflank,
+.easing_easeInOutExpo .cl-flipbox-yflank,
 .easing_easeInOutExpo .cl-ib-image,
 .easing_easeInOutExpo .cl-ib-content,
 .easing_easeInOutExpo .cl-ib-content:before,
@@ -66,6 +54,12 @@
   -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
   transition-timing-function: cubic-bezier(1, 0, 0, 1);
 }
+.easing_easeInOutCirc .cl-flipbox-hh,
+.easing_easeInOutCirc .cl-flipbox-hhh,
+.easing_easeInOutCirc .cl-flipbox-front,
+.easing_easeInOutCirc .cl-flipbox-back,
+.easing_easeInOutCirc .cl-flipbox-xflank,
+.easing_easeInOutCirc .cl-flipbox-yflank,
 .easing_easeInOutCirc .cl-ib-image,
 .easing_easeInOutCirc .cl-ib-content,
 .easing_easeInOutCirc .cl-ib-content:before,
@@ -75,6 +69,12 @@
   -webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
+.easing_easeOutBack .cl-flipbox-hh,
+.easing_easeOutBack .cl-flipbox-hhh,
+.easing_easeOutBack .cl-flipbox-front,
+.easing_easeOutBack .cl-flipbox-back,
+.easing_easeOutBack .cl-flipbox-xflank,
+.easing_easeOutBack .cl-flipbox-yflank,
 .easing_easeOutBack .cl-ib-image,
 .easing_easeOutBack .cl-ib-content,
 .easing_easeOutBack .cl-ib-content:before,

@@ -36,8 +36,6 @@
   transition-property: transform;
   -webkit-transition-duration: inherit;
   transition-duration: inherit;
-  -webkit-transition-timing-function: inherit;
-  transition-timing-function: inherit;
 }
 .cl-flipbox-front,
 .cl-flipbox-back {
