@@ -138,6 +138,58 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	});
 
 	/**
+	 * $cl.Field type: checkboxes
+	 */
+	$cl.Field['checkboxes'] = {
+		init: function(){
+			this.parentInit();
+			this.$checkboxes = this.$row.find('input[type="checkbox"]');
+			this._events = {
+				change: function(){
+					var value = '';
+					this.$checkboxes.each(function(index, checkbox){
+						if (checkbox.checked) value += ((value != '') ? ',' : '') + checkbox.value;
+					}.bind(this));
+					this.$input.val(value).trigger('change');
+				}.bind(this)
+			};
+			this.$checkboxes.on('change', this._events.change);
+		},
+
+		render: function(){
+			var value = this.getValue().split(',');
+			this.$checkboxes.each(function(index, checkbox){
+				$(checkbox).attr('checked', ($.inArray(checkbox.value, value) != -1) ? 'checked' : false);
+			}.bind(this));
+		}
+	};
+
+	/**
+	 * $cl.Field type: color
+	 */
+	$cl.Field['color'] = {
+		init: function(){
+			this.parentInit();
+			this.changeTimer = null;
+			this._events = {
+				change: function(value){
+					clearTimeout(this.changeTimer);
+					this.changeTimer = setTimeout(function(){
+						this.$input.trigger('change');
+					}.bind(this), 100);
+				}.bind(this)
+			};
+			this.$input.wpColorPicker({
+				change: this._events.change
+			});
+		},
+		render: function(){
+			var value = this.getValue();
+			this.$input.wpColorPicker('color', value);
+		}
+	};
+
+	/**
 	 * $cl.Field type: images
 	 */
 	$cl.Field['images'] = {
@@ -211,7 +263,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			}
 		},
 		openMediaUploader: function(){
-			if (this.frame === undefined){
+			if (this.frame === undefined) {
 				this.frame = wp.media({
 					title: this.$btnAdd.attr('title'),
 					multiple: this.multiple ? 'add' : false,
@@ -277,31 +329,6 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			return $item;
 		}
 
-	};
-
-	/**
-	 * $cl.Field type: color
-	 */
-	$cl.Field['color'] = {
-		init: function(){
-			this.parentInit();
-			this.changeTimer = null;
-			this._events = {
-				change: function(value){
-					clearTimeout(this.changeTimer);
-					this.changeTimer = setTimeout(function(){
-						this.$input.trigger('change');
-					}.bind(this), 100);
-				}.bind(this)
-			};
-			this.$input.wpColorPicker({
-				change: this._events.change
-			});
-		},
-		render: function(){
-			var value = this.getValue();
-			this.$input.wpColorPicker('color', value);
-		}
 	};
 
 	/**
@@ -630,7 +657,8 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				this.eforms[name] = new $cl.EForm(this.$eforms[name]);
 				this.defaults[name] = this.eforms[name].getValues();
 			}
-
+			// Filling missing values with defaults
+			values = $.extend({}, this.defaults[name], values);
 			this.eforms[name].setValues(values);
 			if (this.eforms[name].tabs !== undefined) this.eforms[name].tabs.open(0);
 			this.$eforms[name].css('display', 'block');
@@ -680,7 +708,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 */
 	$cl.fn.shortcodeParseAtts = function(text){
 		var atts = {};
-		text.replace(/([a-z0-9_\-]+)=\"([^\"\]]+)"/g, function(m, key, value){
+		text.replace(/([a-z0-9_\-]+)=\"([^\"\]]*)"/g, function(m, key, value){
 			atts[key] = value;
 		});
 		return atts;

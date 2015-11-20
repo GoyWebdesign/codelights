@@ -176,6 +176,7 @@ return array(
 			),
 			'front_icon_name' => array(
 				'title' => __( 'Icon Name', 'codelights' ),
+				'description' => sprintf( __( '<a href="%s" target="_blank">FontAwesome</a> icon', 'codelights' ), 'http://fontawesome.io/icons/' ),
 				'type' => 'textfield',
 				'group' => __( 'Front Side', 'codelights' ),
 				'show_if' => array( 'front_icon_type', '=', 'font' ),
@@ -214,8 +215,7 @@ return array(
 				'group' => __( 'Front Side', 'codelights' ),
 				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
-			array(
-				'param_name' => 'front_icon_image',
+			'front_icon_image' => array(
 				'title' => __( 'Image', 'codelights' ),
 				'type' => 'image',
 				'group' => __( 'Front Side', 'codelights' ),
@@ -314,7 +314,7 @@ return array(
 			),
 			'height' => array(
 				'title' => __( 'Height', 'codelights' ),
-				'description' => __( 'Leave blank use front height', 'codelights' ),
+				'description' => __( 'Leave blank to use front height', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -448,6 +448,7 @@ return array(
 			),
 			'width' => array(
 				'title' => __( 'Width', 'codelights' ),
+				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '100%',
 				'classes' => 'cl_col-sm-6 cl_column',

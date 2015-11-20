@@ -286,6 +286,7 @@ function cl_prepare_inline_css( $props, $style_attr = TRUE ) {
 			case 'font-size':
 			case 'line-height':
 			case 'border-width':
+			case 'border-radius':
 				$result .= $prop . ':' . intval( $value ) . 'px;';
 				break;
 			// Properties that need vendor prefixes

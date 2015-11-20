@@ -8,7 +8,7 @@
 	var insertContent = function(textarea, content){
 		var start = Math.min(textarea.selectionStart, textarea.selectionEnd),
 			end = Math.max(textarea.selectionStart, textarea.selectionEnd);
-		textarea.value = textarea.value.substr(0, start) + content + textarea.value.substr(end + 1);
+		textarea.value = textarea.value.substr(0, start) + content + textarea.value.substr(end);
 	};
 	var btnAction = function(btn, textarea, ed){
 		var handler = $cl.fn.handleShortcodeCall(textarea.value, textarea.selectionStart, textarea.selectionEnd);
