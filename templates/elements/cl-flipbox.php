@@ -181,7 +181,7 @@ if ( $animation == 'cubeflip' ) {
 		// Top / bottom side flank
 		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
-		for ( $i = 0; $i < 2; $i++ ) {
+		for ( $i = 0; $i < 3; $i++ ) {
 			$front_rgb[ $i ] = min( 255, $front_rgb[ $i ] + 20 );
 		}
 		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
@@ -191,7 +191,7 @@ if ( $animation == 'cubeflip' ) {
 		// Left / right side flank
 		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
-		for ( $i = 0; $i < 2; $i++ ) {
+		for ( $i = 0; $i < 3; $i++ ) {
 			$front_rgb[ $i ] = max( 0, $front_rgb[ $i ] - 20 );
 		}
 		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );

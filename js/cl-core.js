@@ -88,6 +88,24 @@ jQuery.fn.cssMod = function(mod, value){
 			this._events.scale();
 		}
 	};
+	$cl.mutators.TouchHover = {
+		/**
+		 * Allows to "hover" the whole element by touch events at mobile devices. "hover" class will be added to the element
+		 */
+		enableTouchHover: function(){
+			if (this._events === undefined) this._events = {
+				touchHoverStart: function(){
+					this.$container.addClass('hover');
+					$(document).on('touchend', this._events.touchHoverEnd);
+				}.bind(this),
+				touchHoverEnd: function(){
+					this.$container.removeClass('hover');
+					$(document).off('touchend', this._events.touchHoverEnd);
+				}.bind(this)
+			};
+			this.$container.on('touchstart', this._events.touchHoverStart);
+		}
+	};
 }(jQuery);
 
 

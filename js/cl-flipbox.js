@@ -29,6 +29,8 @@
 			$(window).bind('resize load', this._events.resize);
 			this.resize();
 		}
+
+		this.enableTouchHover();
 	};
 	CLFlipbox.prototype = {
 		resize: function(){
@@ -51,5 +53,6 @@
 			}
 		}
 	};
+	$.extend(CLFlipbox.prototype, $cl.mutators.TouchHover);
 	$cl.elements['cl-flipbox'] = CLFlipbox;
 }(jQuery);
