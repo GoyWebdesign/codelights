@@ -20,15 +20,6 @@
   transform-origin: 0 0;
 }
 .cl-ib-image,
-.cl-ib-content,
-.cl-ib-content:before,
-.cl-ib-content-h,
-.cl-ib-title,
-.cl-ib-desc {
-  -webkit-transition-timing-function: inherit;
-  transition-timing-function: inherit;
-}
-.cl-ib-image,
 .cl-ib-content {
   position: absolute;
   left: 0;
