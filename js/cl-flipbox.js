@@ -29,6 +29,8 @@
 			$(window).bind('resize load', this._events.resize);
 			this.resize();
 		}
+
+		this.enableTouchHover();
 	};
 	CLFlipbox.prototype = {
 		resize: function(){
