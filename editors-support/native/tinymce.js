@@ -47,7 +47,7 @@
 		getHandlerParams: function(){
 			// Determine if we're adding the new one or editing the existing shortcode
 			var range = this.ed.selection.getRng(),
-				value = range.startContainer.nodeValue,
+				value = range.startContainer.nodeValue || '',
 				startOffset = range.startOffset,
 				endOffset = null; // Will be null till the end element is actually found
 			// Shortcode attributes may contain line breaks, that are transformed to <br> tags by tinymce,
