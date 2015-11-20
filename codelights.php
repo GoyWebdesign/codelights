@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: CodeLights
- * Plugin URI: https://codelights.com/
+ * Plugin URI: http://codelights.com/
  * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
  * Version: 1.0
  * Author: CodeLights
- * Author URI: https://codelights.com/
+ * Author URI: http://codelights.com/
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
