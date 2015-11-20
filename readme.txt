@@ -7,9 +7,11 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Flexible high-end page elements that can be used both as shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
+Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
 
 == Description ==
+
+[vimeo https://vimeo.com/146383727]
 
 ### Four Built-in Elements
 

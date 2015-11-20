@@ -3,7 +3,7 @@
 /**
  * Plugin Name: CodeLights
  * Plugin URI: https://codelights.com/
- * Description: Flexible high-end page elements that can be used both as shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
+ * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
  * Version: 1.0
  * Author: CodeLights
  * Author URI: https://codelights.com/
