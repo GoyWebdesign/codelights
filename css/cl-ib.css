@@ -84,8 +84,8 @@
 .cl-ib.animation_melete .cl-ib-image {
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  -webkit-transition-property: -webkit-transform;
-  transition-property: transform;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_melete .cl-ib-content {
   top: 50%;
@@ -95,8 +95,8 @@
   transform: translateY(-50%) scale(0.2);
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
-  -webkit-transition-property: -webkit-transform;
-  transition-property: transform;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_melete:hover .cl-ib-image,
 .cl-ib.animation_melete.hover .cl-ib-image {
