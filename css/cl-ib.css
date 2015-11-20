@@ -4,6 +4,7 @@
   position: relative;
   word-wrap: normal;
   width: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .cl-ib-h {
   position: absolute;
@@ -254,8 +255,8 @@
 }
 .cl-ib.animation_aidos .cl-ib-image {
   background-color: inherit;
-  -webkit-transform: translate3d(0, 0, 0) scale(1.01);
-  transform: translate3d(0, 0, 0) scale(1.01);
+  -webkit-transform: translateX(0) scale(1.01);
+  transform: translateX(0) scale(1.01);
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-duration: 400ms;
@@ -265,14 +266,14 @@
   right: auto;
   width: 50%;
   background-color: inherit;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
 }
-.cl-ib.animation_aidos .cl-ib-content:after {
+.cl-ib.animation_aidos .cl-ib-content:before {
   content: '';
   display: block;
   position: absolute;
@@ -282,17 +283,20 @@
   width: 40px;
   margin: -20px 0 0 -20px;
   background-color: inherit;
-  -webkit-transform: translate3d(-10px, 0, 0) rotate(45deg);
-  transform: translate3d(-10px, 0, 0) rotate(45deg);
+  -webkit-transform: translateX(-10px) rotate(45deg);
+  transform: translateX(-10px) rotate(45deg);
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
 }
+.cl-ib.animation_aidos .cl-ib-content-h {
+  position: relative;
+}
 .cl-ib.animation_aidos .cl-ib-title {
   opacity: 0;
-  -webkit-transform: translate3d(-100px, 0, 0);
-  transform: translate3d(-100px, 0, 0);
+  -webkit-transform: translateX(-100px);
+  transform: translateX(-100px);
   -webkit-transition-property: transform opacity;
   transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
@@ -302,8 +306,8 @@
 }
 .cl-ib.animation_aidos .cl-ib-desc {
   opacity: 0;
-  -webkit-transform: translate3d(-100px, 0, 0);
-  transform: translate3d(-100px, 0, 0);
+  -webkit-transform: translateX(-100px);
+  transform: translateX(-100px);
   -webkit-transition-property: transform opacity;
   transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
@@ -313,35 +317,35 @@
 }
 .cl-ib.animation_aidos:hover .cl-ib-image,
 .cl-ib.animation_aidos.hover .cl-ib-image {
-  -webkit-transform: translate3d(25%, 0, 0) scale(1.01);
-  transform: translate3d(25%, 0, 0) scale(1.01);
+  -webkit-transform: translateX(25%) scale(1.01);
+  transform: translateX(25%) scale(1.01);
 }
 .cl-ib.animation_aidos:hover .cl-ib-content,
 .cl-ib.animation_aidos.hover .cl-ib-content {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
-.cl-ib.animation_aidos:hover .cl-ib-content:after,
-.cl-ib.animation_aidos.hover .cl-ib-content:after {
-  -webkit-transform: translate3d(15px, 0, 0) rotate(45deg);
-  transform: translate3d(15px, 0, 0) rotate(45deg);
+.cl-ib.animation_aidos:hover .cl-ib-content:before,
+.cl-ib.animation_aidos.hover .cl-ib-content:before {
+  -webkit-transform: translateX(15px) rotate(45deg);
+  transform: translateX(15px) rotate(45deg);
 }
 .cl-ib.animation_aidos:hover .cl-ib-title,
 .cl-ib.animation_aidos.hover .cl-ib-title {
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 .cl-ib.animation_aidos:hover .cl-ib-desc,
 .cl-ib.animation_aidos.hover .cl-ib-desc {
   opacity: 0.75;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 .cl-ib.animation_caeros .cl-ib-image {
   background-color: inherit;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
   -webkit-transform-origin: 50% 0;
   transform-origin: 50% 0;
   -webkit-transition-duration: 300ms;
@@ -365,8 +369,8 @@
 }
 .cl-ib.animation_caeros .cl-ib-title {
   text-align: center;
-  -webkit-transform: translate3d(0, 30px, 0);
-  transform: translate3d(0, 30px, 0);
+  -webkit-transform: translateY(30px);
+  transform: translateY(30px);
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-duration: 400ms;
@@ -579,6 +583,6 @@
 .cl-ib.animation_nike:hover .cl-ib-content,
 .cl-ib.animation_nike.hover .cl-ib-content {
   opacity: 0;
-  -webkit-transform: translateY(-20px);
-  transform: translateY(-20px);
+  -webkit-transform: translateY(-40px);
+  transform: translateY(-40px);
 }

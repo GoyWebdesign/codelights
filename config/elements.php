@@ -350,6 +350,7 @@ return array(
 			),
 			'padding' => array(
 				'title' => __( 'Padding', 'codelights' ),
+				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '15%',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -446,14 +447,6 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
-			'width' => array(
-				'title' => __( 'Width', 'codelights' ),
-				'description' => __( 'In pixels or percents', 'codelights' ),
-				'type' => 'textfield',
-				'std' => '100%',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
-			),
 			'align' => array(
 				'title' => __( 'Text Align', 'codelights' ),
 				'type' => 'select',
@@ -466,8 +459,17 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),
+			'width' => array(
+				'title' => __( 'Width', 'codelights' ),
+				'description' => __( 'In pixels or percents', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '100%',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Design', 'codelights' ),
+			),
 			'padding' => array(
 				'title' => __( 'Padding', 'codelights' ),
+				'description' => __( 'In pixels or percents', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '10%',
 				'classes' => 'cl_col-sm-6 cl_column',
