@@ -111,10 +111,10 @@
   border-radius: 50%;
   -webkit-transform: scale(0.3);
   transform: scale(0.3);
-  -webkit-transition-property: transform border-radius;
-  transition-property: transform border-radius;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, border-radius;
+  transition-property: transform, border-radius;
 }
 .cl-ib.animation_soter.ratio_2x1 .cl-ib-image {
   top: -50%;
@@ -165,10 +165,10 @@
 .cl-ib.animation_soter .cl-ib-content {
   z-index: 0;
   right: 33%;
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_soter:hover .cl-ib-image,
 .cl-ib.animation_soter.hover .cl-ib-image {
@@ -186,10 +186,10 @@
   bottom: -10%;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_phorcys .cl-ib-content {
   top: auto;
@@ -225,10 +225,10 @@
   margin-top: 0;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition-property: opacity line-height margin;
-  transition-property: opacity line-height margin;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
+  -webkit-transition-property: opacity, line-height, margin;
+  transition-property: opacity, line-height, margin;
 }
 .cl-ib.animation_phorcys:hover .cl-ib-image,
 .cl-ib.animation_phorcys.hover .cl-ib-image {
@@ -257,10 +257,10 @@
   background-color: inherit;
   -webkit-transform: translateX(0) scale(1.01);
   transform: translateX(0) scale(1.01);
-  -webkit-transition-property: transform;
-  transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
 }
 .cl-ib.animation_aidos .cl-ib-content {
   right: auto;
@@ -268,10 +268,10 @@
   background-color: inherit;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-  -webkit-transition-property: transform;
-  transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
 }
 .cl-ib.animation_aidos .cl-ib-content:before {
   content: '';
@@ -285,10 +285,10 @@
   background-color: inherit;
   -webkit-transform: translateX(-10px) rotate(45deg);
   transform: translateX(-10px) rotate(45deg);
-  -webkit-transition-property: transform;
-  transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
 }
 .cl-ib.animation_aidos .cl-ib-content-h {
   position: relative;
@@ -297,23 +297,23 @@
   opacity: 0;
   -webkit-transform: translateX(-100px);
   transform: translateX(-100px);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
   -webkit-transition-delay: 100ms;
   transition-delay: 100ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_aidos .cl-ib-desc {
   opacity: 0;
   -webkit-transform: translateX(-100px);
   transform: translateX(-100px);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
   -webkit-transition-delay: 200ms;
   transition-delay: 200ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_aidos:hover .cl-ib-image,
 .cl-ib.animation_aidos.hover .cl-ib-image {
@@ -371,20 +371,20 @@
   text-align: center;
   -webkit-transform: translateY(30px);
   transform: translateY(30px);
-  -webkit-transition-property: transform;
-  transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
 }
 .cl-ib.animation_caeros .cl-ib-desc {
   opacity: 0;
   text-align: center;
   -webkit-transform: scale(0.7);
   transform: scale(0.7);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_caeros:hover .cl-ib-image,
 .cl-ib.animation_caeros.hover .cl-ib-image {
@@ -427,10 +427,10 @@
   opacity: 0.3;
   -webkit-transform: translateY(100%);
   transform: translateY(100%);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_hebe .cl-ib-image:after {
   -webkit-transform: translateY(-100%);
@@ -446,19 +446,19 @@
   opacity: 0;
   -webkit-transform: translateY(-20px);
   transform: translateY(-20px);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 600ms;
   transition-duration: 600ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_hebe .cl-ib-desc {
   opacity: 0;
   -webkit-transform: translateY(20px);
   transform: translateY(20px);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 600ms;
   transition-duration: 600ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_hebe:hover .cl-ib-image,
 .cl-ib.animation_hebe.hover .cl-ib-image {
@@ -489,10 +489,10 @@
   opacity: 0.25;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
-  -webkit-transition-property: filter opacity;
-  transition-property: filter opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-filter, opacity;
+  transition-property: filter, opacity;
 }
 .cl-ib.animation_aphelia .cl-ib-content {
   top: 50%;
@@ -504,19 +504,19 @@
   opacity: 1;
   -webkit-transform: translateY(0) scale(1);
   transform: translateY(0) scale(1);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_aphelia .cl-ib-desc {
   opacity: 0.75;
   -webkit-transform: translateY(0) scale(1);
   transform: translateY(0) scale(1);
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_aphelia:hover .cl-ib-image,
 .cl-ib.animation_aphelia.hover .cl-ib-image {
@@ -541,10 +541,10 @@
   filter: grayscale(1);
   -webkit-transform: translateY(25%);
   transform: translateY(25%);
-  -webkit-transition-property: transform filter;
-  transition-property: transform filter;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform, -webkit-filter;
+  transition-property: transform, filter;
 }
 .cl-ib.animation_nike .cl-ib-h:after {
   content: '';
@@ -556,17 +556,17 @@
   background-color: inherit;
   -webkit-transform: translateY(0);
   transform: translateY(0);
-  -webkit-transition-property: transform;
-  transition-property: transform;
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
 }
 .cl-ib.animation_nike .cl-ib-content {
   opacity: 1;
-  -webkit-transition-property: transform opacity;
-  transition-property: transform opacity;
   -webkit-transition-duration: 250ms;
   transition-duration: 250ms;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 .cl-ib.animation_nike:hover .cl-ib-image,
 .cl-ib.animation_nike.hover .cl-ib-image {
