@@ -87,13 +87,17 @@
 	&.animation_melete {
 		.cl-ib-image {
 			.transition-duration(500ms);
+			-webkit-transition-property: -webkit-transform;
+			transition-property: transform;
 			}
 		.cl-ib-content {
 			top: 50%;
 			bottom: auto;
 			opacity: 0;
-			.transform(translate3d(0,-50%,0) scale(0.2));
+			.transform(translateY(-50%) scale(0.2));
 			.transition-duration(400ms);
+			-webkit-transition-property: -webkit-transform;
+			transition-property: transform;
 			}
 		&:hover,
 		&.hover {
@@ -103,7 +107,7 @@
 			}
 			.cl-ib-content {
 				opacity: 1;
-				.transform(translate3d(0,-50%,0) scale(1));
+				.transform(translateY(-50%) scale(1));
 			}
 		}
 	}
@@ -157,6 +161,7 @@
 		.cl-ib-content {
 			z-index: 0;
 			right: 33%;
+			opacity: 1;
 			.transition-duration(400ms);
 			-webkit-transition-property: -webkit-transform, opacity;
 			transition-property: transform, opacity;
@@ -178,7 +183,7 @@
 	&.animation_phorcys {
 		.cl-ib-image {
 			bottom: -10%;
-			.transform(translate3d(0,0,0));
+			.transform(translateY(0));
 			.transition-duration(400ms);
 			-webkit-transition-property: -webkit-transform, opacity;
 			transition-property: transform, opacity;
@@ -211,7 +216,6 @@
 			opacity: 0;
 			line-height: 0;
 			margin-top: 0;
-			.transform(translate3d(0,0,0));
 			.transition-duration(300ms);
 			-webkit-transition-property: opacity, line-height, margin;
 			transition-property: opacity, line-height, margin;
@@ -220,7 +224,7 @@
 		&.hover {
 			.cl-ib-image {
 				opacity: 0.15;
-				.transform(translate3d(0,-8%,0));
+				.transform(translateY(-8%));
 			}
 			.cl-ib-content:before {
 				opacity: 0;
@@ -359,7 +363,7 @@
 				opacity: 0.75;
 				}
 			.cl-ib-title {
-				.transform(translate3d(0,0,0));
+				.transform(translateY(0));
 			}
 			.cl-ib-desc {
 				opacity: 0.75;
