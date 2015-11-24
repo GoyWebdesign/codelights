@@ -413,7 +413,7 @@ function cl_hex_to_rgb( $hex ) {
  * @return string
  */
 function cl_rgb_to_hex( $rgb ) {
-	return '#' . implode( '', array_map( 'dechex', $rgb ) );
+	return sprintf( '#%02x%02x%02x', $rgb[0], $rgb[1], $rgb[2] );
 }
 
 /**

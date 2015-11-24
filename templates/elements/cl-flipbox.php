@@ -182,7 +182,7 @@ if ( $animation == 'cubeflip' ) {
 		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
 		for ( $i = 0; $i < 3; $i++ ) {
-			$front_rgb[ $i ] = min( 255, $front_rgb[ $i ] + 20 );
+			$front_rgb[ $i ] = min( 250, $front_rgb[ $i ] + 20 );
 		}
 		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
 		$output .= '<div class="cl-flipbox-yflank"' . cl_prepare_inline_css( $flank_inline_css_props ) . '></div>';
@@ -192,7 +192,7 @@ if ( $animation == 'cubeflip' ) {
 		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
 		for ( $i = 0; $i < 3; $i++ ) {
-			$front_rgb[ $i ] = max( 0, $front_rgb[ $i ] - 20 );
+			$front_rgb[ $i ] = max( 5, $front_rgb[ $i ] - 20 );
 		}
 		$flank_inline_css_props['background-color'] = cl_rgb_to_hex( $front_rgb );
 		$output .= '<div class="cl-flipbox-xflank"' . cl_prepare_inline_css( $flank_inline_css_props ) . '></div>';

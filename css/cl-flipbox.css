@@ -98,6 +98,7 @@
   left: 0;
   top: 0;
   z-index: -1;
+  border-style: solid;
 }
 .cl-flipbox.animation_cardflip:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.hover .cl-flipbox-front {
