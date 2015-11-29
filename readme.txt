@@ -1,6 +1,6 @@
 === CodeLighs Shortcodes and Widgets ===
 Contributors: rsukhar
-Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, builder, siteorigin
+Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.3.1
 Stable tag: 1.0
@@ -114,6 +114,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Using with SiteOrigin panels builder
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed: FlipBox flanks background color calculation and border style
 
 = 1.0 =
 * Initial version.

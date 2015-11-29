@@ -246,6 +246,16 @@ return array(
 				'type' => 'textarea',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
+			'front_elmorder' => array(
+				'title' => __( 'Elements Order', 'codelights'),
+				'type' => 'select',
+				'options' => array(
+					'itd' => __( 'Icon', 'codelights' ) . ' / ' . __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ),
+					'tid' => __( 'Title', 'codelights' ) . ' / ' . __( 'Icon', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ),
+					'tdi' => __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ) . ' / ' . __( 'Icon', 'codelights' ),
+				),
+				'group' => __( 'Front Side', 'codelights' ),
+			),
 			'front_bgcolor' => array(
 				'title' => __( 'Background Color', 'codelights' ),
 				'type' => 'color',
@@ -281,6 +291,16 @@ return array(
 			'back_desc' => array(
 				'title' => __( 'Description', 'codelights' ),
 				'type' => 'textarea',
+				'group' => __( 'Back Side', 'codelights' ),
+			),
+			'back_elmorder' => array(
+				'title' => __( 'Elements Order', 'codelights'),
+				'type' => 'select',
+				'options' => array(
+					'tdb' => __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ) . ' / ' . __( 'Button (if exists)', 'codelights' ),
+					'tbd' => __( 'Title', 'codelights' ) . ' / ' . __( 'Button (if exists)', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ),
+					'btd' => __( 'Button (if exists)', 'codelights' ) . ' / ' . __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ),
+				),
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			'back_bgcolor' => array(

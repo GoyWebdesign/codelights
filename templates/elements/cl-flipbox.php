@@ -23,12 +23,14 @@
  * @var $front_title string
  * @var $front_title_size string
  * @var $front_desc string Description
+ * @var $front_elmorder string Elements order: 'itd' / 'tid' / 'tdi' (first letters of: Icon, Title, Description)
  * @var $front_bgcolor string
  * @var $front_textcolor string
  * @var $front_bgimage int ID of the WP attachment image
  * @var $back_title string
  * @var $back_title_size string
  * @var $back_desc string Back-side text
+ * @var $back_elmorder string Elements order: 'tdb' / 'tbd' / 'btd' (first letters of: Title, Description, Button)
  * @var $back_bgcolor string
  * @var $back_textcolor string
  * @var $back_bgimage int ID of the WP attachment image
@@ -95,6 +97,7 @@ $front_inline_css = cl_prepare_inline_css( array(
 	'border-width' => $border_size,
 ) );
 $output .= '<div class="cl-flipbox-front"' . $front_inline_css . '><div class="cl-flipbox-front-h">';
+$output_front_icon = '';
 if ( $front_icon_type == 'font' AND ! empty( $front_icon_name ) ) {
 	cl_enqueue_assets( 'font-awesome' );
 	$front_icon_size = intval( $front_icon_size );
@@ -115,25 +118,34 @@ if ( $front_icon_type == 'font' AND ! empty( $front_icon_name ) ) {
 			'line-height' => $front_icon_boxsize,
 		);
 	}
-	$output .= '<div class="cl-flipbox-front-icon style_' . $front_icon_style . '"' . cl_prepare_inline_css( $front_icon_css_props ) . '>';
-	$output .= '<i class="' . cl_prepare_icon_class( $front_icon_name ) . '"></i>';
-	$output .= '</div>';
+	$output_front_icon .= '<div class="cl-flipbox-front-icon style_' . $front_icon_style . '"' . cl_prepare_inline_css( $front_icon_css_props ) . '>';
+	$output_front_icon .= '<i class="' . cl_prepare_icon_class( $front_icon_name ) . '"></i>';
+	$output_front_icon .= '</div>';
 } elseif ( $front_icon_type == 'image' AND ! empty( $front_icon_image ) AND ( $front_icon_image_html = wp_get_attachment_image( $front_icon_image, 'medium' ) ) ) {
-	$output .= '<div class="cl-flipbox-front-image"';
-	$output .= cl_prepare_inline_css( array(
+	$output_front_icon .= '<div class="cl-flipbox-front-image"';
+	$output_front_icon .= cl_prepare_inline_css( array(
 		'width' => $front_icon_image_width,
 	) );
-	$output .= '>' . $front_icon_image_html . '</div>';
+	$output_front_icon .= '>' . $front_icon_image_html . '</div>';
 }
+$output_front_title = '';
 if ( ! empty( $front_title ) ) {
-	$output .= '<h4 class="cl-flipbox-front-title"';
-	$output .= cl_prepare_inline_css( array(
+	$output_front_title .= '<h4 class="cl-flipbox-front-title"';
+	$output_front_title .= cl_prepare_inline_css( array(
 		'font-size' => $front_title_size,
 	) );
-	$output .= '>' . $front_title . '</h4>';
+	$output_front_title .= '>' . $front_title . '</h4>';
 }
+$output_front_desc = '';
 if ( ! empty( $front_desc ) ) {
-	$output .= '<p class="cl-flipbox-front-desc">' . $front_desc . '</p>';
+	$output_front_desc .= '<p class="cl-flipbox-front-desc">' . $front_desc . '</p>';
+}
+if ( $front_elmorder == 'tid' ) {
+	$output .= $output_front_title . $output_front_icon . $output_front_desc;
+} elseif ( $front_elmorder == 'tdi' ) {
+	$output .= $output_front_title . $output_front_desc . $output_front_icon;
+} else/*if ( $front_elmorder == 'itd' )*/ {
+	$output .= $output_front_icon . $output_front_title . $output_front_desc;
 }
 $output .= '</div></div>';
 
@@ -147,25 +159,32 @@ $back_inline_css = cl_prepare_inline_css( array(
 	'border-width' => $border_size,
 ) );
 $output .= '<div class="cl-flipbox-back"' . $back_inline_css . '><div class="cl-flipbox-back-h">';
-if ( ! empty( $back_image ) AND ( $back_image_html = wp_get_attachment_image( $back_image, 'medium' ) ) ) {
-	$output .= '<div class="cl-flipbox-back-image">' . $back_image_html . '</div>';
-}
+$output_back_title = '';
 if ( ! empty( $back_title ) ) {
-	$output .= '<h4 class="cl-flipbox-back-title"';
-	$output .= cl_prepare_inline_css( array(
+	$output_back_title .= '<h4 class="cl-flipbox-back-title"';
+	$output_back_title .= cl_prepare_inline_css( array(
 		'font-size' => $back_title_size,
 	) );
-	$output .= '>' . $back_title . '</h4>';
+	$output_back_title .= '>' . $back_title . '</h4>';
 }
+$output_back_desc = '';
 if ( ! empty( $back_desc ) ) {
-	$output .= '<p class="cl-flipbox-back-desc">' . $back_desc . '</p>';
+	$output_back_desc .= '<p class="cl-flipbox-back-desc">' . $back_desc . '</p>';
 }
+$output_back_btn = '';
 if ( $link_type == 'btn' AND isset( $link_atts ) AND ! empty( $back_btn_label ) ) {
 	$back_btn_inline_css = cl_prepare_inline_css( array(
 		'color' => $back_btn_color,
 		'background-color' => $back_btn_bgcolor,
 	) );
-	$output .= '<a class="cl-btn"' . $back_btn_inline_css . $link_atts . '>' . $back_btn_label . '</a>';
+	$output_back_btn .= '<a class="cl-btn"' . $back_btn_inline_css . $link_atts . '>' . $back_btn_label . '</a>';
+}
+if ( $back_elmorder == 'tbd' ) {
+	$output .= $output_back_title . $output_back_btn . $output_back_desc;
+} elseif ( $back_elmorder == 'btd' ) {
+	$output .= $output_back_btn . $output_back_title . $output_back_desc;
+} else/*if ( $back_elmorder == 'tdb' )*/ {
+	$output .= $output_back_title . $output_back_desc . $output_back_btn;
 }
 $output .= '</div></div>';
 
@@ -179,7 +198,7 @@ if ( $animation == 'cubeflip' ) {
 	// We need some additional dom-elements for some of the animations (:before / :after won't suit)
 	if ( in_array( $direction, array( 'ne', 'e', 'se', 'sw', 'w', 'nw' ) ) ) {
 		// Top / bottom side flank
-		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
+		$front_bgcolor = empty( $front_bgcolor ) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
 		for ( $i = 0; $i < 3; $i++ ) {
 			$front_rgb[ $i ] = min( 250, $front_rgb[ $i ] + 20 );
@@ -189,7 +208,7 @@ if ( $animation == 'cubeflip' ) {
 	}
 	if ( in_array( $direction, array( 'n', 'ne', 'se', 's', 'sw', 'nw' ) ) ) {
 		// Left / right side flank
-		$front_bgcolor = empty($front_bgcolor) ? '#eeeeee' : $front_bgcolor;
+		$front_bgcolor = empty( $front_bgcolor ) ? '#eeeeee' : $front_bgcolor;
 		$front_rgb = cl_hex_to_rgb( $front_bgcolor );
 		for ( $i = 0; $i < 3; $i++ ) {
 			$front_rgb[ $i ] = max( 5, $front_rgb[ $i ] - 20 );
