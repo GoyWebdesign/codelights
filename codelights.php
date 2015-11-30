@@ -1,19 +1,22 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Plugin Name: CodeLights
+ * Plugin Name: SiteOrigin Widgets by CodeLights
+ * Version: 1.0.5
  * Plugin URI: http://codelights.com/
  * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
- * Version: 1.0
  * Author: CodeLights
  * Author URI: http://codelights.com/
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 
+// Global variables for plugin usage
 $cl_file = __FILE__;
 $cl_dir = plugin_dir_path( __FILE__ );
 $cl_uri = plugins_url( '', __FILE__ );
+$cl_version = preg_match( '~Version\: ([^\n]+)~', file_get_contents( __FILE__, NULL, NULL, 82, 150 ), $cl_matches ) ? $cl_matches[1] : FALSE;
+unset( $cl_matches );
 
 require $cl_dir . '/functions/helpers.php';
 require $cl_dir . '/functions/shortcodes.php';
@@ -37,15 +40,15 @@ if ( is_admin() AND isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3
 // Load admin scripts and styles
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
 function cl_admin_enqueue_scripts() {
-	global $cl_uri, $post_type, $wp_scripts;
+	global $cl_uri, $post_type, $wp_scripts, $cl_version;
 
 	$screen = get_current_screen();
 	$is_widgets = ( $screen->base == 'widgets' );
 	$is_customizer = ( $screen->base == 'customize' );
 	$is_content_editor = ( isset( $post_type ) AND post_type_supports( $post_type, 'editor' ) );
 	if ( $is_widgets OR $is_customizer OR $is_content_editor ) {
-		wp_enqueue_style( 'cl-editor', $cl_uri . '/admin/css/editor.css' );
-		wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), FALSE, TRUE );
+		wp_enqueue_style( 'cl-editor', $cl_uri . '/admin/css/editor.css', array(), $cl_version );
+		wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), $cl_version, TRUE );
 		$ajax_url_script = 'if (window.$cl === undefined) window.$cl = {}; $cl.ajaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ";\n";
 		$wp_scripts->add_data( 'cl-editor', 'data', $ajax_url_script );
 		wp_enqueue_script( 'cl-editor' );
@@ -53,14 +56,11 @@ function cl_admin_enqueue_scripts() {
 		if ( ! did_action( 'wp_enqueue_media' ) ) {
 			wp_enqueue_media();
 		}
-
-		// For link field type
-		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 	}
 
 	if ( $is_customizer ) {
-		wp_enqueue_style( 'cl-customizer', $cl_uri . '/admin/css/customizer.css' );
+		wp_enqueue_style( 'cl-customizer', $cl_uri . '/admin/css/customizer.css', array(), $cl_version );
 	}
 }
 

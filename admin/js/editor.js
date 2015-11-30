@@ -211,7 +211,9 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				updateInput: this.updateInput.bind(this)
 			};
 
-			this.$list.sortable({stop: this._events.updateInput});
+			if (this.multiple) {
+				this.$list.sortable({stop: this._events.updateInput});
+			}
 			this.$btnAdd.on('click', this._events.openMediaUploader);
 			this.$list.on('click', '.cl-imgattach-delete', this._events.deleteImg);
 		},

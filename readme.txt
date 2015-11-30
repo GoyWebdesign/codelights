@@ -1,9 +1,9 @@
-=== CodeLighs Shortcodes and Widgets ===
+=== SiteOrigin Widgets by CodeLights ===
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.3.1
-Stable tag: 1.0
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,12 @@ Element powered by great CSS animations, can be used to attend visitors to the n
 
 ### Use Them the Way You Like
 
+#### SiteOrigin Page Builder
+
+Using SiteOrigin? CodeLights elements can be used as its widgets as well. Just install CodeLights and you'll see an additional tab with its elements in your SiteOrigin dialogs.
+
+> Check the screenshots or download the plugin for more details.
+
 #### Shortcode Builder
 
 Both in visual and text modes you'll see an additional button that helps you to create and edit shortcodes using convenient tabbed forms. **Create and modify the elements you want in seconds!**
@@ -81,12 +87,6 @@ Both in visual and text modes you'll see an additional button that helps you to 
 #### Sidebar Widgets
 
 Use the convenient rich controls when creating and editing sidebars widgets both from admin page and customizer mode. The last option helps you to preview changes instantly.
-
-> Check the screenshots or download the plugin for more details.
-
-#### SiteOrigin Page Builder
-
-Using SiteOrigin? CodeLights elements can be used as its widgets as well. Just install CodeLights and you'll see an additional tab with its elements in your SiteOrigin dialogs.
 
 > Check the screenshots or download the plugin for more details.
 
@@ -107,18 +107,20 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Screenshots ==
 
-1. Special button for generating and modifying shortcodes
-2. Great customizability with an intuitive to use editor
-3. Editing sidebar widget from admin page
-4. Editing sidebar widget from customizer
-5. Using with SiteOrigin panels builder
+1. Using with SiteOrigin panels builder
+2. Special button for generating and modifying shortcodes
+3. Great customizability with an intuitive to use editor
+4. Editing sidebar widget from admin page
+5. Editing sidebar widget from customizer
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.5 =
 * New: FlipBox order settings for both front and back sides
 * Fixed: FlipBox flanks background color calculation and border style
 * Fixed: FlipBox cover open animation glitch in WebKit browsers
+* Fixed: FlipBox and Interactive Banner mobile touch behaviour
+* Fixed: Cleaned excess admin assets, added plugin version to assets to bypass caching after update
 
 = 1.0 =
 * Initial version.
