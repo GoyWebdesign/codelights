@@ -116,7 +116,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 == Changelog ==
 
 = 1.0.1 =
+* New: FlipBox order settings for both front and back sides
 * Fixed: FlipBox flanks background color calculation and border style
+* Fixed: FlipBox cover open animation glitch in WebKit browsers
 
 = 1.0 =
 * Initial version.

@@ -582,6 +582,8 @@
 		// Animation: Cover Open. Direction: North-East
 		&.direction_ne {
 			.cl-flipbox-front {
+				// webkit glitch fix
+				-webkit-transform: rotate3d(1, 1, 0, 1deg);
 				.transform-origin(100% 0%);
 			}
 			&:hover,
@@ -595,6 +597,8 @@
 		// Animation: Cover Open. Direction: East
 		&.direction_e {
 			.cl-flipbox-front {
+				// webkit glitch fix
+				-webkit-transform: rotateY(1deg);
 				.transform-origin(100% 50%);
 			}
 			&:hover,
@@ -608,6 +612,8 @@
 		// Animation: Cover Open. Direction: South-East
 		&.direction_se {
 			.cl-flipbox-front {
+				// webkit glitch fix
+				-webkit-transform: rotate3d(-1, 1, 0, 1deg);
 				.transform-origin(100% 100%);
 			}
 			&:hover,
@@ -621,6 +627,8 @@
 		// Animation: Cover Open. Direction: South
 		&.direction_s {
 			.cl-flipbox-front {
+				// webkit glitch fix
+				-webkit-transform: rotateX(-1deg);
 				.transform-origin(50% 100%);
 			}
 			&:hover,
@@ -634,6 +642,8 @@
 		// Animation: Cover Open. Direction: South-West
 		&.direction_sw {
 			.cl-flipbox-front {
+				// webkit glitch fix
+				-webkit-transform: rotate3d(-1, -1, 0, 1deg);
 				.transform-origin(0% 100%);
 			}
 			&:hover,

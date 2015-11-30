@@ -558,6 +558,7 @@
   transform: rotateX(90deg);
 }
 .cl-flipbox.animation_coveropen.direction_ne .cl-flipbox-front {
+  -webkit-transform: rotate3d(1, 1, 0, 1deg);
   -webkit-transform-origin: 100% 0%;
   transform-origin: 100% 0%;
 }
@@ -567,6 +568,7 @@
   transform: rotate3d(1, 1, 0, 90deg);
 }
 .cl-flipbox.animation_coveropen.direction_e .cl-flipbox-front {
+  -webkit-transform: rotateY(1deg);
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
 }
@@ -576,6 +578,7 @@
   transform: rotateY(90deg);
 }
 .cl-flipbox.animation_coveropen.direction_se .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, 1, 0, 1deg);
   -webkit-transform-origin: 100% 100%;
   transform-origin: 100% 100%;
 }
@@ -585,6 +588,7 @@
   transform: rotate3d(-1, 1, 0, 90deg);
 }
 .cl-flipbox.animation_coveropen.direction_s .cl-flipbox-front {
+  -webkit-transform: rotateX(-1deg);
   -webkit-transform-origin: 50% 100%;
   transform-origin: 50% 100%;
 }
@@ -594,6 +598,7 @@
   transform: rotateX(-90deg);
 }
 .cl-flipbox.animation_coveropen.direction_sw .cl-flipbox-front {
+  -webkit-transform: rotate3d(-1, -1, 0, 1deg);
   -webkit-transform-origin: 0% 100%;
   transform-origin: 0% 100%;
 }
