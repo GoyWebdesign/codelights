@@ -14,14 +14,15 @@
 		this.forceSquare = (animation == 'cubeflip' && ['ne', 'se', 'sw', 'nw'].indexOf(direction) != -1);
 
 		// Container height is determined by the maximum content height
-		this.autoSize = (this.$front[0].style.height == '' && ! this.forceSquare);
+		this.autoSize = (this.$front[0].style.height == '' && !this.forceSquare);
 
 		// Content is centered
 		this.centerContent = (this.$container.cssMod('valign') == 'center');
 
-		this._events = {
+		if (this._events === undefined) this._events = {};
+		$.extend(this._events, {
 			resize: this.resize.bind(this)
-		};
+		});
 		if (this.centerContent || this.autoSize) {
 			this.padding = parseInt(this.$front.css('padding-top'));
 		}
@@ -30,21 +31,21 @@
 			this.resize();
 		}
 
-		this.enableTouchHover();
+		this.makeHoverable();
 	};
 	CLFlipbox.prototype = {
 		resize: function(){
 			var width = this.$container.width(),
 				height;
-			if (this.autoSize || this.centerContent){
+			if (this.autoSize || this.centerContent) {
 				var frontContentHeight = this.$frontH.height(),
 					backContentHeight = this.$backH.height();
 			}
 			// Changing the whole container height
-			if (this.forceSquare || this.autoSize){
+			if (this.forceSquare || this.autoSize) {
 				height = this.forceSquare ? width : (Math.max(frontContentHeight, backContentHeight) + 2 * this.padding);
 				this.$front.css('height', height + 'px');
-			}else{
+			} else {
 				height = this.$container.height();
 			}
 			if (this.centerContent) {
@@ -53,6 +54,6 @@
 			}
 		}
 	};
-	$.extend(CLFlipbox.prototype, $cl.mutators.TouchHover);
+	$.extend(CLFlipbox.prototype, $cl.mutators.Hoverable);
 	$cl.elements['cl-flipbox'] = CLFlipbox;
 }(jQuery);

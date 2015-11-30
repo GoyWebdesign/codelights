@@ -31,6 +31,9 @@ jQuery.fn.cssMod = function(mod, value){
  */
 !function($){
 	if (window.$cl === undefined) window.$cl = {};
+
+	$cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 	// Known elements and their constructors
 	window.$cl.elements = {};
 
@@ -88,22 +91,44 @@ jQuery.fn.cssMod = function(mod, value){
 			this._events.scale();
 		}
 	};
-	$cl.mutators.TouchHover = {
+	$cl.mutators.Hoverable = {
 		/**
-		 * Allows to "hover" the whole element by touch events at mobile devices. "hover" class will be added to the element
+		 * Allows to hover the whole element both by desktop mouse and touch hoverable devices.
+		 * Hovered element gets additional "hover" class at this moment.
 		 */
-		enableTouchHover: function(){
-			if (this._events === undefined) this._events = {
-				touchHoverStart: function(){
-					this.$container.addClass('hover');
-					$(document).on('touchend', this._events.touchHoverEnd);
-				}.bind(this),
-				touchHoverEnd: function(){
-					this.$container.removeClass('hover');
-					$(document).off('touchend', this._events.touchHoverEnd);
-				}.bind(this)
-			};
-			this.$container.on('touchstart', this._events.touchHoverStart);
+		makeHoverable: function(){
+			if (this._events === undefined) this._events = {};
+			if ($cl.isMobile) {
+				// Mobile: Touch hover
+				var touchendTimer = null;
+				$.extend(this._events, {
+					touchHoverStart: function(){
+						clearTimeout(touchendTimer);
+						this.$container.addClass('hover');
+						$(document).on('touchend touchcancel', this._events.touchHoverEnd);
+					}.bind(this),
+					touchHoverEnd: function(){
+						clearTimeout(touchendTimer);
+						touchendTimer = setTimeout(function(){
+							this.$container.removeClass('hover');
+						}.bind(this), 3000);
+						$(document).off('touchend touchcancel', this._events.touchHoverEnd);
+					}.bind(this)
+				});
+				this.$container.on('touchstart', this._events.touchHoverStart);
+			} else {
+				// Desktop: Mouse hover
+				$.extend(this._events, {
+					mouseHoverStart: function(){
+						this.$container.addClass('hover');
+					}.bind(this),
+					mouseHoverEnd: function(){
+						this.$container.removeClass('hover');
+					}.bind(this)
+				});
+				this.$container.on('mouseenter', this._events.mouseHoverStart);
+				this.$container.on('mouseleave', this._events.mouseHoverEnd);
+			}
 		}
 	};
 }(jQuery);

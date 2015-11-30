@@ -100,11 +100,9 @@
   z-index: -1;
   border-style: solid;
 }
-.cl-flipbox.animation_cardflip:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.hover .cl-flipbox-front {
   z-index: -1;
 }
-.cl-flipbox.animation_cardflip:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.hover .cl-flipbox-back {
   z-index: 1;
 }
@@ -116,12 +114,10 @@
   -webkit-transform: rotateX(-180deg);
   transform: rotateX(-180deg);
 }
-.cl-flipbox.animation_cardflip.direction_n:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_n.hover .cl-flipbox-front {
   -webkit-transform: rotateX(180deg);
   transform: rotateX(180deg);
 }
-.cl-flipbox.animation_cardflip.direction_n:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_n.hover .cl-flipbox-back {
   -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
@@ -134,7 +130,6 @@
   -webkit-transform: rotate3d(1, 1, 0, -180deg);
   transform: rotate3d(1, 1, 0, -180deg);
 }
-.cl-flipbox.animation_cardflip.direction_ne:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_ne.hover .cl-flipbox-hh {
   -webkit-transform: rotate3d(1, 1, 0, 180deg);
   transform: rotate3d(1, 1, 0, 180deg);
@@ -147,12 +142,10 @@
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
-.cl-flipbox.animation_cardflip.direction_e:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_e.hover .cl-flipbox-front {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-.cl-flipbox.animation_cardflip.direction_e:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_e.hover .cl-flipbox-back {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
@@ -166,14 +159,11 @@
   -webkit-transform: rotate3d(-1, 1, 0, -180deg);
   transform: rotate3d(-1, 1, 0, -180deg);
 }
-.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-hh,
-.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
   transform: rotate3d(-1, 1, 0, 90deg);
 }
-.cl-flipbox.animation_cardflip.direction_se:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_se.hover .cl-flipbox-back {
   -webkit-transform: rotate3d(-1, 1, 0, -90deg);
   transform: rotate3d(-1, 1, 0, -90deg);
@@ -186,12 +176,10 @@
   -webkit-transform: rotateX(180deg);
   transform: rotateX(180deg);
 }
-.cl-flipbox.animation_cardflip.direction_s:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_s.hover .cl-flipbox-front {
   -webkit-transform: rotateX(-180deg);
   transform: rotateX(-180deg);
 }
-.cl-flipbox.animation_cardflip.direction_s:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_s.hover .cl-flipbox-back {
   -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
@@ -205,14 +193,11 @@
   -webkit-transform: rotate3d(1, 1, 0, 180deg);
   transform: rotate3d(1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-hh,
-.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(1, 1, 0, -90deg);
   transform: rotate3d(1, 1, 0, -90deg);
 }
-.cl-flipbox.animation_cardflip.direction_sw:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_sw.hover .cl-flipbox-back {
   -webkit-transform: rotate3d(1, 1, 0, 90deg);
   transform: rotate3d(1, 1, 0, 90deg);
@@ -225,12 +210,10 @@
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-.cl-flipbox.animation_cardflip.direction_w:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_w.hover .cl-flipbox-front {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
-.cl-flipbox.animation_cardflip.direction_w:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_w.hover .cl-flipbox-back {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
@@ -244,23 +227,18 @@
   -webkit-transform: rotate3d(-1, 1, 0, 180deg);
   transform: rotate3d(-1, 1, 0, 180deg);
 }
-.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-hh,
-.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-front,
 .cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, -90deg);
   transform: rotate3d(-1, 1, 0, -90deg);
 }
-.cl-flipbox.animation_cardflip.direction_nw:hover .cl-flipbox-back,
 .cl-flipbox.animation_cardflip.direction_nw.hover .cl-flipbox-back {
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
   transform: rotate3d(-1, 1, 0, 90deg);
 }
-.cl-flipbox.animation_cubetilt:hover .cl-flipbox-front,
 .cl-flipbox.animation_cubetilt.hover .cl-flipbox-front {
   z-index: -1;
 }
-.cl-flipbox.animation_cubetilt:hover .cl-flipbox-back,
 .cl-flipbox.animation_cubetilt.hover .cl-flipbox-back {
   z-index: 1;
 }
@@ -276,7 +254,6 @@
   -webkit-transform: translateY(50%) rotateX(-90deg);
   transform: translateY(50%) rotateX(-90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_n:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubetilt.direction_n.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%);
   transform: rotateX(90deg) translateY(-50%);
@@ -293,7 +270,6 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_e:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubetilt.direction_e.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%);
   transform: rotateY(90deg) translateX(50%);
@@ -310,7 +286,6 @@
   -webkit-transform: translateY(-50%) rotateX(90deg);
   transform: translateY(-50%) rotateX(90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_s:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubetilt.direction_s.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%);
   transform: rotateX(-90deg) translateY(50%);
@@ -327,16 +302,13 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubetilt.direction_w:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubetilt.direction_w.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%);
   transform: rotateY(-90deg) translateX(-50%);
 }
-.cl-flipbox.animation_cubeflip:hover .cl-flipbox-front,
 .cl-flipbox.animation_cubeflip.hover .cl-flipbox-front {
   z-index: -1;
 }
-.cl-flipbox.animation_cubeflip:hover .cl-flipbox-back,
 .cl-flipbox.animation_cubeflip.hover .cl-flipbox-back {
   z-index: 1;
 }
@@ -356,7 +328,6 @@
   -webkit-transform: translateY(50%) rotateX(-90deg);
   transform: translateY(50%) rotateX(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_n:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_n.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(90deg);
@@ -381,12 +352,10 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_ne:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_ne.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, 1, 0, 90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, 1, 0, 90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_ne:hover .cl-flipbox-hhh,
 .cl-flipbox.animation_cubeflip.direction_ne.hover .cl-flipbox-hhh {
   -webkit-transform: rotate3d(1, 1, 0, 90deg);
   transform: rotate3d(1, 1, 0, 90deg);
@@ -407,7 +376,6 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_e:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_e.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(90deg) translateX(50%) rotateY(90deg);
   transform: rotateY(90deg) translateX(50%) rotateY(90deg);
@@ -432,12 +400,10 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_se:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_se.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, 1, 0, 90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, 1, 0, 90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_se:hover .cl-flipbox-hhh,
 .cl-flipbox.animation_cubeflip.direction_se.hover .cl-flipbox-hhh {
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
   transform: rotate3d(-1, 1, 0, 90deg);
@@ -462,7 +428,6 @@
   -webkit-transform: translateX(-50%) rotateY(-90deg);
   transform: translateX(-50%) rotateY(-90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_s:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_s.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(-90deg) translateY(50%) rotateX(-90deg);
   transform: rotateX(-90deg) translateY(50%) rotateX(-90deg);
@@ -487,12 +452,10 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_sw:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_sw.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, -1, 0, 90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(-1, -1, 0, 90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_sw:hover .cl-flipbox-hhh,
 .cl-flipbox.animation_cubeflip.direction_sw.hover .cl-flipbox-hhh {
   -webkit-transform: rotate3d(-1, -1, 0, 90deg);
   transform: rotate3d(-1, -1, 0, 90deg);
@@ -513,7 +476,6 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_w:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_w.hover .cl-flipbox-hh {
   -webkit-transform: rotateY(-90deg) translateX(-50%) rotateY(-90deg);
   transform: rotateY(-90deg) translateX(-50%) rotateY(-90deg);
@@ -538,12 +500,10 @@
   -webkit-transform: translateX(50%) rotateY(90deg);
   transform: translateX(50%) rotateY(90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_nw:hover .cl-flipbox-hh,
 .cl-flipbox.animation_cubeflip.direction_nw.hover .cl-flipbox-hh {
   -webkit-transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, -1, 0, 90deg);
   transform: rotateX(90deg) translateY(-50%) rotateX(-90deg) rotate3d(1, -1, 0, 90deg);
 }
-.cl-flipbox.animation_cubeflip.direction_nw:hover .cl-flipbox-hhh,
 .cl-flipbox.animation_cubeflip.direction_nw.hover .cl-flipbox-hhh {
   -webkit-transform: rotate3d(1, -1, 0, 90deg);
   transform: rotate3d(1, -1, 0, 90deg);
@@ -552,7 +512,6 @@
   -webkit-transform-origin: 50% 0%;
   transform-origin: 50% 0%;
 }
-.cl-flipbox.animation_coveropen.direction_n:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_n.hover .cl-flipbox-front {
   -webkit-transform: rotateX(90deg);
   transform: rotateX(90deg);
@@ -562,7 +521,6 @@
   -webkit-transform-origin: 100% 0%;
   transform-origin: 100% 0%;
 }
-.cl-flipbox.animation_coveropen.direction_ne:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_ne.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(1, 1, 0, 90deg);
   transform: rotate3d(1, 1, 0, 90deg);
@@ -572,7 +530,6 @@
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
 }
-.cl-flipbox.animation_coveropen.direction_e:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_e.hover .cl-flipbox-front {
   -webkit-transform: rotateY(90deg);
   transform: rotateY(90deg);
@@ -582,7 +539,6 @@
   -webkit-transform-origin: 100% 100%;
   transform-origin: 100% 100%;
 }
-.cl-flipbox.animation_coveropen.direction_se:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_se.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, 1, 0, 90deg);
   transform: rotate3d(-1, 1, 0, 90deg);
@@ -592,7 +548,6 @@
   -webkit-transform-origin: 50% 100%;
   transform-origin: 50% 100%;
 }
-.cl-flipbox.animation_coveropen.direction_s:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_s.hover .cl-flipbox-front {
   -webkit-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
@@ -602,7 +557,6 @@
   -webkit-transform-origin: 0% 100%;
   transform-origin: 0% 100%;
 }
-.cl-flipbox.animation_coveropen.direction_sw:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_sw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(-1, -1, 0, 90deg);
   transform: rotate3d(-1, -1, 0, 90deg);
@@ -611,7 +565,6 @@
   -webkit-transform-origin: 0% 50%;
   transform-origin: 0% 50%;
 }
-.cl-flipbox.animation_coveropen.direction_w:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_w.hover .cl-flipbox-front {
   -webkit-transform: rotateY(-90deg);
   transform: rotateY(-90deg);
@@ -620,7 +573,6 @@
   -webkit-transform-origin: 0% 0%;
   transform-origin: 0% 0%;
 }
-.cl-flipbox.animation_coveropen.direction_nw:hover .cl-flipbox-front,
 .cl-flipbox.animation_coveropen.direction_nw.hover .cl-flipbox-front {
   -webkit-transform: rotate3d(1, -1, 0, 90deg);
   transform: rotate3d(1, -1, 0, 90deg);
