@@ -100,19 +100,9 @@ jQuery.fn.cssMod = function(mod, value){
 			if (this._events === undefined) this._events = {};
 			if ($cl.isMobile) {
 				// Mobile: Touch hover
-				var touchendTimer = null;
 				$.extend(this._events, {
 					touchHoverStart: function(){
-						clearTimeout(touchendTimer);
-						this.$container.addClass('hover');
-						$(document).on('touchend touchcancel', this._events.touchHoverEnd);
-					}.bind(this),
-					touchHoverEnd: function(){
-						clearTimeout(touchendTimer);
-						touchendTimer = setTimeout(function(){
-							this.$container.removeClass('hover');
-						}.bind(this), 3000);
-						$(document).off('touchend touchcancel', this._events.touchHoverEnd);
+						this.$container.toggleClass('hover');
 					}.bind(this)
 				});
 				this.$container.on('touchstart', this._events.touchHoverStart);
