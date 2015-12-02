@@ -66,8 +66,8 @@ foreach ( $groups as &$group_params ) {
 
 		// Field params
 		$field = array(
-			'name' => isset( $field_name_fn ) ? $field_name_fn( $param_name ) : sprintf( $field_name_pattern, $param_name ),
-			'id' => isset( $field_id_fn ) ? $field_id_fn( $param_name ) : sprintf( $field_id_pattern, $param_name ),
+			'name' => isset( $field_name_fn ) ? call_user_func( $field_name_fn, $param_name ) : sprintf( $field_name_pattern, $param_name ),
+			'id' => isset( $field_id_fn ) ? call_user_func( $field_id_fn, $param_name ) : sprintf( $field_id_pattern, $param_name ),
 			'value' => $values[ $param_name ],
 		);
 

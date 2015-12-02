@@ -3,7 +3,7 @@ Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.3.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ Two-sided card that flips to reveal additional information, when you hover over 
 
 #### 3. Interactive Text
 
-Trending element in 2015: when you need to emphasize that you are great at several services, you can use smoothly change the service-name part of the slogan, leaving the rest unchanged. And that's just one tiny example of how this element can be used: the richness of language and it's usages are limitless!
+Trending element in 2015: when you need to emphasize that you are great at several services, you can smoothly change the service-name part of the slogan, leaving the rest unchanged. And that's just one tiny example of how this element can be used: the richness of language and it's usages are limitless!
 
 **Special Features:**
 
@@ -114,6 +114,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+
+= 1.0.6 =
+* Fixed: PHP 5.3 compatibility (Thanks to @sduccio for the feedback!)
 
 = 1.0.5 =
 * New: FlipBox order settings for both front and back sides
