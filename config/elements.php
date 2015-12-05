@@ -247,7 +247,7 @@ return array(
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			'front_elmorder' => array(
-				'title' => __( 'Elements Order', 'codelights'),
+				'title' => __( 'Elements Order', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					'itd' => __( 'Icon', 'codelights' ) . ' / ' . __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ),
@@ -294,7 +294,7 @@ return array(
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			'back_elmorder' => array(
-				'title' => __( 'Elements Order', 'codelights'),
+				'title' => __( 'Elements Order', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					'tdb' => __( 'Title', 'codelights' ) . ' / ' . __( 'Description', 'codelights' ) . ' / ' . __( 'Button (if exists)', 'codelights' ),
@@ -683,5 +683,106 @@ return array(
 			),
 		),
 	),
+	'cl-review' => array(
+		'title' => __( 'Review', 'codelights' ),
+		'description' => __( 'Testimonial about the product or service', 'codelights' ),
+		'category' => 'CodeLights',
+		'icon' => $cl_uri . '/admin/img/cl-review.png',
+		'widget_php_class' => 'CL_Widget_Review',
+		'params' => array(
+			/**
+			 * General
+			 */
+			'type' => array(
+				'title' => __( 'Testimonial Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'quote' => __( 'Text Quote', 'codelights' ),
+					'doc' => __( 'Scanned Document', 'codelights' ),
+					'video' => __( 'Video', 'codelights' ),
+				),
+			),
+			'layout' => array(
+				'title' => __( 'Quote Layout', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'horizontal' => __( 'Horizontal', 'codelights' ),
+					'balloon' => __( 'Speech Balloon', 'codelights' ),
+					'framed' => __( 'Framed', 'codelights' ),
+					'clean' => __( 'Clean', 'codelights' ),
+					'centered' => __( 'Centered', 'codelights' ),
+					'modern' => __( 'Modern', 'codelights' ),
+				),
+				'show_if' => array( 'type', '=', 'quote' ),
+			),
+			'doc' => array(
+				'title' => __( 'Scanned Document', 'codelights' ),
+				'type' => 'image',
+				'show_if' => array( 'type', '=', 'doc' ),
+			),
+			'video' => array(
+				'title' => __( 'Video URL to Embed', 'codelights' ),
+				'type' => 'textfield',
+				'std' => 'https://vimeo.com/146383727',
+				'show_if' => array( 'type', '=', 'video' ),
+			),
+			'quote' => array(
+				'title' => __( 'Quote', 'codelights' ),
+				'type' => 'textarea',
+				'std' => 'This product is really awesome!',
+			),
+			'source' => array(
+				'title' => __( 'Quote Source', 'codelights' ),
+				'type' => 'textfield',
+				'show_if' => array( 'type', '=', 'quote' ),
+			),
+			'el_class' => array(
+				'title' => __( 'Extra class name', 'codelights' ),
+				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
+				'type' => 'textfield',
+			),
+			/**
+			 * Author
+			 */
+			'author' => array(
+				'title' => __( 'Name', 'codelights' ),
+				'type' => 'textfield',
+				'std' => 'John Smith',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Author', 'codelights' ),
+			),
+			'occupation' => array(
+				'title' => __( 'Occupation', 'codelights' ),
+				'type' => 'textfield',
+				'std' => 'Head of ACME',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Author', 'codelights' ),
+			),
+			'avatar' => array(
+				'title' => __( 'Avatar Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'none' => __( 'None', 'codelights' ),
+					'font' => __( 'FontAwesome Icon', 'codelights' ),
+					'image' => __( 'Custom Image', 'codelights' ),
+				),
+				'group' => __( 'Author', 'codelights' ),
+			),
+			'avatar_icon' => array(
+				'title' => __( 'Avatar Icon', 'codelights' ),
+				'type' => 'textfield',
+				'description' => sprintf( __( '<a href="%s" target="_blank">FontAwesome</a> icon', 'codelights' ), 'http://fontawesome.io/icons/' ),
+				'std' => 'user',
+				'group' => __( 'Author', 'codelights' ),
+				'show_if' => array( 'avatar', '=', 'font' ),
+			),
+			'avatar_image' => array(
+				'title' => __( 'Avatar Image', 'codelights' ),
+				'type' => 'image',
+				'group' => __( 'Author', 'codelights' ),
+				'show_if' => array( 'avatar', '=', 'image' ),
+			),
 
+		),
+	),
 );
