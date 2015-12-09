@@ -21,6 +21,7 @@ return array(
 		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), $cl_version, 'all' ),
 		'cl-ib' => array( $cl_uri . '/css/cl-ib.css', array( 'cl-core' ), $cl_version, 'all' ),
 		'cl-itext' => array( $cl_uri . '/css/cl-itext.css', array( 'cl-core' ), $cl_version, 'all' ),
+		'cl-review' => array( $cl_uri . '/css/cl-review.css', array(), $cl_version, 'all' ),
 	),
 	/**
 	 * Each script entry contains params for wp_enqueue_script function:

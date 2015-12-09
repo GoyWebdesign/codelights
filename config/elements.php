@@ -693,6 +693,39 @@ return array(
 			/**
 			 * General
 			 */
+			'author' => array(
+				'title' => __( 'Author Name', 'codelights' ),
+				'type' => 'textfield',
+				'std' => 'John Smith',
+				'classes' => 'cl_col-sm-6 cl_column',
+			),
+			'occupation' => array(
+				'title' => __( 'Author Occupation', 'codelights' ),
+				'type' => 'textfield',
+				'std' => 'Head of ACME',
+				'classes' => 'cl_col-sm-6 cl_column',
+			),
+			'avatar' => array(
+				'title' => __( 'Author Avatar', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'none' => __( 'None', 'codelights' ),
+					'font' => __( 'FontAwesome Icon', 'codelights' ),
+					'image' => __( 'Custom Image', 'codelights' ),
+				),
+			),
+			'avatar_icon' => array(
+				'title' => __( 'Author Avatar Icon', 'codelights' ),
+				'type' => 'textfield',
+				'description' => sprintf( __( '<a href="%s" target="_blank">FontAwesome</a> icon', 'codelights' ), 'http://fontawesome.io/icons/' ),
+				'std' => 'user',
+				'show_if' => array( 'avatar', '=', 'font' ),
+			),
+			'avatar_image' => array(
+				'title' => __( 'Author Avatar Image', 'codelights' ),
+				'type' => 'image',
+				'show_if' => array( 'avatar', '=', 'image' ),
+			),
 			'type' => array(
 				'title' => __( 'Testimonial Type', 'codelights' ),
 				'type' => 'select',
@@ -741,48 +774,6 @@ return array(
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
 			),
-			/**
-			 * Author
-			 */
-			'author' => array(
-				'title' => __( 'Name', 'codelights' ),
-				'type' => 'textfield',
-				'std' => 'John Smith',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Author', 'codelights' ),
-			),
-			'occupation' => array(
-				'title' => __( 'Occupation', 'codelights' ),
-				'type' => 'textfield',
-				'std' => 'Head of ACME',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Author', 'codelights' ),
-			),
-			'avatar' => array(
-				'title' => __( 'Avatar Type', 'codelights' ),
-				'type' => 'select',
-				'options' => array(
-					'none' => __( 'None', 'codelights' ),
-					'font' => __( 'FontAwesome Icon', 'codelights' ),
-					'image' => __( 'Custom Image', 'codelights' ),
-				),
-				'group' => __( 'Author', 'codelights' ),
-			),
-			'avatar_icon' => array(
-				'title' => __( 'Avatar Icon', 'codelights' ),
-				'type' => 'textfield',
-				'description' => sprintf( __( '<a href="%s" target="_blank">FontAwesome</a> icon', 'codelights' ), 'http://fontawesome.io/icons/' ),
-				'std' => 'user',
-				'group' => __( 'Author', 'codelights' ),
-				'show_if' => array( 'avatar', '=', 'font' ),
-			),
-			'avatar_image' => array(
-				'title' => __( 'Avatar Image', 'codelights' ),
-				'type' => 'image',
-				'group' => __( 'Author', 'codelights' ),
-				'show_if' => array( 'avatar', '=', 'image' ),
-			),
-
 		),
 	),
 );

@@ -23,6 +23,10 @@ if ( $type == 'quote' ) {
 	$classes .= ' layout_' . $layout;
 }
 
+if ( ( $avatar == 'image' AND ! empty( $avatar_image ) ) OR ( $avatar == 'font' AND ! empty( $avatar_icon ) ) ) {
+	$classes .= ' with_avatar';
+}
+
 if ( ! empty( $el_class ) ) {
 	$classes .= ' ' . $el_class;
 }
@@ -32,11 +36,13 @@ $output = '<div class="cl-review' . $classes . '">';
 // Preparing the author block
 $author_html = '<div class="cl-review-author">';
 if ( $avatar != 'none' ) {
-	$author_html .= '<span class="cl-review-author-avatar">';
+	$author_html .= '<span class="cl-review-author-avatar"';
+	if ( $avatar == 'image' AND ! empty( $avatar_image ) AND ( $avatar_image_src = wp_get_attachment_image_src( $avatar_image, 'thumbnail' ) ) ) {
+		$author_html .= ' style="background-image: url(' . $avatar_image_src[0] . ')"';
+	}
+	$author_html .= '>';
 	if ( $avatar == 'font' AND ! empty( $avatar_icon ) ) {
 		$author_html .= '<i class="' . cl_prepare_icon_class( $avatar_icon ) . '"></i>';;
-	} elseif ( $avatar == 'image' AND ! empty( $avatar_image ) ) {
-		$author_html .= wp_get_attachment_image( $avatar_image, 'medium' );
 	}
 	$author_html .= '</span>';
 }
@@ -51,35 +57,33 @@ if ( ! empty( $occupation ) ) {
 }
 $author_html .= '</div>';
 
-if ( $type == 'quote' AND ( $layout == 'horizontal' OR $layout == 'modern' ) ) {
-	// Author block at the beginning
-	$output .= $author_html;
-}
-
 // Scanned document
 if ( $type == 'doc' ) {
-	$output .= '<div class="cl-review-doc">';
 	if ( ! empty( $doc ) ) {
-		$output .= wp_get_attachment_image( $doc, 'large' );
+		$output .= '<a class="cl-review-doc" href="' . wp_get_attachment_url( $doc ) . '" target="_blank">' . wp_get_attachment_image( $doc, 'large' ) . '</a>';
+	} else {
+		$output .= '<div class="cl-review-doc"></div>';
 	}
-	$output .= '</div>';
+}
+
+if ( $type != 'quote' OR $layout == 'modern' ) {
+	// Author block at the beginning
+	$output .= $author_html;
 }
 
 // Video testimonial
 if ( $type == 'video' ) {
 	global $wp_embed;
-	$output .= '<div class="cl-review-video">';
+	$output .= '<div class="cl-review-video"><div class="cl-review-video-h">';
 	$output .= $wp_embed->run_shortcode( '[embed]' . $video . '[/embed]' );
-	$output .= '</div>';
+	$output .= '</div></div>';
 }
 
 if ( ! empty( $quote ) ) {
-	$output .= '<div class="cl-review-quote">';
-	$output .= nl2br( $quote );
-	$output .= '</div>';
+	$output .= '<div class="cl-review-quote">' . $quote . '</div>';
 }
 
-if ( $type != 'quote' OR ( $layout != 'horizontal' AND $layout != 'modern' ) ) {
+if ( $type == 'quote' AND $layout != 'modern' ) {
 	// Author block at the end
 	$output .= $author_html;
 }
