@@ -11,6 +11,17 @@
 		// To move too long occupations to a new line
 		display: inline-block;
 	}
+	&-quote-source {
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		&:before {
+			display: inline-block;
+			font-family: FontAwesome;
+			content: "\f08e";
+		}
+	}
 
 	&.type_quote.layout_balloon,
 	&.type_quote.layout_framed,

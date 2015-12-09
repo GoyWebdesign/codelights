@@ -42,6 +42,7 @@ if ( $avatar != 'none' ) {
 	}
 	$author_html .= '>';
 	if ( $avatar == 'font' AND ! empty( $avatar_icon ) ) {
+		cl_enqueue_assets( 'font-awesome' );
 		$author_html .= '<i class="' . cl_prepare_icon_class( $avatar_icon ) . '"></i>';;
 	}
 	$author_html .= '</span>';
@@ -80,7 +81,14 @@ if ( $type == 'video' ) {
 }
 
 if ( ! empty( $quote ) ) {
-	$output .= '<div class="cl-review-quote">' . $quote . '</div>';
+	$output .= '<div class="cl-review-quote">';
+	if ( $type == 'quote' AND ! empty( $source ) ) {
+		cl_enqueue_assets( 'font-awesome' );
+		$output .= '<a class="cl-review-quote-source" href="' . esc_attr( $source ) . '" target="_blank"></a>';
+	}
+	$output .= '<div class="cl-review-quote-text">';
+	$output .= $quote;
+	$output .= '</div></div>';
 }
 
 if ( $type == 'quote' AND $layout != 'modern' ) {

@@ -15,7 +15,7 @@ Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and 
 
 ### Four Built-in Elements
 
-#### 1. Counter
+#### 1. Stats Counter
 
 A great tool to draw visitors' attention to a data that can be expressed in numbers, like: your sales, number of completed projects or your customer satisfaction index. You set initial and final values and when your visitor will reach a counter, it will animate in a most natural way: gradually changing the number.
 
@@ -28,7 +28,7 @@ A great tool to draw visitors' attention to a data that can be expressed in numb
 1. You can **animate anything into anyting**: even letter-based string will be turned into the other one in a most natural way.
 1. It's absolutely **simple to use**: just type in the initial and final strings and our smart scripts will do the rest.
 
-> **[Counter Showcase and Examples](http://codelights.com/elements/counter/ "Counter Showcase and Examples")**
+> **[Stats Counter Showcase and Examples](http://codelights.com/elements/counter/ "Stats Counter Showcase and Examples")**
 
 #### 2. FlipBox
 
@@ -67,6 +67,16 @@ Element powered by great CSS animations, can be used to attend visitors to the n
 1. Incredibly **customizable**: 18 options, yet easy-to-use.
 
 > **[Interactive Banner Showcase and Examples](http://codelights.com/elements/ib/ "Interactive Banner Showcase and Examples")**
+
+#### 5. Review
+
+A great tool to share your current Clients' experience with your new visitors, and to emphasize your credibility one more time.
+
+**Special Features:**
+
+1. **3 testimonial types**: Quote, Scanned document and Video.
+1. **6 quote layouts** for text testimonials.
+1. You can specify the quote source for even better credibility.
 
 **... and more elements are coming!**
 
