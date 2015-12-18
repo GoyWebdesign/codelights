@@ -31,8 +31,7 @@ if ( ! empty( $avatar_image ) AND ( $avatar_image_src = wp_get_attachment_image_
 	$classes .= ' with_avatar';
 }
 if ( ! empty( $author ) ) {
-	// Keep the space after author name for inline formatting
-	$author_html .= '<span class="cl-review-author-name">' . $author . '</span> ';
+	$author_html .= '<span class="cl-review-author-name">' . $author . '</span>';
 }
 if ( ! empty( $occupation ) ) {
 	$author_html .= '<span class="cl-review-author-occupation">' . $occupation . '</span>';
@@ -69,9 +68,9 @@ if ( $type == 'video' ) {
 
 if ( ! empty( $quote ) ) {
 	$output .= '<div class="cl-review-quote">';
-	$output .= '<div class="cl-review-quote-text">';
+	$output .= '<q class="cl-review-quote-text">';
 	$output .= $quote;
-	$output .= '</div></div>';
+	$output .= '</q></div>';
 }
 
 if ( $type == 'quote' AND $layout != 'modern' ) {

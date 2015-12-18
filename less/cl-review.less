@@ -1,244 +1,165 @@
 @import "prefixer.less";
 
 .cl-review {
-
-	margin-bottom: 20px;
-
+	margin-bottom: 30px;
+	&-quote-text {
+		display: block;
+		font-size: 1.3em;
+		line-height: 1.5;
+		font-style: italic;
+		}
 	&-author {
 		display: block;
+		line-height: 24px;
+		overflow: hidden;
+		padding-top: 15px;
+		&-avatar {
+			display: block;
+			float: left;
+			margin-right: 15px;
+			height: 60px;
+			width: 60px;
+			border-radius: 50%;
+			background-size: cover;
+		}
 		&-name {
-			font-weight: bold;
+			vertical-align: top;
+			font-weight: 600;
+			margin-right: 8px;
 		}
 		&-occupation {
-			// To move too long occupations to a new line
 			display: inline-block;
-		}
-	}
-
-	&.type_quote.layout_balloon,
-	&.type_quote.layout_framed,
-	&.type_quote.layout_clean,
-	&.type_doc,
-	&.type_video {
-		.cl-review-author {
-			position: relative;
-			line-height: 20px;
-			padding-left: 10px;
 			vertical-align: top;
-			&-avatar {
-				position: absolute;
-				display: block;
-				left: 10px;
-				top: 0;
-				width: 30px;
-				height: 30px;
-				margin-right: 5px;
-				border: 1px #eeeeee solid;
-				border-radius: 50%;
-				-webkit-background-size: cover;
-				background-size: cover;
-				text-align: center;
-				font-size: 15px;
-				line-height: 30px;
-			}
+			font-size: 0.9em;
+			color: #999;
 		}
-		&.with_avatar .cl-review-author {
-			padding: 4px 0 0 50px;
-			min-height: 30px;
+	}
+	
+	&.with_avatar {
+		.cl-review-author-name {
+			display: block;
+			padding-top: 6px;
+			margin: 0;
 		}
 	}
 
-	// Type: Quote
-	&.type_quote {
-
-		// Layout: Balloon
-		&.layout_balloon {
-			.cl-review-quote {
-				position: relative;
-				padding: 10px;
-				background-color: #fffa9b;
-				border-radius: 10px;
-				margin-bottom: 20px;
-				&:after {
-					content: '';
-					position: absolute;
-					left: 15px;
-					bottom: -10px;
-					display: block;
-					background-color: inherit;
-					width: 20px;
-					height: 20px;
-					z-index: -1;
-					.transform(rotateZ(45deg));
-				}
-			}
+	// Layout: Clean
+	&.layout_clean {
+		& .cl-review-quote,
+		& .cl-review-author {
+			padding-left: 26px;
 		}
-
-		// Layout: Framed
-		&.layout_framed {
-			padding: 20px;
-			background-color: #fffa9b;
-			.cl-review-quote {
-				position: relative;
-				padding: 0 0 0 10px;
-				&:before {
-					content: '"';
-					display: block;
-					position: absolute;
-					left: 0;
-					font-size: 20px;
-				}
-				&:after {
-					content: '"';
-					display: inline-block;
-					font-size: 20px;
-				}
-			}
-		}
-
-		// Layout: Clean
-		&.layout_clean {
-			.cl-review-quote {
-				position: relative;
-				padding-left: 50px;
-				&:before {
-					content: ',,';
-					display: block;
-					position: absolute;
-					left: 0;
-					top: 0;
-					width: 40px;
-					height: 40px;
-					border: 2px #eeeeee solid;
-					border-radius: 50%;
-					font-size: 40px;
-					line-height: 10px;
-					text-align: center;
-					.transform(rotateZ(180deg));
-				}
-			}
-			.cl-review-author {
-				margin-left: 40px;
-			}
-		}
-
-		// Layout: Centered
-		&.layout_centered {
-			.cl-review-quote {
-				position: relative;
-				padding-left: 20px;
-				&:before {
-					content: '"';
-					display: block;
-					position: absolute;
-					left: 0;
-					top: 10px;
-					width: 20px;
-					font-size: 40px;
-					line-height: 20px;
-				}
-			}
-			.cl-review-author {
-				text-align: center;
-				&-avatar {
-					display: inline-block;
-					width: 80px;
-					height: 80px;
-					border: 1px #eeeeee solid;
-					border-radius: 50%;
-					-webkit-background-size: cover;
-					background-size: cover;
-					text-align: center;
-					font-size: 40px;
-					line-height: 80px;
-				}
-				&-name,
-				&-occupation {
-					&:before {
-						content: '';
-						display: block;
-					}
-				}
-			}
-
-		}
-
-		// Layout: horizontal
-		&.layout_horizontal {
+		& .cl-review-quote-text {
+			quotes: none;
 			position: relative;
-			.cl-review-quote {
-				position: relative;
-				padding-left: 20px;
-				&:before {
-					content: '"';
-					display: block;
-					position: absolute;
-					font-size: 30px;
-					left: 0;
-					top: 0;
-				}
-			}
-			.cl-review-author-avatar {
+			&:before {
+				content: '\f10d';
+				font-family: fontawesome;
+				font-size: 18px;
 				position: absolute;
-				left: 0;
 				top: 0;
-				width: 60px;
-				height: 60px;
-				font-size: 40px;
-				line-height: 60px;
-				text-align: center;
-				-webkit-background-size: cover;
-				background-size: cover;
-				border: 1px #eeeeee solid;
+				left: -25px;
+				opacity: 0.2;
 			}
-			.cl-review-author-name {
-				margin-left: 20px;
+			&:after {
+				content: '\f10e';
+				font-family: fontawesome;
+				font-size: 18px;
+				margin-left: 7px;
+				opacity: 0.2;
 			}
-			&.with_avatar {
-				padding-left: 70px;
+		}
+	}
+	
+	// Layout: Balloon
+	&.layout_balloon {
+		.cl-review-quote {
+			position: relative;
+			padding: 25px 30px;
+			background-color: #eee;
+			border-radius: 5px;
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 35px;
+				bottom: -10px;
+				width: 20px;
+				height: 20px;
+				z-index: -1;
+				background-color: inherit;
+				.transform(rotateZ(45deg));
+			}
+		}
+		.cl-review-author {
+			padding-left: 30px;
+		}
+	}
+	&.layout_balloon.with_avatar {
+		.cl-review-author {
+			padding: 20px 0 0 15px;
+		}
+	}
+
+	// Layout: Framed
+	&.layout_framed {
+		padding: 30px;
+		background-color: #eee;
+	}
+
+	// Layout: Centered
+	&.layout_centered {
+		text-align: center;
+		.cl-review-author {
+			text-align: center;
+			&-avatar {
+				float: none;
+				width: 100px;
+				height: 100px;
+				margin: 0 auto;
+			}
+			&-name,
+			&-occupation {
+				display: block;
 			}
 		}
 
-		// Layout: modern
-		&.layout_modern {
-			.cl-review-author {
-				text-align: center;
-				border-bottom: 1px #eeeeee solid;
-				&-avatar {
-					display: inline-block;
-					width: 80px;
-					height: 80px;
-					font-size: 40px;
-					line-height: 80px;
-					text-align: center;
-					-webkit-background-size: cover;
-					background-size: cover;
-					border: 1px #eeeeee solid;
-					border-radius: 50%;
-				}
-				&-name:before {
-					content: '';
-					display: block;
-				}
-			}
-			.cl-review-quote {
-				position: relative;
-				padding: 0 0 0 10px;
-				&:before {
-					content: '"';
-					display: block;
-					position: absolute;
-					left: 0;
-					font-size: 20px;
-				}
-				&:after {
-					content: '"';
-					display: inline;
-					font-size: 20px;
-				}
-			}
-		}
+	}
 
+	// Layout: modern
+	&.layout_modern {
+		padding-left: 100px;
+		position: relative;
+		&:before {
+			content: '\f10d';
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 30px;
+			font-family: fontawesome;
+			text-align: center;
+			line-height: 80px;
+			width: 80px;
+			border-radius: 50%;
+			background-color: #eee;
+		}
+		& .cl-review-quote-text {
+			quotes: none;
+		}
+		& .cl-review-author-avatar {
+			float: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 80px;
+			width: 80px;
+			margin: 0;
+		}
+		& .cl-review-author-name {
+			display: inline;
+			margin-right: 8px;
+			padding: 0;
+		}
 	}
 
 	// Type: Doc / Video

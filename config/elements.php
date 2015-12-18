@@ -693,6 +693,11 @@ return array(
 			/**
 			 * General
 			 */
+			'quote' => array(
+				'title' => __( 'Quote Text', 'codelights' ),
+				'type' => 'textarea',
+				'std' => 'This product is really awesome!',
+			),
 			'author' => array(
 				'title' => __( 'Author Name', 'codelights' ),
 				'type' => 'textfield',
@@ -700,32 +705,26 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			'occupation' => array(
-				'title' => __( 'Author Occupation', 'codelights' ),
+				'title' => __( 'Author Description', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'Head of ACME',
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			'avatar_image' => array(
-				'title' => __( 'Author Avatar', 'codelights' ),
+				'title' => __( 'Author Photo', 'codelights' ),
 				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			'layout' => array(
-				'title' => __( 'Quote Layout', 'codelights' ),
-				'type' => 'select',
-				'options' => array(
-					'horizontal' => __( 'Horizontal', 'codelights' ),
-					'balloon' => __( 'Speech Balloon', 'codelights' ),
-					'framed' => __( 'Framed', 'codelights' ),
-					'clean' => __( 'Clean', 'codelights' ),
-					'centered' => __( 'Centered', 'codelights' ),
-					'modern' => __( 'Modern', 'codelights' ),
-				),
+			'source' => array(
+				'title' => __( 'Author Link', 'codelights' ),
+				'type' => 'link',
+				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			'type' => array(
-				'title' => __( 'Testimonial Type', 'codelights' ),
+				'title' => __( 'Review Type', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
-					'quote' => __( 'Text Quote Only', 'codelights' ),
+					'quote' => __( 'Quote Text Only', 'codelights' ),
 					'doc' => __( 'With Scanned Document', 'codelights' ),
 					'video' => __( 'With Video', 'codelights' ),
 				),
@@ -741,20 +740,60 @@ return array(
 				'std' => 'https://vimeo.com/146383727',
 				'show_if' => array( 'type', '=', 'video' ),
 			),
-			'quote' => array(
-				'title' => __( 'Quote', 'codelights' ),
-				'type' => 'textarea',
-				'std' => 'This product is really awesome!',
+			'layout' => array(
+				'title' => __( 'Quote Style', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'clean' => __( 'Clean', 'codelights' ),
+					'centered' => __( 'Centered', 'codelights' ),
+					'balloon' => __( 'Speech Balloon', 'codelights' ),
+					'framed' => __( 'Framed', 'codelights' ),
+					'modern' => __( 'Modern', 'codelights' ),
+				),
+				'group' => __( 'Style', 'codelights' ),
 			),
-			'source' => array(
-				'title' => __( 'Quote Source', 'codelights' ),
-				'type' => 'link',
-				'show_if' => array( 'type', '=', 'quote' ),
+			'bg_color' => array(
+				'title' => __( 'Background Color', 'codelights' ),
+				'type' => 'color',
+				'group' => __( 'Style', 'codelights' ),
+				'show_if' => array( 'layout', 'in', array( 'balloon', 'framed', 'modern' ) ),
+			),
+			'text_color' => array(
+				'title' => __( 'Text Color', 'codelights' ),
+				'type' => 'color',
+				'group' => __( 'Style', 'codelights' ),
+				'show_if' => array( 'layout', 'in', array( 'balloon', 'framed', 'modern' ) ),
+			),
+			'quote_size' => array(
+				'title' => __( 'Quote Text Size', 'codelights' ),
+				'description' => '',
+				'type' => 'textfield',
+				'std' => '20px',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'author_size' => array(
+				'title' => __( 'Author Text Size', 'codelights' ),
+				'description' => '',
+				'type' => 'textfield',
+				'std' => '14px',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'italic' => array(
+				'title' => '',
+				'type' => 'checkboxes',
+				'options' => array(
+					TRUE => __( 'Make Quote Text italic', 'codelights' ),
+				),
+				'std' => TRUE,
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'el_class' => array(
 				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
+				'group' => __( 'Style', 'codelights' ),
 			),
 		),
 	),
