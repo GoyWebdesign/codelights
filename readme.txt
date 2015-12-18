@@ -2,7 +2,7 @@
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
-Tested up to: 4.3.1
+Tested up to: 4.4
 Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

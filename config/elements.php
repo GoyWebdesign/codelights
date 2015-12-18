@@ -705,35 +705,9 @@ return array(
 				'std' => 'Head of ACME',
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
-			'avatar' => array(
-				'title' => __( 'Author Avatar', 'codelights' ),
-				'type' => 'select',
-				'options' => array(
-					'none' => __( 'None', 'codelights' ),
-					'font' => __( 'FontAwesome Icon', 'codelights' ),
-					'image' => __( 'Custom Image', 'codelights' ),
-				),
-			),
-			'avatar_icon' => array(
-				'title' => __( 'Author Avatar Icon', 'codelights' ),
-				'type' => 'textfield',
-				'description' => sprintf( __( '<a href="%s" target="_blank">FontAwesome</a> icon', 'codelights' ), 'http://fontawesome.io/icons/' ),
-				'std' => 'user',
-				'show_if' => array( 'avatar', '=', 'font' ),
-			),
 			'avatar_image' => array(
-				'title' => __( 'Author Avatar Image', 'codelights' ),
+				'title' => __( 'Author Avatar', 'codelights' ),
 				'type' => 'image',
-				'show_if' => array( 'avatar', '=', 'image' ),
-			),
-			'type' => array(
-				'title' => __( 'Testimonial Type', 'codelights' ),
-				'type' => 'select',
-				'options' => array(
-					'quote' => __( 'Text Quote', 'codelights' ),
-					'doc' => __( 'Scanned Document', 'codelights' ),
-					'video' => __( 'Video', 'codelights' ),
-				),
 			),
 			'layout' => array(
 				'title' => __( 'Quote Layout', 'codelights' ),
@@ -746,7 +720,15 @@ return array(
 					'centered' => __( 'Centered', 'codelights' ),
 					'modern' => __( 'Modern', 'codelights' ),
 				),
-				'show_if' => array( 'type', '=', 'quote' ),
+			),
+			'type' => array(
+				'title' => __( 'Testimonial Type', 'codelights' ),
+				'type' => 'select',
+				'options' => array(
+					'quote' => __( 'Text Quote Only', 'codelights' ),
+					'doc' => __( 'With Scanned Document', 'codelights' ),
+					'video' => __( 'With Video', 'codelights' ),
+				),
 			),
 			'doc' => array(
 				'title' => __( 'Scanned Document', 'codelights' ),
@@ -766,7 +748,7 @@ return array(
 			),
 			'source' => array(
 				'title' => __( 'Quote Source', 'codelights' ),
-				'type' => 'textfield',
+				'type' => 'link',
 				'show_if' => array( 'type', '=', 'quote' ),
 			),
 			'el_class' => array(

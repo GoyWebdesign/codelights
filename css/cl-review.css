@@ -1,22 +1,14 @@
 .cl-review {
   margin-bottom: 20px;
 }
+.cl-review-author {
+  display: block;
+}
 .cl-review-author-name {
   font-weight: bold;
 }
 .cl-review-author-occupation {
   display: inline-block;
-}
-.cl-review-quote-source {
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.cl-review-quote-source:before {
-  display: inline-block;
-  font-family: FontAwesome;
-  content: "\f08e";
 }
 .cl-review.type_quote.layout_balloon .cl-review-author,
 .cl-review.type_quote.layout_framed .cl-review-author,
