@@ -20,6 +20,10 @@
   -webkit-transition-property: width, color;
   transition-property: width, color;
 }
+.cl-itext-part.notransition {
+  -webkit-transition-property: none !important;
+  transition-property: none !important;
+}
 .cl-itext-part > span.measure {
   position: absolute;
   left: 0;
