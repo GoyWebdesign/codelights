@@ -89,7 +89,6 @@ if ( $animation == 'cubeflip' AND in_array( $direction, array( 'ne', 'se', 'sw',
 $front_inline_css = cl_prepare_inline_css( array(
 	'height' => $height,
 	'padding' => $padding,
-	'color' => $front_textcolor,
 	'background-color' => $front_bgcolor,
 	'background-image' => $front_bgimage,
 	'border-color' => $border_color,
@@ -133,12 +132,17 @@ if ( ! empty( $front_title ) ) {
 	$output_front_title .= '<h4 class="cl-flipbox-front-title"';
 	$output_front_title .= cl_prepare_inline_css( array(
 		'font-size' => $front_title_size,
+		'color' => $front_textcolor,
 	) );
 	$output_front_title .= '>' . $front_title . '</h4>';
 }
 $output_front_desc = '';
 if ( ! empty( $front_desc ) ) {
-	$output_front_desc .= '<p class="cl-flipbox-front-desc">' . $front_desc . '</p>';
+	$output_front_desc .= '<p class="cl-flipbox-front-desc"';
+	$output_front_desc .= cl_prepare_inline_css( array(
+		'color' => $front_textcolor,
+	) );
+	$output_front_desc .= '>' . $front_desc . '</p>';
 }
 if ( $front_elmorder == 'tid' ) {
 	$output .= $output_front_title . $output_front_icon . $output_front_desc;
@@ -151,7 +155,6 @@ $output .= '</div></div>';
 
 $back_inline_css = cl_prepare_inline_css( array(
 	'padding' => $padding,
-	'color' => $back_textcolor,
 	'background-color' => $back_bgcolor,
 	'background-image' => $back_bgimage,
 	'border-color' => $border_color,
@@ -164,12 +167,17 @@ if ( ! empty( $back_title ) ) {
 	$output_back_title .= '<h4 class="cl-flipbox-back-title"';
 	$output_back_title .= cl_prepare_inline_css( array(
 		'font-size' => $back_title_size,
+		'color' => $back_textcolor,
 	) );
 	$output_back_title .= '>' . $back_title . '</h4>';
 }
 $output_back_desc = '';
 if ( ! empty( $back_desc ) ) {
-	$output_back_desc .= '<p class="cl-flipbox-back-desc">' . $back_desc . '</p>';
+	$output_back_desc .= '<p class="cl-flipbox-back-desc"';
+	$output_back_desc .= cl_prepare_inline_css( array(
+		'color' => $back_textcolor,
+	) );
+	$output_back_desc .= '>' . $back_desc . '</p>';
 }
 $output_back_btn = '';
 if ( $link_type == 'btn' AND isset( $link_atts ) AND ! empty( $back_btn_label ) ) {

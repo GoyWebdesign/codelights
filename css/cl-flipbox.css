@@ -45,14 +45,6 @@
   border-style: solid;
   border-width: 0;
 }
-.cl-flipbox-front-h,
-.cl-flipbox-back-h,
-.cl-flipbox-front-title,
-.cl-flipbox-back-title,
-.cl-flipbox-front-desc,
-.cl-flipbox-back-desc {
-  color: inherit;
-}
 .cl-flipbox-front-title,
 .cl-flipbox-back-title {
   line-height: 1.4;
