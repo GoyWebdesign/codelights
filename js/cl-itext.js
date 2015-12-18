@@ -75,9 +75,9 @@
 				outType = (this.type == 'flipInX') ? 'flipOutX' : 'fadeOut',
 				i;
 			// Measuring the future part width
-			this.parts[partIndex].css('width', this.parts[partIndex].width());
+			this.parts[partIndex].addClass('notransition').css('width', this.parts[partIndex].width());
 			setTimeout(function(){
-				this.parts[partIndex].css('width', nextWidth);
+				this.parts[partIndex].removeClass('notransition').css('width', nextWidth);
 			}.bind(this), 25);
 			$curSpan.css({
 				position: 'absolute',
@@ -118,7 +118,7 @@
 		_cleanupPartAnimation: function(partIndex){
 			var nextState = (this.active == this.maxActive) ? 0 : (this.active + 1),
 				nextValue = this.partsStates[partIndex][nextState];
-			this.parts[partIndex].css('width', '').html(nextValue.replace(' ', '&nbsp;'));
+			this.parts[partIndex].addClass('notransition').css('width', '').html(nextValue.replace(' ', '&nbsp;'));
 		},
 		postAnimate: function(){
 			this.active = (this.active == this.maxActive) ? 0 : (this.active + 1);

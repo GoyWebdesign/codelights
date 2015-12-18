@@ -23,6 +23,12 @@
 		-webkit-transition-property: width, color;
 		transition-property: width, color;
 
+		&.notransition {
+			// Needed for proper Safari transitions
+			-webkit-transition-property: none !important;
+			transition-property: none !important;
+		}
+
 		// Changeable parts
 		> span {
 			&.measure {
