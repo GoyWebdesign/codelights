@@ -4,16 +4,17 @@
  * Load plugin's textdomain
  *
  * @param string $domain
- * @param string $path Relative path to seek in child theme and theme
+ * @param string $path Relative path to seek in the plugin
  *
  * @return bool
  */
-function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'languages' ) {
+function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'lang' ) {
 	if ( is_textdomain_loaded( $domain ) ) {
 		return TRUE;
 	}
-
-	return load_plugin_textdomain( $domain, FALSE, $path );
+	global $cl_dir;
+	
+	return load_plugin_textdomain( $domain, FALSE, basename( $cl_dir ) . '/' . $path );
 }
 
 /**

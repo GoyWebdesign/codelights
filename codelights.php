@@ -9,6 +9,7 @@
  * Author URI: http://codelights.com/
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: codelights
  */
 
 // Global variables for plugin usage
@@ -24,12 +25,15 @@ require $cl_dir . '/functions/shortcodes.php';
 // Widgets
 require $cl_dir . '/functions/class-cl-widget.php';
 
-add_action( 'plugins_loaded', 'cl_editors_support' );
-function cl_editors_support() {
+add_action( 'plugins_loaded', 'cl_plugins_loaded' );
+function cl_plugins_loaded() {
+	// Editors support
 	global $cl_dir;
 	require $cl_dir . '/editors-support/native/native.php';
 	require $cl_dir . '/editors-support/js_composer/js_composer.php';
 	require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+	// I18n support
+	cl_maybe_load_plugin_textdomain();
 }
 
 // Ajax requests

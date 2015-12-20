@@ -5,7 +5,7 @@ global $cl_uri;
 return array(
 
 	'cl-counter' => array(
-		'title' => __( 'Counter', 'codelights' ),
+		'title' => __( 'Stats Counter', 'codelights' ),
 		'description' => __( 'Animated text with numbers', 'codelights' ),
 		'category' => 'CodeLights',
 		'icon' => $cl_uri . '/admin/img/cl-counter.png',
@@ -43,7 +43,7 @@ return array(
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			'title_size' => array(
-				'title' => __( 'Title Font Size', 'codelights' ),
+				'title' => __( 'Title Font Size (px)', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '20',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -421,14 +421,14 @@ return array(
 				'title' => __( 'Animation Type', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
-					'melete' => __( 'Melete', 'codelights' ),
-					'soter' => __( 'Soter', 'codelights' ),
-					'phorcys' => __( 'Phorcys', 'codelights' ),
-					'aidos' => __( 'Aidos', 'codelights' ),
-					'caeros' => __( 'Caeros', 'codelights' ),
-					'hebe' => __( 'Hebe', 'codelights' ),
-					'aphelia' => __( 'Aphelia', 'codelights' ),
-					'nike' => __( 'Nike', 'codelights' ),
+					'melete' => 'Melete',
+					'soter' => 'Soter',
+					'phorcys' => 'Phorcys',
+					'aidos' => 'Aidos',
+					'caeros' => 'Caeros',
+					'hebe' => 'Hebe',
+					'aphelia' => 'Aphelia',
+					'nike' => 'Nike',
 				),
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
@@ -478,7 +478,7 @@ return array(
 				'group' => __( 'Design', 'codelights' ),
 			),
 			'align' => array(
-				'title' => __( 'Text Align', 'codelights' ),
+				'title' => __( 'Text Alignment', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					'left' => __( 'Left', 'codelights' ),
@@ -515,7 +515,7 @@ return array(
 			 * Typography
 			 */
 			'title_size' => array(
-				'title' => __( 'Title Size', 'codelights' ),
+				'title' => __( 'Title Font Size (px)', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '30px',
@@ -523,7 +523,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'desc_size' => array(
-				'title' => __( 'Description Size', 'codelights' ),
+				'title' => __( 'Description Font Size (px)', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '16px',
@@ -531,7 +531,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'title_mobile_size' => array(
-				'title' => __( 'Title Size for mobiles', 'codelights' ),
+				'title' => __( 'Title Font Size for Mobiles (px)', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '24px',
@@ -539,7 +539,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'desc_mobile_size' => array(
-				'title' => __( 'Description Size for mobiles', 'codelights' ),
+				'title' => __( 'Description Size for Mobiles (px)', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '16px',
@@ -611,7 +611,7 @@ return array(
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			'font_size_mobile' => array(
-				'title' => __( 'Font Size for mobiles', 'codelights' ),
+				'title' => __( 'Font Size for Mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '30px',
