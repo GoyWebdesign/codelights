@@ -84,10 +84,10 @@
   transform: rotateZ(45deg);
 }
 .cl-review.layout_balloon .cl-review-author {
-  padding-left: 30px;
+  padding: 20px 0 0 30px;
 }
 .cl-review.layout_balloon.with_avatar .cl-review-author {
-  padding: 20px 0 0 15px;
+  padding-left: 15px;
 }
 .cl-review.layout_framed {
   padding: 30px;
