@@ -64,15 +64,6 @@ if ( $layout == 'framed' ) {
 }
 $output .= '>';
 
-if ( $layout == 'modern' ) {
-	$output .= '<div class="cl-review-icon"';
-	$output .= cl_prepare_inline_css( array(
-			'background-color' => $bg_color,
-			'color' => $text_color,
-	) );
-	$output .= '></div>';
-}
-
 // Scanned document
 if ( $type == 'doc' ) {
 	if ( ! empty( $doc ) ) {
@@ -99,6 +90,14 @@ if ( ! empty( $quote ) ) {
 		$quote_inline_css['color'] = $text_color;
 	}
 	$output .= '<div class="cl-review-quote"' . cl_prepare_inline_css( $quote_inline_css ) . '>';
+	if ( $layout == 'modern' ) {
+		$output .= '<div class="cl-review-icon"';
+		$output .= cl_prepare_inline_css( array(
+			'background-color' => $bg_color,
+			'color' => $text_color,
+		) );
+		$output .= '></div>';
+	}
 	$output .= '<q class="cl-review-quote-text">';
 	$output .= $quote;
 	$output .= '</q></div>';
