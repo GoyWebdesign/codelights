@@ -12,7 +12,6 @@
 		line-height: 24px;
 		overflow: hidden;
 		padding-top: 15px;
-		text-decoration: none;
 		&-avatar {
 			display: block;
 			float: left;
@@ -30,7 +29,7 @@
 		&-occupation {
 			display: inline-block;
 			font-size: 0.9em;
-			color: #999;
+			opacity: 0.5;
 		}
 	}
 
@@ -95,6 +94,9 @@
 				background-color: inherit;
 				.transform(rotateZ(45deg));
 			}
+			&[style*="color:"] a {
+				color: inherit;
+			}
 		}
 		.cl-review-author {
 			padding: 20px 0 0 30px;
@@ -108,10 +110,7 @@
 	&.layout_framed {
 		padding: 30px;
 		background-color: #eee;
-	}
-	&.layout_framed[style*="color:"] {
-		.cl-review-author,
-		.cl-review-author-occupation {
+		&[style*="color:"] a {
 			color: inherit;
 		}
 	}

@@ -11,7 +11,6 @@
   line-height: 24px;
   overflow: hidden;
   padding-top: 15px;
-  text-decoration: none;
 }
 .cl-review-author-avatar {
   display: block;
@@ -30,7 +29,7 @@
 .cl-review-author-occupation {
   display: inline-block;
   font-size: 0.9em;
-  color: #999;
+  opacity: 0.5;
 }
 .cl-review.with_avatar .cl-review-author-name {
   display: block;
@@ -83,6 +82,9 @@
   -webkit-transform: rotateZ(45deg);
   transform: rotateZ(45deg);
 }
+.cl-review.layout_balloon .cl-review-quote-text[style*="color:"] a {
+  color: inherit;
+}
 .cl-review.layout_balloon .cl-review-author {
   padding: 20px 0 0 30px;
 }
@@ -93,8 +95,7 @@
   padding: 30px;
   background-color: #eee;
 }
-.cl-review.layout_framed[style*="color:"] .cl-review-author,
-.cl-review.layout_framed[style*="color:"] .cl-review-author-occupation {
+.cl-review.layout_framed[style*="color:"] a {
   color: inherit;
 }
 .cl-review.layout_centered {
