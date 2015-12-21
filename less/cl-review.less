@@ -2,9 +2,9 @@
 
 .cl-review {
 	margin-bottom: 30px;
-	&-quote-text {
+	&-quote-text q {
 		display: block;
-		font-size: 1.3em;
+		font-style: normal;
 		line-height: 1.5;
 	}
 	&-author {
@@ -12,6 +12,7 @@
 		line-height: 24px;
 		overflow: hidden;
 		padding-top: 15px;
+		text-decoration: none;
 		&-avatar {
 			display: block;
 			float: left;
@@ -43,18 +44,18 @@
 	}
 
 	&.quote_italic {
-		.cl-review-quote-text {
+		.cl-review-quote-text q {
 			font-style: italic;
 		}
 	}
 
 	// Layout: Clean
 	&.layout_clean {
-		& .cl-review-quote,
-		& .cl-review-author {
+		.cl-review-quote-text,
+		.cl-review-author {
 			padding-left: 26px;
 		}
-		& .cl-review-quote-text {
+		.cl-review-quote-text q {
 			quotes: none;
 			position: relative;
 			&:before {
@@ -64,23 +65,23 @@
 				position: absolute;
 				top: 0;
 				left: -25px;
-				opacity: 0.2;
+				opacity: 0.25;
 			}
 			&:after {
 				content: '\f10e';
 				font-family: fontawesome;
 				font-size: 18px;
 				margin-left: 7px;
-				opacity: 0.2;
+				opacity: 0.25;
 			}
 		}
 	}
 
 	// Layout: Balloon
 	&.layout_balloon {
-		.cl-review-quote {
+		.cl-review-quote-text {
 			position: relative;
-			padding: 25px 30px;
+			padding: 23px 30px 25px;
 			background-color: #eee;
 			border-radius: 5px;
 			&:after {
@@ -108,8 +109,14 @@
 
 	// Layout: Framed
 	&.layout_framed {
-		padding: 30px;
+		padding: 6%;
 		background-color: #eee;
+	}
+	&.layout_framed[style*="color:"] {
+		.cl-review-author,
+		.cl-review-author-occupation {
+			color: inherit;
+		}
 	}
 
 	// Layout: Centered
@@ -133,26 +140,30 @@
 
 	// Layout: modern
 	&.layout_modern {
-		padding-left: 100px;
-		position: relative;
-		.cl-review-icon:before {
-			content: '\f10d';
+		.cl-review-quote {
+			padding-left: 100px;
+			position: relative;
+		}
+		.cl-review-icon {
 			position: absolute;
 			top: 0;
 			left: 0;
-			font-size: 30px;
-			font-family: fontawesome;
 			text-align: center;
 			line-height: 80px;
+			height: 80px;
 			width: 80px;
 			border-radius: 50%;
-			background-color: inherit;
-			color: inherit;
+			background-color: #eee;
+			&:before {
+				content: '\f10d';
+				font-size: 30px;
+				font-family: fontawesome;
+			}
 		}
-		& .cl-review-quote-text {
+		.cl-review-quote-text q {
 			quotes: none;
 		}
-		& .cl-review-author-avatar {
+		.cl-review-author-avatar {
 			float: none;
 			position: absolute;
 			top: 0;
@@ -161,40 +172,23 @@
 			width: 80px;
 			margin: 0;
 		}
-		& .cl-review-author-name {
+		.cl-review-author-name {
 			display: inline;
 			margin-right: 8px;
 			padding: 0;
 		}
 	}
 
-	// Type: Doc / Video
-	&.type_doc,
-	&.type_video {
-		.cl-review-doc,
-		.cl-review-video {
+	// Type: Doc
+	&.type_doc {
+		.cl-review-doc {
 			float: left;
-			padding-left: 10px;
+			width: 47%;
+			cursor: zoom-in;
 		}
-		.cl-review-author,
 		.cl-review-quote {
 			float: right;
-		}
-		.cl-review-quote {
-			position: relative;
-			padding-left: 10px;
-			&:before {
-				content: '"';
-				display: block;
-				position: absolute;
-				left: 0;
-				font-size: 20px;
-			}
-			&:after {
-				content: '"';
-				display: inline;
-				font-size: 20px;
-			}
+			width: 47%;
 		}
 		&:after {
 			content: '';
@@ -203,30 +197,24 @@
 		}
 	}
 
-	// Type: Doc
-	&.type_doc {
-		.cl-review-doc {
-			width: 40%;
-			cursor: zoom-in;
-		}
-		.cl-review-author,
-		.cl-review-quote {
-			width: 60%;
-		}
-	}
-
 	// Type: Video
 	&.type_video {
 		.cl-review-video {
-			width: 50%;
+			float: left;
+			width: 47%;
 			iframe,
 			video {
 				height: auto !important;
 			}
 		}
-		.cl-review-author,
 		.cl-review-quote {
-			width: 50%;
+			float: right;
+			width: 47%;
+		}
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
 		}
 	}
 

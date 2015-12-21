@@ -81,6 +81,8 @@ if ( $type == 'video' ) {
 	$output .= '</div></div>';
 }
 
+$output .= '<div class="cl-review-quote">';
+
 if ( ! empty( $quote ) ) {
 	$quote_inline_css = array(
 		'font-size' => $quote_size,
@@ -89,7 +91,7 @@ if ( ! empty( $quote ) ) {
 		$quote_inline_css['background-color'] = $bg_color;
 		$quote_inline_css['color'] = $text_color;
 	}
-	$output .= '<div class="cl-review-quote"' . cl_prepare_inline_css( $quote_inline_css ) . '>';
+	$output .= '<div class="cl-review-quote-text"' . cl_prepare_inline_css( $quote_inline_css ) . '>';
 	if ( $layout == 'modern' ) {
 		$output .= '<div class="cl-review-icon"';
 		$output .= cl_prepare_inline_css( array(
@@ -98,7 +100,7 @@ if ( ! empty( $quote ) ) {
 		) );
 		$output .= '></div>';
 	}
-	$output .= '<q class="cl-review-quote-text">';
+	$output .= '<q>';
 	$output .= $quote;
 	$output .= '</q></div>';
 }
@@ -106,7 +108,6 @@ if ( ! empty( $quote ) ) {
 // Author block at the end
 $output .= $author_html;
 
-$output .= '</div>';
+$output .= '</div></div>';
 
 echo $output;
-
