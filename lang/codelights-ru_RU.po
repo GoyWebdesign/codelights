@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SiteOrigin Widgets by CodeLights\n"
-"POT-Creation-Date: 2015-12-18 19:06+0300\n"
-"PO-Revision-Date: 2015-12-18 19:07+0300\n"
+"POT-Creation-Date: 2015-12-21 18:56+0300\n"
+"PO-Revision-Date: 2015-12-21 18:59+0300\n"
 "Last-Translator: Ruslan Sukhar <rs@us-themes.com>\n"
-"Language-Team: Ruslan Sukhar <rs@us-themes.com>\n"
+"Language-Team: Ruslan Sukhar <rs@codelights.com>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,8 +66,8 @@ msgstr "В миллисекундах"
 #: config/elements.php:374 config/elements.php:380 config/elements.php:611
 #: config/elements.php:619 config/elements.php:625 config/elements.php:631
 #: config/elements.php:643 config/elements.php:660 config/elements.php:668
-#: config/elements.php:676 config/elements.php:682 config/elements.php:900
-#: config/elements.php:907 config/elements.php:913
+#: config/elements.php:676 config/elements.php:682 config/elements.php:939
+#: config/elements.php:946 config/elements.php:952
 msgid "Custom"
 msgstr "Другое"
 
@@ -89,12 +89,12 @@ msgid "Title Color"
 msgstr "Цвет заголовка"
 
 #: config/elements.php:65 config/elements.php:377 config/elements.php:509
-#: config/elements.php:679 config/elements.php:755 config/elements.php:916
+#: config/elements.php:679 config/elements.php:793 config/elements.php:955
 msgid "Extra class name"
 msgstr "Дополнительный CSS-класс"
 
 #: config/elements.php:66 config/elements.php:378 config/elements.php:510
-#: config/elements.php:680 config/elements.php:756 config/elements.php:917
+#: config/elements.php:680 config/elements.php:794 config/elements.php:956
 msgid ""
 "If you wish to style particular content element differently, then use this "
 "field to add a class name and then refer to it in your css file."
@@ -131,15 +131,15 @@ msgstr "Добавить ссылку к отдельной кнопке"
 msgid "Link URL"
 msgstr "URL ссылки"
 
-#: config/elements.php:98 config/elements.php:791
+#: config/elements.php:98 config/elements.php:830
 msgid "Button Label"
 msgstr "Надпись на кнопке"
 
-#: config/elements.php:104 config/elements.php:797
+#: config/elements.php:104 config/elements.php:836
 msgid "Button Background Color"
 msgstr "Цвет фона кнопки"
 
-#: config/elements.php:110 config/elements.php:803
+#: config/elements.php:110 config/elements.php:842
 msgid "Button Text Color"
 msgstr "Цвет текста кнопки"
 
@@ -176,7 +176,7 @@ msgid "Up-Right"
 msgstr "Наверх-направо"
 
 #: config/elements.php:132 config/elements.php:486 config/elements.php:639
-#: config/elements.php:827
+#: config/elements.php:866
 msgid "Right"
 msgstr "Направо"
 
@@ -193,7 +193,7 @@ msgid "Down-Left"
 msgstr "Вниз-налево"
 
 #: config/elements.php:136 config/elements.php:484 config/elements.php:637
-#: config/elements.php:825
+#: config/elements.php:864
 msgid "Left"
 msgstr "Налево"
 
@@ -300,11 +300,12 @@ msgid "Icon"
 msgstr "Иконка"
 
 #: config/elements.php:260 config/elements.php:307 config/elements.php:451
+#: config/elements.php:756
 msgid "Background Color"
 msgstr "Цвет фона"
 
 #: config/elements.php:265 config/elements.php:312 config/elements.php:458
-#: config/elements.php:816
+#: config/elements.php:762 config/elements.php:855
 msgid "Text Color"
 msgstr "Цвет текста"
 
@@ -338,15 +339,15 @@ msgstr "Оставьте пустым, чтобы использовать фр�
 msgid "Center-Align Content Vertically"
 msgstr "Центрировать контент по высоте"
 
-#: config/elements.php:349 config/elements.php:903
+#: config/elements.php:349 config/elements.php:942
 msgid "Border Radius"
 msgstr "Радиус рамки"
 
-#: config/elements.php:356 config/elements.php:897
+#: config/elements.php:356 config/elements.php:936
 msgid "Border Width"
 msgstr "Ширина рамки"
 
-#: config/elements.php:363 config/elements.php:910
+#: config/elements.php:363 config/elements.php:949
 msgid "Border Color"
 msgstr "Цвет рамки"
 
@@ -396,7 +397,7 @@ msgstr "Портрет"
 msgid "Text Alignment"
 msgstr "Выравнивание текста"
 
-#: config/elements.php:485 config/elements.php:638 config/elements.php:826
+#: config/elements.php:485 config/elements.php:638 config/elements.php:865
 msgid "Center"
 msgstr "По центру"
 
@@ -493,7 +494,7 @@ msgstr "Тег"
 msgid "Animation Delay"
 msgstr "Задержка анимации"
 
-#: config/elements.php:672 config/elements.php:834
+#: config/elements.php:672 config/elements.php:873
 msgid "In seconds"
 msgstr "В секундах"
 
@@ -506,174 +507,188 @@ msgid "Testimonial about the product or service"
 msgstr "Отзыв о продукте или услуге"
 
 #: config/elements.php:697
+msgid "Quote Text"
+msgstr "Текст цитаты"
+
+#: config/elements.php:702
 msgid "Author Name"
 msgstr "Имя автора"
 
-#: config/elements.php:703
-msgid "Author Occupation"
-msgstr ""
+#: config/elements.php:708
+msgid "Author Description"
+msgstr "Описание автора"
 
-#: config/elements.php:709
-msgid "Author Avatar"
-msgstr ""
-
-#: config/elements.php:713
-msgid "Quote Layout"
-msgstr ""
-
-#: config/elements.php:716
-msgid "Horizontal"
-msgstr ""
-
-#: config/elements.php:717
-msgid "Speech Balloon"
-msgstr ""
-
-#: config/elements.php:718
-msgid "Framed"
-msgstr ""
+#: config/elements.php:714
+msgid "Author Photo"
+msgstr "Фото автора"
 
 #: config/elements.php:719
-msgid "Clean"
-msgstr ""
+msgid "Author Link"
+msgstr "Ссылка на автора"
 
-#: config/elements.php:720
-msgid "Centered"
-msgstr ""
+#: config/elements.php:724
+msgid "Review Type"
+msgstr "Тип отзыва"
 
-#: config/elements.php:721
-msgid "Modern"
-msgstr ""
-
-#: config/elements.php:725
-msgid "Testimonial Type"
-msgstr ""
+#: config/elements.php:727
+msgid "Quote Text Only"
+msgstr "Только цитата"
 
 #: config/elements.php:728
-msgid "Text Quote Only"
-msgstr ""
+msgid "With Scanned Document"
+msgstr "Со сканом документа"
 
 #: config/elements.php:729
-msgid "With Scanned Document"
-msgstr ""
-
-#: config/elements.php:730
 msgid "With Video"
-msgstr ""
+msgstr "С видео"
 
-#: config/elements.php:734
+#: config/elements.php:733
 msgid "Scanned Document"
-msgstr ""
+msgstr "Скан документа"
 
-#: config/elements.php:739
+#: config/elements.php:738
 msgid "Video URL to Embed"
-msgstr ""
+msgstr "URL видео для вставки"
 
-#: config/elements.php:745
-msgid "Quote"
-msgstr ""
+#: config/elements.php:744
+msgid "Quote Style"
+msgstr "Стиль цитаты"
+
+#: config/elements.php:747
+msgid "Clean"
+msgstr "Чистый"
+
+#: config/elements.php:748
+msgid "Centered"
+msgstr "Центрированный"
+
+#: config/elements.php:749
+msgid "Speech Balloon"
+msgstr "Пузырек цитаты"
 
 #: config/elements.php:750
-msgid "Quote Source"
-msgstr ""
+msgid "Framed"
+msgstr "В рамке"
 
-#: config/elements.php:762
+#: config/elements.php:751
+msgid "Modern"
+msgstr "Современный"
+
+#: config/elements.php:753 config/elements.php:758 config/elements.php:764
+#: config/elements.php:773 config/elements.php:781 config/elements.php:790
+#: config/elements.php:796
+msgid "Style"
+msgstr "Стиль"
+
+#: config/elements.php:768
+msgid "Quote Text Size"
+msgstr "Размер текста цитаты"
+
+#: config/elements.php:776
+msgid "Author Text Size"
+msgstr "Размер текста автора"
+
+#: config/elements.php:787
+msgid "Make Quote Text italic"
+msgstr "Выводить цитату курсивом"
+
+#: config/elements.php:801
 msgid "Modal Popup"
 msgstr ""
 
-#: config/elements.php:763
+#: config/elements.php:802
 msgid "Dialog box displayed on the top of page content"
 msgstr ""
 
-#: config/elements.php:769
+#: config/elements.php:808
 msgid "Modal Box Title"
 msgstr ""
 
-#: config/elements.php:774
+#: config/elements.php:813
 msgid "Modal Box Content"
 msgstr ""
 
-#: config/elements.php:779
+#: config/elements.php:818
 msgid "Show Modal On"
 msgstr ""
 
-#: config/elements.php:782
+#: config/elements.php:821
 msgid "Button Click"
 msgstr ""
 
-#: config/elements.php:783
+#: config/elements.php:822
 msgid "Image Click"
 msgstr ""
 
-#: config/elements.php:784
+#: config/elements.php:823
 msgid "Text Click"
 msgstr ""
 
-#: config/elements.php:785
+#: config/elements.php:824
 msgid "Page Load"
 msgstr ""
 
-#: config/elements.php:786
+#: config/elements.php:825
 msgid "User Leaving"
 msgstr ""
 
-#: config/elements.php:809
+#: config/elements.php:848
 msgid "Text Label"
 msgstr ""
 
-#: config/elements.php:822
+#: config/elements.php:861
 msgid "Button / Image / Text Alignment"
 msgstr ""
 
-#: config/elements.php:833
+#: config/elements.php:872
 msgid "Modal Box Show Delay"
 msgstr ""
 
-#: config/elements.php:839
+#: config/elements.php:878
 msgid "Modal Box Size"
 msgstr ""
 
-#: config/elements.php:842
+#: config/elements.php:881
 msgid "Small"
 msgstr ""
 
-#: config/elements.php:843 functions/helpers.php:357
+#: config/elements.php:882 functions/helpers.php:358
 msgid "Medium"
 msgstr ""
 
-#: config/elements.php:844 functions/helpers.php:356
+#: config/elements.php:883 functions/helpers.php:357
 msgid "Large"
 msgstr ""
 
-#: config/elements.php:845
+#: config/elements.php:884
 msgid "Fullscreen"
 msgstr ""
 
-#: config/elements.php:849
+#: config/elements.php:888
 msgid "Transitions Animation"
 msgstr ""
 
-#: config/elements.php:865
+#: config/elements.php:904
 msgid "Overlay Background Color"
 msgstr ""
 
-#: config/elements.php:871
+#: config/elements.php:910
 msgid "Overlay Opacity in Percents"
 msgstr ""
 
-#: config/elements.php:877
+#: config/elements.php:916
 msgid "Header Background Color"
 msgstr ""
 
-#: config/elements.php:882
+#: config/elements.php:921
 msgid "Header Text Color"
 msgstr ""
 
-#: config/elements.php:887
+#: config/elements.php:926
 msgid "Content Background Color"
 msgstr ""
 
-#: config/elements.php:892
+#: config/elements.php:931
 msgid "Content Text Color"
 msgstr ""
 
@@ -683,78 +698,81 @@ msgstr ""
 
 #: functions/class-cl-widget.php:24
 msgid "Widget Title"
-msgstr ""
-
-#: functions/helpers.php:358
-msgid "Thumbnail"
-msgstr ""
+msgstr "Заголовок виджета"
 
 #: functions/helpers.php:359
+msgid "Thumbnail"
+msgstr "Миниатюра"
+
+#: functions/helpers.php:360
 msgid "Full Size"
-msgstr ""
+msgstr "Полный размер"
 
-#: functions/helpers.php:366 functions/helpers.php:368
+#: functions/helpers.php:367 functions/helpers.php:369
 msgid "Any"
-msgstr ""
+msgstr "Любой"
 
-#: functions/helpers.php:369
+#: functions/helpers.php:370
 msgid "cropped"
-msgstr ""
+msgstr "обрезанный"
 
-#: functions/helpers.php:369
+#: functions/helpers.php:370
 msgid "not cropped"
-msgstr ""
+msgstr "не обрезанный"
 
 #: templates/ebuilder.php:20
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: templates/ebuilder.php:21
 msgid "Save changes"
-msgstr ""
+msgstr "Сохранить изменения"
 
 #: templates/eform/checkboxes.php:12
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: templates/eform/eform.php:39
 msgid "General"
-msgstr ""
+msgstr "Основное"
 
 #: templates/eform/images.php:25
 msgid "Add images"
-msgstr ""
+msgstr "Добавить изображения"
 
 #: templates/eform/images.php:25
 msgid "Add image"
-msgstr ""
+msgstr "Добавить изображение"
 
 #: templates/eform/link.php:24
 msgid "Insert link"
-msgstr ""
+msgstr "Вставить ссылку"
 
 #: templates/elist.php:11
 msgid "Insert shortcode"
-msgstr ""
+msgstr "Вставить шорткод"
 
 #. Plugin Name of the plugin/theme
 msgid "SiteOrigin Widgets by CodeLights"
-msgstr ""
+msgstr "Виджеты SiteOrigin от CodeLights"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "http://codelights.com/"
-msgstr ""
+msgstr "http://codelights.com/"
 
 #. Description of the plugin/theme
 msgid ""
 "Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized "
 "and easy-to-use. Also can work without SiteOrigin."
 msgstr ""
+"Гибкие высококачественные шорткоды и виджеты. Адаптивные, современные, "
+"оптимизированные для поисковых систем и простые в использовании. Также "
+"могут работать без SiteOrigin."
 
 #. Author of the plugin/theme
 msgid "CodeLights"
-msgstr ""
+msgstr "CodeLights"
 
 #~ msgid "Text Align"
 #~ msgstr "Выравнивание текста"
