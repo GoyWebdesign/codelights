@@ -178,39 +178,56 @@
 	// Type: Doc
 	&.type_doc {
 		.cl-review-doc {
-			float: left;
-			width: 47%;
+			display: block;
 			cursor: zoom-in;
+			margin-bottom: 15px;
+			img {
+				display: block;
+			}
 		}
-		.cl-review-quote {
-			float: right;
-			width: 47%;
-		}
-		&:after {
-			content: '';
-			display: table;
-			clear: both;
+		@media (min-width: 600px) {
+			.cl-review-doc {
+				float: left;
+				width: 47%;
+				margin-bottom: 0;
+			}
+			.cl-review-quote {
+				float: right;
+				width: 47%;
+			}
+			&:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
 		}
 	}
 
 	// Type: Video
 	&.type_video {
 		.cl-review-video {
-			float: left;
-			width: 47%;
+			margin-bottom: 15px;
 			iframe,
 			video {
+				display: block;
 				height: auto !important;
 			}
 		}
-		.cl-review-quote {
-			float: right;
-			width: 47%;
-		}
-		&:after {
-			content: '';
-			display: table;
-			clear: both;
+		@media (min-width: 600px) {
+			.cl-review-video {
+				float: left;
+				width: 47%;
+				margin-bottom: 0;
+			}
+			.cl-review-quote {
+				float: right;
+				width: 47%;
+			}
+			&:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
 		}
 	}
 

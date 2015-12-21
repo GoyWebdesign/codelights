@@ -152,33 +152,50 @@
   padding: 0;
 }
 .cl-review.type_doc .cl-review-doc {
-  float: left;
-  width: 47%;
+  display: block;
   cursor: zoom-in;
+  margin-bottom: 15px;
 }
-.cl-review.type_doc .cl-review-quote {
-  float: right;
-  width: 47%;
+.cl-review.type_doc .cl-review-doc img {
+  display: block;
 }
-.cl-review.type_doc:after {
-  content: '';
-  display: table;
-  clear: both;
+@media (min-width: 600px) {
+  .cl-review.type_doc .cl-review-doc {
+    float: left;
+    width: 47%;
+    margin-bottom: 0;
+  }
+  .cl-review.type_doc .cl-review-quote {
+    float: right;
+    width: 47%;
+  }
+  .cl-review.type_doc:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 .cl-review.type_video .cl-review-video {
-  float: left;
-  width: 47%;
+  margin-bottom: 15px;
 }
 .cl-review.type_video .cl-review-video iframe,
 .cl-review.type_video .cl-review-video video {
+  display: block;
   height: auto !important;
 }
-.cl-review.type_video .cl-review-quote {
-  float: right;
-  width: 47%;
-}
-.cl-review.type_video:after {
-  content: '';
-  display: table;
-  clear: both;
+@media (min-width: 600px) {
+  .cl-review.type_video .cl-review-video {
+    float: left;
+    width: 47%;
+    margin-bottom: 0;
+  }
+  .cl-review.type_video .cl-review-quote {
+    float: right;
+    width: 47%;
+  }
+  .cl-review.type_video:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
