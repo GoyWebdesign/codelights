@@ -13,7 +13,7 @@ Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and 
 
 [vimeo https://vimeo.com/146383727]
 
-### Four Built-in Elements
+### Five Built-in Elements
 
 #### 1. Stats Counter
 
@@ -77,6 +77,8 @@ A great tool to share your current Clients' experience with your new visitors, a
 1. **3 testimonial types**: Quote, Scanned document and Video.
 1. **6 quote layouts** for text testimonials.
 1. You can specify the quote source for even better credibility.
+
+> **[Review Showcase and Examples](http://codelights.com/elements/review/ "Review Showcase and Examples")**
 
 **... and more elements are coming!**
 
