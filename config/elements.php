@@ -768,7 +768,7 @@ return array(
 				'title' => __( 'Quote Text Size', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
-				'std' => '20px',
+				'std' => '18px',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Style', 'codelights' ),
 			),
