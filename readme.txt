@@ -3,7 +3,7 @@ Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,13 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+
+= 1.0.8 =
+* New: Added the new Review element
+* New: The plugin now is fully translatable
+* New: Added Russian localization (ru_RU)
+* Fixed: Interactive text Safari transition fix
+* Fixed: FlipBox text styles now less likely to be overloaded by theme styles
 
 = 1.0.7 =
 * Fixed: Urgent fix for some experimental 3-rd party editors support.
