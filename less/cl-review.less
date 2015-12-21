@@ -1,7 +1,9 @@
 @import "prefixer.less";
 
 .cl-review {
-	margin-bottom: 30px;
+	& + .cl-review {
+		margin-top: 30px;
+	}
 	&-quote-text q {
 		display: block;
 		font-style: normal;

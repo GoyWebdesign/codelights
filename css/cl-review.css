@@ -1,5 +1,5 @@
-.cl-review {
-  margin-bottom: 30px;
+.cl-review + .cl-review {
+  margin-top: 30px;
 }
 .cl-review-quote-text q {
   display: block;
