@@ -5,7 +5,6 @@
   display: block;
   font-size: 1.3em;
   line-height: 1.5;
-  font-style: italic;
 }
 .cl-review-author {
   display: block;
@@ -37,6 +36,9 @@
   display: block;
   padding-top: 6px;
   margin: 0;
+}
+.cl-review.quote_italic .cl-review-quote-text {
+  font-style: italic;
 }
 .cl-review.layout_clean .cl-review-quote,
 .cl-review.layout_clean .cl-review-author {
@@ -111,7 +113,7 @@
   padding-left: 100px;
   position: relative;
 }
-.cl-review.layout_modern:before {
+.cl-review.layout_modern .cl-review-icon:before {
   content: '\f10d';
   position: absolute;
   top: 0;
@@ -122,7 +124,8 @@
   line-height: 80px;
   width: 80px;
   border-radius: 50%;
-  background-color: #eee;
+  background-color: inherit;
+  color: inherit;
 }
 .cl-review.layout_modern .cl-review-quote-text {
   quotes: none;

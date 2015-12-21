@@ -6,8 +6,7 @@
 		display: block;
 		font-size: 1.3em;
 		line-height: 1.5;
-		font-style: italic;
-		}
+	}
 	&-author {
 		display: block;
 		line-height: 24px;
@@ -34,12 +33,18 @@
 			color: #999;
 		}
 	}
-	
+
 	&.with_avatar {
 		.cl-review-author-name {
 			display: block;
 			padding-top: 6px;
 			margin: 0;
+		}
+	}
+
+	&.quote_italic {
+		.cl-review-quote-text {
+			font-style: italic;
 		}
 	}
 
@@ -70,7 +75,7 @@
 			}
 		}
 	}
-	
+
 	// Layout: Balloon
 	&.layout_balloon {
 		.cl-review-quote {
@@ -130,7 +135,7 @@
 	&.layout_modern {
 		padding-left: 100px;
 		position: relative;
-		&:before {
+		.cl-review-icon:before {
 			content: '\f10d';
 			position: absolute;
 			top: 0;
@@ -141,7 +146,8 @@
 			line-height: 80px;
 			width: 80px;
 			border-radius: 50%;
-			background-color: #eee;
+			background-color: inherit;
+			color: inherit;
 		}
 		& .cl-review-quote-text {
 			quotes: none;
