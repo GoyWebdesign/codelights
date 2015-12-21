@@ -43,11 +43,11 @@ if ( ! empty( $avatar_image ) AND ( $avatar_image_src = wp_get_attachment_image_
 if ( ! empty( $author ) ) {
 	$author_html .= '<span class="cl-review-author-name">' . $author . '</span>';
 }
-if ( ! empty( $occupation ) ) {
-	$author_html .= '<span class="cl-review-author-occupation">' . $occupation . '</span>';
-}
 if ( ! empty( $source ) ) {
 	$author_html .= '</a>';
+}
+if ( ! empty( $occupation ) ) {
+	$author_html .= '<span class="cl-review-author-occupation">' . $occupation . '</span>';
 }
 $author_html .= '</div>';
 
