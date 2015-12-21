@@ -91,7 +91,7 @@
   padding: 20px 0 0 15px;
 }
 .cl-review.layout_framed {
-  padding: 6%;
+  padding: 30px;
   background-color: #eee;
 }
 .cl-review.layout_framed[style*="color:"] .cl-review-author,
