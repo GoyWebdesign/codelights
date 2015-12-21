@@ -28,20 +28,17 @@ if ( $italic ) {
 }
 
 // Preparing the author block
-$author_tag = 'div';
-$author_atts = '';
-if ( $type == 'quote' AND ! empty( $source ) ) {
-	$author_tag = 'a';
-	$author_atts .= cl_parse_link_value( $source, TRUE );
-}
-$author_html = '<' . $author_tag . ' class="cl-review-author"' . $author_atts;
+$author_html = '<div class="cl-review-author"';
 $author_html .= cl_prepare_inline_css( array(
 	'font-size' => $author_size,
 ) );
 $author_html .= '>';
+if ( ! empty( $source ) ) {
+	$author_html .= '<a' . cl_parse_link_value( $source, TRUE ) . '>';
+}
 if ( ! empty( $avatar_image ) AND ( $avatar_image_src = wp_get_attachment_image_src( $avatar_image, 'thumbnail' ) ) ) {
-	$author_html .= '<span class="cl-review-author-avatar" style="background-image: url(' . $avatar_image_src[0] . ')"></span>';
 	$classes .= ' with_avatar';
+	$author_html .= '<span class="cl-review-author-avatar" style="background-image: url(' . $avatar_image_src[0] . ')"></span>';
 }
 if ( ! empty( $author ) ) {
 	$author_html .= '<span class="cl-review-author-name">' . $author . '</span>';
@@ -49,7 +46,10 @@ if ( ! empty( $author ) ) {
 if ( ! empty( $occupation ) ) {
 	$author_html .= '<span class="cl-review-author-occupation">' . $occupation . '</span>';
 }
-$author_html .= '</' . $author_tag . '>';
+if ( ! empty( $source ) ) {
+	$author_html .= '</a>';
+}
+$author_html .= '</div>';
 
 if ( ! empty( $el_class ) ) {
 	$classes .= ' ' . $el_class;
