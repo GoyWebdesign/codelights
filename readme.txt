@@ -68,15 +68,15 @@ Element powered by great CSS animations, can be used to attend visitors to the n
 
 > **[Interactive Banner Showcase and Examples](http://codelights.com/elements/ib/ "Interactive Banner Showcase and Examples")**
 
-#### 5. Review
+#### 5. Testimonial
 
 A great tool to share your current Clients' experience with your new visitors, and to emphasize your credibility one more time.
 
 **Special Features:**
 
 1. **3 testimonial types**: Quote, Scanned document and Video.
-1. **6 quote layouts** for text testimonials.
-1. You can specify the quote source for even better credibility.
+1. **5 quote layouts**.
+1. You can specify the author source for even better credibility.
 
 > **[Review Showcase and Examples](http://codelights.com/elements/review/ "Review Showcase and Examples")**
 
@@ -126,6 +126,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+
+= 1.0.9 =
+* Updated: Font Awesome to the latest 4.5.0 version
 
 = 1.0.8 =
 * New: Added the new Review element

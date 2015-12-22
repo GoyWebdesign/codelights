@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Needed assets, used by cl_enqueue_assets function.
+ * Needed assets, used by us_enqueue_assets function.
  *
  * Dev note: the same keys for styles and scripts should stand for the same element, as they are loaded together.
  */
@@ -15,7 +15,7 @@ return array(
 	 * $handle => array( $src, $deps, $ver, $media )
 	 */
 	'styles' => array(
-		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/font-awesome.min.css', array(), '4.4.0', 'all' ),
+		'font-awesome' => array( $cl_uri . '/vendor/font-awesome/font-awesome.min.css', array(), '4.5.0', 'all' ),
 		'cl-core' => array( $cl_uri . '/css/cl-core.css', array(), $cl_version, 'all' ),
 		'cl-counter' => array( $cl_uri . '/css/cl-counter.css', array( 'cl-core' ), $cl_version, 'all' ),
 		'cl-flipbox' => array( $cl_uri . '/css/cl-flipbox.css', array( 'cl-core' ), $cl_version, 'all' ),
