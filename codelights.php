@@ -41,6 +41,17 @@ if ( is_admin() AND isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3
 	require $cl_dir . '/functions/ajax.php';
 }
 
+add_action( 'wp_enqueue_scripts', 'cl_register_assets', 8 );
+function cl_register_assets() {
+	// Registering styles
+	foreach ( array( 'style', 'script' ) as $type ) {
+		foreach ( cl_config( 'assets.' . $type . 's', array() ) as $handle => $params ) {
+			array_unshift( $params, $handle );
+			call_user_func_array( 'wp_register_' . $type, $params );
+		}
+	}
+}
+
 // Load admin scripts and styles
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
 function cl_admin_enqueue_scripts() {

@@ -24,6 +24,10 @@
  * @var $title_tag string Title tag name: 'h2' / 'h3' / 'h4' / 'h5' / 'div'
  */
 
+// Enqueuing the needed assets
+cl_enqueue_style( 'cl-ib' );
+cl_enqueue_script( 'cl-ib' );
+
 // Main element classes
 $classes = ' animation_' . $animation . ' ratio_' . $ratio . ' align_' . $align;
 

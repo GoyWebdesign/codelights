@@ -12,8 +12,6 @@ function cl_register_shortcodes() {
 }
 
 function cl_handle_shortcode( $atts, $content, $shortcode ) {
-	// Enqueuing the required assets
-	cl_enqueue_assets( $shortcode );
 	$atts = cl_shortcode_atts( $atts, $shortcode );
 
 	$atts['content'] = $content;

@@ -15,6 +15,10 @@
  * @var $el_class string Extra class name
  */
 
+// Enqueuing the needed assets
+cl_enqueue_style( 'cl-counter' );
+cl_enqueue_script( 'cl-counter' );
+
 // Element classes and attributes
 $classes = '';
 $atts = '';

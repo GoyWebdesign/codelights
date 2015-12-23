@@ -70,7 +70,6 @@ class CL_Widget extends WP_Widget {
 		if ( isset( $instance['_widget_title'] ) AND ! empty( $instance['_widget_title'] ) ) {
 			echo $args['before_title'] . $instance['_widget_title'] . $args['after_title'];
 		}
-		cl_enqueue_assets( $this->id_base );
 		$instance = cl_shortcode_atts( $instance, $this->id_base );
 		cl_load_template( 'elements/' . $this->id_base, $instance );
 		echo $args['after_widget'];

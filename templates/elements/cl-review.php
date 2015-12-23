@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Output a single Review element.
+ * Output a single Testimonial element.
  *
  * @var $quote string Multiline quote
  * @var $author string Author name
@@ -19,6 +19,9 @@
  * @var $italic bool Make quote text italic
  * @var $el_class string Extra class name
  */
+
+// Enqueuing the needed assets
+cl_enqueue_style( 'cl-modal' );
 
 // Main element classes
 $classes = ' type_' . $type . ' layout_' . $layout;

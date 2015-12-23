@@ -190,6 +190,60 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	};
 
 	/**
+	 * $cl.Field type: html
+	 */
+	$cl.Field['html'] = {
+		init: function(){
+			if (window.tinyMCEPreInit === undefined) {
+				setTimeout(this.init, 500);
+				return;
+			}
+			var id = this.$input.attr('id');
+			if (id.indexOf('__i__') != -1) return;
+			this.$container = this.$row.find('.cl-wysiwyg');
+			var curEd = tinymce.get(id);
+			var content;
+			if (curEd != null) {
+				content = curEd.getContent();
+				curEd.remove();
+			}
+			this.mceSettings = this.$container[0].onclick() || {};
+			$.extend(this.mceSettings, {
+				selector: '#' + id,
+				setup: function(editor){
+					editor.on('change', function(){
+						tinymce.get(id).save();
+						this.$input.trigger('change');
+						this.$input.val(window.switchEditors.pre_wpautop(editor.getContent()));
+					}.bind(this));
+					editor.on('init', function(){
+						if (content) editor.setContent(content);
+					});
+					this.$input.on('keyup', function(){
+						editor.setContent(window.switchEditors.wpautop(this.$input.val()));
+					}.bind(this));
+					this.editor = editor;
+				}.bind(this)
+			});
+			tinyMCEPreInit.mceInit[id] = this.mceSettings;
+			tinymce.init(tinyMCEPreInit.mceInit[id]);
+			// Quick Tags
+			tinyMCEPreInit.qtInit[id] = {id: id};
+			this.$container.find('.quicktags-toolbar').remove();
+			quicktags(tinyMCEPreInit.qtInit[id]);
+			/*this.$container.on('click', '.wp-switch-editor', function(event){
+			}.bind(this));*/
+			QTags._buttonsInit();
+		},
+
+		render: function(){
+			if (this.editor === undefined) return;
+			var value = this.getValue();
+			this.editor.setContent(value);
+		}
+	};
+
+	/**
 	 * $cl.Field type: images
 	 */
 	$cl.Field['images'] = {

@@ -8,8 +8,8 @@
  * @var $value string Current value
  */
 
-wp_enqueue_script( 'wp-color-picker' );
-wp_enqueue_style( 'wp-color-picker' );
+cl_enqueue_script( 'wp-color-picker' );
+cl_enqueue_style( 'wp-color-picker' );
 
 $output = '<input id="' . esc_attr( $id ) . '" type="text" data-default-color="' . esc_attr( $value ) . '" name="' . esc_attr( $name ) . '" class="cl-color-picker" value="' . esc_attr( $value ) . '"/>';
 

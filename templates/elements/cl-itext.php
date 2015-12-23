@@ -5,7 +5,7 @@
  *
  * @var $texts string newline-separated text states
  * @var $dynamic_bold bool Bold dynamic text?
- * @var $animation_type string Animation type: 'replace' / 'terminal' / 'shortest'
+ * @var $animation_type string Animation type: 'fadeIn' / 'flipInX' / 'flipInXChars' / 'zoomIn' / 'zoomInChars'
  * @var $font_size int Font size in pixels
  * @var $font_size_mobile int Font size for mobiles in pixels
  * @var $color string Basic text color
@@ -16,6 +16,10 @@
  * @var $delay string Animation delay in seconds
  * @var $el_class string Extra class name
  */
+
+// Enqueuing the needed assets
+cl_enqueue_style( 'cl-itext' );
+cl_enqueue_script( 'cl-itext' );
 
 // Main element classes, inner css and additional attributes
 $classes = ' type_' . $animation_type . ' align_' . $align;

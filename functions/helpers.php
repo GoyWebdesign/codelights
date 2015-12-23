@@ -13,7 +13,7 @@ function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'lang'
 		return TRUE;
 	}
 	global $cl_dir;
-	
+
 	return load_plugin_textdomain( $domain, FALSE, basename( $cl_dir ) . '/' . $path );
 }
 
@@ -90,87 +90,21 @@ function cl_get_template( $template, $vars = NULL ) {
 }
 
 /**
- * Make sure the styles and scripts needed for the element (and their dependencies) are loaded and enqueued for the current page
+ * Bulletproof style enqueue. Works on frontend, admin and ajax [sic] calls
  *
- * @param string $handle Style and/or script key
- *
- * @return bool Successfully?
+ * @param string $handle Name of the stylesheet.
  */
-function cl_enqueue_assets( $handle ) {
-
-	global $cl_enqueued_handles;
-
-	if ( ! isset( $cl_enqueued_handles ) ) {
-		$cl_enqueued_handles = array();
-	}
-
-	if ( in_array( $handle, $cl_enqueued_handles ) ) {
-		// Won't do excess actions for the already enqueued assets
-		return TRUE;
-	}
-
-	$types = array( 'style', 'script' );
-
-	// List of type => config params for the current handle
-	$assets = array();
-	// The list of needed dependencies
-	$deps = array();
-	foreach ( $types as $type ) {
-		// Getting the needed config from config/assets.php. May be changed via 'cl_config_assets' filter, if needed.
-		$config = cl_config( 'assets.' . $type . 's.' . $handle );
-		if ( is_array( $config ) AND ! empty( $config ) ) {
-			$assets[ $type ] = $config;
-			$deps += ( isset( $config[1] ) AND is_array( $config[1] ) ) ? $config[1] : array();
-		}
-	}
-
-	if ( empty( $assets ) ) {
-		// There are no valid assets for the current key
-		return FALSE;
-	}
-
-	// First getting and loading the list of the needed element dependencies
-	if ( ! empty( $deps ) ) {
-		$deps = array_unique( $deps );
-		// Keeping only the ones that are not enqueued yet
-		$deps = array_diff( $deps, $cl_enqueued_handles );
-		// Keeping only the ones that are located within the plugin
-		$inner_assets = array();
-		foreach ( $types as $type ) {
-			$inner_assets += array_keys( cl_config( 'assets.' . $type . 's' ) );
-		}
-		$deps = array_intersect( $deps, $inner_assets );
-		// Enqueuing all the needed dependencies before the actual handle
-		array_map( 'cl_enqueue_assets', $deps );
-	}
-
-	foreach ( $assets as $type => $config ) {
-		array_unshift( $config, $handle );
-		// If this function is called too late (after wp_head), we still include the asset in a wrong way just to provide fallback tolerance
-		$action = ( did_action( 'wp_enqueue_scripts' ) > 0 ) ? 'enqueue' : 'register';
-		call_user_func_array( 'wp_' . $action . '_' . $type, $config );
-	}
-
-	$cl_enqueued_handles[] = $handle;
-
-	return TRUE;
+function cl_enqueue_style( $handle ) {
+	wp_enqueue_style( $handle );
 }
 
-add_action( 'wp_enqueue_scripts', 'cl_wp_enqueue_scripts', 20 );
-function cl_wp_enqueue_scripts() {
-
-	global $cl_enqueued_handles;
-
-	$cl_enqueued_handles = isset( $cl_enqueued_handles ) ? $cl_enqueued_handles : array();
-
-	foreach ( $cl_enqueued_handles as $handle ) {
-		if ( wp_style_is( $handle, 'registered' ) ) {
-			wp_enqueue_style( $handle );
-		}
-		if ( wp_script_is( $handle, 'registered' ) ) {
-			wp_enqueue_script( $handle );
-		}
-	}
+/**
+ * Enqueue a script. Works with AJAX as well.
+ *
+ * @param string $handle Name of the script.
+ */
+function cl_enqueue_script( $handle ) {
+	wp_enqueue_script( $handle );
 }
 
 /**
