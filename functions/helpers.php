@@ -90,24 +90,6 @@ function cl_get_template( $template, $vars = NULL ) {
 }
 
 /**
- * Bulletproof style enqueue. Works on frontend, admin and ajax [sic] calls
- *
- * @param string $handle Name of the stylesheet.
- */
-function cl_enqueue_style( $handle ) {
-	wp_enqueue_style( $handle );
-}
-
-/**
- * Enqueue a script. Works with AJAX as well.
- *
- * @param string $handle Name of the script.
- */
-function cl_enqueue_script( $handle ) {
-	wp_enqueue_script( $handle );
-}
-
-/**
  * Combine user attributes with config-based attributes and fill in defaults when needed.
  *
  * @param array $atts User attributes
@@ -175,6 +157,25 @@ function cl_parse_link_value( $value, $as_string = FALSE ) {
 	}
 
 	return $result;
+}
+
+/**
+ * Load WordPress TinyMCE wysiwyg editor configuration
+ * The configration will be available in JavaScript: tinyMCEPreInit.mceInit['codelights']
+ */
+function cl_maybe_load_wysiwyg() {
+	global $cl_html_editor_loaded;
+	if ( ! isset( $cl_html_editor_loaded ) OR ! $cl_html_editor_loaded ) {
+		if ( ! class_exists( '_WP_Editors' ) ) {
+			require( ABSPATH . WPINC . '/class-wp-editor.php' );
+		}
+		_WP_Editors::editor_settings( 'codelights', _WP_Editors::parse_settings( 'content', array(
+			'dfw' => TRUE,
+			'tabfocus_elements' => 'insert-media-button',
+			'editor_height' => 360,
+		) ) );
+		$cl_html_editor_loaded = TRUE;
+	}
 }
 
 /**
@@ -360,22 +361,6 @@ function cl_rgb_to_hex( $rgb ) {
  */
 function cl_array_to_data_js( $data ) {
 	return str_replace( '"', '&quot;', json_encode( $data ) );
-}
-
-function cl_maybe_load_html_editor() {
-	global $cl_html_editor_loaded;
-	if ( ! isset( $cl_html_editor_loaded ) OR ! $cl_html_editor_loaded ) {
-		if ( ! class_exists( '_WP_Editors' ) ) {
-			require( ABSPATH . WPINC . '/class-wp-editor.php' );
-		}
-		$settings = _WP_Editors::parse_settings( 'codelights', array(
-			'dfw' => TRUE,
-			'tabfocus_elements' => 'insert-media-button',
-			'editor_height' => 360,
-		) );
-		_WP_Editors::editor_settings( 'codelights', $settings );
-		$cl_html_editor_loaded = TRUE;
-	}
 }
 
 /**

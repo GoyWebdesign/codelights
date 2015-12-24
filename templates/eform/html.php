@@ -8,12 +8,15 @@
  * @var $value string Current value
  */
 
+// We'll need 'codelights' JS configuration to init tinymce from JS
+cl_maybe_load_wysiwyg();
+
 $tinymce_settings = array(
 	'textarea_name' => $name,
 	'default_editor' => 'tinymce',
 	'media_buttons' => FALSE,
 	'wpautop' => FALSE,
-	'editor_height' => 360,
+	'editor_height' => 250,
 	'tinymce' => array(
 		'wp_skip_init' => TRUE,
 	),

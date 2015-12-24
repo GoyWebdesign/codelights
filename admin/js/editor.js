@@ -208,7 +208,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				curEd.remove();
 			}
 			this.mceSettings = this.$container[0].onclick() || {};
-			$.extend(this.mceSettings, {
+			tinyMCEPreInit.mceInit[id] = $.extend(tinyMCEPreInit.mceInit['codelights'] || {}, this.mceSettings, {
 				selector: '#' + id,
 				setup: function(editor){
 					editor.on('change', function(){
@@ -225,14 +225,13 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 					this.editor = editor;
 				}.bind(this)
 			});
-			tinyMCEPreInit.mceInit[id] = this.mceSettings;
 			tinymce.init(tinyMCEPreInit.mceInit[id]);
 			// Quick Tags
 			tinyMCEPreInit.qtInit[id] = {id: id};
 			this.$container.find('.quicktags-toolbar').remove();
 			quicktags(tinyMCEPreInit.qtInit[id]);
 			/*this.$container.on('click', '.wp-switch-editor', function(event){
-			}.bind(this));*/
+			 }.bind(this));*/
 			QTags._buttonsInit();
 		},
 
@@ -699,6 +698,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 					},
 					success: function(html){
 						if (html == '') return;
+						html = $cl.fn.enqueueAssets(html);
 						this.$container = $(html).css('display', 'none').appendTo($(document.body));
 						this.init();
 						this.show(name, values);
@@ -774,16 +774,16 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 * @param {String} name Shortcode name
 	 * @param {{}} atts
 	 * @param {{}} attsDefaults
-	 * @param {String|undefined} content If not set, shortcode won't have closing tag
 	 * @return {String}
 	 */
-	$cl.fn.generateShortcode = function(name, atts, attsDefaults, content){
+	$cl.fn.generateShortcode = function(name, atts, attsDefaults){
 		var shortcode = '[' + name;
 		$.each(atts, function(att, value){
+			if (att == 'content') return;
 			if (attsDefaults[att] !== undefined && attsDefaults[att] !== value) shortcode += ' ' + att + '="' + value + '"';
 		});
 		shortcode += ']';
-		if (content !== undefined) shortcode += content + '[/' + name + ']';
+		if (atts.content !== undefined) shortcode += atts.content + '[/' + name + ']';
 		return shortcode;
 	};
 	/**
@@ -826,6 +826,43 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			handler.selection = [startOffset, endOffset];
 		}
 		return handler;
+	};
+	/**
+	 * Parse ajax HTML, insert the needed assets and filter html from them
+	 * @param {String} html
+	 * @returns {String}
+	 */
+	$cl.fn.enqueueAssets = function(html){
+		var regexp = /(\<link rel=\'stylesheet\' id=\'([^\']+)\'[^\>]+?\>)|(\<style type\=\"text\/css\"\>([^\<]*)\<\/style\>)|(\<script type=\'text\/javascript\' src=\'([^\']+)\'\><\/script\>)|(\<script type\=\'text\/javascript\'\>([^`]*?)\<\/script\>)/g;
+		var $head = $(document.head),
+			$internalStyles = $('style'),
+			$internalScripts = $('script:not([src])'),
+			i;
+		// Inserting only the assets that are not exist on a page yet
+		html.replace(regexp, function(m, m1, styleId, m2, styleContent, m3, scriptSrc, m4, scriptContent){
+			if (m.indexOf('<link rel=\'stylesheet\'') == 0) {
+				// External style
+				if ($('link[rel="stylesheet"]#' + styleId).length != 0) return;
+			} else if (m.indexOf('<style') == 0) {
+				// Internal style
+				styleContent = styleContent.trim();
+				for (i = 0; i < $internalStyles.length; i++) {
+					if ($internalStyles[i].innerHTML.trim() == styleContent) return;
+				}
+			} else if (m.indexOf('<script type=\'text/javascript\' src=\'') == 0) {
+				// External script
+				if ($('script[src="' + scriptSrc + '"]').length != 0) return;
+			} else {
+				// Internal script
+				scriptContent = scriptContent.trim();
+				for (i = 0; i < $internalScripts.length; i++) {
+					if ($internalScripts[i].innerHTML.trim() == scriptContent) return;
+				}
+			}
+			$(m).appendTo($head);
+			return '';
+		});
+		return html;
 	};
 }(jQuery);
 

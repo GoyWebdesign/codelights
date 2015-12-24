@@ -8,10 +8,10 @@
  * @var $value string Current value
  */
 
-// Link button interface is a part of the html editor, so we need to load it as well
-cl_maybe_load_html_editor();
-cl_enqueue_script( 'wplink' );
-cl_enqueue_style( 'editor-buttons' );
+// Loading tinymce-related components to output link dialog (part of _WP_Editors class)
+cl_maybe_load_wysiwyg();
+wp_enqueue_script( 'wplink' );
+wp_enqueue_style( 'editor-buttons' );
 
 $link = cl_parse_link_value( $value );
 

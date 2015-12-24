@@ -25,8 +25,8 @@
  */
 
 // Enqueuing the needed assets
-cl_enqueue_style( 'cl-ib' );
-cl_enqueue_script( 'cl-ib' );
+wp_enqueue_style( 'cl-ib' );
+wp_enqueue_script( 'cl-ib' );
 
 // Main element classes
 $classes = ' animation_' . $animation . ' ratio_' . $ratio . ' align_' . $align;

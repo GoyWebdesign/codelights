@@ -18,8 +18,8 @@
  */
 
 // Enqueuing the needed assets
-cl_enqueue_style( 'cl-itext' );
-cl_enqueue_script( 'cl-itext' );
+wp_enqueue_style( 'cl-itext' );
+wp_enqueue_script( 'cl-itext' );
 
 // Main element classes, inner css and additional attributes
 $classes = ' type_' . $animation_type . ' align_' . $align;

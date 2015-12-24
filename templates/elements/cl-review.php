@@ -21,7 +21,7 @@
  */
 
 // Enqueuing the needed assets
-cl_enqueue_style( 'cl-modal' );
+wp_enqueue_style( 'cl-modal' );
 
 // Main element classes
 $classes = ' type_' . $type . ' layout_' . $layout;

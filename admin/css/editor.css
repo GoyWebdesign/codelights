@@ -273,6 +273,8 @@
   z-index: 9999;
   left: 50%;
   top: 10vh;
+  max-height: 85%;
+  overflow: auto;
   width: 600px;
   margin-left: -300px;
   background-color: #fff;

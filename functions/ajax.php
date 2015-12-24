@@ -33,6 +33,9 @@ function ajax_cl_get_ebuilder_html() {
 
 	cl_load_template( 'ebuilder', $template_vars );
 
+	wp_print_styles();
+	wp_print_scripts();
+
 	// We don't use JSON to reduce data size
 	die;
 }

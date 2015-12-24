@@ -28,6 +28,6 @@
  */
 
 // Enqueuing the needed assets
-//cl_enqueue_style( 'cl-modal' );
-//cl_enqueue_script( 'cl-modal' );
+//wp_enqueue_style( 'cl-modal' );
+//wp_enqueue_script( 'cl-modal' );
 

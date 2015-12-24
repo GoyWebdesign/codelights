@@ -45,8 +45,8 @@
  */
 
 // Enqueuing the needed assets
-cl_enqueue_style( 'cl-flipbox' );
-cl_enqueue_script( 'cl-flipbox' );
+wp_enqueue_style( 'cl-flipbox' );
+wp_enqueue_script( 'cl-flipbox' );
 
 // Main element classes
 $classes = '';
@@ -102,7 +102,7 @@ $front_inline_css = cl_prepare_inline_css( array(
 $output .= '<div class="cl-flipbox-front"' . $front_inline_css . '><div class="cl-flipbox-front-h">';
 $output_front_icon = '';
 if ( $front_icon_type == 'font' AND ! empty( $front_icon_name ) ) {
-	cl_enqueue_style( 'font-awesome' );
+	wp_enqueue_style( 'font-awesome' );
 	$front_icon_size = intval( $front_icon_size );
 	$front_icon_css_props = array(
 		'background-color' => $front_icon_bgcolor,

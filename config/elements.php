@@ -824,20 +824,17 @@ return array(
 				'title' => __( 'Border Width', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
-				'group' => __( 'Custom', 'codelights' ),
 			),
 			'border_radius' => array(
 				'title' => __( 'Border Radius', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Custom', 'codelights' ),
 			),
 			'border_color' => array(
 				'title' => __( 'Border Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Custom', 'codelights' ),
 			),
 			'el_class' => array(
 				'title' => __( 'Extra class name', 'codelights' ),

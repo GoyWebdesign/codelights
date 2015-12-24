@@ -16,8 +16,8 @@
  */
 
 // Enqueuing the needed assets
-cl_enqueue_style( 'cl-counter' );
-cl_enqueue_script( 'cl-counter' );
+wp_enqueue_style( 'cl-counter' );
+wp_enqueue_script( 'cl-counter' );
 
 // Element classes and attributes
 $classes = '';
