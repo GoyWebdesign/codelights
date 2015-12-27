@@ -790,42 +790,95 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 * Handle "codelights" action within a plain text and determine what will be the new selection and the way it should
 	 * be handled (insert / edit)
 	 *
-	 * @param {String} text Initial plain text with shortcodes
+	 * @param {String} html Initial html text with shortcodes
 	 * @param {Number} startOffset Selection start offset
 	 * @param {Number} endOffset
 	 * @return {{}} action, new selection, shortcode data (if found)
 	 */
-	$cl.fn.handleShortcodeCall = function(text, startOffset, endOffset){
+	$cl.fn.handleShortcodeCall = function(html, startOffset, endOffset){
 		var handler = {};
-		if (typeof text != 'string') text = '';
+		if (typeof html != 'string') html = '';
+		if (startOffset == -1) startOffset = 0;
+		if (endOffset == -1) endOffset = startOffset;
+		if (endOffset < startOffset) {
+			// Swapping start and end positions
+			endOffset = startOffset + (startOffset = endOffset) - endOffset;
+		}
 		// If user selected a shortcode or its part
-		if (startOffset < endOffset && text[endOffset - 1] == ']') {
+		if (startOffset < endOffset && html[endOffset - 1] == ']') {
 			endOffset--;
 		}
-		var prevOpen = text.lastIndexOf('[', endOffset - 1),
-			prevClose = text.lastIndexOf(']', endOffset - 1),
-			nextOpen = text.indexOf('[', endOffset),
-			nextClose = text.indexOf(']', endOffset);
-		if (prevOpen != -1 && nextClose != -1 && prevOpen > prevClose && (nextOpen == -1 || nextOpen > nextClose)) {
-			// In some shortcode
-			if (text.substr(prevOpen, 4) == '[cl-') {
-				// Edit existing shortcode
-				var shortcode = text.substring(prevOpen, nextClose + 1);
-				handler.action = 'edit';
-				handler.selection = [prevOpen, nextClose + 1];
-				handler.shortcode = shortcode.replace(/\[([a-zA-Z0-9\-\_]+)[^\[]+/, '$1');
-				handler.values = $cl.fn.shortcodeParseAtts(shortcode);
-			} else {
-				// Inside of 3-rd party shortcode: inserting codelights shortcode just after it
-				handler.action = 'insert';
-				handler.selection = [nextClose + 1, nextClose + 1];
+		var prevOpen = html.lastIndexOf('[', endOffset - 1),
+			prevClose = html.lastIndexOf(']', endOffset - 1),
+			nextOpen = html.indexOf('[', endOffset),
+			nextClose = html.indexOf(']', endOffset),
+		// We may fall back to insert at any time, so creating a separate variable for this
+			insertHandler = {
+				action: 'insert',
+				selection: [startOffset, endOffset]
+			};
+		// Checking out if we're inside of some tag at all
+		if (prevOpen == -1 || nextClose == -1 || prevOpen < prevClose || (nextOpen != -1 && nextOpen < nextClose)) {
+			return insertHandler;
+		}
+		// If we're still here, the cursor is inside of some shorcode, so in case of insertion, we'll insert right after it
+		insertHandler.selection = [nextClose + 1, nextClose + 1];
+		var isOpener = (html.charAt(prevOpen + 1) != '/'),
+			editHandler = {
+				action: 'edit',
+				shortcode: html.substring(prevOpen + (isOpener ? 1 : 2), nextClose + 1).replace(/^([a-zA-Z0-9\-\_]+)[^\[]+/, '$1')
+			};
+		if (editHandler.shortcode.substr(0, 3) !== 'cl-') {
+			// At the moment we're handing only CodeLights shortcodes. What will be in future? Who knows ...
+			return insertHandler;
+		}
+		var nestingLevel = 1,
+			regexp = new RegExp('\\[(\\/?)' + editHandler.shortcode.replace(/\-/g, '\\$&') + '((?=\\])| [^\\]]+)', 'ig'),
+			shortcodeOpener,
+			matches;
+		if (isOpener) {
+			// Opening shortcode: searching forward
+			editHandler.values = $cl.fn.shortcodeParseAtts(html.substring(prevOpen, nextClose + 1));
+			regexp.lastIndex = nextClose;
+			while (matches = regexp.exec(html)) {
+				nestingLevel += (matches[1] ? -1 : 1);
+				if (nestingLevel == 0) {
+					// Found the relevant closer
+					editHandler.selection = [prevOpen, html.indexOf(']', regexp.lastIndex + matches[0].length + 1)];
+					editHandler.values.content = html.substring(nextClose + 1, regexp.lastIndex - matches[0].length);
+					break;
+				}
+			}
+			if (nestingLevel != 0) {
+				// No shortcode closer
+				editHandler.selection = [prevOpen, nextClose + 1];
 			}
 		} else {
-			// Insert to the cursor position
-			handler.action = 'insert';
-			handler.selection = [startOffset, endOffset];
+			// Closing shortcode: searching backward
+			var nestingChange = [],
+				matchesPos = [];
+			while (matches = regexp.exec(html)) {
+				if (regexp.lastIndex >= prevOpen) break;
+				nestingChange.push(matches[1] ? 1 : -1);
+				matchesPos.push(regexp.lastIndex - matches[0].length);
+			}
+			for (var i = nestingChange.length - 1; i >= 0; i--) {
+				nestingLevel += nestingChange[i];
+				if (nestingLevel == 0) {
+					var openerClose = html.indexOf(']', matchesPos[i]);
+					editHandler.selection = [matchesPos[i], nextClose];
+					editHandler.values = $cl.fn.shortcodeParseAtts(html.substring(matchesPos[i], openerClose));
+					editHandler.values.content = html.substring(openerClose + 1, prevOpen);
+					break;
+				}
+			}
+			if (nestingLevel != 0) {
+				// Closing shortcode with no opening one: inserting right after it
+				return insertHandler;
+			}
 		}
-		return handler;
+
+		return editHandler;
 	};
 	/**
 	 * Parse ajax HTML, insert the needed assets and filter html from them

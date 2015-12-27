@@ -39,45 +39,32 @@
 		},
 
 		/**
-		 * Tinymce transforms line-breaks to <br> tags followed by space, this method gets plain text representation
-		 * of the current selection range and selection range positions within this plain text.
+		 * Gets plain text representation of the current selection range and selection range positions within this
+		 * plain text.
 		 *
 		 * @return {Array}
 		 */
 		getHandlerParams: function(){
-			// Determine if we're adding the new one or editing the existing shortcode
 			var range = this.ed.selection.getRng(),
-				value = range.startContainer.nodeValue || '',
-				startOffset = range.startOffset,
-				endOffset = null; // Will be null till the end element is actually found
-			// Shortcode attributes may contain line breaks, that are transformed to <br> tags by tinymce,
-			// so we're trying to handle this as a single shorcode traversing in both directions
-			var prevElm = range.startContainer,
-				subValue;
-			while (prevElm.previousSibling && (prevElm.previousSibling.nodeType == 3 || prevElm.previousSibling.tagName == 'BR')) {
-				prevElm = prevElm.previousSibling;
-				value = (subValue = ((prevElm.nodeType == 3) ? prevElm.nodeValue : "\n")) + value;
-				startOffset += subValue.length;
-				if (prevElm == range.endContainer) {
-					endOffset = range.endOffset;
-				} else if (endOffset != null) {
-					endOffset += subValue.length;
-				}
+				startTrigger = '!cl-selection-start!',
+				endTrigger = '!cl-selection-end!',
+				value = this.ed.getContent({format: 'html'}),
+				startOffset, endOffset;
+			this.ed.selection.setCursorLocation(range.startContainer, range.startOffset);
+			this.ed.insertContent(startTrigger);
+			startOffset = this.ed.getContent().indexOf(startTrigger);
+			if (range.startContainer == range.endContainer && range.startOffset == range.endOffset) {
+				// Just a cursor position
+				endOffset = startOffset;
+			} else {
+				// The range is selected
+				this.ed.selection.setCursorLocation(range.endContainer, range.endOffset);
+				this.ed.insertContent(endTrigger);
+				endOffset = this.ed.getContent().indexOf(endTrigger);
+				if (startOffset != -1 && endOffset != -1 && endOffset > startOffset) endOffset -= startTrigger.length;
+				if (endOffset != -1) this.ed.execCommand('undo');
 			}
-			var nextElm = range.startContainer;
-			while (nextElm.nextSibling && (nextElm.nextSibling.nodeType == 3 || nextElm.nextSibling.tagName == 'BR')) {
-				nextElm = nextElm.nextSibling;
-				value += (subValue = (nextElm.nodeType == 3) ? nextElm.nodeValue : "\n");
-				if (nextElm == range.endContainer) endOffset = value.length - subValue.length + range.endOffset;
-			}
-			if (endOffset === null) endOffset = startOffset;
-			// Removing excess spaces insterted by tinymce after line breaks
-			var breakPos;
-			while ((breakPos = value.indexOf("\n ")) != -1) {
-				value = value.substr(0, breakPos + 1) + value.substr(breakPos + 2);
-				if (startOffset >= breakPos) startOffset--;
-				if (endOffset >= breakPos) endOffset--;
-			}
+			if (startOffset != -1) this.ed.execCommand('undo');
 			return [value, startOffset, endOffset];
 		},
 
@@ -97,8 +84,7 @@
 				rng = document.createRange(),
 				rngStartContainer, rngEndContainer, subValue;
 			while (curElm && ( !rngStartContainer || !rngEndContainer)) {
-				// TODO Replace N with \n
-				subValue = (curElm.nodeType == 3) ? curElm.nodeValue : "N";
+				subValue = (curElm.nodeType == 3) ? curElm.nodeValue : "\n";
 				// Taking into account spaces after line breaks
 				if (prevElm.nodeType != 3 && subValue[0] == ' ') {
 					if (start > prevOffset) start++;
