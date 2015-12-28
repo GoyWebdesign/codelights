@@ -844,7 +844,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				nestingLevel += (matches[1] ? -1 : 1);
 				if (nestingLevel == 0) {
 					// Found the relevant closer
-					editHandler.selection = [prevOpen, html.indexOf(']', regexp.lastIndex + matches[0].length + 1)];
+					editHandler.selection = [prevOpen, html.indexOf(']', regexp.lastIndex - matches[0].length + 1) + 1];
 					editHandler.values.content = html.substring(nextClose + 1, regexp.lastIndex - matches[0].length);
 					break;
 				}
@@ -866,7 +866,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				nestingLevel += nestingChange[i];
 				if (nestingLevel == 0) {
 					var openerClose = html.indexOf(']', matchesPos[i]);
-					editHandler.selection = [matchesPos[i], nextClose];
+					editHandler.selection = [matchesPos[i], nextClose + 1];
 					editHandler.values = $cl.fn.shortcodeParseAtts(html.substring(matchesPos[i], openerClose));
 					editHandler.values.content = html.substring(openerClose + 1, prevOpen);
 					break;
