@@ -834,7 +834,6 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 		}
 		var nestingLevel = 1,
 			regexp = new RegExp('\\[(\\/?)' + editHandler.shortcode.replace(/\-/g, '\\$&') + '((?=\\])| [^\\]]+)', 'ig'),
-			shortcodeOpener,
 			matches;
 		if (isOpener) {
 			// Opening shortcode: searching forward

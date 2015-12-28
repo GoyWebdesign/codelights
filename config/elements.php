@@ -690,16 +690,22 @@ return array(
 		'icon' => $cl_uri . '/admin/img/cl-modal.png',
 		'widget_php_class' => 'CL_Widget_Modal',
 		'params' => array(
+			/**
+			 * General
+			 */
 			'title' => array(
-				'title' => __( 'Modal Box Title', 'codelights' ),
+				'title' => __( 'Modal Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 			),
 			'content' => array(
-				'title' => __( 'Modal Box Content', 'codelights' ),
+				'title' => __( 'Modal Content', 'codelights' ),
 				'type' => 'html',
 				'std' => '',
 			),
+			/**
+			 * Trigger
+			 */
 			'show_on' => array(
 				'title' => __( 'Show Modal On', 'codelights' ),
 				'type' => 'select',
@@ -711,24 +717,33 @@ return array(
 					'exit' => __( 'User Exit', 'codelights' ),
 				),
 				'std' => 'btn',
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'btn_label' => array(
 				'title' => __( 'Button Label', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'READ MORE', // Not translatable
 				'show_if' => array( 'show_on', '=', 'btn' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'btn_bgcolor' => array(
 				'title' => __( 'Button Background Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'btn' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'btn_color' => array(
 				'title' => __( 'Button Text Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'btn' ),
+				'group' => __( 'Trigger', 'codelights' ),
+			),
+			'image' => array(
+				'title' => __( 'Image', 'codelights' ),
+				'type' => 'image',
+				'show_if' => array( 'show_on', '=', 'image' ),
 			),
 			'text_label' => array(
 				'title' => __( 'Text Label', 'codelights' ),
@@ -736,12 +751,14 @@ return array(
 				'std' => 'READ MORE', // Not translatable
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'text' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'text_color' => array(
 				'title' => __( 'Text Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'text' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'align' => array(
 				'title' => __( 'Button / Image / Text Alignment', 'codelights' ),
@@ -753,16 +770,21 @@ return array(
 				),
 				'std' => 'left',
 				'show_if' => array( 'show_on', 'in', array( 'btn', 'image', 'text' ) ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'show_delay' => array(
-				'title' => __( 'Modal Box Show Delay', 'codelights' ),
+				'title' => __( 'Modal Show Delay', 'codelights' ),
 				'description' => __( 'In seconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '2',
 				'show_if' => array( 'show_on', '=', 'load' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
+			/**
+			 * Box Style
+			 */
 			'size' => array(
-				'title' => __( 'Modal Box Size', 'codelights' ),
+				'title' => __( 'Modal Size', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					's' => __( 'Small', 'codelights' ),
@@ -770,9 +792,10 @@ return array(
 					'l' => __( 'Large', 'codelights' ),
 					'f' => __( 'Fullscreen', 'codelights' ),
 				),
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'animation' => array(
-				'title' => __( 'Transitions Animation', 'codelights' ),
+				'title' => __( 'Modal Show Animation', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					// Inspired by http://tympanus.net/Development/ModalWindowEffects/
@@ -787,59 +810,51 @@ return array(
 					'flipVer' => __( '3D Flip (Vertical)', 'codelights' ),
 					'scaleDown' => __( 'Scale Down', 'codelights' ),
 				),
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'overlay_bgcolor' => array(
 				'title' => __( 'Overlay Background Color', 'codelights' ),
 				'type' => 'color',
 				'std' => '#000000',
 				'classes' => 'cl_col-sm-6 cl_column',
-			),
-			'overlay_opacity' => array(
-				'title' => __( 'Overlay Opacity in Percents', 'codelights' ),
-				'type' => 'textfield',
-				'std' => '80',
-				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'header_bgcolor' => array(
 				'title' => __( 'Header Background Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'header_textcolor' => array(
 				'title' => __( 'Header Text Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'content_bgcolor' => array(
 				'title' => __( 'Content Background Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'content_textcolor' => array(
 				'title' => __( 'Content Text Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
-			),
-			'border_size' => array(
-				'title' => __( 'Border Width', 'codelights' ),
-				'type' => 'textfield',
-				'std' => '0',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'border_radius' => array(
 				'title' => __( 'Border Radius', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
-			),
-			'border_color' => array(
-				'title' => __( 'Border Color', 'codelights' ),
-				'type' => 'color',
-				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 			'el_class' => array(
 				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
+				'group' => __( 'Box Style', 'codelights' ),
 			),
 		),
 	),
