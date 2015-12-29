@@ -1,2 +1,51 @@
+.cl-modal {
+
+	&-box,
+	&-overlay {
+		display: none;
+	}
+
+	&.align_left {
+		text-align: left;
+	}
+	&.align_center {
+		text-align: center;
+	}
+	&.align_right {
+		text-align: right;
+	}
+
+	&-overlay {
+		position: fixed;
+		z-index: 101;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+	&-box {
+		position: fixed;
+		top: 100px;
+		left: 50%;
+		z-index: 102;
+
+		&.size_s {
+			width: 300px;
+			margin-left: -150px;
+		}
+		&.size_m {
+			width: 500px;
+			margin-left: -250px;
+		}
+		&.size_l {
+			width: 800px;
+			margin-left: -400px;
+		}
+		&.size_f {
+			left: 20px;
+			right: 20px;
+		}
+	}
 
 
+}

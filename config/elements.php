@@ -714,7 +714,6 @@ return array(
 					'image' => __( 'Image Click', 'codelights' ),
 					'text' => __( 'Text Click', 'codelights' ),
 					'load' => __( 'Page Load', 'codelights' ),
-					'exit' => __( 'User Exit', 'codelights' ),
 				),
 				'std' => 'btn',
 				'group' => __( 'Trigger', 'codelights' ),
@@ -743,7 +742,18 @@ return array(
 			'image' => array(
 				'title' => __( 'Image', 'codelights' ),
 				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'image' ),
+				'group' => __( 'Trigger', 'codelights' ),
+			),
+			'image_size' => array(
+				'title' => __( 'Image Size', 'codelights' ),
+				'type' => 'select',
+				'options' => cl_image_sizes_select_values(),
+				'std' => 'large',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'show_if' => array( 'show_on', '=', 'image' ),
+				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'text_label' => array(
 				'title' => __( 'Text Label', 'codelights' ),
@@ -819,13 +829,13 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Box Style', 'codelights' ),
 			),
-			'header_bgcolor' => array(
+			'title_bgcolor' => array(
 				'title' => __( 'Header Background Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Box Style', 'codelights' ),
 			),
-			'header_textcolor' => array(
+			'title_textcolor' => array(
 				'title' => __( 'Header Text Color', 'codelights' ),
 				'type' => 'color',
 				'classes' => 'cl_col-sm-6 cl_column',

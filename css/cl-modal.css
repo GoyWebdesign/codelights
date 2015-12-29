@@ -1,0 +1,43 @@
+.cl-modal-box,
+.cl-modal-overlay {
+  display: none;
+}
+.cl-modal.align_left {
+  text-align: left;
+}
+.cl-modal.align_center {
+  text-align: center;
+}
+.cl-modal.align_right {
+  text-align: right;
+}
+.cl-modal-overlay {
+  position: fixed;
+  z-index: 101;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.cl-modal-box {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  z-index: 102;
+}
+.cl-modal-box.size_s {
+  width: 300px;
+  margin-left: -150px;
+}
+.cl-modal-box.size_m {
+  width: 500px;
+  margin-left: -250px;
+}
+.cl-modal-box.size_l {
+  width: 800px;
+  margin-left: -400px;
+}
+.cl-modal-box.size_f {
+  left: 20px;
+  right: 20px;
+}

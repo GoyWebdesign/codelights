@@ -4,7 +4,7 @@
  * Output a single Ineractive Banner element.
  *
  * @var $image int ID of the WP attachment image
- * @var $size string WordPress image resize name
+ * @var $size string WordPress image thumbnail name
  * @var $title string
  * @var $desc string
  * @var $link string URL of the overall element or button in a encoded link format

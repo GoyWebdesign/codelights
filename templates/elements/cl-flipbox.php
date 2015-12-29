@@ -48,17 +48,15 @@
 wp_enqueue_style( 'cl-flipbox' );
 wp_enqueue_script( 'cl-flipbox' );
 
-// Main element classes
-$classes = '';
-
 if ( in_array( $direction, array( 'ne', 'se', 'sw', 'nw' ) ) ) {
 	// When rotating cubetilt in diaginal direction, we're actually doing a cube flip animation instead
 	if ( $animation == 'cubetilt' ) {
 		$animation = 'cubeflip';
 	}
 }
+
 // Main element classes
-$classes .= ' animation_' . $animation . ' direction_' . $direction;
+$classes = ' animation_' . $animation . ' direction_' . $direction;
 if ( ! empty( $valign ) ) {
 	$classes .= ' valign_' . $valign;
 }
