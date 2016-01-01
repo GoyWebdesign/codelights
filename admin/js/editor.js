@@ -194,8 +194,8 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 */
 	$cl.Field['html'] = {
 		init: function(){
-			if (window.tinyMCEPreInit === undefined) {
-				setTimeout(this.init, 500);
+			if (window.tinyMCEPreInit === undefined || !this.$row.is(':visible')) {
+				setTimeout(this.init.bind(this), 500);
 				return;
 			}
 			var id = this.$input.attr('id');
