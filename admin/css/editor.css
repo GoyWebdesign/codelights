@@ -154,6 +154,9 @@
 .cl-eform-row.type_textfield input {
   width: 100%;
 }
+.cl-eform input[id*="_content_codelights"] {
+  display: none;
+}
 .widget-content .cl-eform {
   margin: -1px -15px 0;
 }

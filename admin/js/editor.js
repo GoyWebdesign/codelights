@@ -195,7 +195,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	$cl.Field['html'] = {
 		init: function(){
 			if (window.tinyMCEPreInit === undefined || !this.$row.is(':visible')) {
-				setTimeout(this.init.bind(this), 500);
+				setTimeout(this.init.bind(this), 100);
 				return;
 			}
 			var id = this.$input.attr('id');
@@ -225,13 +225,14 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 					this.editor = editor;
 				}.bind(this)
 			});
+			// Removing CodeLights button from html field editor. Need to rework architecture to allow nested editors.
+			tinyMCEPreInit.mceInit[id].toolbar1 = tinyMCEPreInit.mceInit[id].toolbar1.replace(',codelights', '');
+
 			tinymce.init(tinyMCEPreInit.mceInit[id]);
 			// Quick Tags
 			tinyMCEPreInit.qtInit[id] = {id: id};
 			this.$container.find('.quicktags-toolbar').remove();
 			quicktags(tinyMCEPreInit.qtInit[id]);
-			/*this.$container.on('click', '.wp-switch-editor', function(event){
-			 }.bind(this));*/
 			QTags._buttonsInit();
 		},
 
@@ -511,7 +512,6 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	/**
 	 * $cl.EForm class
 	 * @param container
-	 * @param {Object} options
 	 * @constructor
 	 */
 	$cl.EForm = function(container){
