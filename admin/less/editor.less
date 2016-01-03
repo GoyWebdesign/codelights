@@ -155,6 +155,13 @@
 		}
 		&.type_color {
 			width: 50%;
+			& .wp-picker-active {
+				// Fixing wp-color-picker-alpha visual changes
+				white-space: nowrap;
+				a {
+					width: 0;
+				}
+			}
 		}
 		&.type_select {
 			select {

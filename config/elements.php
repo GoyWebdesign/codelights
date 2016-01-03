@@ -457,7 +457,7 @@ return array(
 			'textcolor' => array(
 				'title' => __( 'Text Color', 'codelights' ),
 				'type' => 'color',
-				'std' => '#fff',
+				'std' => '#ffffff',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Design', 'codelights' ),
 			),

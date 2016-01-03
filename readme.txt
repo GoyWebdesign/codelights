@@ -128,6 +128,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 == Changelog ==
 
 = 1.0.9 =
+* New: Opacity slider for all color fields
 * Updated: Font Awesome to the latest 4.5.0 version
 
 = 1.0.8 =
@@ -138,7 +139,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Fixed: FlipBox text styles now less likely to be overloaded by theme styles
 
 = 1.0.7 =
-* Fixed: Urgent fix for some experimental 3-rd party editors support.
+* Fixed: Urgent fix for some experimental 3-rd party editors support
 
 = 1.0.6 =
 * Fixed: PHP 5.3 compatibility (Thanks to @sduccio for the feedback!)

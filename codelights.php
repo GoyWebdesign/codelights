@@ -57,6 +57,8 @@ add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts' );
 function cl_admin_enqueue_scripts() {
 	global $cl_uri, $post_type, $wp_scripts, $cl_version;
 
+	wp_register_script( 'wp-color-picker-alpha', $cl_uri . '/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), $cl_version, '1.2.1' );
+
 	$screen = get_current_screen();
 	$is_widgets = ( $screen->base == 'widgets' );
 	$is_customizer = ( $screen->base == 'customize' );

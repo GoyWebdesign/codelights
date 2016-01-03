@@ -135,6 +135,12 @@
 .cl-eform-row.type_color {
   width: 50%;
 }
+.cl-eform-row.type_color .wp-picker-active {
+  white-space: nowrap;
+}
+.cl-eform-row.type_color .wp-picker-active a {
+  width: 0;
+}
 .cl-eform-row.type_select select {
   width: 100%;
 }
