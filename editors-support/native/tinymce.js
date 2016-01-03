@@ -10,6 +10,12 @@
 			this.ed = ed;
 			this.url = url;
 
+			this._events = {
+				disableUndo: function(e){
+					return false
+				}
+			};
+
 			var btnAction = function(){
 				var handlerParams = this.getHandlerParams(),
 					handler = $cl.fn.handleShortcodeCall.apply(window, handlerParams);
@@ -39,6 +45,20 @@
 		},
 
 		/**
+		 * Temporarily disable TinyMCE undo manager
+		 */
+		disableUndo: function(){
+			this.ed.on('BeforeAddUndo', this._events.disableUndo);
+		},
+
+		/**
+		 * Restore TinyMCE undo manager
+		 */
+		enableUndo: function(){
+			this.ed.off('BeforeAddUndo', this._events.disableUndo);
+		},
+
+		/**
 		 * Gets plain text representation of the current selection range and selection range positions within this
 		 * plain text.
 		 *
@@ -48,8 +68,9 @@
 			var range = this.ed.selection.getRng(),
 				startTrigger = '!cl-selection-start!',
 				endTrigger = '!cl-selection-end!',
-				value = this.ed.getContent({format: 'html'}),
+				content = this.ed.getContent({format: 'html'}),
 				startOffset, endOffset;
+			this.disableUndo();
 			this.ed.selection.setCursorLocation(range.startContainer, range.startOffset);
 			this.ed.insertContent(startTrigger);
 			startOffset = this.ed.getContent().indexOf(startTrigger);
@@ -62,49 +83,59 @@
 				this.ed.insertContent(endTrigger);
 				endOffset = this.ed.getContent().indexOf(endTrigger);
 				if (startOffset != -1 && endOffset != -1 && endOffset > startOffset) endOffset -= startTrigger.length;
-				if (endOffset != -1) this.ed.execCommand('undo');
 			}
-			if (startOffset != -1) this.ed.execCommand('undo');
-			return [value, startOffset, endOffset];
+			this.ed.setContent(content);
+			this.enableUndo();
+			return [content, startOffset, endOffset];
 		},
 
 		/**
-		 * Apply selection within a group of current cursor siblings that are translatable to plain text (text nodes and <br> tags)
-		 * @param {Number} start Range start from the plain text representation
-		 * @param {Number} end Range end from the plain text representation
+		 * Apply selection
+		 *
+		 * @param {Number} start Range start in the html representation
+		 * @param {Number} end Range end in the html representation
 		 */
 		applySelection: function(start, end){
-			var range = this.ed.selection.getRng(),
-				curElm = range.startContainer,
-				prevElm = curElm;
-			while (curElm.previousSibling && (curElm.previousSibling.nodeType == 3 || curElm.previousSibling.tagName == 'BR')) {
-				curElm = curElm.previousSibling;
-			}
-			var prevOffset = 0,
-				rng = document.createRange(),
-				rngStartContainer, rngEndContainer, subValue;
-			while (curElm && ( !rngStartContainer || !rngEndContainer)) {
-				subValue = (curElm.nodeType == 3) ? curElm.nodeValue : "\n";
-				// Taking into account spaces after line breaks
-				if (prevElm.nodeType != 3 && subValue[0] == ' ') {
-					if (start > prevOffset) start++;
-					if (end > prevOffset) end++;
+			var content = this.ed.getContent({format: 'html'}),
+				startTrigger = '!cl-selection-start!',
+				endTrigger = '!cl-selection-end!',
+				newContent = content.substr(0, start) + startTrigger + content.substring(start, end) + endTrigger + content.substr(end);
+			this.disableUndo();
+			this.ed.setContent(newContent);
+			// Looking for selection triggers
+			var startContainer, startOffset,
+				endContainer, endOffset,
+				nodeWalker = document.createTreeWalker(this.ed.getBody(), NodeFilter.SHOW_TEXT, null, false);
+			var node;
+			while (node = nodeWalker.nextNode()) {
+				if (!startContainer) {
+					if ((startOffset = node.nodeValue.indexOf(startTrigger)) != -1) {
+						node.nodeValue = node.nodeValue.substr(0, startOffset) + node.nodeValue.substr(startOffset + startTrigger.length);
+						startContainer = node;
+					}
 				}
-				if (start >= prevOffset && start < prevOffset + subValue.length) {
-					rng.setStart((rngStartContainer = curElm), start - prevOffset);
+				if (!endContainer) {
+					if ((endOffset = node.nodeValue.indexOf(endTrigger)) != -1) {
+						node.nodeValue = node.nodeValue.substr(0, endOffset) + node.nodeValue.substr(endOffset + endTrigger.length);
+						endContainer = node;
+					}
 				}
-				if (end > prevOffset && end <= prevOffset + subValue.length) {
-					rng.setEnd((rngEndContainer = curElm), end - prevOffset);
+			}
+			if (startContainer) {
+				if (endContainer) {
+					var rng = this.ed.selection.getRng();
+					rng.setStart(startContainer, startOffset);
+					rng.setEnd(endContainer, endOffset);
+					this.ed.selection.setRng(rng);
+				} else {
+					this.ed.selection.setCursorLocation(startContainer, startOffset);
 				}
-				prevOffset += subValue.length;
-				prevElm = curElm;
-				curElm = curElm.nextSibling;
+				// Restoring textarea default value
+				this.ed.getElement().value = content;
+			} else {
+				this.ed.setContent(content);
 			}
-			if (start == end && rngStartContainer) {
-				this.ed.selection.setCursorLocation(rngStartContainer, rng.startOffset);
-			} else if (rngStartContainer && rngEndContainer) {
-				this.ed.selection.setRng(rng);
-			}
+			this.enableUndo();
 		},
 
 		getInfo: function(){
