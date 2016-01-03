@@ -17,7 +17,7 @@
 		}
 		if (handler.action == 'insert') {
 			$cl.elist.unbind('select').bind('select', function(name){
-				insertContent(textarea, '[' + name + ']');
+				insertContent(textarea, $cl.fn.generateShortcode(name));
 				textarea.setSelectionRange(textarea.selectionEnd - 1, textarea.selectionEnd - 1);
 				btnAction(btn, textarea, ed);
 			});

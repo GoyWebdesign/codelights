@@ -64,8 +64,11 @@ function cl_admin_enqueue_scripts() {
 	if ( $is_widgets OR $is_customizer OR $is_content_editor ) {
 		wp_enqueue_style( 'cl-editor', $cl_uri . '/admin/css/editor.css', array(), $cl_version );
 		wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array( 'jquery' ), $cl_version, TRUE );
-		$ajax_url_script = 'if (window.$cl === undefined) window.$cl = {}; $cl.ajaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ";\n";
-		$wp_scripts->add_data( 'cl-editor', 'data', $ajax_url_script );
+		// Ajax URL
+		$extra_js_data = 'if (window.$cl === undefined) window.$cl = {}; $cl.ajaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ";\n";
+		// Elements config
+		$extra_js_data .= '$cl.elements = ' . wp_json_encode( cl_config( 'elements', array() ) ) . ";\n";
+		$wp_scripts->add_data( 'cl-editor', 'data', $extra_js_data );
 		wp_enqueue_script( 'cl-editor' );
 
 		if ( ! did_action( 'wp_enqueue_media' ) ) {

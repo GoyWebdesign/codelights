@@ -17,15 +17,16 @@
 			};
 
 			var btnAction = function(){
-				var handlerParams = this.getHandlerParams(),
-					handler = $cl.fn.handleShortcodeCall.apply(window, handlerParams);
+				var textSelection = this.getTextSelection(),
+					handler = $cl.fn.handleShortcodeCall.apply(window, textSelection);
+				console.log(textSelection);
 				if (handler.selection !== undefined) {
 					// Updating selection: seeking DOM elements for each selection part
 					this.applySelection(handler.selection[0], handler.selection[1]);
 				}
 				if (handler.action == 'insert') {
 					$cl.elist.unbind('select').bind('select', function(name){
-						ed.insertContent('[' + name + ']');
+						ed.insertContent($cl.fn.generateShortcode(name));
 						range = ed.selection.getRng();
 						ed.selection.setCursorLocation(range.endContainer, range.endOffset - 1);
 						btnAction();
@@ -64,26 +65,17 @@
 		 *
 		 * @return {Array}
 		 */
-		getHandlerParams: function(){
+		getTextSelection: function(){
 			var range = this.ed.selection.getRng(),
 				startTrigger = '!cl-selection-start!',
 				endTrigger = '!cl-selection-end!',
 				content = this.ed.getContent({format: 'html'}),
 				startOffset, endOffset;
 			this.disableUndo();
-			this.ed.selection.setCursorLocation(range.startContainer, range.startOffset);
-			this.ed.insertContent(startTrigger);
+			this.ed.selection.setContent(startTrigger + this.ed.selection.getContent() + endTrigger);
 			startOffset = this.ed.getContent().indexOf(startTrigger);
-			if (range.startContainer == range.endContainer && range.startOffset == range.endOffset) {
-				// Just a cursor position
-				endOffset = startOffset;
-			} else {
-				// The range is selected
-				this.ed.selection.setCursorLocation(range.endContainer, range.endOffset);
-				this.ed.insertContent(endTrigger);
-				endOffset = this.ed.getContent().indexOf(endTrigger);
-				if (startOffset != -1 && endOffset != -1 && endOffset > startOffset) endOffset -= startTrigger.length;
-			}
+			endOffset = this.ed.getContent().indexOf(endTrigger);
+			if (startOffset != -1 && endOffset != -1 && endOffset > startOffset) endOffset -= startTrigger.length;
 			this.ed.setContent(content);
 			this.enableUndo();
 			return [content, startOffset, endOffset];
@@ -105,8 +97,8 @@
 			// Looking for selection triggers
 			var startContainer, startOffset,
 				endContainer, endOffset,
-				nodeWalker = document.createTreeWalker(this.ed.getBody(), NodeFilter.SHOW_TEXT, null, false);
-			var node;
+				nodeWalker = document.createTreeWalker(this.ed.getBody(), NodeFilter.SHOW_TEXT, null, false),
+				node;
 			while (node = nodeWalker.nextNode()) {
 				if (!startContainer) {
 					if ((startOffset = node.nodeValue.indexOf(startTrigger)) != -1) {
@@ -144,7 +136,7 @@
 				author: 'CodeLights',
 				authorurl: 'http://codelights.com/',
 				infourl: 'http://codelights.com/',
-				version: "1.0"
+				version: '1.0'
 			};
 		}
 	});

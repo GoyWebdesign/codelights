@@ -777,13 +777,16 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 * @return {String}
 	 */
 	$cl.fn.generateShortcode = function(name, atts, attsDefaults){
-		var shortcode = '[' + name;
+		var shortcode = '[' + name,
+			htmlContent = ($cl.elements[name] && $cl.elements[name].params.content && $cl.elements[name].params.content.type == 'html');
+		atts = atts || {};
+		attsDefaults = attsDefaults || {};
 		$.each(atts, function(att, value){
-			if (att == 'content') return;
+			if (htmlContent && att == 'content') return;
 			if (attsDefaults[att] !== undefined && attsDefaults[att] !== value) shortcode += ' ' + att + '="' + value + '"';
 		});
 		shortcode += ']';
-		if (atts.content !== undefined) shortcode += atts.content + '[/' + name + ']';
+		if (htmlContent) shortcode += (atts.content || '') + '[/' + name + ']';
 		return shortcode;
 	};
 	/**
@@ -828,10 +831,8 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 				action: 'edit',
 				shortcode: html.substring(prevOpen + (isOpener ? 1 : 2), nextClose + 1).replace(/^([a-zA-Z0-9\-\_]+)[^\[]+/, '$1')
 			};
-		if (editHandler.shortcode.substr(0, 3) !== 'cl-') {
-			// At the moment we're handing only CodeLights shortcodes. What will be in future? Who knows ...
-			return insertHandler;
-		}
+		// Handling only known shortcodes
+		if ($cl.elements[editHandler.shortcode] === undefined) return insertHandler;
 		var nestingLevel = 1,
 			regexp = new RegExp('\\[(\\/?)' + editHandler.shortcode.replace(/\-/g, '\\$&') + '((?=\\])| [^\\]]+)', 'ig'),
 			matches;
