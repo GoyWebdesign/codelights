@@ -13,7 +13,7 @@
 }
 .cl-modal-overlay {
   position: fixed;
-  z-index: 101;
+  z-index: 1001;
   left: 0;
   top: 0;
   right: 0;
@@ -23,7 +23,7 @@
   position: fixed;
   top: 100px;
   left: 50%;
-  z-index: 102;
+  z-index: 1002;
 }
 .cl-modal-box.size_s {
   width: 300px;
