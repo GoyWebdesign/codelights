@@ -19,7 +19,6 @@
 			var btnAction = function(){
 				var textSelection = this.getTextSelection(),
 					handler = $cl.fn.handleShortcodeCall.apply(window, textSelection);
-				console.log(textSelection);
 				if (handler.selection !== undefined) {
 					// Updating selection: seeking DOM elements for each selection part
 					this.applySelection(handler.selection[0], handler.selection[1]);
