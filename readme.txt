@@ -3,7 +3,7 @@ Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,7 +78,7 @@ A great tool to share your current Clients' experience with your new visitors, a
 1. **5 quote layouts**.
 1. You can specify the author source for even better credibility.
 
-> **[Review Showcase and Examples](http://codelights.com/elements/review/ "Review Showcase and Examples")**
+> **[Testimonial Showcase and Examples](http://codelights.com/elements/review/ "Testimonial Showcase and Examples")**
 
 **... and more elements are coming!**
 
@@ -130,9 +130,11 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 = 1.0.9 =
 * New: Opacity slider for all color fields
 * Updated: Font Awesome to the latest 4.5.0 version
+* Fixed: Assets loading for standalone CL version (with no SiteOrigin Editor enabled)
+* Fixed: Testimonial quotes symbol now is always properly loaded
 
 = 1.0.8 =
-* New: Added the new Review element
+* New: Added the new Testimonial element
 * New: The plugin now is fully translatable
 * New: Added Russian localization (ru_RU)
 * Fixed: Interactive text Safari transition fix

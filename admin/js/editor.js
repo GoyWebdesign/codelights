@@ -884,6 +884,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 * Parse ajax HTML, insert the needed assets and filter html from them
 	 * @param {String} html
 	 * @returns {String}
+	 * TODO Rework this function to properly handle load-scripts.php
 	 */
 	$cl.fn.enqueueAssets = function(html){
 		var regexp = /(\<link rel=\'stylesheet\' id=\'([^\']+)\'[^\>]+?\>)|(\<style type\=\"text\/css\"\>([^\<]*)\<\/style\>)|(\<script type=\'text\/javascript\' src=\'([^\']+)\'\><\/script\>)|(\<script type\=\'text\/javascript\'\>([^`]*?)\<\/script\>)/g;

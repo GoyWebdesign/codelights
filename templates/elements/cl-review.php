@@ -26,6 +26,10 @@ wp_enqueue_style( 'cl-review' );
 // Main element classes
 $classes = ' type_' . $type . ' layout_' . $layout;
 
+if ($layout == 'clean' OR $layout == 'modern'){
+	wp_enqueue_style( 'font-awesome' );
+}
+
 if ( $italic ) {
 	$classes .= ' quote_italic';
 }

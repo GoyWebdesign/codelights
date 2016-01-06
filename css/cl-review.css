@@ -49,7 +49,7 @@
 }
 .cl-review.layout_clean .cl-review-quote-text q:before {
   content: '\f10d';
-  font-family: fontawesome;
+  font-family: FontAwesome;
   font-size: 18px;
   position: absolute;
   top: 0;
@@ -58,7 +58,7 @@
 }
 .cl-review.layout_clean .cl-review-quote-text q:after {
   content: '\f10e';
-  font-family: fontawesome;
+  font-family: FontAwesome;
   font-size: 18px;
   margin-left: 7px;
   opacity: 0.25;
