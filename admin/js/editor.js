@@ -4,7 +4,7 @@
  * @param {String} [value] Value
  * @returns {string|jQuery}
  */
-jQuery.fn.cssMod = function(mod, value){
+jQuery.fn.clMod = function(mod, value){
 	if (this.length == 0) return this;
 	// Remove class modificator
 	if (value === false) {
@@ -90,8 +90,8 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	$cl.Field = function(row){
 		this.$row = $(row);
 		if (this.$row.data('clfield')) return this.$row.data('clfield');
-		this.type = this.$row.cssMod('type');
-		this.name = this.$row.cssMod('for');
+		this.type = this.$row.clMod('type');
+		this.name = this.$row.clMod('for');
 		this.$input = this.$row.find('input[name], textarea[name], select[name]');
 		this.inited = false;
 
@@ -529,7 +529,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 		this.fields = {};
 		this.$fields.each(function(index, row){
 			var $row = $(row),
-				name = $row.cssMod('for');
+				name = $row.clMod('for');
 			this.fields[name] = new $cl.Field($row);
 			this.fields[name].trigger('beforeShow');
 			var $showIf = $row.find('.cl-eform-row-showif');
@@ -669,7 +669,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			this.defaults = {};
 			this.$container.find('.cl-eform').each(function(index, eform){
 				var $eform = $(eform).css('display', 'none'),
-					name = $eform.cssMod('for');
+					name = $eform.clMod('for');
 				this.$eforms[name] = $eform;
 			}.bind(this));
 			this.$btnSave = this.$container.find('.cl-ebuilder-btn.for_save');

@@ -185,7 +185,7 @@
 			var $part = $(part);
 			// Skipping the ones that won't be changed
 			if ($part.html() + '' == $part.data('final') + '') return;
-			var type = $part.cssMod('type');
+			var type = $part.clMod('type');
 			if (type == 'number') {
 				this.parts.push(new CLCounterNumber($part));
 			} else {

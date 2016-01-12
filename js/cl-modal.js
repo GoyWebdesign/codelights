@@ -4,7 +4,7 @@
 		this.$body = $(document.body);
 		this.$container = $(container);
 		this.$trigger = this.$container.find('.cl-modal-trigger');
-		this.triggerType = this.$trigger.cssMod('type');
+		this.triggerType = this.$trigger.clMod('type');
 		if (this.triggerType == 'load') {
 			var delay = this.$trigger.data('delay') || 2;
 			setTimeout(this.show.bind(this), delay * 1000);

@@ -4,7 +4,7 @@
  * @param {String} [value] Value
  * @returns {string|jQuery}
  */
-jQuery.fn.cssMod = function(mod, value){
+jQuery.fn.clMod = function(mod, value){
 	if (this.length == 0) return this;
 	// Remove class modificator
 	if (value === false) {

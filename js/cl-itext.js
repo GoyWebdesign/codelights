@@ -6,7 +6,7 @@
 		this.$container = $(container);
 		var data = this.$container[0].onclick() || {};
 		this.$container.removeAttr('onclick');
-		this.type = this.$container.cssMod('type');
+		this.type = this.$container.clMod('type');
 		this.animateChars = (this.type.substring(this.type.length - 5) == 'Chars');
 		if (this.animateChars) {
 			this.type = this.type.substring(0, this.type.length - 5);

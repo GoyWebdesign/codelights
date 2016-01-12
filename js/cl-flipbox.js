@@ -9,15 +9,15 @@
 		this.$backH = this.$container.find('.cl-flipbox-back-h');
 
 		// For diagonal cube animations height should equal width (heometrical restriction)
-		var animation = this.$container.cssMod('animation'),
-			direction = this.$container.cssMod('direction');
+		var animation = this.$container.clMod('animation'),
+			direction = this.$container.clMod('direction');
 		this.forceSquare = (animation == 'cubeflip' && ['ne', 'se', 'sw', 'nw'].indexOf(direction) != -1);
 
 		// Container height is determined by the maximum content height
 		this.autoSize = (this.$front[0].style.height == '' && !this.forceSquare);
 
 		// Content is centered
-		this.centerContent = (this.$container.cssMod('valign') == 'center');
+		this.centerContent = (this.$container.clMod('valign') == 'center');
 
 		if (this._events === undefined) this._events = {};
 		$.extend(this._events, {
