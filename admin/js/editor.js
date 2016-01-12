@@ -763,6 +763,8 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	 * @return {Array} List of attributes and their value
 	 */
 	$cl.fn.shortcodeParseAtts = function(text){
+		// Fixing tinymce transformations
+		text = text.replace(/\<br \/\> /g, "\n");
 		var atts = {};
 		text.replace(/([a-z0-9_\-]+)=\"([^\"\]]*)"/g, function(m, key, value){
 			atts[key] = value;
