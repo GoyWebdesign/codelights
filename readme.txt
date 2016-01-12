@@ -3,7 +3,7 @@ Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,6 +126,10 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+
+= 1.0.10 =
+* Fixed: FlipBox back button is now clickable at iOS devices
+* Fixed: Form textarea field is now properly handled in TinyMCE editing mode
 
 = 1.0.9 =
 * New: Opacity slider for all color fields
