@@ -95,17 +95,23 @@ jQuery.fn.cssMod = function(mod, value){
 		/**
 		 * Allows to hover the whole element both by desktop mouse and touch hoverable devices.
 		 * Hovered element gets additional "hover" class at this moment.
+		 *
+		 * @var {String} Selector of inner elements that will be excluded from the touch event
 		 */
-		makeHoverable: function(){
+		makeHoverable: function(exclude){
 			if (this._events === undefined) this._events = {};
 			if ($cl.isMobile) {
 				// Mobile: Touch hover
-				$.extend(this._events, {
-					touchHoverStart: function(){
-						this.$container.toggleClass('hover');
-					}.bind(this)
-				});
+				this._events.touchHoverStart = function(){
+					this.$container.toggleClass('hover');
+				}.bind(this);
 				this.$container.on('touchstart', this._events.touchHoverStart);
+				if (exclude) {
+					this._events.touchHoverPrevent = function(e){
+						e.stopPropagation();
+					};
+					this.$container.find(exclude).on('touchstart', this._events.touchHoverPrevent);
+				}
 			} else {
 				// Desktop: Mouse hover
 				$.extend(this._events, {

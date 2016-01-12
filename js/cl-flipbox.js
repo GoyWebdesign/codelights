@@ -31,7 +31,7 @@
 			this.resize();
 		}
 
-		this.makeHoverable();
+		this.makeHoverable('.cl-btn');
 	};
 	CLFlipbox.prototype = {
 		resize: function(){
