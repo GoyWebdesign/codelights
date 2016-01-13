@@ -1,6 +1,6 @@
-#wp-link-backdrop {
+div#wp-link-backdrop {
   z-index: 500001;
 }
-#wp-link-wrap {
+div#wp-link-wrap {
   z-index: 500002;
 }
