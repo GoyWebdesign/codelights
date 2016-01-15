@@ -18,6 +18,12 @@
   top: 0;
   right: 0;
   bottom: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.cl-modal-overlay.active {
+  opacity: 1;
 }
 .cl-modal-box {
   position: fixed;
@@ -40,4 +46,151 @@
 .cl-modal-box.size_f {
   left: 20px;
   right: 20px;
+}
+.cl-modal-box.animation_scaleUp .cl-modal-box-h {
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.cl-modal-box.animation_scaleUp.active .cl-modal-box-h {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+.cl-modal-box.animation_slideRight .cl-modal-box-h {
+  -webkit-transform: translateX(20%);
+  transform: translateX(20%);
+  opacity: 0;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+.cl-modal-box.animation_slideRight.active .cl-modal-box-h {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}
+.cl-modal-box.animation_slideBottom .cl-modal-box-h {
+  -webkit-transform: translateY(20%);
+  transform: translateY(20%);
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.cl-modal-box.animation_slideBottom.active .cl-modal-box-h {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+.cl-modal-box.animation_newspaper .cl-modal-box-h {
+  -webkit-transform: scale(0) rotate(720deg);
+  transform: scale(0) rotate(720deg);
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cl-modal-box.animation_newspaper.active .cl-modal-box-h {
+  -webkit-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+.cl-modal-box.animation_fall {
+  -webkit-perspective: 1300px;
+  -moz-perspective: 1300px;
+  perspective: 1300px;
+}
+.cl-modal-box.animation_fall .cl-modal-box-h {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: translateZ(600px) rotateX(20deg);
+  transform: translateZ(600px) rotateX(20deg);
+  opacity: 0;
+}
+.cl-modal-box.animation_fall.active .cl-modal-box-h {
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -webkit-transform: translateZ(0px) rotateX(0deg);
+  transform: translateZ(0px) rotateX(0deg);
+  opacity: 1;
+}
+.cl-modal-box.animation_stickyTop {
+  top: 0;
+}
+.cl-modal-box.animation_stickyTop .cl-modal-box-h {
+  -webkit-transform: translateY(-200%);
+  transform: translateY(-200%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.cl-modal-box.animation_stickyTop.active .cl-modal-box-h {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+  opacity: 1;
+}
+.cl-modal-box.animation_stickyBottom {
+  bottom: 0;
+}
+.cl-modal-box.animation_stickyBottom .cl-modal-box-h {
+  -webkit-transform: translateY(200%);
+  transform: translateY(200%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.cl-modal-box.animation_stickyBottom.active .cl-modal-box-h {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+  opacity: 1;
+}
+.cl-modal-box.animation_flipHor {
+  -webkit-perspective: 1300px;
+  -moz-perspective: 1300px;
+  perspective: 1300px;
+}
+.cl-modal-box.animation_flipHor .cl-modal-box-h {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateY(-70deg);
+  transform: rotateY(-70deg);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.cl-modal-box.animation_flipHor.active .cl-modal-box-h {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+.cl-modal-box.animation_flipVer {
+  -webkit-perspective: 1300px;
+  -moz-perspective: 1300px;
+  perspective: 1300px;
+}
+.cl-modal-box.animation_flipVer .cl-modal-box-h {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateX(-70deg);
+  transform: rotateX(-70deg);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  opacity: 0;
+}
+.cl-modal-box.animation_flipVer.active .cl-modal-box-h {
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+.cl-modal-box.animation_scaleDown .cl-modal-box-h {
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.cl-modal-box.animation_scaleDown.active .cl-modal-box-h {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
 }
