@@ -63,11 +63,10 @@ $output .= '<div class="cl-modal-overlay"';
 $output .= cl_prepare_inline_css( array(
 	'background-color' => $overlay_bgcolor,
 ) );
-$output .= '></div>';
+$output .= '><div class="cl-modal-closer"></div></div>';
 
 // The part that will be shown
-$box_classes = ' size_' . $size . ' animation_' . $animation;
-$output .= '<div class="cl-modal-box"';
+$output .= '<div class="cl-modal-box size_' . $size . ' animation_' . $animation . '"';
 $output .= cl_prepare_inline_css( array(
 	'border-radius' => $border_radius,
 ) );

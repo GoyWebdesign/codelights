@@ -825,7 +825,7 @@ return array(
 			'overlay_bgcolor' => array(
 				'title' => __( 'Overlay Background Color', 'codelights' ),
 				'type' => 'color',
-				'std' => '#000000',
+				'std' => 'rgba(0,0,0,0.39)',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Box Style', 'codelights' ),
 			),
