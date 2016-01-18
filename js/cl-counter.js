@@ -88,11 +88,7 @@
 					if (marks.charAt(0) != marks.charAt(marks.length - 1)) format.decMark = marks.charAt(marks.length - 1);
 					if (str.split(format.groupMark).length > 2 && str.split(format.groupMark)[1].length == 2) format.indian = true;
 				} else/*if (marks.length == 1)*/ {
-					if (str.indexOf(marks) == 1) {
-						format[(str.length == 5) ? 'groupMark' : 'decMark'] = marks;
-					} else {
-						format.groupMark = marks;
-					}
+					format[((str.length - str.indexOf(marks) - 1) == 3) ? 'groupMark' : 'decMark'] = marks;
 				}
 				if (format.decMark) {
 					format.decDigits = str.length - str.indexOf(format.decMark) - 1;

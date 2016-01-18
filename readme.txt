@@ -128,6 +128,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 == Changelog ==
 = 1.10 =
 * Fixed: Form link field now works again in customizer editing mode
+* Fixed: Stats Counter now properly detects 00.00 format
 
 = 1.0.10 =
 * Fixed: FlipBox back button is now clickable on iOS devices
