@@ -445,21 +445,21 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			/**
-			 * Design
+			 * Style
 			 */
 			'bgcolor' => array(
 				'title' => __( 'Background Color', 'codelights' ),
 				'type' => 'color',
 				'std' => '#444444',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'textcolor' => array(
 				'title' => __( 'Text Color', 'codelights' ),
 				'type' => 'color',
 				'std' => '#ffffff',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'ratio' => array(
 				'title' => __( 'Aspect Ratio', 'codelights' ),
@@ -475,7 +475,7 @@ return array(
 				),
 				'std' => '3x2',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'align' => array(
 				'title' => __( 'Text Alignment', 'codelights' ),
@@ -487,7 +487,7 @@ return array(
 				),
 				'std' => 'center',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'width' => array(
 				'title' => __( 'Width', 'codelights' ),
@@ -495,7 +495,7 @@ return array(
 				'type' => 'textfield',
 				'std' => '100%',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'padding' => array(
 				'title' => __( 'Padding', 'codelights' ),
@@ -503,13 +503,13 @@ return array(
 				'type' => 'textfield',
 				'std' => '10%',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'el_class' => array(
 				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
-				'group' => __( 'Design', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			/**
 			 * Typography
@@ -694,12 +694,12 @@ return array(
 			 * General
 			 */
 			'title' => array(
-				'title' => __( 'Modal Title', 'codelights' ),
+				'title' => __( 'Popup Title', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 			),
 			'content' => array(
-				'title' => __( 'Modal Content', 'codelights' ),
+				'title' => __( 'Popup Content', 'codelights' ),
 				'type' => 'html',
 				'std' => '',
 			),
@@ -707,7 +707,7 @@ return array(
 			 * Trigger
 			 */
 			'show_on' => array(
-				'title' => __( 'Show Modal On', 'codelights' ),
+				'title' => __( 'Show Popup On', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					'btn' => __( 'Button Click', 'codelights' ),
@@ -783,7 +783,7 @@ return array(
 				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'show_delay' => array(
-				'title' => __( 'Modal Show Delay', 'codelights' ),
+				'title' => __( 'Popup Show Delay', 'codelights' ),
 				'description' => __( 'In seconds', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '2',
@@ -794,7 +794,7 @@ return array(
 			 * Box Style
 			 */
 			'size' => array(
-				'title' => __( 'Modal Size', 'codelights' ),
+				'title' => __( 'Popup Size', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					's' => __( 'Small', 'codelights' ),
@@ -802,69 +802,71 @@ return array(
 					'l' => __( 'Large', 'codelights' ),
 					'f' => __( 'Fullscreen', 'codelights' ),
 				),
-				'group' => __( 'Box Style', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'animation' => array(
-				'title' => __( 'Modal Show Animation', 'codelights' ),
+				'title' => __( 'Popup Show Animation', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					// Inspired by http://tympanus.net/Development/ModalWindowEffects/
-					'scaleUp' => __( 'Fade In & Scale Up', 'codelights' ),
-					'slideRight' => __( 'Slide In (Right)', 'codelights' ),
-					'slideBottom' => __( 'Slide In (Bottom)', 'codelights' ),
-					'newspaper' => __( 'Newspaper', 'codelights' ),
-					'fall' => __( 'Fall', 'codelights' ),
-					'stickyTop' => __( 'Sticky at Top', 'codelights' ),
-					'stickyBottom' => __( 'Sticky at Bottom', 'codelights' ),
+					'scaleUp' => __( 'Scale Up', 'codelights' ),
+					'scaleDown' => __( 'Scale Down', 'codelights' ),
+					'slideTop' => __( 'Slide from Top)', 'codelights' ),
+					'slideBottom' => __( 'Slide from Bottom', 'codelights' ),
 					'flipHor' => __( '3D Flip (Horizontal)', 'codelights' ),
 					'flipVer' => __( '3D Flip (Vertical)', 'codelights' ),
-					'scaleDown' => __( 'Scale Down', 'codelights' ),
+					'stickyTop' => __( 'Sticky at Top', 'codelights' ),
+					'stickyBottom' => __( 'Sticky at Bottom', 'codelights' ),
 				),
-				'group' => __( 'Box Style', 'codelights' ),
-			),
-			'overlay_bgcolor' => array(
-				'title' => __( 'Overlay Background Color', 'codelights' ),
-				'type' => 'color',
-				'std' => 'rgba(0,0,0,0.39)',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
-			),
-			'title_bgcolor' => array(
-				'title' => __( 'Header Background Color', 'codelights' ),
-				'type' => 'color',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
-			),
-			'title_textcolor' => array(
-				'title' => __( 'Header Text Color', 'codelights' ),
-				'type' => 'color',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
-			),
-			'content_bgcolor' => array(
-				'title' => __( 'Content Background Color', 'codelights' ),
-				'type' => 'color',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
-			),
-			'content_textcolor' => array(
-				'title' => __( 'Content Text Color', 'codelights' ),
-				'type' => 'color',
-				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'border_radius' => array(
 				'title' => __( 'Border Radius', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
-				'group' => __( 'Box Style', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'overlay_bgcolor' => array(
+				'title' => __( 'Overlay Background Color', 'codelights' ),
+				'type' => 'color',
+				'std' => 'rgba(0,0,0,0.75)',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'title_bgcolor' => array(
+				'title' => __( 'Header Background Color', 'codelights' ),
+				'type' => 'color',
+				'std' => '#f2f2f2',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'title_textcolor' => array(
+				'title' => __( 'Header Text Color', 'codelights' ),
+				'type' => 'color',
+				'std' => '#666666',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'content_bgcolor' => array(
+				'title' => __( 'Content Background Color', 'codelights' ),
+				'type' => 'color',
+				'std' => '#ffffff',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
+			),
+			'content_textcolor' => array(
+				'title' => __( 'Content Text Color', 'codelights' ),
+				'type' => 'color',
+				'std' => '#333333',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Style', 'codelights' ),
 			),
 			'el_class' => array(
 				'title' => __( 'Extra class name', 'codelights' ),
 				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'codelights' ),
 				'type' => 'textfield',
-				'group' => __( 'Box Style', 'codelights' ),
+				'group' => __( 'Style', 'codelights' ),
 			),
 		),
 	),
