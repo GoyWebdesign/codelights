@@ -27,8 +27,8 @@
  */
 
 // Enqueuing the needed assets
-wp_enqueue_style( 'cl-modal' );
-wp_enqueue_script( 'cl-modal' );
+wp_enqueue_style( 'cl-popup' );
+wp_enqueue_script( 'cl-popup' );
 
 // Main element classes
 $classes = ' align_' . $align;
@@ -36,21 +36,21 @@ if ( ! empty( $el_class ) ) {
 	$classes .= ' ' . $el_class;
 }
 
-$output = '<div class="cl-modal' . $classes . '">';
+$output = '<div class="cl-popup' . $classes . '">';
 
 // Trigger
 if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attachment_image( $image, $image_size ) ) ) {
-	$output = '<a href="javascript:void(0)" class="cl-modal-trigger type_image">' . $image_html . '</a>';
+	$output .= '<a href="javascript:void(0)" class="cl-popup-trigger type_image">' . $image_html . '</a>';
 } elseif ( $show_on == 'text' ) {
-	$output = '<a href="javascript:void(0)" class="cl-modal-trigger type_text"';
+	$output .= '<a href="javascript:void(0)" class="cl-popup-trigger type_text"';
 	$output .= cl_prepare_inline_css( array(
 		'color' => $text_color,
 	) );
 	$output .= '>' . $text_label . '</a>';
 } elseif ( $show_on == 'load' ) {
-	$output .= '<span class="cl-modal-trigger type_load" data-delay="' . intval( $show_delay ) . '"></span>';
+	$output .= '<span class="cl-popup-trigger type_load" data-delay="' . intval( $show_delay ) . '"></span>';
 } else/*if ( $show_on == 'btn' )*/ {
-	$output .= '<a href="javascript:void(0)" class="cl-modal-trigger type_btn cl-btn"';
+	$output .= '<a href="javascript:void(0)" class="cl-popup-trigger type_btn cl-btn"';
 	$output .= cl_prepare_inline_css( array(
 		'color' => $btn_color,
 		'background-color' => $btn_bgcolor,
@@ -59,22 +59,23 @@ if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attach
 }
 
 // Overlay
-$output .= '<div class="cl-modal-overlay"';
+$output .= '<div class="cl-popup-overlay"';
 $output .= cl_prepare_inline_css( array(
 	'background-color' => $overlay_bgcolor,
 ) );
-$output .= '><div class="cl-modal-closer"></div></div>';
+$output .= '><div class="cl-popup-closer"></div></div>';
 
 // The part that will be shown
-$output .= '<div class="cl-modal-box size_' . $size . ' animation_' . $animation . '"';
+$output .= '<div class="cl-popup-wrap">';
+$output .= '<div class="cl-popup-box size_' . $size . ' animation_' . $animation . '"';
 $output .= cl_prepare_inline_css( array(
 	'border-radius' => $border_radius,
 ) );
-$output .= '><div class="cl-modal-box-h">';
+$output .= '><div class="cl-popup-box-h"><div class="cl-popup-box-closer"></div>';
 
 // Modal box title
 if ( ! empty( $title ) ) {
-	$output .= '<div class="cl-modal-box-title"';
+	$output .= '<div class="cl-popup-box-title"';
 	$output .= cl_prepare_inline_css( array(
 		'color' => $title_textcolor,
 		'background-color' => $title_bgcolor,
@@ -83,7 +84,7 @@ if ( ! empty( $title ) ) {
 }
 
 // Modal box content
-$output .= '<div class="cl-modal-box-content"';
+$output .= '<div class="cl-popup-box-content"';
 $output .= cl_prepare_inline_css( array(
 	'color' => $content_textcolor,
 	'background-color' => $content_bgcolor,
@@ -91,7 +92,8 @@ $output .= cl_prepare_inline_css( array(
 $output .= '>' . $content . '</div>';
 
 $output .= '</div></div>';
+$output .= '</div>'; // .cl-popup-wrap
 
-$output .= '</div>';
+$output .= '</div>'; // .cl-popup
 
 echo $output;

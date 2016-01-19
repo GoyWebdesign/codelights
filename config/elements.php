@@ -683,11 +683,11 @@ return array(
 			),
 		),
 	),
-	'cl-modal' => array(
+	'cl-popup' => array(
 		'title' => __( 'Modal Popup', 'codelights' ),
 		'description' => __( 'Dialog box displayed above the page content', 'codelights' ),
 		'category' => 'CodeLights',
-		'icon' => $cl_uri . '/admin/img/cl-modal.png',
+		'icon' => $cl_uri . '/admin/img/cl-popup.png',
 		'widget_php_class' => 'CL_Widget_Modal',
 		'params' => array(
 			/**
