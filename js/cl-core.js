@@ -37,14 +37,17 @@ jQuery.fn.clMod = function(mod, value){
 	// Known elements and their constructors
 	window.$cl.elements = {};
 
-	$(function(){
+	var inited = [];
+	$cl.maybeInit = function(){
 		for (var elm in $cl.elements) {
-			if (!$cl.elements.hasOwnProperty(elm)) continue;
+			if (!$cl.elements.hasOwnProperty(elm) || inited.indexOf(elm) != -1) continue;
 			$('.' + elm).each(function(){
 				$(this).data(elm, new $cl.elements[elm](this));
 			});
+			inited.push(elm);
 		}
-	});
+	};
+	$($cl.maybeInit);
 
 	// Class mutators
 	$cl.mutators = {};

@@ -127,6 +127,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.10 =
+* Improved: JavaScripts logic now allows to load scripts asynchronously.
 * Fixed: Form link field now works again in customizer editing mode
 * Fixed: Stats Counter now properly detects 00.00 format
 

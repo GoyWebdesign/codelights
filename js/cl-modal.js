@@ -1,3 +1,6 @@
+/**
+ * CodeLights: Modal Popup
+ */
 !function($){
 	"use strict";
 	var CLModal = function(container){
@@ -48,5 +51,8 @@
 			this.$box.appendTo(this.$container).hide();
 		}
 	};
+	if (window.$cl === undefined) window.$cl = {};
+	if ($cl.elements === undefined) $cl.elements = {};
 	$cl.elements['cl-modal'] = CLModal;
+	if ($cl.maybeInit !== undefined) $cl.maybeInit();
 }(jQuery);

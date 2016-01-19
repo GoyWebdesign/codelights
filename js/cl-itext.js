@@ -2,6 +2,7 @@
  * CodeLights: Interactive Text
  */
 !function($){
+	"use strict";
 	var CLItext = function(container){
 		this.$container = $(container);
 		var data = this.$container[0].onclick() || {};
@@ -125,12 +126,8 @@
 			this.timer = setTimeout(this._events.animate, this.delay / 2);
 		}
 	};
-	$.fn.clItext = function(){
-		this.each(function(index, container){
-			$(container).data('clItext', new CLItext(container));
-		});
-	};
-	$(function(){
-		$('.cl-itext').clItext();
-	});
+	if (window.$cl === undefined) window.$cl = {};
+	if ($cl.elements === undefined) $cl.elements = {};
+	$cl.elements['cl-itext'] = CLItext;
+	if ($cl.maybeInit !== undefined) $cl.maybeInit();
 }(jQuery);

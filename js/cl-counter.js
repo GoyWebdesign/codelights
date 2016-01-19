@@ -213,5 +213,8 @@
 			}
 		}
 	};
+	if (window.$cl === undefined) window.$cl = {};
+	if ($cl.elements === undefined) $cl.elements = {};
 	$cl.elements['cl-counter'] = CLCounter;
+	if ($cl.maybeInit !== undefined) $cl.maybeInit();
 }(jQuery);
