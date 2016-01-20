@@ -3,7 +3,7 @@ Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
 Tested up to: 4.4.1
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,10 +126,11 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
-= 1.10 =
-* Improved: JavaScripts logic now allows to load scripts asynchronously.
-* Fixed: Form link field now works again in customizer editing mode
+= 1.0.11 =
+* Improved: front-end JS logic now allows to load scripts asynchronously (could be useful for 3-rd party page loading accelerators).
+* Fixed: Form link field now is properly shown in customizer editing mode
 * Fixed: Stats Counter now properly detects 00.00 format
+* Fixed: SiteOrigin-related assets loading is optimized and became more stable
 
 = 1.0.10 =
 * Fixed: FlipBox back button is now clickable on iOS devices
