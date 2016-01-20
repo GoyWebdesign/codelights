@@ -20,8 +20,13 @@ jQuery.fn.clMod = function(mod, value){
 	}
 	// Set modificator
 	else {
+		var regexp = new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)');
 		return this.each(function(){
-			this.className = this.className.replace(new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)'), '$1' + mod + '_' + value + '$2');
+			if (this.className.match(regexp)){
+				this.className = this.className.replace(regexp, '$1' + mod + '_' + value + '$2');
+			}else{
+				this.className += ' ' + mod + '_' + value;
+			}
 		});
 	}
 };
