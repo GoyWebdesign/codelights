@@ -811,7 +811,7 @@ return array(
 					// Inspired by http://tympanus.net/Development/ModalWindowEffects/
 					'scaleUp' => __( 'Scale Up', 'codelights' ),
 					'scaleDown' => __( 'Scale Down', 'codelights' ),
-					'slideTop' => __( 'Slide from Top)', 'codelights' ),
+					'slideTop' => __( 'Slide from Top', 'codelights' ),
 					'slideBottom' => __( 'Slide from Bottom', 'codelights' ),
 					'flipHor' => __( '3D Flip (Horizontal)', 'codelights' ),
 					'flipVer' => __( '3D Flip (Vertical)', 'codelights' ),
