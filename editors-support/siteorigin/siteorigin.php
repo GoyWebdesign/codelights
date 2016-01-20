@@ -21,7 +21,6 @@ function cl_siteorigin_panels_widgets( $widgets ) {
 	return $widgets;
 }
 
-add_action( 'admin_head', 'cl_siteorigin_icons_style' );
 function cl_siteorigin_icons_style() {
 	echo '<style type="text/css" id="cl_siteorigin_icons_style">';
 	foreach ( cl_config( 'elements', array() ) as $name => $elm ) {
@@ -51,6 +50,14 @@ function cl_siteorigin_panels_widget_dialog_tabs( $tabs ) {
 
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_siteorigin_scripts' );
 function cl_admin_enqueue_siteorigin_scripts() {
-	global $cl_uri;
-	wp_enqueue_script( 'cl-siteorigin', $cl_uri . '/editors-support/siteorigin/siteorigin.js', array( 'jquery' ), FALSE, TRUE );
+	global $post_type, $cl_uri, $cl_version, $wp_styles;
+	if ( function_exists( 'siteorigin_panels_setting' ) ) {
+		$siteorigin_post_types = siteorigin_panels_setting( 'post-types' );
+		if ( is_array( $siteorigin_post_types ) AND in_array( $post_type, $siteorigin_post_types ) ) {
+			cl_enqueue_forms_assets();
+			wp_enqueue_script( 'cl-siteorigin', $cl_uri . '/editors-support/siteorigin/siteorigin.js', array( 'jquery' ), $cl_version, TRUE );
+			// Icons
+			add_action( 'admin_head', 'cl_siteorigin_icons_style' );
+		}
+	}
 }
