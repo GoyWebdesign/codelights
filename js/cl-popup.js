@@ -36,6 +36,7 @@
 		this.$wrap = this.$container.find('.cl-popup-wrap');
 		this.$box = this.$container.find('.cl-popup-box');
 		this.$overlay = this.$container.find('.cl-popup-overlay');
+		this.$container.find('.cl-popup-closer, .cl-popup-box-closer').on('click', this._events.hide);
 		this.$wrap.on('click', this._events.hide);
 		this.$box.on('click', this._events.preventHide);
 		this.size = this.$box.clMod('size');

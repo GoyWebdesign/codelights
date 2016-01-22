@@ -63,7 +63,11 @@ $output .= '<div class="cl-popup-overlay"';
 $output .= cl_prepare_inline_css( array(
 	'background-color' => $overlay_bgcolor,
 ) );
-$output .= '><div class="cl-popup-closer"></div></div>';
+$output .= '>';
+if ( $size != 'f' ) {
+	$output .= '<div class="cl-popup-closer"></div>';
+}
+$output .= '</div>';
 
 // The part that will be shown
 $output .= '<div class="cl-popup-wrap">';
@@ -91,7 +95,13 @@ $output .= cl_prepare_inline_css( array(
 ) );
 $output .= '>' . $content . '</div>';
 
-$output .= '<div class="cl-popup-box-closer"></div></div></div>';
+$output .= '<div class="cl-popup-box-closer"';
+if ( ! empty( $title ) ) {
+	$output .= cl_prepare_inline_css( array(
+		'color' => $title_textcolor,
+	) );
+}
+$output .= '></div></div></div>';
 $output .= '</div>'; // .cl-popup-wrap
 
 $output .= '</div>'; // .cl-popup
