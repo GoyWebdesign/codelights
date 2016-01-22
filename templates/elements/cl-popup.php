@@ -71,7 +71,7 @@ $output .= '<div class="cl-popup-box size_' . $size . ' animation_' . $animation
 $output .= cl_prepare_inline_css( array(
 	'border-radius' => $border_radius,
 ) );
-$output .= '><div class="cl-popup-box-h"><div class="cl-popup-box-closer"></div>';
+$output .= '><div class="cl-popup-box-h">';
 
 // Modal box title
 if ( ! empty( $title ) ) {
@@ -91,7 +91,7 @@ $output .= cl_prepare_inline_css( array(
 ) );
 $output .= '>' . $content . '</div>';
 
-$output .= '</div></div>';
+$output .= '<div class="cl-popup-box-closer"></div></div></div>';
 $output .= '</div>'; // .cl-popup-wrap
 
 $output .= '</div>'; // .cl-popup
