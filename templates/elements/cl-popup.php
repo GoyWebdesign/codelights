@@ -12,17 +12,19 @@
  * @var $image int ID of the WP attachment image
  * @var $image_size string WordPress image thumbnail name
  * @var $text_label string Text label
+ * @var $text_size int Text size
  * @var $text_color string Text color
  * @var $align string Button / image / text alignment: 'left' / 'center' / 'right'
  * @var $show_delay int Modal box show delay (in ms)
  * @var $size string Modal box size: 's' / 'm' / 'l' / 'f'
+ * @var $paddings bool Remove white space around popup content?
  * @var $animation string 'scaleUp' / 'slideRight' / 'slideBottom' / 'newspaper' / 'fall' / 'stickyTop' / 'stickyBottom' / 'flipHor' / 'flipVer' / 'scaleDown'
+ * @var $border_radius int Border radius
  * @var $overlay_bgcolor string Overlay background color
  * @var $title_bgcolor string Title background color
  * @var $title_textcolor string Title text color
  * @var $content_bgcolor string Content background color
  * @var $content_textcolor string Content text color
- * @var $border_radius int Border radius
  * @var $el_class string Extra class name
  */
 
@@ -44,6 +46,7 @@ if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attach
 } elseif ( $show_on == 'text' ) {
 	$output .= '<a href="javascript:void(0)" class="cl-popup-trigger type_text"';
 	$output .= cl_prepare_inline_css( array(
+		'font-size' => $text_size,
 		'color' => $text_color,
 	) );
 	$output .= '>' . $text_label . '</a>';
@@ -63,15 +66,18 @@ $output .= '<div class="cl-popup-overlay"';
 $output .= cl_prepare_inline_css( array(
 	'background-color' => $overlay_bgcolor,
 ) );
-$output .= '>';
-if ( $size != 'f' ) {
-	$output .= '<div class="cl-popup-closer"></div>';
-}
-$output .= '</div>';
+$output .= '></div>';
 
 // The part that will be shown
 $output .= '<div class="cl-popup-wrap">';
-$output .= '<div class="cl-popup-box size_' . $size . ' animation_' . $animation . '"';
+if ( $size != 'f' ) {
+	$output .= '<div class="cl-popup-closer"></div>';
+}
+$box_classes = ' size_' . $size . ' animation_' . $animation;
+if ( $paddings == 'none' ) {
+	$box_classes .= ' paddings_none';
+}
+$output .= '<div class="cl-popup-box' . $box_classes . '"';
 $output .= cl_prepare_inline_css( array(
 	'border-radius' => $border_radius,
 ) );
@@ -93,7 +99,7 @@ $output .= cl_prepare_inline_css( array(
 	'color' => $content_textcolor,
 	'background-color' => $content_bgcolor,
 ) );
-$output .= '>' . $content . '</div>';
+$output .= '>' . do_shortcode( $content ) . '</div>';
 
 $output .= '<div class="cl-popup-box-closer"';
 if ( ! empty( $title ) ) {
