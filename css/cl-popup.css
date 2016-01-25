@@ -28,8 +28,9 @@
   top: 0;
   right: 0;
   text-align: center;
-  line-height: 50px;
-  width: 50px;
+  line-height: 76px;
+  height: 80px;
+  width: 80px;
   cursor: pointer;
   color: #fff;
   -webkit-transition: opacity 0.3s;
@@ -38,7 +39,7 @@
 }
 .cl-popup-closer:before {
   content: '\00D7';
-  font-size: 40px;
+  font-size: 60px;
 }
 @media (max-width: 600px) {
   .cl-popup-closer {
@@ -105,6 +106,7 @@
 .cl-popup-box-title {
   font-size: 1.15em;
   line-height: 1.5;
+  font-weight: bold;
   padding: 15px 25px;
   background-color: #f2f2f2;
 }
@@ -136,10 +138,16 @@
   margin-left: -400px;
   padding: 30px 0;
 }
+.cl-popup-box.size_xl {
+  width: 1000px;
+  margin-left: -500px;
+  padding: 30px 0;
+}
 @media (max-width: 900px) {
   .cl-popup-box.size_s,
   .cl-popup-box.size_m,
-  .cl-popup-box.size_l {
+  .cl-popup-box.size_l,
+  .cl-popup-box.size_xl {
     top: 50px;
     left: 50px;
     right: 50px;
@@ -150,7 +158,8 @@
 @media (max-width: 600px) {
   .cl-popup-box.size_s,
   .cl-popup-box.size_m,
-  .cl-popup-box.size_l {
+  .cl-popup-box.size_l,
+  .cl-popup-box.size_xl {
     top: 25px;
     left: 25px;
     right: 25px;

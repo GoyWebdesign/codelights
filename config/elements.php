@@ -43,7 +43,7 @@ return array(
 				'group' => __( 'Custom', 'codelights' ),
 			),
 			'title_size' => array(
-				'title' => __( 'Title Font Size (px)', 'codelights' ),
+				'title' => __( 'Title Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '20',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -179,7 +179,7 @@ return array(
 				'show_if' => array( 'front_icon_type', '=', 'font' ),
 			),
 			'front_icon_size' => array(
-				'title' => __( 'Icon Size (px)', 'codelights' ),
+				'title' => __( 'Icon Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '35',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -235,7 +235,7 @@ return array(
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			'front_title_size' => array(
-				'title' => __( 'Title Font Size (px)', 'codelights' ),
+				'title' => __( 'Title Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -282,7 +282,7 @@ return array(
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			'back_title_size' => array(
-				'title' => __( 'Title Font Size (px)', 'codelights' ),
+				'title' => __( 'Title Font Size', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -515,7 +515,7 @@ return array(
 			 * Typography
 			 */
 			'title_size' => array(
-				'title' => __( 'Title Font Size (px)', 'codelights' ),
+				'title' => __( 'Title Font Size', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '30px',
@@ -523,7 +523,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'desc_size' => array(
-				'title' => __( 'Description Font Size (px)', 'codelights' ),
+				'title' => __( 'Description Font Size', 'codelights' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '16px',
@@ -531,7 +531,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'title_mobile_size' => array(
-				'title' => __( 'Title Font Size for Mobiles (px)', 'codelights' ),
+				'title' => __( 'Title Font Size for Mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '24px',
@@ -539,7 +539,7 @@ return array(
 				'group' => __( 'Typography', 'codelights' ),
 			),
 			'desc_mobile_size' => array(
-				'title' => __( 'Description Size for Mobiles (px)', 'codelights' ),
+				'title' => __( 'Description Size for Mobiles', 'codelights' ),
 				'description' => __( 'This value will be applied when screen width is less than 600px', 'codelights' ),
 				'type' => 'textfield',
 				'std' => '16px',
@@ -759,6 +759,13 @@ return array(
 				'title' => __( 'Text Label', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'READ MORE', // Not translatable
+				'show_if' => array( 'show_on', '=', 'text' ),
+				'group' => __( 'Trigger', 'codelights' ),
+			),
+			'text_size' => array(
+				'title' => __( 'Text Size', 'codelights' ),
+				'type' => 'textfield',
+				'std' => '',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'text' ),
 				'group' => __( 'Trigger', 'codelights' ),
@@ -791,7 +798,7 @@ return array(
 				'group' => __( 'Trigger', 'codelights' ),
 			),
 			/**
-			 * Box Style
+			 * Popup Style
 			 */
 			'size' => array(
 				'title' => __( 'Popup Size', 'codelights' ),
@@ -800,12 +807,21 @@ return array(
 					's' => __( 'Small', 'codelights' ),
 					'm' => __( 'Medium', 'codelights' ),
 					'l' => __( 'Large', 'codelights' ),
+					'xl' => __( 'Huge', 'codelights' ),
 					'f' => __( 'Fullscreen', 'codelights' ),
 				),
 				'group' => __( 'Style', 'codelights' ),
 			),
+			'paddings' => array(
+				'type' => 'checkboxes',
+				'options' => array(
+					'none' => __( 'Remove white space around popup content', 'codelights' ),
+				),
+				'std' => 'default',
+				'group' => __( 'Style', 'codelights' ),
+			),
 			'animation' => array(
-				'title' => __( 'Popup Show Animation', 'codelights' ),
+				'title' => __( 'Appearance Animation', 'codelights' ),
 				'type' => 'select',
 				'options' => array(
 					// Inspired by http://tympanus.net/Development/ModalWindowEffects/
