@@ -70,9 +70,6 @@ $output .= '></div>';
 
 // The part that will be shown
 $output .= '<div class="cl-popup-wrap">';
-if ( $size != 'f' ) {
-	$output .= '<div class="cl-popup-closer"></div>';
-}
 $box_classes = ' size_' . $size . ' animation_' . $animation;
 if ( $paddings == 'none' ) {
 	$box_classes .= ' paddings_none';
@@ -108,6 +105,9 @@ if ( ! empty( $title ) ) {
 	) );
 }
 $output .= '></div></div></div>';
+if ( $size != 'f' ) {
+	$output .= '<div class="cl-popup-closer"></div>';
+}
 $output .= '</div>'; // .cl-popup-wrap
 
 $output .= '</div>'; // .cl-popup
