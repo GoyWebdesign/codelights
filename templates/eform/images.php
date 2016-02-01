@@ -13,7 +13,7 @@ $img_ids = empty( $value ) ? array() : array_map( 'intval', explode( ',', $value
 $multiple = ( ! isset( $multiple ) OR $multiple );
 
 if ( $multiple ) {
-	cl_enqueue_script( 'jquery-ui-sortable' );
+	wp_enqueue_script( 'jquery-ui-sortable' );
 }
 
 $output = '<div class="cl-imgattach" data-multiple="' . intval( $multiple ) . '">';
