@@ -121,6 +121,12 @@
 .cl-popup-box-content img {
   vertical-align: top;
 }
+.cl-popup-box-content > p {
+  margin: 0 0 1.5em;
+}
+.cl-popup-box-content > p:last-child {
+  margin: 0;
+}
 .cl-popup-box.paddings_none .cl-popup-box-content {
   padding: 0 !important;
 }
