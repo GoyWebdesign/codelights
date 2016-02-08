@@ -7,6 +7,9 @@
 .cl-popup.align_right {
   text-align: right;
 }
+.cl-popup-trigger img {
+  vertical-align: top;
+}
 .cl-popup-overlay {
   display: none;
   position: fixed;
