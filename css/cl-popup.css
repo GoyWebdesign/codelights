@@ -113,12 +113,10 @@
   line-height: 1.5;
   font-weight: bold;
   padding: 15px 25px;
-  background-color: #f2f2f2;
 }
 .cl-popup-box-content {
   height: 100%;
   padding: 35px 40px;
-  background-color: #fff;
 }
 .cl-popup-box-content img {
   vertical-align: top;
