@@ -6,12 +6,11 @@
  * @var $title string Modal title
  * @var $content string Modal HTML content
  * @var $show_on string Show modal on: 'btn' / 'image' / 'text' / 'load'
- * @var $btn_label string Button label
+ * @var $btn_label string Button / Text label
  * @var $btn_bgcolor string Button background color
  * @var $btn_color string Button text color
  * @var $image int ID of the WP attachment image
  * @var $image_size string WordPress image thumbnail name
- * @var $text_label string Text label
  * @var $text_size int Text size
  * @var $text_color string Text color
  * @var $align string Button / image / text alignment: 'left' / 'center' / 'right'
@@ -49,7 +48,7 @@ if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attach
 		'font-size' => $text_size,
 		'color' => $text_color,
 	) );
-	$output .= '>' . $text_label . '</a>';
+	$output .= '>' . $btn_label . '</a>';
 } elseif ( $show_on == 'load' ) {
 	$output .= '<span class="cl-popup-trigger type_load" data-delay="' . intval( $show_delay ) . '"></span>';
 } else/*if ( $show_on == 'btn' )*/ {
