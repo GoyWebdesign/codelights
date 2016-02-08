@@ -127,6 +127,9 @@
 .cl-popup-box-content > p:last-child {
   margin: 0;
 }
+.cl-popup-box-content iframe {
+  vertical-align: top;
+}
 .cl-popup-box.paddings_none .cl-popup-box-content {
   padding: 0 !important;
 }
