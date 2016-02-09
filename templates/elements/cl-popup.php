@@ -104,9 +104,7 @@ if ( ! empty( $title ) ) {
 	) );
 }
 $output .= '></div></div></div>';
-if ( $size != 'f' ) {
-	$output .= '<div class="cl-popup-closer"></div>';
-}
+$output .= '<div class="cl-popup-closer"></div>';
 $output .= '</div>'; // .cl-popup-wrap
 
 $output .= '</div>'; // .cl-popup
