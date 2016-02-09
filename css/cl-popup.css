@@ -127,6 +127,14 @@
 .cl-popup-box-content iframe {
   vertical-align: top;
 }
+.cl-popup-box-content h1,
+.cl-popup-box-content h2,
+.cl-popup-box-content h3,
+.cl-popup-box-content h4,
+.cl-popup-box-content h5,
+.cl-popup-box-content h6 {
+  color: inherit;
+}
 .cl-popup-box.paddings_none .cl-popup-box-content {
   padding: 0 !important;
 }
