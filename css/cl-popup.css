@@ -137,9 +137,6 @@
   margin-left: -300px;
   padding: 25px 0;
 }
-.cl-popup-box.size_m .cl-popup-box-content {
-  padding: 50px;
-}
 @media (max-width: 700px) {
   .cl-popup-box.size_m {
     left: 50px;
@@ -159,7 +156,7 @@
   padding: 25px 0;
 }
 .cl-popup-box.size_l .cl-popup-box-content {
-  padding: 60px;
+  padding: 50px;
 }
 @media (max-width: 900px) {
   .cl-popup-box.size_l {
@@ -180,7 +177,7 @@
   padding: 25px 0;
 }
 .cl-popup-box.size_xl .cl-popup-box-content {
-  padding: 60px;
+  padding: 50px;
 }
 @media (max-width: 1100px) {
   .cl-popup-box.size_xl {
