@@ -159,6 +159,9 @@
   margin-left: -300px;
   padding: 25px 0;
 }
+.cl-popup-box.size_m .cl-popup-content {
+  padding: 45px 50px;
+}
 @media (max-width: 700px) {
   .cl-popup-box.size_m {
     left: 50px;
@@ -177,6 +180,9 @@
   margin-left: -400px;
   padding: 25px 0;
 }
+.cl-popup-box.size_l .cl-popup-content {
+  padding: 55px 60px;
+}
 @media (max-width: 900px) {
   .cl-popup-box.size_l {
     left: 50px;
@@ -194,6 +200,9 @@
   width: 1000px;
   margin-left: -500px;
   padding: 25px 0;
+}
+.cl-popup-box.size_xl .cl-popup-content {
+  padding: 55px 60px;
 }
 @media (max-width: 1100px) {
   .cl-popup-box.size_xl {
