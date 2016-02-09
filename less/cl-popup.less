@@ -100,17 +100,6 @@
 				font-size: 60px;
 			}
 		}
-		@media (max-width: 600px) {
-			&-closer {
-				display: block;
-				line-height: 50px;
-				height: 50px;
-				width: 50px;
-				&:before {
-					font-size: 40px;
-				}
-			}
-		}
 		&-closer:hover {
 			opacity: 1;
 		}
@@ -122,13 +111,14 @@
 		}
 		&-content {
 			height: 100%;
-			padding: 35px 40px;
+			padding: 40px;
+			
 			& img {
 				vertical-align: top;
 			}
 			& iframe {
 				vertical-align: top;
-				}
+			}
 			& h1,
 			& h2,
 			& h3,
@@ -136,36 +126,27 @@
 			& h5,
 			& h6 {
 				color: inherit;
-				}
+			}
 		}
 		&.paddings_none .cl-popup-box-content {
 			padding: 0 !important;
 		}
-		@media (max-width: 600px) {
-			&-title {
-				padding-right: 50px;
-			}
-			&-content {
-				padding: 50px 25px 25px;
-			}
-			&-title + &-content {
-				padding-top: 25px;
-			}
-		}
 		
 		// Sizes
+		
 		&.size_s {
 			width: 400px;
 			margin-left: -200px;
 			padding: 25px 0;
 		}
+		
 		&.size_m {
 			width: 600px;
 			margin-left: -300px;
 			padding: 25px 0;
 			
 			& .cl-popup-box-content {
-				padding: 45px 50px;
+				padding: 50px;
 			}
 		}
 		@media (max-width: 700px) {
@@ -181,13 +162,14 @@
 				width: 50px;
 			}
 		}
+		
 		&.size_l {
 			width: 800px;
 			margin-left: -400px;
 			padding: 25px 0;
 			
 			& .cl-popup-box-content {
-				padding: 55px 60px;
+				padding: 60px;
 			}
 		}
 		@media (max-width: 900px) {
@@ -203,13 +185,14 @@
 				width: 50px;
 			}
 		}
+		
 		&.size_xl {
 			width: 1000px;
 			margin-left: -500px;
 			padding: 25px 0;
 			
 			& .cl-popup-box-content {
-				padding: 55px 60px;
+				padding: 60px;
 			}
 		}
 		@media (max-width: 1100px) {
@@ -225,17 +208,38 @@
 				width: 50px;
 			}
 		}
+		
 		@media (max-width: 600px) {
 			&.size_s,
 			&.size_m,
 			&.size_l,
 			&.size_xl {
-				left: 25px;
-				right: 25px;
+				left: 10px;
+				right: 10px;
 				width: auto;
-				margin-left: 0;
+				padding: 10px 0;
+				margin: 0;
+			}
+			&-closer {
+				display: block;
+				line-height: 50px;
+				height: 50px;
+				width: 50px;
+				&:before {
+					font-size: 40px;
+				}
+			}
+			&-title {
+				padding-right: 50px;
+			}
+			&-content {
+				padding: 50px 25px 25px !important;
+			}
+			&-title + &-content {
+				padding-top: 25px !important;
 			}
 		}
+		
 		&.size_f {
 			left: 0;
 			right: 0;
@@ -283,7 +287,7 @@
 		}
 		&.animation_scaleDown {
 			.cl-popup-box-h {
-				.transform(scale(2));
+				.transform(scale(1.5));
 				opacity: 0;
 				.transition(all 0.3s);
 			}

@@ -97,17 +97,6 @@
   content: '\00D7';
   font-size: 60px;
 }
-@media (max-width: 600px) {
-  .cl-popup-box-closer {
-    display: block;
-    line-height: 50px;
-    height: 50px;
-    width: 50px;
-  }
-  .cl-popup-box-closer:before {
-    font-size: 40px;
-  }
-}
 .cl-popup-box-closer:hover {
   opacity: 1;
 }
@@ -119,7 +108,7 @@
 }
 .cl-popup-box-content {
   height: 100%;
-  padding: 35px 40px;
+  padding: 40px;
 }
 .cl-popup-box-content img {
   vertical-align: top;
@@ -138,17 +127,6 @@
 .cl-popup-box.paddings_none .cl-popup-box-content {
   padding: 0 !important;
 }
-@media (max-width: 600px) {
-  .cl-popup-box-title {
-    padding-right: 50px;
-  }
-  .cl-popup-box-content {
-    padding: 50px 25px 25px;
-  }
-  .cl-popup-box-title + .cl-popup-box-content {
-    padding-top: 25px;
-  }
-}
 .cl-popup-box.size_s {
   width: 400px;
   margin-left: -200px;
@@ -160,7 +138,7 @@
   padding: 25px 0;
 }
 .cl-popup-box.size_m .cl-popup-box-content {
-  padding: 45px 50px;
+  padding: 50px;
 }
 @media (max-width: 700px) {
   .cl-popup-box.size_m {
@@ -181,7 +159,7 @@
   padding: 25px 0;
 }
 .cl-popup-box.size_l .cl-popup-box-content {
-  padding: 55px 60px;
+  padding: 60px;
 }
 @media (max-width: 900px) {
   .cl-popup-box.size_l {
@@ -202,7 +180,7 @@
   padding: 25px 0;
 }
 .cl-popup-box.size_xl .cl-popup-box-content {
-  padding: 55px 60px;
+  padding: 60px;
 }
 @media (max-width: 1100px) {
   .cl-popup-box.size_xl {
@@ -222,10 +200,29 @@
   .cl-popup-box.size_m,
   .cl-popup-box.size_l,
   .cl-popup-box.size_xl {
-    left: 25px;
-    right: 25px;
+    left: 10px;
+    right: 10px;
     width: auto;
-    margin-left: 0;
+    padding: 10px 0;
+    margin: 0;
+  }
+  .cl-popup-box-closer {
+    display: block;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+  }
+  .cl-popup-box-closer:before {
+    font-size: 40px;
+  }
+  .cl-popup-box-title {
+    padding-right: 50px;
+  }
+  .cl-popup-box-content {
+    padding: 50px 25px 25px !important;
+  }
+  .cl-popup-box-title + .cl-popup-box-content {
+    padding-top: 25px !important;
   }
 }
 .cl-popup-box.size_f {
@@ -272,8 +269,8 @@
   opacity: 1;
 }
 .cl-popup-box.animation_scaleDown .cl-popup-box-h {
-  -webkit-transform: scale(2);
-  transform: scale(2);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
   opacity: 0;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
