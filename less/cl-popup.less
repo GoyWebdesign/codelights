@@ -58,7 +58,7 @@
 		width: 80px;
 		cursor: pointer;
 		color: #fff;
-		.transition(opacity 0.3s 0.3s);
+		.transition(opacity 0.3s);
 		opacity: 0;
 		&:before {
 			content: '\00D7';
@@ -78,7 +78,6 @@
 	}
 	&-box.active + .cl-popup-closer {
 		opacity: 0.33;
-		.transition-delay(0s);
 	}
 	&-box.active + .cl-popup-closer:hover {
 		opacity: 1;
