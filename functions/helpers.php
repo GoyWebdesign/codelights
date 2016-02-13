@@ -12,9 +12,9 @@ function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'lang'
 	if ( is_textdomain_loaded( $domain ) ) {
 		return TRUE;
 	}
-	global $cl_dir_path;
+	global $cl_dir;
 
-	return load_plugin_textdomain( $domain, FALSE, basename( $cl_dir_path ) . '/' . $path );
+	return load_plugin_textdomain( $domain, FALSE, basename( $cl_dir ) . '/' . $path );
 }
 
 /**
@@ -27,7 +27,7 @@ function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'lang'
  * @return mixed
  */
 function cl_config( $path, $default = NULL ) {
-	global $cl_dir_path;
+	global $cl_dir;
 	// Caching configuration values in a inner static value within the same request
 	static $configs = array();
 	// Defined paths to configuration files
@@ -35,7 +35,7 @@ function cl_config( $path, $default = NULL ) {
 	$config_name = $path[0];
 	if ( ! isset( $configs[ $config_name ] ) ) {
 		cl_maybe_load_plugin_textdomain();
-		$config_path = $cl_dir_path . '/config/' . $config_name . '.php';
+		$config_path = $cl_dir . '/config/' . $config_name . '.php';
 		$config = require $config_path;
 		$configs[ $config_name ] = apply_filters( 'cl_config_' . $config_name, $config );
 	}
@@ -59,7 +59,7 @@ function cl_config( $path, $default = NULL ) {
  * @param array $vars Variables that should be passed to the template
  */
 function cl_load_template( $template, $vars = NULL ) {
-	global $cl_dir_path;
+	global $cl_dir;
 
 	$vars = apply_filters( 'cl_template_vars:' . $template, $vars );
 	if ( is_array( $vars ) AND ! empty( $vars ) ) {
@@ -67,10 +67,10 @@ function cl_load_template( $template, $vars = NULL ) {
 	}
 
 	do_action( 'cl_before_template:' . $template, $vars );
-	if ( ! file_exists( $cl_dir_path . '/templates/' . $template . '.php' ) ) {
-		wp_die( 'File not found: ' . $cl_dir_path . '/templates/' . $template . '.php' );
+	if ( ! file_exists( $cl_dir . '/templates/' . $template . '.php' ) ) {
+		wp_die( 'File not found: ' . $cl_dir . '/templates/' . $template . '.php' );
 	}
-	include $cl_dir_path . '/templates/' . $template . '.php';
+	include $cl_dir . '/templates/' . $template . '.php';
 	do_action( 'cl_after_template:' . $template, $vars );
 }
 

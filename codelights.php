@@ -12,33 +12,34 @@
  * Text Domain: codelights
  */
 
-// Global variables for plugin usage
+// Global variables for plugin usage (global declaration is needed here for WP CLI compatibility)
+global $cl_file, $cl_dir, $cl_uri, $cl_version;
 $cl_file = __FILE__;
-$cl_dir_path = plugin_dir_path( __FILE__ );
+$cl_dir = plugin_dir_path( __FILE__ );
 $cl_uri = plugins_url( '', __FILE__ );
 $cl_version = preg_match( '~Version\: ([^\n]+)~', file_get_contents( __FILE__, NULL, NULL, 82, 150 ), $cl_matches ) ? $cl_matches[1] : FALSE;
 unset( $cl_matches );
 
-require $cl_dir_path . '/functions/helpers.php';
-require $cl_dir_path . '/functions/shortcodes.php';
+require $cl_dir . '/functions/helpers.php';
+require $cl_dir . '/functions/shortcodes.php';
 
 // Widgets
-require $cl_dir_path . '/functions/class-cl-widget.php';
+require $cl_dir . '/functions/class-cl-widget.php';
 
 add_action( 'plugins_loaded', 'cl_plugins_loaded' );
 function cl_plugins_loaded() {
 	// Editors support
-	global $cl_dir_path;
-	require $cl_dir_path . '/editors-support/native/native.php';
-	require $cl_dir_path . '/editors-support/js_composer/js_composer.php';
-	require $cl_dir_path . '/editors-support/siteorigin/siteorigin.php';
+	global $cl_dir;
+	require $cl_dir . '/editors-support/native/native.php';
+	require $cl_dir . '/editors-support/js_composer/js_composer.php';
+	require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
 	// I18n support
 	cl_maybe_load_plugin_textdomain();
 }
 
 // Ajax requests
 if ( is_admin() AND isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3 ) == 'cl_' ) {
-	require $cl_dir_path . '/functions/ajax.php';
+	require $cl_dir . '/functions/ajax.php';
 }
 
 add_action( 'wp_enqueue_scripts', 'cl_register_assets', 8 );
