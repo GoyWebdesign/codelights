@@ -22,9 +22,9 @@ jQuery.fn.clMod = function(mod, value){
 	else {
 		var regexp = new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)');
 		return this.each(function(){
-			if (this.className.match(regexp)){
+			if (this.className.match(regexp)) {
 				this.className = this.className.replace(regexp, '$1' + mod + '_' + value + '$2');
-			}else{
+			} else {
 				this.className += ' ' + mod + '_' + value;
 			}
 		});
@@ -192,6 +192,7 @@ jQuery.fn.clMod = function(mod, value){
 		 * @private
 		 */
 		_locateWaypoint: function(waypoint){
+			if (waypoint.$elm.is(':hidden')) return;
 			var elmTop = waypoint.$elm.offset().top,
 				winHeight = $cl.$window.height(),
 				offset = (typeof waypoint.offset == 'number') ? waypoint.offset : (winHeight * parseInt(waypoint.offset) / 100);
@@ -215,7 +216,7 @@ jQuery.fn.clMod = function(mod, value){
 			var scrollTop = parseInt($cl.$window.scrollTop());
 			// Handling waypoints
 			for (var i = 0; i < this.waypoints.length; i++) {
-				if (this.waypoints[i].scrollPos < scrollTop) {
+				if (this.waypoints[i].scrollPos !== undefined && this.waypoints[i].scrollPos < scrollTop) {
 					this.waypoints[i].fn(this.waypoints[i].$elm);
 					this.waypoints.splice(i, 1);
 					i--;

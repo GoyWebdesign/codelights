@@ -86,12 +86,14 @@
 			clearTimeout(this.timer);
 			this.$overlay.addClass('active');
 			this.$box.addClass('active');
-			if (this.size != 'f') {
-				$cl.$window.on('resize', this._events.resize);
-			}
 			// UpSolution Themes Compatibility
+			// TODO Move to themes
 			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined) {
 				$us.canvas.$container.trigger('contentChange');
+			}
+			$cl.$window.trigger('resize');
+			if (this.size != 'f') {
+				$cl.$window.on('resize', this._events.resize);
 			}
 		},
 		hide: function(){
@@ -118,7 +120,6 @@
 		},
 		resize: function(){
 			var animation = this.$box.clMod('animation'),
-				isActive = this.$box.hasClass('active'),
 				padding = parseInt(this.$box.css('padding-top')),
 				winHeight = $cl.$window.height(),
 				popupHeight = this.$box.height();
