@@ -711,18 +711,18 @@ return array(
 				'type' => 'select',
 				'options' => array(
 					'btn' => __( 'Button Click', 'codelights' ),
-					'image' => __( 'Image Click', 'codelights' ),
 					'text' => __( 'Text Click', 'codelights' ),
+					'image' => __( 'Image Click', 'codelights' ),
 					'load' => __( 'Page Load', 'codelights' ),
 				),
 				'std' => 'btn',
 				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'btn_label' => array(
-				'title' => __( 'Button Label', 'codelights' ),
+				'title' => __( 'Button / Text Label', 'codelights' ),
 				'type' => 'textfield',
 				'std' => 'READ MORE', // Not translatable
-				'show_if' => array( 'show_on', '=', 'btn' ),
+				'show_if' => array( 'show_on', 'in', array( 'btn', 'text' ) ),
 				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'btn_bgcolor' => array(
@@ -753,13 +753,6 @@ return array(
 				'std' => 'large',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'show_if' => array( 'show_on', '=', 'image' ),
-				'group' => __( 'Trigger', 'codelights' ),
-			),
-			'text_label' => array(
-				'title' => __( 'Text Label', 'codelights' ),
-				'type' => 'textfield',
-				'std' => 'READ MORE', // Not translatable
-				'show_if' => array( 'show_on', '=', 'text' ),
 				'group' => __( 'Trigger', 'codelights' ),
 			),
 			'text_size' => array(
