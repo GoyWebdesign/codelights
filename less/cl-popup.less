@@ -271,6 +271,15 @@
 		}
 		
 		// Animations
+		&.animation_fadeIn {
+			.cl-popup-box-h {
+				opacity: 0;
+				.transition(opacity 0.3s);
+			}
+			&.active .cl-popup-box-h {
+				opacity: 1;
+			}
+		}
 		&.animation_scaleUp {
 			.cl-popup-box-h {
 				.transform(scale(0.7));

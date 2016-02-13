@@ -252,6 +252,14 @@
     padding-top: 25px !important;
   }
 }
+.cl-popup-box.animation_fadeIn .cl-popup-box-h {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.cl-popup-box.animation_fadeIn.active .cl-popup-box-h {
+  opacity: 1;
+}
 .cl-popup-box.animation_scaleUp .cl-popup-box-h {
   -webkit-transform: scale(0.7);
   transform: scale(0.7);

@@ -818,6 +818,7 @@ return array(
 				'type' => 'select',
 				'options' => array(
 					// Inspired by http://tympanus.net/Development/ModalWindowEffects/
+					'fadeIn' => __( 'Fade In', 'codelights' ),
 					'scaleUp' => __( 'Scale Up', 'codelights' ),
 					'scaleDown' => __( 'Scale Down', 'codelights' ),
 					'slideTop' => __( 'Slide from Top', 'codelights' ),
