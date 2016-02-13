@@ -23,6 +23,7 @@
 		// Event name for triggering CSS transition finish
 		this.transitionEndEvent = (!!window.webkitURL) ? 'webkitTransitionEnd' : 'transitionend';
 		this.isFixed = !$cl.isMobile;
+		this.isFixed = false;
 
 		this.$trigger = this.$container.find('.cl-popup-trigger');
 		this.triggerType = this.$trigger.clMod('type');
