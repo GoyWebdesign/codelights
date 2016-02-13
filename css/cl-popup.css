@@ -251,10 +251,7 @@
     padding-right: 55px;
   }
   .cl-popup-box-content {
-    padding: 50px 25px 25px !important;
-  }
-  .cl-popup-box-title + .cl-popup-box-content {
-    padding-top: 25px !important;
+    padding: 25px !important;
   }
 }
 .cl-popup-box.animation_fadeIn .cl-popup-box-h {
