@@ -67,7 +67,7 @@
 				this.resize();
 			}
 			if (this.isFixed) {
-				$cl.$html.css('overflow', 'hidden');
+				$cl.$html.addClass('cloverlay_fixed');
 				// Storing the value for the whole popup visibility session
 				this.windowHasScrollbar = this._hasScrollbar();
 				if (this.windowHasScrollbar && this._getScrollbarSize()) {
@@ -112,7 +112,7 @@
 			this.$overlay.appendTo(this.$container).hide();
 			this.$wrap.appendTo(this.$container).hide();
 			if (this.isFixed) {
-				$cl.$html.css('overflow', '');
+				$cl.$html.removeClass('cloverlay_fixed');
 				if (this.windowHasScrollbar) $cl.$html.css('margin-right', '');
 			}
 		},
