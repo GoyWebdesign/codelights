@@ -355,6 +355,6 @@
   transform: translateY(0%);
   opacity: 1;
 }
-body.with_cl_overlay {
+html.cl_overlay_scroll {
   overflow: hidden;
 }

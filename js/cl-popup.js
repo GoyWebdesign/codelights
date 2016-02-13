@@ -5,6 +5,7 @@
 	"use strict";
 	var CLPopup = function(container){
 		this.$window = $(window);
+		this.$html = $(document.documentElement);
 		this.$body = $(document.body);
 		this.$container = $(container);
 
@@ -46,7 +47,7 @@
 	CLPopup.prototype = {
 		show: function(){
 			clearTimeout(this.timer);
-			this.$body.addClass('with_cl_overlay');
+			this.htmlHasScrollbar = (document.documentElement.scrollHeight > document.documentElement.clientHeight);
 			this.$overlay.appendTo(this.$body).show();
 			this.$wrap.appendTo(this.$body).show();
 			if (this.size != 'f') {
@@ -61,6 +62,10 @@
 			this.$box.addClass('active');
 			if (this.size != 'f') {
 				this.$window.on('resize', this._events.resize);
+			}
+			// UpSolution Themes Compatibility
+			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined){
+				$us.canvas.$container.trigger('contentChange');
 			}
 		},
 		hide: function(){
@@ -80,7 +85,9 @@
 			this.$box.off(this.transitionEndEvent, this._events.afterHide);
 			this.$overlay.appendTo(this.$container).hide();
 			this.$wrap.appendTo(this.$container).hide();
-			this.$body.removeClass('with_cl_overlay');
+			if (this.htmlHasScrollbar) {
+				this.$html.removeClass('cl_overlay_scroll');
+			}
 		},
 		resize: function(){
 			var animation = this.$box.clMod('animation'),
@@ -88,6 +95,9 @@
 				padding = parseInt(this.$box.css('padding-top')),
 				winHeight = this.$window.height(),
 				popupHeight = this.$box.height();
+			if (this.htmlHasScrollbar) {
+				this.$html.toggleClass('cl_overlay_scroll', winHeight <= popupHeight);
+			}
 			this.$box.css('top', Math.max(0, (winHeight - popupHeight) / 2 - padding));
 		}
 	};
