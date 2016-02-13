@@ -52,6 +52,8 @@
 			this.$wrap.appendTo(this.$body).show();
 			if (this.size != 'f') {
 				this.resize();
+			} else if (this.htmlHasScrollbar) {
+				this.$html.addClass('cl_overlay_scroll');
 			}
 			this.$body.on('keypress', this._events.keypress);
 			this.timer = setTimeout(this._events.afterShow, 25);
@@ -64,7 +66,7 @@
 				this.$window.on('resize', this._events.resize);
 			}
 			// UpSolution Themes Compatibility
-			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined){
+			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined) {
 				$us.canvas.$container.trigger('contentChange');
 			}
 		},
