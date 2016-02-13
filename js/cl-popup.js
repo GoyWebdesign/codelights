@@ -32,11 +32,14 @@
 		} else {
 			this.$trigger.on('click', this._events.show);
 		}
-		this.$wrap = this.$container.find('.cl-popup-wrap').clMod('pos', this.isFixed ? 'fixed' : 'absolute');
+		this.$wrap = this.$container.find('.cl-popup-wrap')
+			.clMod('pos', this.isFixed ? 'fixed' : 'absolute')
+			.on('click', this._events.hide);
 		this.$box = this.$container.find('.cl-popup-box');
-		this.$overlay = this.$container.find('.cl-popup-overlay').clMod('pos', this.isFixed ? 'fixed' : 'absolute');
+		this.$overlay = this.$container.find('.cl-popup-overlay')
+			.clMod('pos', this.isFixed ? 'fixed' : 'absolute')
+			.on('click', this._events.hide);
 		this.$container.find('.cl-popup-closer, .cl-popup-box-closer').on('click', this._events.hide);
-		this.$wrap.on('click', this._events.hide);
 		this.$box.on('click', this._events.preventHide);
 		this.size = this.$box.clMod('size');
 
