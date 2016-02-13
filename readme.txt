@@ -126,6 +126,11 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.1 =
+* New: Added the Modal Popup element
+* Fixed: Compatibility with WP CLI
+* Fixed: SiteOrigin page builder custom posts compatibility
+
 = 1.0.11 =
 * Improved: front-end JS logic now allows to load scripts asynchronously (could be useful for 3-rd party page loading accelerators).
 * Fixed: Form link field now is properly shown in customizer editing mode

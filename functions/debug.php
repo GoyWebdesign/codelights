@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 function cl_write_debug( $value, $with_backtrace = FALSE ) {
-	global $cl_dir;
+	global $cl_dir_path;
 	static $first = TRUE;
 	$data = '';
 	if ( $with_backtrace ) {
@@ -12,6 +12,6 @@ function cl_write_debug( $value, $with_backtrace = FALSE ) {
 	ob_start();
 	var_dump( $value );
 	$data .= ob_get_clean() . "\n\n";
-	file_put_contents( $cl_dir . '/debug.txt', $data, $first ? NULL : FILE_APPEND );
+	file_put_contents( $cl_dir_path . '/debug.txt', $data, $first ? NULL : FILE_APPEND );
 	$first = FALSE;
 }
