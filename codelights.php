@@ -94,6 +94,8 @@ function cl_enqueue_forms_assets() {
 		wp_enqueue_media();
 	}
 
+	cl_maybe_load_wysiwyg();
+
 	// TODO Remove when onDemand load will be ready
 	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_script( 'wp-color-picker-alpha' );
