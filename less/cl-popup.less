@@ -45,7 +45,6 @@
 		&.pos_fixed {
 			overflow-x: hidden;
 			overflow-y: auto;
-			-webkit-overflow-scrolling: touch;
 		}
 	}
 	&-closer {
@@ -60,7 +59,7 @@
 		cursor: pointer;
 		color: #fff;
 		.transition(opacity 0.3s);
-		opacity: 0.3;
+		opacity: 0;
 		&:before {
 			content: '\00D7';
 			font-size: 60px;
@@ -77,11 +76,11 @@
 			}
 		}
 	}
-	&-wrap:hover .cl-popup-closer {
-		opacity: 1;
-	}
-	&-box:hover + .cl-popup-closer {
+	&-box.active + .cl-popup-closer {
 		opacity: 0.33;
+	}
+	&-box.active + .cl-popup-closer:hover {
+		opacity: 1;
 	}
 	&-box {
 		position: absolute;
