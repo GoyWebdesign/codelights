@@ -825,8 +825,6 @@ return array(
 					'slideBottom' => __( 'Slide from Bottom', 'codelights' ),
 					'flipHor' => __( '3D Flip (Horizontal)', 'codelights' ),
 					'flipVer' => __( '3D Flip (Vertical)', 'codelights' ),
-					'stickyTop' => __( 'Sticky at Top', 'codelights' ),
-					'stickyBottom' => __( 'Sticky at Bottom', 'codelights' ),
 				),
 				'group' => __( 'Style', 'codelights' ),
 			),

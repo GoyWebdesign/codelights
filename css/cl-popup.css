@@ -346,37 +346,6 @@
   transform: rotateX(0deg);
   opacity: 1;
 }
-.cl-popup-box.animation_stickyTop {
-  top: 0;
-}
-.cl-popup-box.animation_stickyTop .cl-popup-box-h {
-  -webkit-transform: translateY(-200%);
-  transform: translateY(-200%);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  opacity: 0;
-}
-.cl-popup-box.animation_stickyTop.active .cl-popup-box-h {
-  -webkit-transform: translateY(0%);
-  transform: translateY(0%);
-  opacity: 1;
-}
-.cl-popup-box.animation_stickyBottom {
-  top: auto;
-  bottom: 0;
-}
-.cl-popup-box.animation_stickyBottom .cl-popup-box-h {
-  -webkit-transform: translateY(200%);
-  transform: translateY(200%);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  opacity: 0;
-}
-.cl-popup-box.animation_stickyBottom.active .cl-popup-box-h {
-  -webkit-transform: translateY(0%);
-  transform: translateY(0%);
-  opacity: 1;
-}
 html.cl_overlay_scroll {
   overflow: hidden;
 }

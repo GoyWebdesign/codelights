@@ -350,31 +350,6 @@
 				opacity: 1;
 			}
 		}
-		&.animation_stickyTop {
-			top: 0;
-			.cl-popup-box-h {
-				.transform(translateY(-200%));
-				.transition(all .3s);
-				opacity: 0;
-			}
-			&.active .cl-popup-box-h {
-				.transform(translateY(0%));
-				opacity: 1;
-			}
-		}
-		&.animation_stickyBottom {
-			top: auto;
-			bottom: 0;
-			.cl-popup-box-h {
-				.transform(translateY(200%));
-				.transition(all .3s);
-				opacity: 0;
-			}
-			&.active .cl-popup-box-h {
-				.transform(translateY(0%));
-				opacity: 1;
-			}
-		}
 	}
 
 }
