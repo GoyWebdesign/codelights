@@ -4,9 +4,6 @@
 !function($){
 	"use strict";
 	var CLPopup = function(container){
-		this.$window = $(window);
-		this.$html = $(document.documentElement);
-		this.$body = $(document.body);
 		this.$container = $(container);
 
 		this._events = {
@@ -25,6 +22,7 @@
 
 		// Event name for triggering CSS transition finish
 		this.transitionEndEvent = (!!window.webkitURL) ? 'webkitTransitionEnd' : 'transitionend';
+		this.isFixed = !$cl.isMobile;
 
 		this.$trigger = this.$container.find('.cl-popup-trigger');
 		this.triggerType = this.$trigger.clMod('type');
@@ -34,9 +32,9 @@
 		} else {
 			this.$trigger.on('click', this._events.show);
 		}
-		this.$wrap = this.$container.find('.cl-popup-wrap');
+		this.$wrap = this.$container.find('.cl-popup-wrap').clMod('pos', this.isFixed ? 'fixed' : 'absolute');
 		this.$box = this.$container.find('.cl-popup-box');
-		this.$overlay = this.$container.find('.cl-popup-overlay');
+		this.$overlay = this.$container.find('.cl-popup-overlay').clMod('pos', this.isFixed ? 'fixed' : 'absolute');
 		this.$container.find('.cl-popup-closer, .cl-popup-box-closer').on('click', this._events.hide);
 		this.$wrap.on('click', this._events.hide);
 		this.$box.on('click', this._events.preventHide);
@@ -45,17 +43,41 @@
 		this.timer = null;
 	};
 	CLPopup.prototype = {
+		_hasScrollbar: function(){
+			return document.documentElement.scrollHeight > document.documentElement.clientHeight;
+		},
+		_getScrollbarSize: function(){
+			if ($cl.scrollbarSize === undefined) {
+				var scrollDiv = document.createElement('div');
+				scrollDiv.style.cssText = 'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
+				document.body.appendChild(scrollDiv);
+				$cl.scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+				document.body.removeChild(scrollDiv);
+			}
+			return $cl.scrollbarSize;
+		},
 		show: function(){
 			clearTimeout(this.timer);
-			this.htmlHasScrollbar = (document.documentElement.scrollHeight > document.documentElement.clientHeight);
-			this.$overlay.appendTo(this.$body).show();
-			this.$wrap.appendTo(this.$body).show();
+			this.$overlay.appendTo($cl.$body).show();
+			this.$wrap.appendTo($cl.$body).show();
 			if (this.size != 'f') {
 				this.resize();
-			} else if (this.htmlHasScrollbar) {
-				this.$html.addClass('cl_overlay_scroll');
 			}
-			this.$body.on('keypress', this._events.keypress);
+			if (this.isFixed) {
+				$cl.$html.css('overflow', 'hidden');
+				// Storing the value for the whole popup visibility session
+				this.windowHasScrollbar = this._hasScrollbar();
+				if (this.windowHasScrollbar && this._getScrollbarSize()) {
+					$cl.$html.css('margin-right', this._getScrollbarSize());
+				}
+			} else {
+				this.$overlay.css({
+					top: $cl.$window.scrollTop(),
+					height: $cl.$document.height()
+				});
+				this.$wrap.css('top', $cl.$window.scrollTop());
+			}
+			$cl.$body.on('keypress', this._events.keypress);
 			this.timer = setTimeout(this._events.afterShow, 25);
 		},
 		afterShow: function(){
@@ -63,7 +85,7 @@
 			this.$overlay.addClass('active');
 			this.$box.addClass('active');
 			if (this.size != 'f') {
-				this.$window.on('resize', this._events.resize);
+				$cl.$window.on('resize', this._events.resize);
 			}
 			// UpSolution Themes Compatibility
 			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined) {
@@ -73,9 +95,9 @@
 		hide: function(){
 			clearTimeout(this.timer);
 			if (this.size != 'f') {
-				this.$window.off('resize', this._events.resize);
+				$cl.$window.off('resize', this._events.resize);
 			}
-			this.$body.off('keypress', this._events.keypress);
+			$cl.$body.off('keypress', this._events.keypress);
 			this.$box.on(this.transitionEndEvent, this._events.afterHide);
 			this.$overlay.removeClass('active');
 			this.$box.removeClass('active');
@@ -87,18 +109,19 @@
 			this.$box.off(this.transitionEndEvent, this._events.afterHide);
 			this.$overlay.appendTo(this.$container).hide();
 			this.$wrap.appendTo(this.$container).hide();
-			if (this.htmlHasScrollbar) {
-				this.$html.removeClass('cl_overlay_scroll');
+			if (this.isFixed) {
+				$cl.$html.css('overflow', '');
+				if (this.windowHasScrollbar) $cl.$html.css('margin-right', '');
 			}
 		},
 		resize: function(){
 			var animation = this.$box.clMod('animation'),
 				isActive = this.$box.hasClass('active'),
 				padding = parseInt(this.$box.css('padding-top')),
-				winHeight = this.$window.height(),
+				winHeight = $cl.$window.height(),
 				popupHeight = this.$box.height();
-			if (this.htmlHasScrollbar) {
-				this.$html.toggleClass('cl_overlay_scroll', winHeight <= popupHeight);
+			if (!this.isFixed) {
+				this.$overlay.css('height', $cl.$document.height());
 			}
 			this.$box.css('top', Math.max(0, (winHeight - popupHeight) / 2 - padding));
 		}

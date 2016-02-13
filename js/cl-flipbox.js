@@ -30,7 +30,7 @@
 			this.padding = parseInt(this.$front.css('padding-top'));
 		}
 		if (this.centerContent || this.forceSquare || this.autoSize) {
-			$(window).bind('resize load', this._events.resize);
+			$cl.$window.bind('resize load', this._events.resize);
 			this.resize();
 		}
 

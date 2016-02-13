@@ -15,15 +15,24 @@
 	&-trigger img {
 		vertical-align: top;
 	}
-	
-	&-overlay {
+
+	&-overlay,
+	&-wrap {
 		display: none;
-		position: fixed;
-		z-index: 1001;
-		left: 0;
 		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
+		&.pos_absolute {
+			position: absolute;
+		}
+		&.pos_fixed {
+			position: fixed;
+		}
+	}
+
+	&-overlay {
+		z-index: 1001;
 		.transition(opacity 0.3s);
 		opacity: 0;
 		&.active {
@@ -31,12 +40,6 @@
 		}
 	}
 	&-wrap {
-		display: none;
-		position: fixed;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
 		cursor: pointer;
 		z-index: 1002;
 		overflow-x: hidden;
@@ -352,8 +355,4 @@
 		}
 	}
 
-}
-
-html.cl_overlay_scroll {
-	overflow: hidden;
 }

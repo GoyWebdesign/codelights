@@ -39,8 +39,14 @@ jQuery.fn.clMod = function(mod, value){
 
 	$cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+	// jQuery objects of commonly used DOM-elements
+	$cl.$window = $(window);
+	$cl.$document = $(document);
+	$cl.$html = $(document.documentElement);
+	$cl.$body = $(document.body);
+
 	// Known elements and their constructors
-	window.$cl.elements = {};
+	$cl.elements = {};
 
 	var inited = [];
 	$cl.maybeInit = function(){
@@ -95,7 +101,7 @@ jQuery.fn.clMod = function(mod, value){
 					}
 				}
 			}.bind(this);
-			$(window).on('resize load', this._events.scale);
+			$cl.$window.on('resize load', this._events.scale);
 			this._events.scale();
 		}
 	};
@@ -143,16 +149,14 @@ jQuery.fn.clMod = function(mod, value){
  */
 !function($){
 	var CLScroll = function(){
-		this.$window = $(window);
-
 		this.waypoints = [];
 		this.inited = false;
 
 		this._events = {
 			init: function(){
 				this.locateAll();
-				this.$window.on('resize load', this._events.resize);
-				this.$window.on('scroll', this._events.scroll);
+				$cl.$window.on('resize load', this._events.resize);
+				$cl.$window.on('scroll', this._events.scroll);
 				this.inited = true;
 				this._events.resize();
 			}.bind(this),
@@ -189,7 +193,7 @@ jQuery.fn.clMod = function(mod, value){
 		 */
 		_locateWaypoint: function(waypoint){
 			var elmTop = waypoint.$elm.offset().top,
-				winHeight = this.$window.height(),
+				winHeight = $cl.$window.height(),
 				offset = (typeof waypoint.offset == 'number') ? waypoint.offset : (winHeight * parseInt(waypoint.offset) / 100);
 			waypoint.scrollPos = elmTop - winHeight + offset;
 		},
@@ -208,7 +212,7 @@ jQuery.fn.clMod = function(mod, value){
 		 * Scroll handler
 		 */
 		scroll: function(){
-			var scrollTop = parseInt(this.$window.scrollTop());
+			var scrollTop = parseInt($cl.$window.scrollTop());
 			// Handling waypoints
 			for (var i = 0; i < this.waypoints.length; i++) {
 				if (this.waypoints[i].scrollPos < scrollTop) {
