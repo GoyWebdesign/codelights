@@ -72,7 +72,6 @@
 				}
 			} else {
 				this.$overlay.css({
-					top: $cl.$window.scrollTop(),
 					height: $cl.$document.height()
 				});
 				this.$wrap.css('top', $cl.$window.scrollTop());
