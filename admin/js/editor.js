@@ -969,6 +969,23 @@ if (window._wpCustomizeWidgetsSettings !== undefined) jQuery(function($){
 	$(document).bind('widget-added widget-updated', function(event, widget){
 		new $cl.EForm($(widget).find('.cl-eform'));
 	});
+	// Widget reordering
+	// TODO Rework it into proper fields-level actions calls
+	$('.accordion-section-content.ui-sortable')
+		.on('sortstart', function(event, ui){
+			var $wysiwyg = $(ui.item).find('.cl-wysiwyg'),
+				id = $wysiwyg.find('textarea:first').attr('id');
+			if ($wysiwyg.length != 0) {
+				tinymce.execCommand('mceRemoveEditor', true, id);
+			}
+		})
+		.on('sortstop', function(event, ui){
+			var $wysiwyg = $(ui.item).find('.cl-wysiwyg'),
+				id = $wysiwyg.find('textarea:first').attr('id');
+			if ($wysiwyg.length != 0) {
+				tinymce.init(tinyMCEPreInit.mceInit[id]);
+			}
+		});
 	// TODO Re-create on widget save
 	// TODO Widget toggle
 	// TODO Widget deletion
