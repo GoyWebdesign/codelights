@@ -22,9 +22,9 @@ jQuery.fn.clMod = function(mod, value){
 	else {
 		var regexp = new RegExp('(^| )' + mod + '\_[a-zA-Z0-9\_\-]+( |$)');
 		return this.each(function(){
-			if (this.className.match(regexp)){
+			if (this.className.match(regexp)) {
 				this.className = this.className.replace(regexp, '$1' + mod + '_' + value + '$2');
-			}else{
+			} else {
 				this.className += ' ' + mod + '_' + value;
 			}
 		});
@@ -914,7 +914,7 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 			} else if (m.indexOf('<script type=\'text/javascript\' src=\'') == 0) {
 				// External script
 				scriptSrc = scriptSrc.replace(/&_=[0-9]+/, '');
-				for (i = 0; i < $externalScripts.length; i++){
+				for (i = 0; i < $externalScripts.length; i++) {
 					if ($externalScripts[i].src.indexOf(scriptSrc) === 0) return '';
 				}
 			} else {
@@ -930,63 +930,74 @@ $cl.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 	};
 }(jQuery);
 
-// Admin widgets editor
-if (window.wpWidgets !== undefined) jQuery(function($){
-	// Widget ID => active tab, to keep the current active tab on widget save
-	var formsTabs = {},
-		initWidgetEForm = function($eform){
-			var widgetId = $eform.closest('.widget').attr('id'),
-				eform = new $cl.EForm($eform);
-			if (eform.tabs) {
-				if (formsTabs[widgetId] !== undefined) {
-					eform.tabs.open(formsTabs[widgetId]);
-				}
-				eform.tabs.bind('afterShow', function(index){
-					formsTabs[widgetId] = index;
-				});
-			}
-		};
-	$('#widgets-right').find('.cl-eform').each(function(){
-		initWidgetEForm($(this));
-	});
-	$(document).bind('widget-added widget-updated', function(event, widget){
-		initWidgetEForm($(widget).find('.cl-eform'));
-	});
-	// Widget's fields may be shown
-	$(document).bind('wp-pin-menu', function(){
-		//console.log('toggled sidebar block');
-	});
-	// TODO Re-create on widget save
-	// TODO Widget toggle
-	// TODO Widget deletion
-});
-
-// Customizer widgets editor
-if (window._wpCustomizeWidgetsSettings !== undefined) jQuery(function($){
-	$('#widgets-right').find('.cl-eform').each(function(){
-		new $cl.EForm(this);
-	});
-	$(document).bind('widget-added widget-updated', function(event, widget){
-		new $cl.EForm($(widget).find('.cl-eform'));
-	});
-	// Widget reordering
-	// TODO Rework it into proper fields-level actions calls
-	$('.accordion-section-content.ui-sortable')
-		.on('sortstart', function(event, ui){
+jQuery(function($){
+	var clFixSortablesFields = function(selector){
+		var $elm = $(selector);
+		$elm.on('sortstart', function(event, ui){
 			var $wysiwyg = $(ui.item).find('.cl-wysiwyg'),
 				id = $wysiwyg.find('textarea:first').attr('id');
 			if ($wysiwyg.length != 0) {
 				tinymce.execCommand('mceRemoveEditor', true, id);
 			}
-		})
-		.on('sortstop', function(event, ui){
+		});
+		$elm.on('sortstop', function(event, ui){
 			var $wysiwyg = $(ui.item).find('.cl-wysiwyg'),
 				id = $wysiwyg.find('textarea:first').attr('id');
 			if ($wysiwyg.length != 0) {
 				tinymce.init(tinyMCEPreInit.mceInit[id]);
 			}
 		});
-	// TODO Re-create on widget save
-	// TODO Widget toggle
-	// TODO Widget deletion
+	};
+
+	// Admin widgets editor
+	if (window.wpWidgets !== undefined) {
+		// Widget ID => active tab, to keep the current active tab on widget save
+		var formsTabs = {},
+			initWidgetEForm = function($eform){
+				var widgetId = $eform.closest('.widget').attr('id'),
+					eform = new $cl.EForm($eform);
+				if (eform.tabs) {
+					if (formsTabs[widgetId] !== undefined) {
+						eform.tabs.open(formsTabs[widgetId]);
+					}
+					eform.tabs.bind('afterShow', function(index){
+						formsTabs[widgetId] = index;
+					});
+				}
+			};
+		$('#widgets-right').find('.cl-eform').each(function(){
+			initWidgetEForm($(this));
+		});
+		$(document).bind('widget-added widget-updated', function(event, widget){
+			initWidgetEForm($(widget).find('.cl-eform'));
+		});
+		// Widget reordering
+		clFixSortablesFields('.widgets-sortables.ui-sortable');
+		// Widget's fields may be shown
+		$(document).bind('wp-pin-menu', function(){
+			//console.log('toggled sidebar block');
+		});
+		// TODO Widget toggle
+		// TODO Widget deletion
+	}
+
+	// Customizer widgets editor
+	if (window._wpCustomizeWidgetsSettings !== undefined) {
+		$('#widgets-right').find('.cl-eform').each(function(){
+			new $cl.EForm(this);
+		});
+		$(document).bind('widget-added widget-updated', function(event, widget){
+			new $cl.EForm($(widget).find('.cl-eform'));
+		});
+		// Widget reordering
+		// TODO Rework it into proper fields-level actions calls
+		clFixSortablesFields('.accordion-section-content.ui-sortable');
+
+		// TODO Widget toggle
+		// TODO Widget deletion
+	}
+	;
 });
+
+
+
