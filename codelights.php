@@ -33,6 +33,7 @@ function cl_plugins_loaded() {
 	require $cl_dir . '/editors-support/native/native.php';
 	require $cl_dir . '/editors-support/js_composer/js_composer.php';
 	require $cl_dir . '/editors-support/siteorigin/siteorigin.php';
+	require $cl_dir . '/editors-support/beaver-builder/beaver-builder.php';
 	// I18n support
 	cl_maybe_load_plugin_textdomain();
 }
@@ -42,28 +43,31 @@ if ( is_admin() AND isset( $_POST['action'] ) AND substr( $_POST['action'], 0, 3
 	require $cl_dir . '/functions/ajax.php';
 }
 
-add_action( 'wp_enqueue_scripts', 'cl_register_assets', 8 );
+// Register needed assets
+add_action( 'init', 'cl_register_assets', 8 );
 function cl_register_assets() {
-	// Registering front-end assets from config/assets.php
-	foreach ( array( 'style', 'script' ) as $type ) {
-		foreach ( cl_config( 'assets.' . $type . 's', array() ) as $handle => $params ) {
-			array_unshift( $params, $handle );
-			call_user_func_array( 'wp_register_' . $type, $params );
+	if ( ! is_admin() ) {
+		// Registering front-end assets from config/assets.php
+		foreach ( array( 'style', 'script' ) as $type ) {
+			foreach ( cl_config( 'assets.' . $type . 's', array() ) as $handle => $params ) {
+				array_unshift( $params, $handle );
+				call_user_func_array( 'wp_register_' . $type, $params );
+			}
 		}
 	}
-}
-
-// Load admin scripts and styles
-add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts', 5 );
-function cl_admin_enqueue_scripts() {
-	global $cl_uri, $post_type, $wp_scripts, $cl_version;
-
+	global $cl_uri, $cl_version;
 	wp_register_script( 'wp-color-picker-alpha', $cl_uri . '/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), $cl_version, '1.2.1' );
 	wp_register_style( 'cl-editor', $cl_uri . '/admin/css/editor.css', array( 'wp-color-picker' ), $cl_version );
 	wp_register_script( 'cl-editor', $cl_uri . '/admin/js/editor.js', array(
 		'jquery-ui-sortable',
 		'wp-color-picker-alpha',
 	), $cl_version, TRUE );
+}
+
+// Load admin scripts and styles
+add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_scripts', 5 );
+function cl_admin_enqueue_scripts() {
+	global $cl_uri, $post_type, $wp_scripts, $cl_version;
 
 	$screen = get_current_screen();
 	$is_widgets = ( $screen->base == 'widgets' );
@@ -89,6 +93,10 @@ function cl_admin_enqueue_scripts() {
 function cl_enqueue_forms_assets() {
 	wp_enqueue_style( 'cl-editor' );
 	wp_enqueue_script( 'cl-editor' );
+	
+	global $wp_scripts;
+	echo '<pre>'.__FILE__.':'.__LINE__.':'.print_r($wp_scripts, TRUE).'</pre>';
+	wp_die();
 
 	if ( ! did_action( 'wp_enqueue_media' ) ) {
 		wp_enqueue_media();
@@ -97,7 +105,6 @@ function cl_enqueue_forms_assets() {
 	cl_maybe_load_wysiwyg();
 
 	// TODO Remove when onDemand load will be ready
-	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_script( 'wp-color-picker-alpha' );
 	wp_enqueue_script( 'wplink' );
 	wp_enqueue_style( 'editor-buttons' );
