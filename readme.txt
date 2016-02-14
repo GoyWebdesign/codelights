@@ -2,8 +2,8 @@
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
-Tested up to: 4.4.1
-Stable tag: 1.0.11
+Tested up to: 4.4.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,7 +127,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.1 =
-* New: Added the Modal Popup element
+* New: Added the new Modal Popup element
 * Fixed: Compatibility with WP CLI
 * Fixed: SiteOrigin page builder custom posts compatibility
 
