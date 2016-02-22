@@ -21,9 +21,9 @@ Modal Popup is a dialog box/popup window that is displayed on top of the current
 
 **Special Features:**
 
-1. *5 popup sizes* to choose from.
-1. *7 awesome CSS3-based show/hide animations*.
-1. *4 popup show triggers*: button click, text click, image click and page load.
+1. **5 popup sizes** to choose from.
+1. **7 awesome CSS3-based show/hide animations**.
+1. **4 popup show triggers**: button click, text click, image click and page load.
 
 > **[Modal Popup Showcase and Examples](http://codelights.com/elements/popup/ "Modal Popup Showcase and Examples")**
 
