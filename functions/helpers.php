@@ -35,7 +35,7 @@ function cl_config( $path, $default = NULL ) {
 	$config_name = $path[0];
 	if ( ! isset( $configs[ $config_name ] ) ) {
 		cl_maybe_load_plugin_textdomain();
-		$config_path = $cl_dir . '/config/' . $config_name . '.php';
+		$config_path = $cl_dir . 'config/' . $config_name . '.php';
 		$config = require $config_path;
 		$configs[ $config_name ] = apply_filters( 'cl_config_' . $config_name, $config );
 	}
@@ -67,10 +67,10 @@ function cl_load_template( $template, $vars = NULL ) {
 	}
 
 	do_action( 'cl_before_template:' . $template, $vars );
-	if ( ! file_exists( $cl_dir . '/templates/' . $template . '.php' ) ) {
-		wp_die( 'File not found: ' . $cl_dir . '/templates/' . $template . '.php' );
+	if ( ! file_exists( $cl_dir . 'templates/' . $template . '.php' ) ) {
+		wp_die( 'File not found: ' . $cl_dir . 'templates/' . $template . '.php' );
 	}
-	include $cl_dir . '/templates/' . $template . '.php';
+	include $cl_dir . 'templates/' . $template . '.php';
 	do_action( 'cl_after_template:' . $template, $vars );
 }
 
