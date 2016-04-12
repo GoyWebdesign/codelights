@@ -14,7 +14,7 @@ cl_maybe_load_wysiwyg();
 $tinymce_settings = array(
 	'textarea_name' => $name,
 	'default_editor' => 'tinymce',
-	'media_buttons' => FALSE,
+	'media_buttons' => TRUE,
 	'wpautop' => FALSE,
 	'editor_height' => 250,
 	'tinymce' => array(

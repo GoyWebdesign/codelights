@@ -139,7 +139,8 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.1.1 =
-* Added: Compatibility with WP Canvas - Shortcodes plugin
+* Improved: Added compatibility with WP Canvas - Shortcodes plugin
+* Improved: Added media button for html form fields
 
 = 1.1 =
 * New: Added the new Modal Popup element
