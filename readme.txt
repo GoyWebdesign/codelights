@@ -2,8 +2,8 @@
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
-Tested up to: 4.4.2
-Stable tag: 1.1
+Tested up to: 4.5
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,7 +139,8 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.1.1 =
-* Improved: Added compatibility with WP Canvas - Shortcodes plugin
+* Improved: Compatibility with WordPress 4.5
+* Improved: Compatibility with "WP Canvas - Shortcodes" plugin
 * Improved: Added media button for html form fields
 * Improved: FlipBox now allows to choose image sizes for both front and back sides
 
