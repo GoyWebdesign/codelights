@@ -166,16 +166,26 @@ function cl_parse_link_value( $value, $as_string = FALSE ) {
 function cl_maybe_load_wysiwyg() {
 	global $cl_html_editor_loaded;
 	if ( ! isset( $cl_html_editor_loaded ) OR ! $cl_html_editor_loaded ) {
-		if ( ! class_exists( '_WP_Editors' ) ) {
-			require( ABSPATH . WPINC . '/class-wp-editor.php' );
+		$screen = get_current_screen();
+		if ( $screen->base == 'customize' ) {
+			cl_load_wysiwyg();
+		} else {
+			// Support for 3-rd party plugins that customize mce_buttons during the admin_head action
+			add_action( 'admin_head', 'cl_load_wysiwyg', 50 );
 		}
-		_WP_Editors::editor_settings( 'codelights', _WP_Editors::parse_settings( 'content', array(
-			'dfw' => TRUE,
-			'tabfocus_elements' => 'insert-media-button',
-			'editor_height' => 360,
-		) ) );
 		$cl_html_editor_loaded = TRUE;
 	}
+}
+
+function cl_load_wysiwyg() {
+	if ( ! class_exists( '_WP_Editors' ) ) {
+		require( ABSPATH . WPINC . '/class-wp-editor.php' );
+	}
+	_WP_Editors::editor_settings( 'codelights', _WP_Editors::parse_settings( 'content', array(
+		'dfw' => TRUE,
+		'tabfocus_elements' => 'insert-media-button',
+		'editor_height' => 360,
+	) ) );
 }
 
 /**

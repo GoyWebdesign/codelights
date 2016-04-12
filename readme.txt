@@ -138,6 +138,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.1.1 =
+* Added: Compatibility with WP Canvas - Shortcodes plugin
+
 = 1.1 =
 * New: Added the new Modal Popup element
 * Fixed: Compatibility with WP CLI
