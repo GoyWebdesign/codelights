@@ -269,6 +269,15 @@ return array(
 			'front_bgimage' => array(
 				'title' => __( 'Background Image', 'codelights' ),
 				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Front Side', 'codelights' ),
+			),
+			'front_bgimage_size' => array(
+				'title' => __( 'Image Size', 'codelights' ),
+				'type' => 'select',
+				'options' => cl_image_sizes_select_values(),
+				'std' => 'full',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights' ),
 			),
 			/**
@@ -316,6 +325,15 @@ return array(
 			'back_bgimage' => array(
 				'title' => __( 'Background Image', 'codelights' ),
 				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
+				'group' => __( 'Back Side', 'codelights' ),
+			),
+			'back_bgimage_size' => array(
+				'title' => __( 'Image Size', 'codelights' ),
+				'type' => 'select',
+				'options' => cl_image_sizes_select_values(),
+				'std' => 'full',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Back Side', 'codelights' ),
 			),
 			/**

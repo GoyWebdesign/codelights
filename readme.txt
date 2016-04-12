@@ -141,6 +141,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 = 1.1.1 =
 * Improved: Added compatibility with WP Canvas - Shortcodes plugin
 * Improved: Added media button for html form fields
+* Improved: FlipBox now allows to choose image sizes for both front and back sides
 
 = 1.1 =
 * New: Added the new Modal Popup element

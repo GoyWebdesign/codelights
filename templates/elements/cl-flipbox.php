@@ -27,6 +27,7 @@
  * @var $front_bgcolor string
  * @var $front_textcolor string
  * @var $front_bgimage int ID of the WP attachment image
+ * @var $front_bgimage_size string WordPress image thumbnail name
  * @var $back_title string
  * @var $back_title_size string
  * @var $back_desc string Back-side text
@@ -34,6 +35,7 @@
  * @var $back_bgcolor string
  * @var $back_textcolor string
  * @var $back_bgimage int ID of the WP attachment image
+ * @var $back_bgimage_size string WordPress image thumbnail name
  * @var $width string In pixels or percents: '100' / '100%'
  * @var $height string
  * @var $valign string Vertical align: 'top' / 'center'
@@ -88,16 +90,18 @@ if ( $animation == 'cubeflip' AND in_array( $direction, array( 'ne', 'se', 'sw',
 	$output .= '<div class="cl-flipbox-hhh">';
 }
 
-$front_inline_css = cl_prepare_inline_css( array(
+$front_inline_css = array(
 	'height' => $height,
 	'padding' => $padding,
 	'background-color' => $front_bgcolor,
-	'background-image' => $front_bgimage,
 	'border-color' => $border_color,
 	'border-radius' => $border_radius,
 	'border-width' => $border_size,
-) );
-$output .= '<div class="cl-flipbox-front"' . $front_inline_css . '><div class="cl-flipbox-front-h">';
+);
+if ( ! empty( $front_bgimage ) AND ( $front_bgimage_src = wp_get_attachment_image_src( $front_bgimage, $front_bgimage_size ) ) ) {
+	$front_inline_css['background-image'] = $front_bgimage_src[0];
+}
+$output .= '<div class="cl-flipbox-front"' . cl_prepare_inline_css( $front_inline_css ) . '><div class="cl-flipbox-front-h">';
 $output_front_icon = '';
 if ( $front_icon_type == 'font' AND ! empty( $front_icon_name ) ) {
 	wp_enqueue_style( 'font-awesome' );
@@ -155,15 +159,17 @@ if ( $front_elmorder == 'tid' ) {
 }
 $output .= '</div></div>';
 
-$back_inline_css = cl_prepare_inline_css( array(
+$back_inline_css = array(
 	'padding' => $padding,
 	'background-color' => $back_bgcolor,
-	'background-image' => $back_bgimage,
 	'border-color' => $border_color,
 	'border-radius' => $border_radius,
 	'border-width' => $border_size,
-) );
-$output .= '<div class="cl-flipbox-back"' . $back_inline_css . '><div class="cl-flipbox-back-h">';
+);
+if ( ! empty( $back_bgimage ) AND ( $back_bgimage_src = wp_get_attachment_image_src( $back_bgimage, $back_bgimage_size ) ) ) {
+	$back_inline_css['background-image'] = $back_bgimage_src[0];
+}
+$output .= '<div class="cl-flipbox-back"' . cl_prepare_inline_css( $back_inline_css ) . '><div class="cl-flipbox-back-h">';
 $output_back_title = '';
 if ( ! empty( $back_title ) ) {
 	$output_back_title .= '<h4 class="cl-flipbox-back-title"';
