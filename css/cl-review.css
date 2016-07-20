@@ -113,6 +113,7 @@
 .cl-review.layout_centered .cl-review-author-name,
 .cl-review.layout_centered .cl-review-author-occupation {
   display: block;
+  margin: 0;
 }
 .cl-review.layout_modern .cl-review-quote {
   padding-left: 100px;
