@@ -140,6 +140,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 == Changelog ==
 = 1.1.2 =
 * Improved: FlipBox and Interactive Banners how handle Tab button focus properly
+* Improved: Modal Popup now contains additional class in the popup wrap too, so you can customize the inside content's styles too
 
 = 1.1.1 =
 * Improved: Compatibility with WordPress 4.5

@@ -68,7 +68,11 @@ $output .= cl_prepare_inline_css( array(
 $output .= '></div>';
 
 // The part that will be shown
-$output .= '<div class="cl-popup-wrap">';
+$output .= '<div class="cl-popup-wrap';
+if ( ! empty( $el_class ) ) {
+	$output .= ' ' . $el_class;
+}
+$output .= '">';
 $box_classes = ' size_' . $size . ' animation_' . $animation;
 if ( $paddings == 'none' ) {
 	$box_classes .= ' paddings_none';
