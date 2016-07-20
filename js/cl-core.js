@@ -24,7 +24,8 @@ jQuery.fn.clMod = function(mod, value){
 		return this.each(function(){
 			if (this.className.match(regexp)) {
 				this.className = this.className.replace(regexp, '$1' + mod + '_' + value + '$2');
-			} else {
+			}
+			else {
 				this.className += ' ' + mod + '_' + value;
 			}
 		});
@@ -128,16 +129,32 @@ jQuery.fn.clMod = function(mod, value){
 				}
 			} else {
 				// Desktop: Mouse hover
+				this._mouseInside = false;
+				this._focused = false;
+
 				$.extend(this._events, {
 					mouseHoverStart: function(){
 						this.$container.addClass('hover');
+						this._mouseInside = true;
 					}.bind(this),
 					mouseHoverEnd: function(){
-						this.$container.removeClass('hover');
+						if (!this._focused) this.$container.removeClass('hover');
+						this._mouseInside = false;
+					}.bind(this),
+					focus: function(){
+						this.$container.addClass('hover');
+						this._focused = true;
+					}.bind(this),
+					blur: function(){
+						if (!this._mouseInside) this.$container.removeClass('hover');
+						this._focused = false;
 					}.bind(this)
 				});
 				this.$container.on('mouseenter', this._events.mouseHoverStart);
 				this.$container.on('mouseleave', this._events.mouseHoverEnd);
+				this.$focusable = this.$container.find('a').addBack('a');
+				this.$focusable.on('focus', this._events.focus);
+				this.$focusable.on('blur', this._events.blur);
 			}
 		}
 	};

@@ -138,6 +138,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.1.2 =
+* Improved: FlipBox and Interactive Banners how handle Tab button focus properly
+
 = 1.1.1 =
 * Improved: Compatibility with WordPress 4.5
 * Improved: Compatibility with "WP Canvas - Shortcodes" plugin

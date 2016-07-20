@@ -10,6 +10,7 @@
 		this.$frontH = this.$container.find('.cl-flipbox-front-h');
 		this.$back = this.$container.find('.cl-flipbox-back');
 		this.$backH = this.$container.find('.cl-flipbox-back-h');
+		this.$btn = this.$container.find('.cl-btn');
 
 		// For diagonal cube animations height should equal width (heometrical restriction)
 		var animation = this.$container.clMod('animation'),
