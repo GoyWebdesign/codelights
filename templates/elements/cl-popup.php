@@ -57,7 +57,7 @@ if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attach
 		'color' => $btn_color,
 		'background-color' => $btn_bgcolor,
 	) );
-	$output .= '>' . $btn_label . '</a>';
+	$output .= '><span>' . $btn_label . '</span></a>';
 }
 
 // Overlay

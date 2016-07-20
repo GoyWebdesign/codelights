@@ -193,7 +193,7 @@ if ( $link_type == 'btn' AND isset( $link_atts ) AND ! empty( $back_btn_label ) 
 		'color' => $back_btn_color,
 		'background-color' => $back_btn_bgcolor,
 	) );
-	$output_back_btn .= '<a class="cl-btn"' . $back_btn_inline_css . $link_atts . '>' . $back_btn_label . '</a>';
+	$output_back_btn .= '<a class="cl-btn"' . $back_btn_inline_css . $link_atts . '><span>' . $back_btn_label . '</span></a>';
 }
 if ( $back_elmorder == 'tbd' ) {
 	$output .= $output_back_title . $output_back_btn . $output_back_desc;
