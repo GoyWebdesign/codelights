@@ -36,7 +36,7 @@ foreach ( $params as $param_name => &$param ) {
 	if ( ! isset( $values[ $param_name ] ) ) {
 		$values[ $param_name ] = $param['std'];
 	}
-	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights' );
+	$group = isset( $param['group'] ) ? $param['group'] : __( 'General', 'codelights-shortcodes-and-widgets' );
 	if ( ! isset( $groups[ $group ] ) ) {
 		$groups[ $group ] = array();
 	}

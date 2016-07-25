@@ -9,7 +9,7 @@
  * @var $options array List of value => title options
  */
 if ( ! isset( $options ) OR empty( $options ) ) {
-	$options = array( 'yes' => __( 'Yes', 'codelights' ) );
+	$options = array( 'yes' => __( 'Yes', 'codelights-shortcodes-and-widgets' ) );
 }
 
 $values = explode( ',', $value );

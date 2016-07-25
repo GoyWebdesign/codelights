@@ -21,7 +21,7 @@ class CL_Widget extends WP_Widget {
 		// Adding Widget Title param to the beginning
 		$this->config['params'] = array_merge( array(
 			'_widget_title' => array(
-				'title' => __( 'Widget Title', 'codelights' ),
+				'title' => __( 'Widget Title', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 			),
 		), $this->config['params'] );

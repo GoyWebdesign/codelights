@@ -8,7 +8,7 @@
  *
  * @return bool
  */
-function cl_maybe_load_plugin_textdomain( $domain = 'codelights', $path = 'lang' ) {
+function cl_maybe_load_plugin_textdomain( $domain = 'codelights-shortcodes-and-widgets', $path = 'lang' ) {
 	if ( is_textdomain_loaded( $domain ) ) {
 		return TRUE;
 	}
@@ -299,25 +299,25 @@ function cl_image_sizes_select_values( $size_names = array( 'large', 'medium', '
 	$image_sizes = array();
 	// For translation purposes
 	$size_titles = array(
-		'large' => __( 'Large', 'codelights' ),
-		'medium' => __( 'Medium', 'codelights' ),
-		'thumbnail' => __( 'Thumbnail', 'codelights' ),
-		'full' => __( 'Full Size', 'codelights' ),
+		'large' => __( 'Large', 'codelights-shortcodes-and-widgets' ),
+		'medium' => __( 'Medium', 'codelights-shortcodes-and-widgets' ),
+		'thumbnail' => __( 'Thumbnail', 'codelights-shortcodes-and-widgets' ),
+		'full' => __( 'Full Size', 'codelights-shortcodes-and-widgets' ),
 	);
 	foreach ( $size_names as $size_name ) {
 		$size_title = isset( $size_titles[ $size_name ] ) ? $size_titles[ $size_name ] : ucwords( $size_name );
 		if ( $size_name != 'full' ) {
 			// Detecting size
 			$size = cl_get_intermediate_image_size( $size_name );
-			$size_title .= ' - ' . ( ( $size['width'] == 0 ) ? __( 'Any', 'codelights' ) : $size['width'] );
+			$size_title .= ' - ' . ( ( $size['width'] == 0 ) ? __( 'Any', 'codelights-shortcodes-and-widgets' ) : $size['width'] );
 			$size_title .= 'x';
-			$size_title .= ( $size['height'] == 0 ) ? __( 'Any', 'codelights' ) : $size['height'];
-			$size_title .= ' (' . ( $size['crop'] ? __( 'cropped', 'codelights' ) : __( 'not cropped', 'codelights' ) ) . ')';
+			$size_title .= ( $size['height'] == 0 ) ? __( 'Any', 'codelights-shortcodes-and-widgets' ) : $size['height'];
+			$size_title .= ' (' . ( $size['crop'] ? __( 'cropped', 'codelights-shortcodes-and-widgets' ) : __( 'not cropped', 'codelights-shortcodes-and-widgets' ) ) . ')';
 		}
 		$image_sizes[ $size_name ] = $size_title;
 	}
 
-	return $image_sizes;
+	return apply_filters( 'cl_image_sizes_select_values', $image_sizes );
 }
 
 /**

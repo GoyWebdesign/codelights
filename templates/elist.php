@@ -8,7 +8,7 @@ global $cl_uri;
 $elements = cl_config( 'elements', array() );
 
 $output = '<div class="cl-elist"><div class="cl-elist-h">';
-$output .= '<h2 class="cl-elist-title">' . __( 'Insert shortcode', 'codelights' ) . '</h2>';
+$output .= '<h2 class="cl-elist-title">' . __( 'Insert shortcode', 'codelights-shortcodes-and-widgets' ) . '</h2>';
 $output .= '<div class="cl-elist-closer">&times;</div>';
 $output .= '<ul class="cl-elist-list">';
 foreach ( $elements as $name => $elm ) {

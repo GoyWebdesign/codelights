@@ -28,7 +28,7 @@ add_action( 'vc_after_set_mode', function () {
 			'base' => $name,
 			'description' => isset( $elm['description'] ) ? $elm['description'] : '',
 			'class' => 'elm-' . $name,
-			'category' => isset( $elm['category'] ) ? $elm['category'] : __( 'Content', 'codelights' ),
+			'category' => isset( $elm['category'] ) ? $elm['category'] : __( 'Content', 'codelights-shortcodes-and-widgets' ),
 			'icon' => isset( $elm['icon'] ) ? $elm['icon'] : '',
 			'params' => array(),
 		);

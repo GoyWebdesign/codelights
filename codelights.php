@@ -9,7 +9,7 @@
  * Author URI: http://codelights.com/
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: codelights
+ * Text Domain: codelights-shortcodes-and-widgets
  */
 
 // Global variables for plugin usage (global declaration is needed here for WP CLI compatibility)

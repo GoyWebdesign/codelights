@@ -21,7 +21,7 @@ if ( strlen( $link['url'] ) > 60 ) {
 }
 
 $output = '<div class="cl-linkdialog">';
-$output .= '<a class="cl-linkdialog-btn button button-default button-large" href="javascript:void(0)">' . __( 'Insert link', 'codelights' ) . '</a>';
+$output .= '<a class="cl-linkdialog-btn button button-default button-large" href="javascript:void(0)">' . __( 'Insert link', 'codelights-shortcodes-and-widgets' ) . '</a>';
 $output .= '<span class="cl-linkdialog-url">' . $link['url'] . '</span>';
 $output .= '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '">' . esc_textarea( $value ) . '</textarea>';
 $output .= '</div>';
