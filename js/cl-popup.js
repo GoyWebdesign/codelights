@@ -88,8 +88,8 @@
 			this.$box.addClass('active');
 			// UpSolution Themes Compatibility
 			// TODO Move to themes
-			if (window.$us !== undefined && $us.canvas !== undefined && $us.canvas.$container !== undefined) {
-				$us.canvas.$container.trigger('contentChange');
+			if (window.$us !== undefined && $us.$canvas !== undefined) {
+				$us.$canvas.trigger('contentChange');
 			}
 			$cl.$window.trigger('resize');
 			if (this.size != 'f') {
