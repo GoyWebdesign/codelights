@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: SiteOrigin Widgets by CodeLights
- * Version: 1.1.1
+ * Version: 1.1.2
  * Plugin URI: http://codelights.com/
  * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use. Also can work without SiteOrigin.
  * Author: CodeLights
@@ -31,7 +31,6 @@ function cl_plugins_loaded() {
 	// Editors support
 	global $cl_dir;
 	require $cl_dir . 'editors-support/native/native.php';
-	require $cl_dir . 'editors-support/js_composer/js_composer.php';
 	require $cl_dir . 'editors-support/siteorigin/siteorigin.php';
 	// I18n support
 	cl_maybe_load_plugin_textdomain();

@@ -2,8 +2,8 @@
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 1.1.1
+Tested up to: 4.6
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,9 +139,11 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.1.2 =
+* Improved: Compatibility with WordPress 4.6
 * Improved: FlipBox and Interactive Banners how handle Tab button focus properly
 * Improved: Modal Popup now contains additional class in the popup wrap too, so you can customize the inside content's styles too
 * Improved: Plugin now should become translatable by the community
+* Improved: Provided native compatibility with UpSolution's Impreza and Zephyr premium WordPress themes
 
 = 1.1.1 =
 * Improved: Compatibility with WordPress 4.5
