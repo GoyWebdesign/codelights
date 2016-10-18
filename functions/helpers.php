@@ -167,7 +167,7 @@ function cl_maybe_load_wysiwyg() {
 	global $cl_html_editor_loaded;
 	if ( ! isset( $cl_html_editor_loaded ) OR ! $cl_html_editor_loaded ) {
 		$screen = get_current_screen();
-		if ( $screen->base == 'customize' ) {
+		if ( $screen !== NULL AND $screen->base == 'customize' ) {
 			cl_load_wysiwyg();
 		} else {
 			// Support for 3-rd party plugins that customize mce_buttons during the admin_head action
