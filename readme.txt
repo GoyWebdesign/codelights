@@ -141,6 +141,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 = 1.1.3 =
 * Improved: Interactive Banner now shows attachment alt, when it's defined (which is good for SEO)
 * Fixed: Compatibility with some 3-rd party plugins that change hooks order.
+* Fixed: Clean styled Testimonials' quotes now are not cut in Safari
 
 = 1.1.2 =
 * Improved: Compatibility with WordPress 4.6

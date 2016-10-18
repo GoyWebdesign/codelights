@@ -54,6 +54,7 @@
   position: absolute;
   top: 0;
   left: -25px;
+  padding-right: 3px;
   opacity: 0.25;
 }
 .cl-review.layout_clean .cl-review-quote-text q:after {
