@@ -99,9 +99,14 @@ $img = wp_get_attachment_image_src( $image, $size );
 if ( ! $img ) {
 	// TODO set placeholder
 	$img = array( '', 0, 0 );
+} else {
+	$img_alt = get_post_meta( $image, '_wp_attachment_image_alt', TRUE );
+}
+if ( ! isset( $img_alt ) OR empty( $img_alt ) ) {
+	$img_alt = strip_tags( $title );
 }
 $output .= '<div class="cl-ib-image" style="background-image: url(' . esc_attr( $img[0] ) . ')">';
-$output .= '<img src="' . esc_attr( $img[0] ) . '" ' . image_hwstring( $img[1], $img[2] ) . ' alt="' . esc_attr( $title ) . '" />';
+$output .= '<img src="' . esc_attr( $img[0] ) . '" ' . image_hwstring( $img[1], $img[2] ) . ' alt="' . esc_attr( $img_alt ) . '" />';
 $output .= '</div>';
 $output .= '<div class="cl-ib-content"';
 $output .= cl_prepare_inline_css( array(

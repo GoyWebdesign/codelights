@@ -15,7 +15,7 @@ Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and 
 
 ### Six Built-in Elements
 
-#### 1. [NEW] Modal Popup
+#### 1. Modal Popup
 
 Modal Popup is a dialog box/popup window that is displayed on top of the current page. It is a very useful tool when you want to add some special content and to keep the original content clean at the same time.
 
@@ -138,6 +138,10 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.1.3 =
+* Improved: Interactive Banner now shows attachment alt, when it's defined (which is good for SEO)
+* Fixed: Compatibility with some 3-rd party plugins that change hooks order.
+
 = 1.1.2 =
 * Improved: Compatibility with WordPress 4.6
 * Improved: FlipBox and Interactive Banners how handle Tab button focus properly
