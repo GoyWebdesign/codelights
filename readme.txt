@@ -138,6 +138,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.1.4 =
+* Improved: CodeLights now works in SiteOrigin Layout Builder Widget too
+
 = 1.1.3 =
 * Improved: Interactive Banner now shows attachment alt, when it's defined (which is good for SEO)
 * Fixed: Compatibility with some 3-rd party plugins that change hooks order.

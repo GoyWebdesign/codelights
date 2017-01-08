@@ -50,14 +50,20 @@ function cl_siteorigin_panels_widget_dialog_tabs( $tabs ) {
 
 add_action( 'admin_enqueue_scripts', 'cl_admin_enqueue_siteorigin_scripts' );
 function cl_admin_enqueue_siteorigin_scripts() {
-	global $post_type, $cl_uri, $cl_version, $wp_styles;
-	if ( function_exists( 'siteorigin_panels_setting' ) ) {
-		$siteorigin_post_types = siteorigin_panels_setting( 'post-types' );
-		if ( is_array( $siteorigin_post_types ) AND in_array( $post_type, $siteorigin_post_types ) ) {
-			cl_enqueue_forms_assets();
-			wp_enqueue_script( 'cl-siteorigin', $cl_uri . '/editors-support/siteorigin/siteorigin.js', array( 'jquery' ), $cl_version, TRUE );
-			// Icons
-			add_action( 'admin_head', 'cl_siteorigin_icons_style' );
-		}
+	if ( ! function_exists( 'siteorigin_panels_setting' ) ) {
+		return;
+	}
+	// Embedding the file only where siteorigin editor can be used: post types with wysiwyg / widgets page
+	global $post_type, $cl_uri, $cl_version;
+	$screen = get_current_screen();
+	$is_widgets = ( $screen->base == 'widgets' );
+	$is_customizer = ( $screen->base == 'customize' );
+	$siteorigin_post_types = siteorigin_panels_setting( 'post-types' );
+	$is_siteorigin_editor = is_array( $siteorigin_post_types ) AND in_array( $post_type, $siteorigin_post_types );
+
+	if ( $is_widgets OR $is_customizer OR $is_siteorigin_editor ) {
+		wp_enqueue_script( 'cl-siteorigin', $cl_uri . '/editors-support/siteorigin/siteorigin.js', array( 'jquery' ), $cl_version, TRUE );
+		// Icons
+		add_action( 'admin_head', 'cl_siteorigin_icons_style' );
 	}
 }

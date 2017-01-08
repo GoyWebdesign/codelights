@@ -100,6 +100,8 @@ function cl_enqueue_forms_assets() {
 	wp_enqueue_script( 'wp-color-picker-alpha' );
 	wp_enqueue_script( 'wplink' );
 	wp_enqueue_style( 'editor-buttons' );
+
+	do_action( 'cl_enqueue_forms_assets' );
 }
 
 add_action( 'customize_controls_print_styles', 'cl_customizer_icons_style' );
