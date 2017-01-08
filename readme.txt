@@ -141,6 +141,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too
 * Improved: Now you can use nbsp chars in Interactive Text
+* Updated: Font Awesome to the latest 4.7.0 version
 * Fixed: Interactive Text now doesn't trim some spaces between words
 
 = 1.1.3 =
