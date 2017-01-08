@@ -143,6 +143,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Improved: Now you can use nbsp chars in Interactive Text
 * Updated: Font Awesome to the latest 4.7.0 version
 * Fixed: Interactive Text now doesn't trim some spaces between words
+* Fixed: Compatibility of Modal Popups with SiteOrigin Vantage theme's menu z-index
 
 = 1.1.3 =
 * Improved: Interactive Banner now shows attachment alt, when it's defined (which is good for SEO)
