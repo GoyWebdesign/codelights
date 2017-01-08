@@ -27,6 +27,9 @@ if ( $dynamic_bold ) {
 	$classes .= ' dynamic_bold';
 }
 
+// Allows to use nbsps and other entities
+$texts = html_entity_decode( $texts );
+
 $texts_arr = explode( "\n", strip_tags( $texts ) );
 
 $js_data = array(
@@ -113,11 +116,17 @@ for ( $i_index = count( $_parts ) - 1; $i_index > 0; $i_index-- ) {
 
 // Finding the dynamic parts and their animation indexes
 $group_changes = array();
+$nbsp_char = html_entity_decode( '&nbsp;' );
 foreach ( $groups as $index => $group ) {
 	$group_changes[ $index ] = array();
 	for ( $i = 0; $i < count( $_parts ); $i++ ) {
 		if ( $group[ $i ] != $group[ isset( $group[ $i + 1 ] ) ? ( $i + 1 ) : 0 ] OR $group[ $i ] === '' ) {
 			$group_changes[ $index ][] = $i;
+		}
+		// HTML won't show spans with spaces at all, so replacing them with nbsps
+		// A bit sophisticated check to speed up this frequent action
+		if ( strlen( $group[ $i ] ) AND $group[ $i ][ 0 ] == ' ' AND preg_match( '~^ +$~u', $group[ $i ][ 0 ] ) ) {
+			$groups[ $index ][ $i ] = str_replace( ' ', $nbsp_char, $group[ $i ] );
 		}
 	}
 }
@@ -171,7 +180,7 @@ foreach ( $groups as $index => $group ) {
 		} else {
 			$output .= '"';
 		}
-		$output .= cl_pass_data_to_js( $group ) . '>' . $group[0] . '</span>';
+		$output .= cl_pass_data_to_js( $group ) . '>' . htmlentities( $group[0] ) . '</span>';
 	}
 }
 $output .= '</' . $tag . '>';
