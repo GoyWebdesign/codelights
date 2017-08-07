@@ -138,6 +138,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.2 =
+* Implemented required hooks so every 3-rd developer could add own elements
+
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too
 * Improved: Now you can use nbsp chars in Interactive Text

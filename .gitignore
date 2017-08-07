@@ -4,3 +4,5 @@
 todo.txt
 log.txt
 classes.list.txt
+.vagrant
+*.log
