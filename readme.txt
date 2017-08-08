@@ -143,6 +143,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Fixed: Interactive Text animation glitches when parent's line-height is an absolute value
 * Fixed: Integrative Text char-by-char animation glitches on windows chrome when lots of chars animated
 * Fixed: FlipBox css3 animations rendering glitch on page load
+* Fixed: Animation glitches in IE11 (replaced with simple instant side swap on hover)
 
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too

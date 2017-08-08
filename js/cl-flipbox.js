@@ -12,6 +12,14 @@
 		this.$backH = this.$container.find('.cl-flipbox-back-h');
 		this.$btn = this.$container.find('.cl-btn');
 
+		// Simplified animation for IE11
+		if (!!window.MSInputMethodContext && !!document.documentMode){
+			this.$container.clMod('animation', 'cardflip').find('.cl-flipbox-h').css({
+				'transition-duration': '0s',
+				'-webkit-transition-duration': '0s'
+			});
+		}
+
 		// For diagonal cube animations height should equal width (heometrical restriction)
 		var animation = this.$container.clMod('animation'),
 			direction = this.$container.clMod('direction');
