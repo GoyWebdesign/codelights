@@ -54,7 +54,11 @@
 .cl-flipbox-front-desc,
 .cl-flipbox-back-desc {
   line-height: 1.7;
-  margin: 0 0 24px;
+  margin: 0 0 22px !important;
+}
+.cl-flipbox-front-desc:last-child,
+.cl-flipbox-back-desc:last-child {
+  margin: 0 !important;
 }
 .cl-flipbox-front-icon,
 .cl-flipbox-back-icon {
