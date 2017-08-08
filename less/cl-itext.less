@@ -8,6 +8,9 @@
 	font-size: 50px;
 	line-height: 1.4;
 	text-align: center;
+	// Chrome for windows rendering glitch fix
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 
 	&.align_left {
 		text-align: left;
