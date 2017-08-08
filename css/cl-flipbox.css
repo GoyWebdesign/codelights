@@ -10,7 +10,6 @@
   transform: translateZ(0);
   -webkit-transition-property: none;
   transition-property: none;
-  color: transparent;
 }
 .cl-flipbox-hh,
 .cl-flipbox-hhh {
@@ -55,7 +54,7 @@
 .cl-flipbox-front-desc,
 .cl-flipbox-back-desc {
   line-height: 1.7;
-  margin: 0 0 24px !important;
+  margin: 0 0 24px;
 }
 .cl-flipbox-front-icon,
 .cl-flipbox-back-icon {
@@ -92,6 +91,7 @@
   top: 0;
   z-index: -1;
   border-style: solid;
+  border-width: 0;
 }
 .cl-flipbox.loading .cl-flipbox-back,
 .cl-flipbox.loading .cl-flipbox-xflank,

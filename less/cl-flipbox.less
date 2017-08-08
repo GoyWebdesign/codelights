@@ -8,8 +8,6 @@
 		.perspective(1000px);
 		.transform(translateZ(0));
 		.transition-property(none);
-		// Fixing colored borders glitch
-		color: transparent;
 	}
 	&-hh,
 	&-hhh {
@@ -46,7 +44,7 @@
 		}
 		&-desc {
 			line-height: 1.7;
-			margin: 0 0 24px !important;
+			margin: 0 0 24px;
 		}
 		&-icon {
 			margin: 0 0 22px;
@@ -81,6 +79,7 @@
 		top: 0;
 		z-index: -1;
 		border-style: solid;
+		border-width: 0;
 		.cl-flipbox.loading & {
 			display: none;
 		}
