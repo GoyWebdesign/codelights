@@ -26,9 +26,12 @@
 
 		this.$trigger = this.$container.find('.cl-popup-trigger');
 		this.triggerType = this.$trigger.clMod('type');
-		if (this.triggerType == 'load') {
+		if (this.triggerType == 'load'){
 			var delay = this.$trigger.data('delay') || 2;
 			setTimeout(this.show.bind(this), delay * 1000);
+		} else if (this.triggerType == 'selector') {
+			var selector = this.$trigger.data('selector');
+			if (selector) $cl.$body.on('click', selector, this._events.show);
 		} else {
 			this.$trigger.on('click', this._events.show);
 		}

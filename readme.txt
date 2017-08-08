@@ -139,7 +139,8 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 
 == Changelog ==
 = 1.2 =
-* Implemented required hooks so every 3-rd developer could add own elements
+* New: Added hooks so every developer could add their own elements
+* Improved: Modal Popup now can be set to be shown on a custom page element click
 * Fixed: Interactive Text animation glitches when parent's line-height is an absolute value
 * Fixed: Integrative Text char-by-char animation glitches on windows chrome when lots of chars animated
 * Fixed: FlipBox css3 animations rendering glitch on page load

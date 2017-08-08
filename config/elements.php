@@ -731,6 +731,7 @@ return array(
 					'btn' => __( 'Button Click', 'codelights-shortcodes-and-widgets' ),
 					'text' => __( 'Text Click', 'codelights-shortcodes-and-widgets' ),
 					'image' => __( 'Image Click', 'codelights-shortcodes-and-widgets' ),
+					'selector' => __( 'Other Element Click', 'codelights-shortcodes-and-widgets' ),
 					'load' => __( 'Page Load', 'codelights-shortcodes-and-widgets' ),
 				),
 				'std' => 'btn',
@@ -798,6 +799,13 @@ return array(
 				),
 				'std' => 'left',
 				'show_if' => array( 'show_on', 'in', array( 'btn', 'image', 'text' ) ),
+				'group' => __( 'Trigger', 'codelights-shortcodes-and-widgets' ),
+			),
+			'trigger_selector' => array(
+				'title' => __( 'CSS Selector of the Trigger', 'codelights-shortcodes-and-widgets' ),
+				'type' => 'text',
+				'std' => '.my-element',
+				'show_if' => array( 'show_on', '=', 'selector' ),
 				'group' => __( 'Trigger', 'codelights-shortcodes-and-widgets' ),
 			),
 			'show_delay' => array(

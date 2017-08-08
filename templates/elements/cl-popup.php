@@ -14,6 +14,7 @@
  * @var $text_size int Text size
  * @var $text_color string Text color
  * @var $align string Button / image / text alignment: 'left' / 'center' / 'right'
+ * @var $trigger_selector string CSS Selector of the Trigger
  * @var $show_delay int Modal box show delay (in ms)
  * @var $size string Modal box size: 's' / 'm' / 'l' / 'f'
  * @var $paddings bool Remove white space around popup content?
@@ -50,7 +51,9 @@ if ( $show_on == 'image' AND ! empty( $image ) AND ( $image_html = wp_get_attach
 	) );
 	$output .= '>' . $btn_label . '</a>';
 } elseif ( $show_on == 'load' ) {
-	$output .= '<span class="cl-popup-trigger type_load" data-delay="' . intval( $show_delay ) . '"></span>';
+	$output .= '<span class="cl-popup-trigger type_load" data-delay="'.intval($show_delay).'"></span>';
+} elseif ( $show_on == 'selector' ) {
+	$output .= '<span class="cl-popup-trigger type_selector" data-selector="'.esc_attr($trigger_selector).'"></span>';
 } else/*if ( $show_on == 'btn' )*/ {
 	$output .= '<a href="javascript:void(0)" class="cl-popup-trigger type_btn cl-btn"';
 	$output .= cl_prepare_inline_css( array(
