@@ -140,6 +140,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 == Changelog ==
 = 1.2 =
 * Implemented required hooks so every 3-rd developer could add own elements
+* Fixed: Interactive Text animation glitches when parent's line-height is an absolute value
 
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too
