@@ -36,6 +36,11 @@
 		}
 
 		this.makeHoverable('.cl-btn');
+
+		// Fixing css3 animations rendering glitch on page load
+		setTimeout(function(){
+			this.$container.removeClass('loading');
+		}.bind(this), 100);
 	};
 	CLFlipbox.prototype = {
 		resize: function(){

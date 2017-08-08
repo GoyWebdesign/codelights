@@ -8,6 +8,8 @@
 		.perspective(1000px);
 		.transform(translateZ(0));
 		.transition-property(none);
+		// Fixing colored borders glitch
+		color: transparent;
 	}
 	&-hh,
 	&-hhh {
@@ -79,6 +81,9 @@
 		top: 0;
 		z-index: -1;
 		border-style: solid;
+		.cl-flipbox.loading & {
+			display: none;
+		}
 	}
 
 	// Animation: Card Flip

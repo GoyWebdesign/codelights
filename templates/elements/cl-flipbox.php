@@ -79,7 +79,7 @@ if ( ! empty( $el_class ) ) {
 $inline_css = cl_prepare_inline_css( array(
 	'width' => $width,
 ) );
-$output = '<' . $tag . $atts . ' class="cl-flipbox' . $classes . '"' . $inline_css . '>';
+$output = '<' . $tag . $atts . ' class="cl-flipbox loading' . $classes . '"' . $inline_css . '>';
 
 $helper_classes = ' easing_' . $easing;
 $helper_inline_css = cl_prepare_inline_css( array(
