@@ -119,6 +119,8 @@
 			if (this.isFixed) {
 				$cl.$html.removeClass('cloverlay_fixed');
 				if (this.windowHasScrollbar) $cl.$html.css('margin-right', '');
+				// To properly resize 3-rd party elements
+				$cl.$window.trigger('resize');
 			}
 		},
 		resize: function(){

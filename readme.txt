@@ -145,6 +145,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Fixed: Integrative Text char-by-char animation glitches on windows chrome when lots of chars animated
 * Fixed: FlipBox css3 animations rendering glitch on page load
 * Fixed: Animation glitches in IE11 (replaced with simple instant side swap on hover)
+* Fixed: Resize of 3-rd party dynamic elements after fixed Modal Popup is closed
 
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too
