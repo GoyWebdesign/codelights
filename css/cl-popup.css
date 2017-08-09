@@ -9,6 +9,11 @@
 }
 .cl-popup-trigger img {
   vertical-align: top;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.cl-popup-trigger:hover img {
+  opacity: 0.75;
 }
 .cl-popup-overlay,
 .cl-popup-wrap {
