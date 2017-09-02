@@ -146,6 +146,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Fixed: FlipBox css3 animations rendering glitch on page load
 * Fixed: Animation glitches in IE11 (replaced with simple instant side swap on hover)
 * Fixed: Resize of 3-rd party dynamic elements after fixed Modal Popup is closed
+* Fixed: Disabled Cube Flip animation for Webkit browsers with buttons on back (to preserve the button clickable)
 
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too

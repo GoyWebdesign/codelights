@@ -97,11 +97,6 @@
   border-style: solid;
   border-width: 0;
 }
-.cl-flipbox.loading .cl-flipbox-back,
-.cl-flipbox.loading .cl-flipbox-xflank,
-.cl-flipbox.loading .cl-flipbox-yflank {
-  display: none;
-}
 .cl-flipbox.animation_cardflip.hover .cl-flipbox-front {
   z-index: -1;
 }

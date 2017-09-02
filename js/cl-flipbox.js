@@ -20,6 +20,12 @@
 			});
 		}
 
+		// In chrome cube flip animation makes button not clickable. Replacing it with cube tilt
+		var isWebkit = 'WebkitAppearance' in document.documentElement.style;
+		if (isWebkit && this.$container.clMod('animation') === 'cubeflip' && this.$btn.length){
+			this.$container.clMod('animation', 'cubetilt');
+		}
+
 		// For diagonal cube animations height should equal width (heometrical restriction)
 		var animation = this.$container.clMod('animation'),
 			direction = this.$container.clMod('direction');
@@ -47,8 +53,9 @@
 
 		// Fixing css3 animations rendering glitch on page load
 		setTimeout(function(){
-			this.$container.removeClass('loading');
-		}.bind(this), 100);
+			this.$back.css('display', '');
+			this.resize();
+		}.bind(this), 250);
 	};
 	CLFlipbox.prototype = {
 		resize: function(){
