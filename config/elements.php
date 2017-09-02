@@ -800,7 +800,7 @@ return array(
 			),
 			'trigger_selector' => array(
 				'title' => __( 'CSS Selector of the Trigger', 'codelights-shortcodes-and-widgets' ),
-				'type' => 'text',
+				'type' => 'textfield',
 				'std' => '.my-element',
 				'show_if' => array( 'show_on', '=', 'selector' ),
 				'group' => __( 'Trigger', 'codelights-shortcodes-and-widgets' ),
