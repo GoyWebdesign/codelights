@@ -2,8 +2,8 @@
 Contributors: rsukhar
 Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.1.4
+Tested up to: 4.8.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,7 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 * Fixed: Animation glitches in IE11 (replaced with simple instant side swap on hover)
 * Fixed: Resize of 3-rd party dynamic elements after fixed Modal Popup is closed
 * Fixed: Disabled Cube Flip animation for Webkit browsers with buttons on back (to preserve the button clickable)
+* Fixed: Force disabling SiteOrigin PageBuilder cache, as it doesn't work well with CodeLights
 
 = 1.1.4 =
 * Improved: CodeLights now works in SiteOrigin Layout Builder Widget too

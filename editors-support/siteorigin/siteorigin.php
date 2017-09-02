@@ -1,9 +1,5 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
-if ( ! defined( 'SITEORIGIN_PANELS_VERSION' ) ) {
-	return;
-}
-
 add_filter( 'siteorigin_panels_widgets', 'cl_siteorigin_panels_widgets' );
 function cl_siteorigin_panels_widgets( $widgets ) {
 	$config = cl_config( 'elements', array() );
@@ -66,4 +62,16 @@ function cl_admin_enqueue_siteorigin_scripts() {
 		// Icons
 		add_action( 'admin_head', 'cl_siteorigin_icons_style' );
 	}
+}
+
+// Disabling SiteOrigin Panels cache, as it doesn't work well with CodeLights
+// I did my best in order to keep it, but due to limited time I cannot keep debugging SiteOrigin_Panels_Cache_Renderer further. If you know how to fix this issue in a proper way, plz let me know!
+add_filter( 'siteorigin_panels_use_cached', '__return_false' );
+add_filter( 'siteorigin_panels_settings_fields', 'cl_hide_siteorigin_cache_field', 21 );
+function cl_hide_siteorigin_cache_field( $fields ) {
+	if ( isset( $fields['content'] ) AND isset( $fields['content']['fields'] ) AND isset( $fields['content']['fields']['cache-content'] ) ) {
+		unset( $fields['content']['fields']['cache-content'] );
+	}
+
+	return $fields;
 }
