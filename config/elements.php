@@ -62,8 +62,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
@@ -215,6 +214,7 @@ return array(
 			'front_icon_image' => array(
 				'title' => __( 'Image', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'image',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights-shortcodes-and-widgets' ),
 				'show_if' => array( 'front_icon_type', '=', 'image' ),
 			),
@@ -223,6 +223,7 @@ return array(
 				'description' => __( 'In pixels or percents', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '32px',
+				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Front Side', 'codelights-shortcodes-and-widgets' ),
 				'show_if' => array( 'front_icon_type', '=', 'image' ),
 			),
@@ -358,13 +359,13 @@ return array(
 			'valign' => array(
 				'type' => 'checkboxes',
 				'options' => array(
-					'center' => __( 'Center-Align Content Vertically', 'codelights-shortcodes-and-widgets' ),
+					'center' => __( 'Center the content vertically', 'codelights-shortcodes-and-widgets' ),
 				),
 				'std' => 'top',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'border_radius' => array(
-				'title' => __( 'Border Radius', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Corner Radius', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -392,8 +393,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
@@ -524,8 +524,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
@@ -542,7 +541,7 @@ return array(
 			),
 			'title_mobile_size' => array(
 				'title' => __( 'Title Size for Mobiles', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Will be applied when screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
+				'description' => __( 'Applied when the screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '24px',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -573,7 +572,7 @@ return array(
 			),
 			'desc_mobile_size' => array(
 				'title' => __( 'Description Size for Mobiles', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Will be applied when screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
+				'description' => __( 'Applied when the screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -643,7 +642,7 @@ return array(
 			),
 			'font_size_mobile' => array(
 				'title' => __( 'Text Size for Mobiles', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Will be applied when screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
+				'description' => __( 'Applied when the screen width is less than 600px', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '30px',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -662,7 +661,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'align' => array(
-				'title' => __( 'Text Alignment', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Alignment', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'select',
 				'options' => array(
 					'left' => __( 'Left', 'codelights-shortcodes-and-widgets' ),
@@ -691,8 +690,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
@@ -799,7 +797,7 @@ return array(
 				'group' => __( 'Trigger', 'codelights-shortcodes-and-widgets' ),
 			),
 			'trigger_selector' => array(
-				'title' => __( 'CSS Selector of the Trigger', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Custom Element CSS Selector', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '.my-element',
 				'show_if' => array( 'show_on', '=', 'selector' ),
@@ -866,14 +864,14 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'title_bgcolor' => array(
-				'title' => __( 'Header Background Color', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Title Background Color', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'color',
 				'std' => '#f2f2f2',
 				'classes' => 'cl_col-sm-6 cl_column',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'title_textcolor' => array(
-				'title' => __( 'Header Text Color', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Title Text Color', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'color',
 				'std' => '#666666',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -894,8 +892,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
@@ -912,7 +909,7 @@ return array(
 			 * General
 			 */
 			'quote' => array(
-				'title' => __( 'Quote Text', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Testimonial Text', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textarea',
 				'std' => 'This product is really awesome!',
 			),
@@ -939,10 +936,10 @@ return array(
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
 			'type' => array(
-				'title' => __( 'Review Type', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Testimonial Type', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'select',
 				'options' => array(
-					'quote' => __( 'Quote Text Only', 'codelights-shortcodes-and-widgets' ),
+					'quote' => __( 'Testimonial Text Only', 'codelights-shortcodes-and-widgets' ),
 					'doc' => __( 'With Scanned Document', 'codelights-shortcodes-and-widgets' ),
 					'video' => __( 'With Video', 'codelights-shortcodes-and-widgets' ),
 				),
@@ -953,13 +950,13 @@ return array(
 				'show_if' => array( 'type', '=', 'doc' ),
 			),
 			'video' => array(
-				'title' => __( 'Video URL to Embed', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Link to Video', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => 'https://vimeo.com/146383727',
 				'show_if' => array( 'type', '=', 'video' ),
 			),
 			'layout' => array(
-				'title' => __( 'Quote Style', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Testimonial Style', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'select',
 				'options' => array(
 					'clean' => __( 'Clean', 'codelights-shortcodes-and-widgets' ),
@@ -983,7 +980,7 @@ return array(
 				'show_if' => array( 'layout', 'in', array( 'balloon', 'framed', 'modern' ) ),
 			),
 			'quote_size' => array(
-				'title' => __( 'Quote Text Size', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Testimonial Text Size', 'codelights-shortcodes-and-widgets' ),
 				'description' => '',
 				'type' => 'textfield',
 				'std' => '18px',
@@ -1002,14 +999,13 @@ return array(
 				'title' => '',
 				'type' => 'checkboxes',
 				'options' => array(
-					TRUE => __( 'Make Quote Text italic', 'codelights-shortcodes-and-widgets' ),
+					TRUE => __( 'Make Testimonial Text italic', 'codelights-shortcodes-and-widgets' ),
 				),
 				'std' => TRUE,
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'el_class' => array(
-				'title' => __( 'Extra class name', 'codelights-shortcodes-and-widgets' ),
-				'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Extra CSS class', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
