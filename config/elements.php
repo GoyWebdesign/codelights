@@ -82,7 +82,7 @@ return array(
 				'title' => __( 'Link', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'select',
 				'options' => array(
-					'none' => __( 'No Link', 'codelights-shortcodes-and-widgets' ),
+					'none' => __( 'None', 'codelights-shortcodes-and-widgets' ),
 					'container' => __( 'Add link to the whole FlipBox', 'codelights-shortcodes-and-widgets' ),
 					'btn' => __( 'Add link as a button on the Back Side', 'codelights-shortcodes-and-widgets' ),
 				),
@@ -165,14 +165,14 @@ return array(
 				'type' => 'select',
 				'options' => array(
 					'none' => __( 'None', 'codelights-shortcodes-and-widgets' ),
-					'font' => __( 'Font Awesome Icon', 'codelights-shortcodes-and-widgets' ),
+					'font' => sprintf( __( '%s icon', 'codelights-shortcodes-and-widgets' ), 'Font Awesome' ),
 					'image' => __( 'Custom Image', 'codelights-shortcodes-and-widgets' ),
 				),
 				'group' => __( 'Front Side', 'codelights-shortcodes-and-widgets' ),
 			),
 			'front_icon_name' => array(
 				'title' => __( 'Icon Name', 'codelights-shortcodes-and-widgets' ),
-				'description' => sprintf( __( '<a href="%s" target="_blank">Font Awesome</a> icon', 'codelights-shortcodes-and-widgets' ), 'http://fontawesome.io/icons/' ),
+				'description' => sprintf( __( '%s icon', 'codelights-shortcodes-and-widgets' ), '<a href="http://fontawesome.io/icons/" target="_blank">Font Awesome</a>' ),
 				'type' => 'textfield',
 				'group' => __( 'Front Side', 'codelights-shortcodes-and-widgets' ),
 				'show_if' => array( 'front_icon_type', '=', 'font' ),
@@ -365,7 +365,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'border_radius' => array(
-				'title' => __( 'Corner Radius', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Corners Radius', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
@@ -410,7 +410,7 @@ return array(
 			 * Content
 			 */
 			'image' => array(
-				'title' => __( 'Banner Image', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Image', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'image',
 				'classes' => 'cl_col-sm-6 cl_column',
 			),
@@ -850,7 +850,7 @@ return array(
 				'group' => __( 'Style', 'codelights-shortcodes-and-widgets' ),
 			),
 			'border_radius' => array(
-				'title' => __( 'Border Radius', 'codelights-shortcodes-and-widgets' ),
+				'title' => __( 'Corners Radius', 'codelights-shortcodes-and-widgets' ),
 				'type' => 'textfield',
 				'std' => '0',
 				'classes' => 'cl_col-sm-6 cl_column',
