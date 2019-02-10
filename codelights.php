@@ -1,10 +1,10 @@
 <?php defined( 'ABSPATH' ) OR die( 'This script cannot be accessed directly.' );
 
 /**
- * Plugin Name: SiteOrigin Widgets by CodeLights
- * Version: 1.3
+ * Plugin Name: Sidebar Widgets by CodeLights
+ * Version: 1.4
  * Plugin URI: http://codelights.com/
- * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use. Also can work without SiteOrigin.
+ * Description: Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
  * Author: CodeLights
  * Author URI: http://codelights.com/
  * License: GPLv2 or later

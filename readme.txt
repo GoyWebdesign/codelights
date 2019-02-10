@@ -1,15 +1,19 @@
-=== SiteOrigin Widgets by CodeLights ===
+=== Sidebar Widgets by CodeLights ===
 Contributors: rsukhar
-Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar, siteorigin
+Tags: shortcodes, shortcode, widget, widgets, responsive, page, admin, banner, counter, flipbox, animation, sidebar
 Requires at least: 4.0
 Tested up to: 4.8.1
 Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use. Also can work without SiteOrigin.
+Flexible high-end shortcodes and widgets. Responsive, modern, SEO-optimized and easy-to-use.
 
 == Description ==
+
+❗ Unfortunately, CodeLights no longer supports SiteOrigin Page Builder natively due to the SiteOrigin's complete change of widgets API. Workaround: you still can create a CodeLights shortcode in a plain text editor, and add this shortcode to the SiteOrigin editor.
+
+❗ Developers Wanted: If you can help to improve and develop this 100K+ active installs plugin, and become one of authors, please [fork Convertful](https://github.com/rsukhar/codelights/), and create pull requests with your improvements.
 
 [vimeo https://vimeo.com/146383727]
 
@@ -96,12 +100,6 @@ A great tool to share your current Clients' experience with your new visitors, a
 
 ### Use Them the Way You Like
 
-#### SiteOrigin Page Builder
-
-Using SiteOrigin? CodeLights elements can be used as its widgets as well. Just install CodeLights and you'll see an additional tab with its elements in your SiteOrigin dialogs.
-
-> Check the screenshots or download the plugin for more details.
-
 #### Shortcode Builder
 
 Both in visual and text modes you'll see an additional button that helps you to create and edit shortcodes using convenient tabbed forms. **Create and modify the elements you want in seconds!**
@@ -138,6 +136,9 @@ Back-end (editor): Edge, two latest versions of Chrome, Safari, FireFox and Oper
 5. Editing sidebar widget from customizer
 
 == Changelog ==
+= 1.4 =
+* Fixed: Renamed the plugin not to mislead users about the SiteOrigin support.
+
 = 1.3 =
 * Fixed: Compatibility with WordPress 4.9
 
